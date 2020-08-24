@@ -2,7 +2,7 @@
 using Statiq.Core;
 using Statiq.Feeds;
 
-namespace site.Pipelines
+namespace src.Pipelines
 {
     public class FeedsPipeline : Pipeline
     {

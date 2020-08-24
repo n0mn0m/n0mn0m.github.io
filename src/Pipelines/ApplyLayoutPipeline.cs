@@ -1,12 +1,12 @@
 ﻿using System;
-using site.Extensions;
+using src.Extensions;
 using System.Linq;
 using Statiq.Common;
 using Statiq.Core;
 using Statiq.Feeds;
 using Statiq.Handlebars;
 
-namespace site.Pipelines
+namespace src.Pipelines
 {
     public abstract class ApplyLayoutPipeline : Pipeline
     {
@@ -19,26 +19,17 @@ namespace site.Pipelines
                     .First(x => x.Source.FileName == "layout.hbs")
                     .GetContentStringAsync())),
                 new RenderHandlebars("template")
-                    .Configure(async (context, document, handlebars) =>
-                    {
-                        foreach (var partial in context.Outputs
-                            .FromPipeline(nameof(LayoutPipeline)).WhereContainsKey("partial"))
-                        {
-                            handlebars.RegisterTemplate(
-                                partial.GetString("partial"),
-                                await partial.GetContentStringAsync());
-                        }
-                    }).WithModel(Config.FromDocument(async (doc, ctx) => new
+                    .WithModel(Config.FromDocument(async (doc, ctx) => new
                     {
                         title = doc.GetString(Keys.Title),
                         body = await doc.GetContentStringAsync(),
                         link = ctx.GetLink(doc),
                         year = ctx.Settings.GetString(FeedKeys.Copyright),
                         tags = ctx.Outputs.FromPipeline(nameof(TagsPipeline))
-                            .OrderByDescending(x => x.GetChildren().Count)
-                            .ThenBy(x => x.GetString(Keys.GroupKey))
-                            .Take(10)
-                            .Select(x => x.AsTag(ctx))
+                                                    .OrderByDescending(x => x.GetChildren().Count)
+                                                    .ThenBy(x => x.GetString(Keys.GroupKey))
+                                                    .Take(10)
+                                                    .Select(x => x.AsTag(ctx))
                     })),
                 new SetContent(Config.FromDocument(x => x.GetString("template")))
             };

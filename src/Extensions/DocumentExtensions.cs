@@ -3,7 +3,7 @@ using System.Dynamic;
 using Statiq.Common;
 using Statiq.Feeds;
 
-namespace site.Extensions
+namespace src.Extensions
 {
     public static class DocumentExtensions
     {

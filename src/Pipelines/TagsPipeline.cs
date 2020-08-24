@@ -1,11 +1,11 @@
 ﻿using System.Linq;
-using site.Extensions;
+using src.Extensions;
 using Statiq.Common;
 using Statiq.Core;
 using Statiq.Feeds;
 using Statiq.Handlebars;
 
-namespace site.Pipelines
+namespace src.Pipelines
 {
     public class TagsPipeline : ApplyLayoutPipeline
     {
@@ -31,15 +31,9 @@ namespace site.Pipelines
                     .WithModel(Config.FromDocument((doc, context) => new
                     {
                         title = doc.GetString(Keys.GroupKey),
-                        head = doc.GetString(Keys.SourceHeaders),
                         posts = doc.GetChildren()
                             .OrderByDescending(x => x.GetDateTime(FeedKeys.Published))
                             .Select(x => x.AsPost(context)),
-                        tags = context.Inputs
-                            .OrderByDescending(x => x.GetChildren().Count)
-                            .ThenBy(x => x.GetString(Keys.GroupKey))
-                            .Take(10)
-                            .Select(x => x.AsTag(context)),
                     }))
             };
 

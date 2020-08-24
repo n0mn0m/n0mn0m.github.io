@@ -1,12 +1,12 @@
 ﻿using System.Linq;
-using site.Extensions;
+using src.Extensions;
 using Statiq.Common;
 using Statiq.Core;
 using Statiq.Feeds;
 using Statiq.Handlebars;
 using Statiq.Yaml;
 
-namespace site.Pipelines
+namespace src.Pipelines
 {
     public class IndexPipeline : ApplyLayoutPipeline
     {
@@ -27,15 +27,10 @@ namespace site.Pipelines
                     .WithModel(Config.FromDocument((doc, context) => new
                     {
                         description = context.Settings.GetString(FeedKeys.Description),
-                        head = doc.GetString(Keys.SourceHeaders),
                         posts = context.Outputs.FromPipeline(nameof(BlogPostPipeline))
                             .OrderByDescending(x => x.GetDateTime(FeedKeys.Published))
                             .Take(3)
                             .Select(x => x.AsPost(context)),
-                        olderPosts = context.Outputs.FromPipeline(nameof(BlogPostPipeline))
-                            .OrderByDescending(x => x.GetDateTime(FeedKeys.Published))
-                            .Skip(3)
-                            .Select(x => x.AsPost(context)), 
                         tags = context.Outputs.FromPipeline(nameof(TagsPipeline))
                             .OrderByDescending(x => x.GetChildren().Count)
                             .ThenBy(x => x.GetString(Keys.GroupKey))

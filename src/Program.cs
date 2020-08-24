@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Statiq.App;
 using Statiq.Common;
 using Statiq.Feeds;
-using Statiq.Web;
 
 namespace src
 {
@@ -13,8 +12,8 @@ namespace src
         {
             return Bootstrapper
                 .Factory
-                .CreateWeb(args)
-                .AddHostingCommands()
+                .CreateDefault(args)
+                // .AddHostingCommands()
                 .AddSetting(Keys.LinkLowercase, true)
                 .AddSetting(Keys.LinksUseHttps, true)
                 .AddSetting(Keys.Host, "alexander@unexpectedeof.net")

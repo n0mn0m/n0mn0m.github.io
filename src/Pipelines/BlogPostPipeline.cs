@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using site.Extensions;
+using src.Extensions;
 using Statiq.Common;
 using Statiq.Core;
 using Statiq.Feeds;
@@ -8,7 +8,7 @@ using Statiq.Html;
 using Statiq.Markdown;
 using Statiq.Yaml;
 
-namespace site.Pipelines
+namespace src.Pipelines
 {
     public class BlogPostPipeline : ApplyLayoutPipeline
     {

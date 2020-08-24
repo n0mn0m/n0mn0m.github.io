@@ -299,3 +299,4 @@ riderModule.iml
 
 output/
 logs/
+.DS_Store

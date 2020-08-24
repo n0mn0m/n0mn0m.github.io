@@ -1,7 +1,7 @@
 ﻿using Statiq.Common;
 using Statiq.Core;
 
-namespace site.Pipelines
+namespace src.Pipelines
 {
     public class AssetsPipeline : Pipeline
     {

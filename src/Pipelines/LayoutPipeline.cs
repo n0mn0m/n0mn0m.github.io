@@ -2,7 +2,7 @@
 using Statiq.Core;
 using Statiq.Yaml;
 
-namespace site.Pipelines
+namespace src.Pipelines
 {
     public class LayoutPipeline : Pipeline
     {

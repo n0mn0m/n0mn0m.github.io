@@ -1,10 +1,10 @@
 ﻿using System.Linq;
-using site.Extensions;
+using src.Extensions;
 using Statiq.Common;
 using Statiq.Core;
 using Statiq.Handlebars;
 
-namespace site.Pipelines
+namespace src.Pipelines
 {
     public class TagIndexPipeline : ApplyLayoutPipeline
     {

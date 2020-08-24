@@ -2,26 +2,30 @@ var target = Argument("target", "Build");
 var configuration = Argument("configuration", "Release");
 
 Task("Clean")
-    .Does(() => CleanDirectory($"./src/bin/**"))
-    .Does(() => CleanDirectory("./temp"))
-    .Does(() => CleanDirectory("./wwwroot"))
-    .Does(() => CleanDirectory("./logs"))
-    .Does(() => CleanDirectory("./output"));
+    .Does(() => DeleteDirectory($"./src/bin/**", new DeleteDirectorySettings {Recursive = true, Force = true}))
+    .Does(() => DeleteDirectory("./src/logs", new DeleteDirectorySettings {Recursive = true, Force = true}))
+    .Does(() => DeleteDirectory("./src/wwwroot", new DeleteDirectorySettings {Recursive = true, Force = true}))
+    .Does(() => DeleteDirectory("./temp", new DeleteDirectorySettings {Recursive = true, Force = true}))
+    .Does(() => DeleteDirectory("./output", new DeleteDirectorySettings {Recursive = true, Force = true}));
 
 Task("Build")
     .Does(() => DotNetCoreRun("./src/src.csproj"));
 
 Task("Preview")
+    .Does(() => DeleteDirectory("./temp",  new DeleteDirectorySettings {Recursive = true, Force = true}))
+    .Does(() => DeleteDirectory("./output",  new DeleteDirectorySettings {Recursive = true, Force = true}))
     .Does(() => DotNetCoreRun("./src/src.csproj", new ProcessArgumentBuilder()
         .Append("preview")
+        .Append("--nocache")
         .Append("--root=/Users/n0mn0m/RiderProjects/Unexpectedeof.Blog/")));
         
 Task("Run")
+    .Does(() => DeleteDirectory("./temp",  new DeleteDirectorySettings {Recursive = true, Force = true}))
+    .Does(() => DeleteDirectory("./output",  new DeleteDirectorySettings {Recursive = true, Force = true}))
     .Does(() => DotNetCoreRun("./src/src.csproj", new ProcessArgumentBuilder()
         .Append("--root=/Users/n0mn0m/RiderProjects/Unexpectedeof.Blog/")
         .Append("--log-file=run_")
-        .Append("--nocache")
-        .Append("--serial")));
+        .Append("--nocache")));
 
 Task("Default")
     .IsDependentOn("Build");
