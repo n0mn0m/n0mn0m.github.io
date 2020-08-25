@@ -13,7 +13,6 @@ namespace src
             return Bootstrapper
                 .Factory
                 .CreateDefault(args)
-                // .AddHostingCommands()
                 .AddSetting(Keys.LinkLowercase, true)
                 .AddSetting(Keys.LinksUseHttps, true)
                 .AddSetting(Keys.Host, "alexander@unexpectedeof.net")

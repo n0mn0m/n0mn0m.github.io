@@ -10,14 +10,6 @@ Task("Clean")
 
 Task("Build")
     .Does(() => DotNetCoreRun("./src/src.csproj"));
-
-Task("Preview")
-    .Does(() => DeleteDirectory("./temp",  new DeleteDirectorySettings {Recursive = true, Force = true}))
-    .Does(() => DeleteDirectory("./output",  new DeleteDirectorySettings {Recursive = true, Force = true}))
-    .Does(() => DotNetCoreRun("./src/src.csproj", new ProcessArgumentBuilder()
-        .Append("preview")
-        .Append("--nocache")
-        .Append("--root=/Users/n0mn0m/RiderProjects/Unexpectedeof.Blog/")));
         
 Task("Run")
     .Does(() => DeleteDirectory("./temp",  new DeleteDirectorySettings {Recursive = true, Force = true}))
