@@ -38,9 +38,9 @@ to automate and interact with the world around us.
 Aside from the technical I am the proud father of Maris and a gardener in the making.
 
 
-If you want to know more you can check out my [resume](/resume) or reach out
+If you want to know more you can check out my [resume](/resume.html) or reach out
 at <alexander@unexpectedeof.net> where I enjoy chatting with others.
 
 <p>
-<img src="../assets/images/us.png" alt="profile image" align="middle">
+<img src="./assets/images/us.png" alt="profile image" align="middle">
 </p>

@@ -48,8 +48,8 @@ giving back to the community.
 
 - Bachelors of Science in Computer Information Technologies, 
 Western Kentucky University, Bowling Green, KY, August 2011
-- [MCSD Web Applications](/certifications/MCSD_WebApps.pdf)
-- [UT.6.10x: Embedded Systems](/certifications/Embedded_601.pdf)
+- [MCSD Web Applications](../assets/certifications/MCSD_WebApps.pdf)
+- [UT.6.10x: Embedded Systems](../assets/certifications/Embedded_601.pdf)
 
 ### Technical Competencies
 - Python, C#, C, Rust, SQL, bash
