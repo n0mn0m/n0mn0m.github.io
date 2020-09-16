@@ -1,115 +1,114 @@
 ﻿<!DOCTYPE HTML>
-<html lang="en">
-<!--/head-->
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Compiling">
-    <meta name="author" content="Alexander Hagerman">
     <title>UnexpectedEOF</title>
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../assets/css/font-awesome.min.css" rel="stylesheet">
-    <link href="../assets/css/main.css" rel="stylesheet">
-    <link href="../assets/css/responsive.css" rel="stylesheet">
-
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
     <link rel="shortcut icon" href="../assets/images/ico/favicon.ico">
-
+    
     <meta property="og:title" content="Alexander{{#if title}} - {{title}}{{/if}}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://unexpectedeof.net{{link}}" />
 </head>
+<body class="is-preload">
 
-<body class="left-sidebar is-preload">
-    <!-- Wrapper -->
-    <div id="page-wrapper">
+<!-- Wrapper -->
+<div id="wrapper">
 
-        <header id="header">
-            <div class="navbar navbar-inverse" role="banner">
-                <div class="container">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="https://unexpectedeof.net">
-                            <h1 id="breadcrumb" class="title">UnexpectedEOF</h1>
-                        </a>
-                    </div>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/index">Home</a></li>
-                        <li><a href="/posts">Archive</a></li>
-                        <li><a href="/about">About</a></li>
-                        <li><a href="/shelf">Book Shelf</a></li>
-                        <li><a href="/resume">Resume</a></li>
-                    </ul>
-                </div>
-            </div>
-        </header>
-        <!--/#header-->
+    <!-- Main -->
+    <div id="main">
+        <div class="inner">
 
-        <section id="blog">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 col-sm-5">
-                        <div class="sidebar blog-sidebar">
-                            <div class="sidebar-item tag-cloud">
-                                <h3>Tags</h3>
-                                <ul class="actions">
-                                    {{#each tags}}
-                                        <li><a role="button" href="{{link}}" class="button">{{title}} ({{count}})</a></li>
-                                    {{/each}}
-                                </ul>
-                                <ul class="actions">
-                                    <li><a href="/tags" class="button small">View All Tags &rarr;</a></li>
-                                </ul>
-                            </div>
-                            <div class="sidebar-item">
-                                <h3>Social</h3>
-                                <ul>
-                                    <li><a href="https://hackaday.io/n0mn0m"><i class="fa fa-wrench"></i><span class="social-text">Hackaday</span></a></li>
-                                    <li><a href="https://git.unexpectedeof.net/n0mn0m"><i class="fa fa-git"></i><span class="social-text">Gitea</span></a></li>
-                                    <li><a href="https://keybase.io/alexanderh"><i class="fa fa-key"></i><span class="social-text">Keybase</span></a></li>
-                                    <li><a href="https://stackoverflow.com/users/story/1480185"><i class="fa fa-stack-overflow"></i><span class="social-text">StackOverflow</span></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-9 col-sm-7">
-                        {{{ body }}}
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--/#blog-->
+            <!-- Header -->
+            <header id="header">
+                <a href="index.html" class="logo">notes from making things...</a>
+                <ul class="icons">
+                    <li><a href="https://hackaday.io/n0mn0m" class="icon fa-wrench"><span class="label">Hackaday</span></a></li>
+                    <li><a href="https://git.unexpectedeof.net/n0mn0m" class="icon brands fa-git"><span class="label">Gitea</span></a></li>
+                    <li><a href="https://keybase.io/alexanderh" class="icon brands fa-keybase"><span class="label">Keybase</span></a></li>
+                    <li><a href="https://stackoverflow.com/users/story/1480185" class="icon brands fa-stack-overflow"><span class="label">StackOverflow</span></a></li>
+                </ul>
+            </header>
 
-        <section id="separator">
-            <span></span>
-        </section>
-        <!--/#separator-->
+            <!-- Content -->
+            <section>
+                {{{ body }}}
+            </section>
 
-        <footer id="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-14 col-sm-24">
-                        <div class="contact-info text-center bottom">
-                            <h2>Contact</h2>
-                            <address>
-                                <a href="mailto:alexander@unexpectedeof.net">alexander@unexpectedeof.net</a> <br>
-                            </address>
-
-                            <h2>Fingerprint</h2>
-                            <address>
-                                B1083930718E18786F0E87BC40D6536489E184AB
-                            </address>
-                        </div>
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="copyright-text text-center">
-                            <p>&copy; Alexander "n0mn0m" Hagerman</p>
-                            <p>Writing Creative Commons CC0 1.0. Code LGPL.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!--/#footer-->
+        </div>
     </div>
-</body>
 
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <div class="inner">
+
+            <!-- Menu -->
+            <nav id="menu">
+                <header class="major">
+                    <h2>UnexpectedEOF</h2>
+                </header>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li>
+                        <span class="opener">Blog</span>
+                        <ul>
+                            <li><a href="/posts">Archive</a></li>
+                            <li><a href="/tags">Tags</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="opener">Projects</span>
+                        <ul>
+                            <li><a href="https://git.unexpectedeof.xyz">Repos</a></li>
+                            <li><a href="https://teamcity.unexpectedeof.xyz/overview">Builds</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="opener">About</span>
+                        <ul>
+                            <li><a href="about.html">Me</a></li>
+                            <li><a href="resume.html">Resume</a></li>
+                            <li><a href="certs.html">Certifications</a></li>
+                            <li><a href="shelf.html">Book Shelf</a></li>
+                            <li><a href="podcast.html">Podcast</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Section -->
+            <section>
+                <header class="major">
+                    <h2>Get in touch</h2>
+                </header>
+                <ul class="contact">
+                    <li class="icon solid fa-envelope"><a href="mailto:alexander@unexpectedeof.net">alexander@unexpectedeof.net</a></li>
+                    <li class="icon solid fa-fingerprint">B1083930718E18786F0E8<br />7BC40D6536489E184AB</li>
+                </ul>
+            </section>
+
+            <!-- Footer -->
+            <footer id="footer">
+               <p class="copyright">&copy; Alexander "n0mn0m" Hagerman<br />Writing Creative Commons CC0 1.0. Code LGPL.</p>
+            </footer>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
 </html>
