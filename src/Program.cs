@@ -16,7 +16,7 @@ namespace src
                 .AddSetting(Keys.LinkLowercase, true)
                 .AddSetting(Keys.LinksUseHttps, true)
                 .AddSetting(Keys.Host, "alexander@unexpectedeof.net")
-                .AddSetting(Keys.Title, "unexpectedeof")
+                .AddSetting(Keys.Title, "UnexpectedEOF")
                 .AddSetting(FeedKeys.Author, "Alexander Hagerman")
                 .AddSetting(FeedKeys.Description, "Notes from building things.")
                 .AddSetting(FeedKeys.Copyright, DateTime.UtcNow.Year.ToString())

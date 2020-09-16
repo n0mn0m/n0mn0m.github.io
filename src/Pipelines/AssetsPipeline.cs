@@ -10,7 +10,7 @@ namespace src.Pipelines
             Isolated = true;
             ProcessModules = new ModuleList
             {
-                new CopyFiles("./assets/{css,fonts,js,images,certifications}/**/*", "*.{jpg,png,ico,webmanifest}")
+                new CopyFiles("./assets/{css,sass,webfonts,fonts,js,images,certifications}/**/*", "*.{jpg,png,ico,webmanifest}")
             };
         }
     }
