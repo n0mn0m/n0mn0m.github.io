@@ -1,6 +1,5 @@
 var target = Argument("target", "Build");
 var configuration = Argument("configuration", "Release");
-var cwd = EnvironmentVariable("PWD") ?? "NOT_SET";
 
 Task("build")
     .Does(() => DotNetCoreRun("./src/src.csproj"));
@@ -18,7 +17,7 @@ Task("remove")
         
 Task("generate")
     .Does(() => DotNetCoreRun("./src/src.csproj", new ProcessArgumentBuilder()
-        .Append($"--root={cwd}")
+        .Append($"--root={Context.Environment.WorkingDirectory}")
         .Append("--log-file=run_")
         .Append("--nocache")));
 
