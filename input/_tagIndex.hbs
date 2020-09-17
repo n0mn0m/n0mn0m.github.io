@@ -1,8 +1,7 @@
 ﻿<div id="content">
-    <h1>All Tags</h1>
-    <ul id="all-tags" class="actions">
+    <ul class="small">
         {{#each tags}}
-        <li><a role="button" href="{{link}}" class="button">{{title}}</a></li>
+            <li><a role="button" href="{{link}}" class="small ">{{title}} ({{count}})</a></li>
         {{/each}}
     </ul>
 </div>
