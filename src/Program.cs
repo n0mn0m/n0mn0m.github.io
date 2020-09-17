@@ -17,7 +17,7 @@ namespace src
                 .AddSetting(Keys.LinksUseHttps, true)
                 .AddSetting(Keys.LinkHideExtensions, false)
                 .AddSetting(Keys.LinkHideIndexPages, false)
-                .AddSetting(Keys.Host, "alexander@unexpectedeof.net")
+                .AddSetting(Keys.Host, "unexpectedeof.xyz")
                 .AddSetting(Keys.Title, "UnexpectedEOF")
                 .AddSetting(FeedKeys.Author, "Alexander Hagerman")
                 .AddSetting(FeedKeys.Description, "Notes from building things.")
