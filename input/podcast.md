@@ -5,7 +5,8 @@ ShowInNavbar: false
 
 # Now Listening
 
-Below are some of the podcast I enjoy listening to and recommend.
+Below are some of the podcast I (currently or previously) enjoy listening to
+and recommend.
 
 - [BSD Now](https://www.bsdnow.tv/)
 - [Corecursive](https://corecursive.com/)

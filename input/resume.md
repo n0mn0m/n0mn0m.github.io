@@ -3,7 +3,7 @@ Title: Resume
 ShowInNavbar: false
 ---
 
-### Profile
+# Profile
 
 I am a software engineer that enjoys working on projects that let people experience
 and interact with technology in new and unique ways. I have experience in a variety
@@ -11,10 +11,21 @@ of date oriented domains, distributed system and embedded applications. Along wi
 building and maintaining systems I am passionate about teaching, mentoring and
 giving back to the community. 
 
-### Experience
+## Experience
 
-#### Humana
-- Senior Software Engineer - September 2019 to Present
+### Samtec
+
+- Technical Lead - June 2020 to Present
+    - Collaborate with manufacturing areas to develop a new asset management
+    and preventative maintenance system.
+    - Identify tool and process gaps impacting the team or system designs,
+    find and implement solutions.
+    - Pair with engineers to assist in learning new tools and platforms.
+    - Pair with team to assist in implementation of designs.
+
+### Humana
+
+- Senior Software Engineer - September 2019 to May 2020
     - Collaborate with Data Scientist to transform unstructured member and provider
     data into structured datasets, deploy NLP models and better integrate software
     engineers and data scientist. 
@@ -23,11 +34,13 @@ giving back to the community.
     - Collaborated on a project where we deployed the first FaaS application and
     ML model at Humana on Azure.
 
-#### Elastic
+### Elastic
+
 - Senior Software Engineer- April 2019 to August 2019
     - Build out the Elastic Cloud GCP Marketplace billing integration.
 
-#### Humana
+### Humana
+
 - Senior Software Engineer - January 2017 to March 2019
     - Collaborate with Data Scientist focused on provider patient insights to 
     help modernize software/model development practices, expand software engineering
@@ -36,7 +49,8 @@ giving back to the community.
     - Lead the development and expansion of SIU Fraud data integration, reporting
     and analysis.
 
-#### Aspect
+### Aspect
+
 - Senior Analytic Consultant - January 2014  to July 2015
     - Partner with clients in retail and consumer airline industries to build out
     or expand analytic capabilities via the MS BI stack.
@@ -44,20 +58,21 @@ giving back to the community.
     - Responsible for building a variety of front end web and cli tools for
     clients using C#.
 
-### Education and Certifications
+## Education and Certifications
 
 - Bachelors of Science in Computer Information Technologies, 
 Western Kentucky University, Bowling Green, KY, August 2011
 - [MCSD Web Applications](../assets/certifications/MCSD_WebApps.pdf)
 - [UT.6.10x: Embedded Systems](../assets/certifications/Embedded_601.pdf)
 
-### Technical Competencies
-- Python, C#, C, Rust, SQL, bash
+## Technical Competencies
+
+- Python, C#, C, Rust, SQL, bash, powershell
 - SQL Server, Postgres, Hadoop, Spark, Elasticsearch, RabbitMQ, Netezza
 - git, gdb, Linux, docker, Jupyter
 - Software Architecture, Software Testing, Pair Programming, CI/CD
 
-### Volunteer and Open Source Experience
+## Volunteer and Open Source Experience
 
 - Hardware Happy Hour Louisville
 - DerbyPy
@@ -67,24 +82,26 @@ Western Kentucky University, Bowling Green, KY, August 2011
 - Apache Arrow
 - Firefox Mobile
 
-### Talks
+## Talks
 
 - [Intro to Circuit Playground Express](https://github.com/Hardware-Happy-Hour-Louisville/HardwareLou_CircuitPlayground), H3 Louisville, Louisville KY January 2020
 - [Python for Embedded Systems](https://github.com/DerbyPy/python_for_embedded_systems), DerbyPy Louisville KY 2019
 - [What is ODBC](https://github.com/DerbyPy/what-is-odbc), DerbyPy, Louisville KY March 2019
 - [Intro to PySpark](https://github.com/DerbyPy/intro-to-pyspark), DerbyPy, Louisville KY October 2018
 - [Python Modules and Packages](https://github.com/DerbyPy/modules-and-packages-intro), Derby Py, Louisville KY September 2018
-- [Column Oriented Data](https://github.com/n0mn0m/presentations/blob/master/JupyterNotebooks/DerbyPyArrow.ipynb), DerbyPy, Louisville KY June 2018
+- [Column Oriented Data](https://git.unexpectedeof.xyz/n0mn0m/presentations/JupyterNotebooks/DerbyPyArrow.ipynb), DerbyPy, Louisville KY June 2018
 
-### Awards
+## Awards
+
 - [Hackaday Connected World Contest](https://hackaday.io/contest/163251-connected-world-contest/log/169141-30-winners-get-25-oshpark-certificates) - Connected Roomba
 - Humana Star Award 2018 - Data Engineering
 - Best Buy Star Award 2010 - P&L Logistics
 
-### Memberships
+## Memberships
 
 - [ACM](http://member.acm.org/~ahagerman)
 
-### Downloads
-- [Summary Resume](https://git.sr.ht/~n0mn0m/resume/blob/master/resume_summary.pdf)
-- [Detailed Resume](https://git.sr.ht/~n0mn0m/resume/blob/master/resume_detailed.pdf)
+## Downloads
+
+- [Summary Resume](https://git.unexpectedeof.xyz/n0mn0m/resume/src/branch/master/resume.pdf)
+- [Detailed Resume](https://git.unexpectedeof.xyz/n0mn0m/resume/src/branch/master/resume_detailed.pdf)
