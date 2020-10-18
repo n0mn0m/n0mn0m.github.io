@@ -1,5 +1,5 @@
 ---
-Title: Resharper in CI
+Title: Getting started with Resharper Global Tools
 Published: 2020-10-11
 Tags:
 - Resharper
@@ -67,19 +67,22 @@ at the project level. This then allows CI and other contributors to use
 ## Configuration
 
 Out of the box inspect, format, and dupefinder all have default configurations
-that work well. That said each team has there own needs and preferences you
-may want these tools to follow. While there are a few ways documented I found
-using [editorconfig](https://www.jetbrains.com/help/resharper/Using_EditorConfig.html)
-to be the most straight forwad and human readable approach.
+that work well. That said each team has their own needs and preferences you
+may want these tools to promote. While there are a few ways to configure
+these tools I found using [editorconfig](https://www.jetbrains.com/help/resharper/Using_EditorConfig.html)
+to be the most human readable approach.
 
-For additional details on the editorconfig format [see](https://editorconfig.org).
+For additional details on the editorconfig format see the [docs](https://editorconfig.org)
+and this property [index](https://www.jetbrains.com/help/rider/EditorConfig_Index.html).
 
 ## Running
 
-Running the tools is relatively easy:
+Running the tools from a shell is relatively easy:
 
 ```bash
-
+jb cleanupcode --verbosity=ERROR --config=./.config/cleanup --settings=./.editorconfig --no-buildin-settings ./Project.sln
+jb inspectcode --verbosity=ERROR Project.sln -o=./reports/resharperInspect.xml
+jb dupfinder --verbosity=ERROR Project..sln -o=./reports/resharperDupFinder.xml
 ```
 
 One thing to note is that by default the autoformatting will attempt to enforce
@@ -98,21 +101,31 @@ in our CI pipeline. Running the tools is easy as long as your CI platform has
 a shell like task/step/operator:
 
 ```bash
-dotnet tool restore
-
+- script: |
+    dotnet tool restore
+    jb cleanupcode --verbosity=ERROR --config=./.config/cleanup --settings=./.editorconfig --no-buildin-settings ./Project.sln
+    jb inspectcode --verbosity=ERROR Project.sln -o=./reports/resharperInspect.xml
+    jb dupfinder --verbosity=ERROR Project..sln -o=./reports/resharperDupFinder.xml
+displayName: 'Resharper'
 ```
 
-The trick is detecting when these tools find an issue. I'll share what I did in
-case it's helpful, but long term it would be great if Jetbrains had the tools exit
-with documented status codes for different issues. As it stands the tools only
-exit with an error if the tool fails, not if issues are detected.
+ Of course you will probably break these up for easier maintenance and
+ reporting.
+
+Running the tools is easy. The trick is detecting when these tools find
+an issue. I'll share what I did in case it's helpful, but long term it
+would be great if Jetbrains had the tools exit with documented status
+codes for different issues. As it stands the tools only exit with an
+error if the tool fails, not when issues are reported.
 
 ### CleanupCode
 
-Since `CleanupCode` will format our file rewriting it on disk we can use git to
-detect the change.
+Since `CleanupCode` will format our file rewriting it on disk we can use
+git to detect the change.
 
 ```bash
+formatted=$(git status --porcelain=v1 2>/dev/null | wc -l)
+exit $formatted
 ```
 
 ### dupFinder
@@ -121,7 +134,9 @@ detect the change.
 built in XML support makes it easy enough to query this file and see if any
 issues exist.
 
-```bash
+```powershell
+$Result = Select-Xml -Path $(System.DefaultWorkingDirectory)/reports/resharperDupFinder.xml -XPath "/DuplicatesReport/Duplicates/*"
+If ($Result -eq $null) { [Environment]::Exit(0) } Else { [Environment]::Exit(1) }
 ```
 
 ### InspectCode
@@ -129,22 +144,30 @@ issues exist.
 Similar to `dupFinder` `InspectCode` documents issues with an XML file, and
 once again we can use Powershell to detect if there are any issues to fix.
 
-```bash
+```powershell
+$Result = Select-Xml -Path $(System.DefaultWorkingDirectory)/reports/resharperInspect.xml -XPath "/Report/Issues/Project/*"
+If ($Result -eq $null) { [Environment]::Exit(0) } Else { [Environment]::Exit(1) }
 ```
 
 And since `dupFinder` and `InspectCode` output XML it can be useful to save
 these as CI artifacts for review. In Azure Pipelines this looks like:
 
-```bash
-
+```yaml
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(System.DefaultWorkingDirectory)/reports/'
+    artifactName: 'measurements'
+  condition: always()
+  displayName: 'Save ReSharper Results For Review.'
 ```
 
 ## Wrapping Up
 
 We've been using the ReSharper tools for a few months now and I have to say they
-provided exactly what I was looking for in the beginning. The tools have been easy
+provided what I was looking for in the beginning. The tools have been easy
 to use, help us maintain our code and haven't boxed us in or required a lot
 of extra time on configuration and unseen gotchas. The only criticism I have is
-cold start time is pretty slow, and the return exit codes could be better. Both
-of these would also help with CI, and our pre-commit setup. Otherwise I think
-these will continue to serve us well and let us focus on our project delivery.
+cold start time is pretty slow for `cleanupcode`, and the return exit codes
+could be better. Both of these would also help with CI, and our git hook setup.
+Otherwise I think these will continue to serve us well and let us focus
+on our project delivery.
