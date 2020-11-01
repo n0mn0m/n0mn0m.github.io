@@ -21,7 +21,7 @@ for the API endpoint and the Roomba OI (Open Interface) code running on the
 Feather. This week I had the opportunity to sit down and fix some of that.
 
 The latest version of the project can be found
-[here](https://git.sr.ht/~n0mn0m/bot_commander).
+[here](https://git.burningdaylight.io/bot_commander).
 
 ## Roomba
 
@@ -42,7 +42,7 @@ class OpenInterface:
 
 I had done this so that I couldn't send the Roomba signals that were invalid
 for a given state based on the Open Interface documentation. The
-[circuitroomba](https://git.sr.ht/~n0mn0m/circuitroomba) project were I
+[circuitroomba](https://git.burningdaylight.io/circuitroomba) project were I
 originally implemented this actually did a lot more state management. Overall
 maybe this would be helpful during application development, but I found it made
 code on the board unreliable due to the size of the class object in memory and
@@ -146,5 +146,5 @@ our.
 By observing and understanding the ways in which the prototyped system failed
 I was able to identify areas where behavior and functionality could be
 simplified resulting in an overall more reliable system. If you have any other
-tips to share [reach out](mailto:alexander@unexpectedeof.net) and good luck
+tips to share [reach out](mailto:n0mn0m@burningdaylight.io) and good luck
 hacking.

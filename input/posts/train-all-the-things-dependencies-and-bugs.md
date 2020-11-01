@@ -100,7 +100,7 @@ And how I had to do it in C++:
 ```c++
 esp_http_client_config_t* config = (esp_http_client_config_t*)calloc(sizeof(esp_http_client_config_t), 1);
 config->url = URL;
-config->cert_pem = unexpectedeof_casa_root_cert_pem_start;
+config->cert_pem = burningdaylight_io_root_cert_pem_start;
 config->event_handler = _http_event_handler;
 
 esp_http_client_handle_t client = esp_http_client_init(config);
@@ -109,7 +109,7 @@ esp_err_t err = esp_http_client_perform(client);
 ```
 
 I had a similar issue with wifi and you can see the solution
-[here](https://git.sr.ht/~n0mn0m/on-air/tree/master/voice-assistant/smalltalk/main/http/wifi.cc#L40).
+[here](https://git.burningdaylight.io/on-air/tree/master/voice-assistant/smalltalk/main/http/wifi.cc#L40).
 
 I really enjoyed my lite trip into `idf`. It's an interesting set of components
 and followed a workflow that I use and appreciate. I wrote a couple aliases
@@ -131,7 +131,7 @@ projects.
 Approaching the end of this project it's been a larger undertaking than I
 expected, but I've learned a lot. It's definitely generated a few new project
 ideas. The code, docs, images etc for the project can be found
-[here](https://git.sr.ht/~n0mn0m/on-air) and I'll be posting updates as I
+[here](https://git.burningdaylight.io/on-air) and I'll be posting updates as I
 continue along to [HackadayIO](https://hackaday.io/project/170228-on-air) and
 this blog. If you have any questions or ideas reach
-[out](mailto:alexander@unexpextedeof.net).
+[out](mailto:n0mn0m@burningdaylight.io).

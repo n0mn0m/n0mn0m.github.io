@@ -115,4 +115,4 @@ check out the documentation.
 I'm sure others will have different ideas and approaches to something like
 this. Or you might have suggestions on something that could be done to make
 this faster or easier to read. If you have feedback or suggestion feel free to
-send them my way via up via [email](mailto:alexander@unexpextedeof.net).
+send them my way via up via [email](mailto:n0mn0m@burningdaylight.io).

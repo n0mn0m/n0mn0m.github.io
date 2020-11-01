@@ -52,7 +52,7 @@ I ended up switching to VMWare, and after switching the USB connection to pass
 through as 2.0 was able to get everything packaged up into a Windows VM with
 Keil, the Stellaris software, the simulator DLL and the appropriate Keil
 registry edits. In case it would ever help anybody my VMWare config file is
-[here](https://git.sr.ht/~n0mn0m/snippets/tree/master/Windows%2010%20x64.vmx).
+[here](https://git.burningdaylight.io/snippets/tree/master/Windows%2010%20x64.vmx).
 
 After spending a couple days getting the IDE, hardware and VM all setup and
 playing well together I dove into the course. Overall I enjoyed it. It exposed

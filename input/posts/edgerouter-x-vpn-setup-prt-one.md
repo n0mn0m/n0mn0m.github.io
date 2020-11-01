@@ -17,7 +17,7 @@ AmplifiHD**
 
 **I am not a network or sysadmin by day. This is something I'm actively
 learning on and figuring out. If you see something wrong or have suggestions I
-would love to hear about it. [Reach out.](mailto:alexander@unexpectedeof.net)**
+would love to hear about it. [Reach out.](mailto:n0mn0m@burningdaylight.io)**
 
 ## Preparing the network
 

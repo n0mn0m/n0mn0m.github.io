@@ -3,7 +3,7 @@ Title: About
 ShowInNavbar: false
 ---
 
-Hi, I'm Alexander (n0mn0m in some spaces)
+Hi, I'm Alexander ("n0mn0m")
 
 Maker / Mentor / Forever a student
 
@@ -32,7 +32,7 @@ to automate and interact with the world around us.
 Aside from the technical I am the proud father of Maris and a gardener in the making.
 
 If you want to know more you can check out my [resume](../resume.html) or reach out
-at <alexander@unexpectedeof.net> where I enjoy chatting with others.
+at <n0mn0m@burningdaylight.io> where I enjoy chatting with others.
 
 <p>
 <img src="../assets/images/us.png" width="800" height="400" alt="profile image" align="middle">

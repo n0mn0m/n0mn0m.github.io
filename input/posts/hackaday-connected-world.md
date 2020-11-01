@@ -47,5 +47,5 @@ kick starting this new learning path :).
 
 ### Contact
 
-If you want to chat feel free to follow up via [email](mailto:alexander@unexpextedeof.net)
-or on [Sourcehut](https://git.sr.ht/~n0mn0m/gencon-portal).
+If you want to chat feel free to follow up via [email](mailto:n0mn0m@burningdaylight.io)
+or on [Sourcehut](https://git.burningdaylight.io/gencon-portal).

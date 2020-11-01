@@ -64,7 +64,7 @@ This makes picking the right spectrogram relative to the user another key task.
 
 Because of these results and bigger issues I ended up tweaking my approach and
 used
-[`visual`](https://git.sr.ht/~n0mn0m/on-air/tree/master/voice-assistant/smalltalk/main/main_functions.cc)
+[`visual`](https://git.burningdaylight.io/on-air/tree/master/voice-assistant/smalltalk/main/main_functions.cc)
 as my wake word followed by on/off. All of these are available in the TF command
 words dataset, and visual seems like an ok wake word when controlling a display.
 For somebody working on a generic voice assistant you will want to work on audio
@@ -100,13 +100,13 @@ I (45634) HTTPS_HANDLING: HTTP_EVENT_DISCONNECTED
 This was an educational experiment. It helped me put some new tools in my belt
 while thinking further about the problem of voice and audio processing. I
 developed some
-[scripts](https://git.sr.ht/~n0mn0m/on-air/tree/master/voice-assistant/train) to
+[scripts](https://git.burningdaylight.io/on-air/tree/master/voice-assistant/train) to
 run through the full data generation, train and export cycle. Training will need
 to be done based on the architecture somebody is using, but hopefully it's
 useful.
 
 The code, docs, images etc for the project can be found
-[here](https://git.sr.ht/~n0mn0m/on-air) and I'll be posting updates as I
+[here](https://git.burningdaylight.io/on-air) and I'll be posting updates as I
 continue along to [HackadayIO](https://hackaday.io/project/170228-on-air) and
 this blog. If you have any questions or ideas reach
-[out](mailto:alexander@unexpextedeof.net).
+[out](mailto:n0mn0m@burningdaylight.io).

@@ -38,7 +38,7 @@ git format-patch master -o patches
 Or login and find the link to download the patch:
 
 ```bash
-curl -O https://git.sr.ht/~n0mn0m/circuitroomba/commit/ae635ce6533e33ff5277a0428a59c736a98649d6.patch
+curl -O https://git.burningdaylight.io/circuitroomba/commit/ae635ce6533e33ff5277a0428a59c736a98649d6.patch
 
 ls | grep ".patch"
 ae635ce6533e33ff5277a0428a59c736a98649d6.patch

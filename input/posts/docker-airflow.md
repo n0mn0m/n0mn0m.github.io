@@ -239,7 +239,7 @@ database I'm familiar with, a durable queue and packages across the Python and
 Data Science ecosystems via `conda`.
 
 You can find these changes in my fork of the
-[docker-airflow](https://git.sr.ht/~n0mn0m/airflow-docker) project. I've also
+[docker-airflow](https://git.burningdaylight.io/airflow-docker) project. I've also
 opened a [GitHub issue](https://github.com/puckel/docker-airflow/issues/289)
 with the goal of creating some way to track other community variations of
 docker-airflow with the hope of helping others discover setups specific to
@@ -271,4 +271,4 @@ Hopefully this post helps you get started with
 [docker-airflow](https://github.com/puckel/docker-airflow). If you have
 questions or want to share something cool that you end up doing feel free to
 open up an [issue](https://todo.sr.ht/~n0mn0m/Airflow-Bugs) on Sourcehut or
-reach out to me <alexander@unexpectedeof.net>.
+reach out to me <n0mn0m@burningdaylight.io>.

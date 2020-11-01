@@ -9,7 +9,7 @@ Tags:
 
 At home and work I make use of Airflow to automate various batch/time based
 task. I've even setup a container based Airflow
-[environment](https://git.sr.ht/~n0mn0m/airflow-docker) to make it easy to
+[environment](https://git.burningdaylight.io/airflow-docker) to make it easy to
 bring this up and down.
 
 One of the things you quickly find with Airflow is that while it doesn't need
@@ -58,4 +58,4 @@ def traverse_and_unlink(fobject):
                 traverse_and_unlink(new_fobject)
 ```
 
-The full script is available [here](https://git.sr.ht/~n0mn0m/snippets/tree/master/airflow-log-cleanup.py).
+The full script is available [here](https://git.burningdaylight.io/snippets/tree/master/airflow-log-cleanup.py).

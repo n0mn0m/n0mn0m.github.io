@@ -33,12 +33,12 @@ in voice data that's readily available. Keep an eye out for a couple more post
 highlighting some bumps along the way and summary of lessons learned.
 
 The code, docs, images etc for the project can be found
-[here](https://git.sr.ht/~n0mn0m/on-air) and I'll be posting any further updates
+[here](https://git.burningdaylight.io/on-air) and I'll be posting any further updates
 to [HackadayIO](https://hackaday.io/project/170228-on-air). For anybody that
 might be interested in building this the instructions below provide a brief
 outline. Updated versions will be hosted in the
-[repo](https://git.sr.ht/~n0mn0m/on-air/tree/master/docs). If you have any
-questions or ideas reach [out](mailto:alexander@unexpextedeof.net).
+[repo](https://git.burningdaylight.io/on-air/tree/master/docs). If you have any
+questions or ideas reach [out](mailto:n0mn0m@burningdaylight.io).
 
 **Required Hardware:**
 
@@ -54,7 +54,7 @@ OR
 
 Build Steps:
 
-1. Clone the [on-air](https://git.sr.ht/~n0mn0m/on-air) repo.
+1. Clone the [on-air](https://git.burningdaylight.io/on-air) repo.
 
 Cloudflare Worker:
 
@@ -66,10 +66,10 @@ Cloudflare Worker:
 3. Setup the [Wrangler](https://developers.cloudflare.com/workers/tooling/wrangler)
  CLI tool.
 4. `cd` into the `on-air/sighandler` directory.
-5. Update `[toml](https://git.sr.ht/~n0mn0m/on-air/tree/master/sighandler/wrangler.toml)`
+5. Update `[toml](https://git.burningdaylight.io/on-air/tree/master/sighandler/wrangler.toml)`
 6. Run `wrangler preview`
 7. `wrangler publish`
-8. Update `[Makefile](https://git.sr.ht/~n0mn0m/on-air/tree/master/sighandler/Makefile)`
+8. Update `[Makefile](https://git.burningdaylight.io/on-air/tree/master/sighandler/Makefile)`
  with your domain and test calling.
 
 PyPortal:
@@ -79,7 +79,7 @@ PyPortal:
      this first.
 2. Go to the directory where you cloned on-air.
 3. `cd` into display.
-4. Update [secrets.py`](https://git.sr.ht/~n0mn0m/on-air/tree/master/display/secrets.py)
+4. Update [secrets.py`](https://git.burningdaylight.io/on-air/tree/master/display/secrets.py)
  with your wifi information and status URL endpoint.
 5. Copy `code.py`, `secrets.py` and the bitmap files in `screens/` to the root
  of the PyPortal.
@@ -97,7 +97,7 @@ ESP-EYE:
 7. Activate the `esp-idf` tooling so that `$IDF_PATH` is set correctly and all
  requirements are met.
 8. `idf.py menuconfig` and set your wifi settings.
-9. Update the URL in `[toggle\_status.cc](https://git.sr.ht/~n0mn0m/on-air/tree/master/voice-assistant/smalltalk/main/http/toggle_status.cc)`
+9. Update the URL in `[toggle\_status.cc](https://git.burningdaylight.io/on-air/tree/master/voice-assistant/smalltalk/main/http/toggle_status.cc)`
     1. This should match the host and endpoint you deployed the Cloudflare
      worker to above
 10. `idf.py build`

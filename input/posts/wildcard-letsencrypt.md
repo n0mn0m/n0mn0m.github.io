@@ -13,7 +13,7 @@ Tags:
 A few months ago I decided to migrate my Pelican site from Github to Gitlab.
 This was motivated largely by that fact that Gitlab has CI/CD built in by
 default. During this migration I also decided it was time to setup my own
-SSL certificate for [unexpectedeof.net](https://unexpectedeof.net). Since this
+SSL certificate for [burningdaylight.io](https://burningdaylight.io). Since this
 was new I looked around to see if there was any documentation readily available
 , and I found
 [this](https://fedoramagazine.org/gitlab-pelican-lets-encrypt-secure-blog/)
@@ -31,7 +31,7 @@ Good to go, done in an afternoon with plenty of time to work on a new post.
 I thought.
 
 About a week later I was on a different computer and instead of browsing to
-<https://unexpectedeof.net> I went to <https://www.unexpecteof.net> and Firefox
+<https://burningdaylight.io> I went to <https://www.burningdaylight.io> and Firefox
 blocked my request citing an SSL certificate error. Wondering what I had done
 wrong I started tracing back through what I had done and realized that I had
 only setup SSL certificate for my primary domain. Luckily last year lets
@@ -69,7 +69,7 @@ You will then see this prompt:
 
 ```bash
 Please deploy a DNS TXT record under the name
-_acme-challenge.unexpectedeof.net with the following value:
+_acme-challenge.burningdaylight.io with the following value:
 ```
 
 Login to your domain management console and setup a txt record similar to:

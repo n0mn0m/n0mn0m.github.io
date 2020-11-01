@@ -89,7 +89,7 @@ Western Kentucky University, Bowling Green, KY, August 2011
 - [What is ODBC](https://github.com/DerbyPy/what-is-odbc), DerbyPy, Louisville KY March 2019
 - [Intro to PySpark](https://github.com/DerbyPy/intro-to-pyspark), DerbyPy, Louisville KY October 2018
 - [Python Modules and Packages](https://github.com/DerbyPy/modules-and-packages-intro), Derby Py, Louisville KY September 2018
-- [Column Oriented Data](https://git.unexpectedeof.xyz/n0mn0m/presentations/JupyterNotebooks/DerbyPyArrow.ipynb), DerbyPy, Louisville KY June 2018
+- [Column Oriented Data](https://git.burningdaylight.io/n0mn0m/presentations/JupyterNotebooks/DerbyPyArrow.ipynb), DerbyPy, Louisville KY June 2018
 
 ## Awards
 
@@ -103,5 +103,5 @@ Western Kentucky University, Bowling Green, KY, August 2011
 
 ## Downloads
 
-- [Summary Resume](https://git.unexpectedeof.xyz/n0mn0m/resume/src/branch/master/resume.pdf)
-- [Detailed Resume](https://git.unexpectedeof.xyz/n0mn0m/resume/src/branch/master/resume_detailed.pdf)
+- [Summary Resume](https://git.burningdaylight.io/n0mn0m/resume/src/branch/master/resume.pdf)
+- [Detailed Resume](https://git.burningdaylight.io/n0mn0m/resume/src/branch/master/resume_detailed.pdf)

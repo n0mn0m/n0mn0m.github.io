@@ -159,11 +159,10 @@ questions.
 ### Contact
 
 I've really enjoyed working on this project. If you want to reach out feel free
-to follow up via [email](mailto:alexander@unexpextedeof.net) or on
-[Sourcehut](https://git.sr.ht/%7En0mn0m/).
+to follow up via [email](mailto:n0mn0m@burningdaylight.io) or on.
 
 You can find out more about the badge and source code in the
-[repo](https://git.sr.ht/~n0mn0m/gencon-portal)
+[repo](https://git.burningdaylight.io/gencon-portal)
 
 #### More Photos
 

@@ -53,4 +53,4 @@ new books to checkout.
 
 ## My Feed
 
-- [RSS](https://git.unexpectedeof.xyz/n0mn0m/RSS)
+- [RSS](https://git.burningdaylight.io/n0mn0m/RSS)

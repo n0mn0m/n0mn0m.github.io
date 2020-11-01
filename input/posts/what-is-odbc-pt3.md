@@ -83,9 +83,9 @@ In case it is helpful you can find an `lldb` to `gdb` map
 
 If you have experience with ODBC internals, want to correct something I've
 written or just want to reach out feel free to follow up via
-[email](mailto:alexander@unexpextedeof.net) or on
-[Sourcehut](https://git.sr.ht/%7En0mn0m/).
+[email](mailto:n0mn0m@burningdaylight.io) or on
+.
 
-I also have a [repo](https://git.sr.ht/~n0mn0m/presentations) with the material
+I also have a [repo](https://git.burningdaylight.io/presentations) with the material
 I used for a presentation on this at the
 [Louisville DerbyPy](https://www.meetup.com/derbypy/) meetup in March of 2019.

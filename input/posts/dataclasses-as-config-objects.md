@@ -81,4 +81,4 @@ Python dataclasses.
 ### Contact
 
 If you want to reach out feel free to follow up via
-[email](mailto:alexander@unexpextedeof.net) or on [Sourcehut](https://git.sr.ht/%7En0mn0m/).
+[email](mailto:n0mn0m@burningdaylight.io).

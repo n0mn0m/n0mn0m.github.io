@@ -80,6 +80,6 @@ am sure I will be busy expanding my understanding for the next few years.
 ### Contact
 
 I really enjoyed working on this project. If you want to reach out feel free
-to follow up via [email](mailto:alexander@unexpextedeof.net) or on
-[Sourcehut](https://git.sr.ht/%7En0mn0m/).
+to follow up via [email](mailto:n0mn0m@burningdaylight.io) or on
+.
 

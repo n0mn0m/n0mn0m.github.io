@@ -10,7 +10,7 @@ Tags:
 
 **I am not a network or sysadmin by day. This is something I'm actively
 learning on and figuring out. If you see something wrong or have suggestions
-I would love to [hear about it](mailto:alexander@unexpectedeof.net).**
+I would love to [hear about it](mailto:n0mn0m@burningdaylight.io).**
 
 In [part one](/posts/edgerouter-x-vpn-setup-prt-one) we configured the
 network. Now we are ready to install Wireguard and create our interface. Before

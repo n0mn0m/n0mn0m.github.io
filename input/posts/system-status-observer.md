@@ -111,7 +111,7 @@ addEventListener('fetch', event => {
 ```
 
 With that anything that can `POST` can "check in" with the endpoint. You can
-see it working [here](https://status.unexpectedeof.casa/). I also went ahead
+see it working [here](https://status.burningdaylight.io/). I also went ahead
 and wrote a simple `systemd` service that I can drop on to different machines
 I want to have report in to the endpoint.
 
@@ -122,7 +122,7 @@ Wants=check-in.timer
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/curl -X POST https://status.unexpectedeof.casa/?service=JETSON
+ExecStart=/usr/bin/curl -X POST https://status.burningdaylight.io/?service=JETSON
 
 [Install]
 WantedBy=multi-user.target
@@ -162,5 +162,5 @@ ergonomic at this time. Other than that my experience with Workers and K/V has
 been great and I've already got more ideas for future experiments.
 
 The code, docs, etc for the project can be found
-[here](https://git.sr.ht/~n0mn0m/system-status). If you have any questions or
-ideas reach [out](mailto:alexander@unexpextedeof.net).
+[here](https://git.burningdaylight.io/system-status). If you have any questions or
+ideas reach [out](mailto:n0mn0m@burningdaylight.io).
