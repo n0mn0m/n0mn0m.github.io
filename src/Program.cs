@@ -18,9 +18,9 @@ namespace src
                 .AddSetting(Keys.LinkHideExtensions, false)
                 .AddSetting(Keys.LinkHideIndexPages, false)
                 .AddSetting(Keys.Host, "burningdaylight.io")
-                .AddSetting(Keys.Title, "Burning Daylight")
+                .AddSetting(Keys.Title, "burningdaylight")
                 .AddSetting(FeedKeys.Author, "Alexander Hagerman")
-                .AddSetting(FeedKeys.Description, "Notes from building things.")
+                .AddSetting(FeedKeys.Description, "Notes from building.")
                 .AddSetting(FeedKeys.Copyright, DateTime.UtcNow.Year.ToString())
                 .RunAsync();
         }
