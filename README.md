@@ -1,10 +1,5 @@
 # Notes for my future self
 
-## TODO
-
-Increase font size
-Change the social/tags menu to only display on non post pages
-
 ## Commands
 
 ```

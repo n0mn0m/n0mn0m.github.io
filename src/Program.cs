@@ -20,7 +20,7 @@ namespace src
                 .AddSetting(Keys.Host, "burningdaylight.io")
                 .AddSetting(Keys.Title, "burningdaylight")
                 .AddSetting(FeedKeys.Author, "Alexander Hagerman")
-                .AddSetting(FeedKeys.Description, "Notes from building.")
+                .AddSetting(FeedKeys.Description, "notes from building")
                 .AddSetting(FeedKeys.Copyright, DateTime.UtcNow.Year.ToString())
                 .RunAsync();
         }
