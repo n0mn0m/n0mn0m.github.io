@@ -1,4 +1,4 @@
----
++++
 Title: Using data structures to meet application behavior constaints
 Published: 2020-12-14
 Tags:
@@ -6,5 +6,5 @@ Tags:
 - data-structures
 - practices
 - code-quality
----
++++
 
