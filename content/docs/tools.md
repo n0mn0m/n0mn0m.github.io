@@ -22,4 +22,5 @@ new tools, so if you have recommendations send them my way.
 - *nix
 - docker
 - sled
+- sqlite
 - org

@@ -16,5 +16,6 @@ any recommendations.
 - [Dev Game Club](http://www.devgameclub.com/)
 - [Embedded](https://embedded.fm/)
 - [Hackaday](https://hackaday.com/category/podcasts/)
+- [Podcast Init](https://www.pythonpodcast.com/)
 - [The Amp Hour](https://theamphour.com/)
 - [Stuff You Should Know](https://www.stuffyoushouldknow.com/)

@@ -15,6 +15,7 @@ Let me know if you have recommendations for my next read.
 - [A Different Mirror](https://www.goodreads.com/book/show/37564.A_Different_Mirror)
 - [A Pattern Language](https://en.wikipedia.org/wiki/A_Pattern_Language)
 - [Algorithms in C](http://shop.oreilly.com/product/9781565924536.do)
+- [Blockchain Chicken Farm](https://us.macmillan.com/books/9780374538668)
 - [Computer Organization and Design](https://dl.acm.org/citation.cfm?id=3153875)
 - [The Phoenix Project](https://www.oreilly.com/library/view/the-phoenix-project/9781457191350/)
 - [Classic Computer Science Problems in Python](https://www.manning.com/books/classic-computer-science-problems-in-python)
@@ -44,3 +45,4 @@ Let me know if you have recommendations for my next read.
 ## My Feed
 
 - [RSS](https://git.burningdaylight.io/feed)
+- [Favorites](https://n0mn0m.newsblur.com)
