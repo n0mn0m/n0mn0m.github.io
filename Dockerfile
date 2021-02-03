@@ -7,7 +7,9 @@ WORKDIR /site
 
 FROM zola-base as builder
 COPY . /site
+RUN ls -la
 RUN zola build
+RUN ls -la /site/public
 
 FROM nginx:stable-alpine
 COPY --from=builder /site/public/ /usr/share/nginx/html/
