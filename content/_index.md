@@ -8,9 +8,7 @@ Hi, I'm Alexander
 
 Student / Builder / Mentor
 
-I grew up in rural Kentucky and now enjoy building from Louisville, KY USA.
-
-Over the ten years of my career I have had the good fortune to work across
+Over the last decade I have had the good fortune to work across
 many domains with a lot of inventive individuals. I have learned a lot from
 those who have spent the time to introduce me to new ideas and philosophies,
 and I enjoy every opportunity I have to collaborate with others.
