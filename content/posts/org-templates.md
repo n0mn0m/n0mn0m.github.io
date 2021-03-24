@@ -13,7 +13,7 @@ journal of what I'm working on, design notes, todos etc. Having spent
 a few weeks with [`org-journal`](https://github.com/bastibe/org-journal)
 I decided it was time to create my own [templates](https://orgmode.org/manual/Capture-templates.html).
 For my first template a checklist seemed like an easy target. I made
-a few like PR Review, and New Service which can be found in my [dotfiles](https://git.burningdaylight.io/dotfiles/tree/s/.emacs.d/org-templates)
+a few like PR Review, and New Service which can be found in my [dotfiles](https://github.com/n0mn0m/dotfiles/tree/s/.emacs.d/org-templates)
 along with their bindings.
 
 True to the goal, I've got a lot more consistent in my reviews and with

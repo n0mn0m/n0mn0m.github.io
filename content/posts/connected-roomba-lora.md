@@ -82,7 +82,7 @@ With the Pi Zero providing more resources installing the OS, setting up SSH and
 compiling Python 3.7 took more time then getting the Circuit Python libraries
 working. [Blinka](https://pypi.org/project/Adafruit-Blinka/) worked like a
 charm and following the docs from above I had a quick
-[script](https://git.burningdaylight.io/bot_commander/tree/main/pi/button_listener.py)
+[script](https://github.com/n0mn0m/bot_commander/tree/main/pi/button_listener.py)
 to send `start` and `stop` packets via LoRa working in no time.
 
 ```python

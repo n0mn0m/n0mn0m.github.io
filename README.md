@@ -3,6 +3,6 @@
 ## Commands
 
 ```
-mdl -c=.mdlrc input/posts/*.md
+markdownlint
 zola <build/serve>
 ```

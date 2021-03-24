@@ -44,5 +44,5 @@ Let me know if you have recommendations for my next read.
 
 ## My Feed
 
-- [RSS](https://git.burningdaylight.io/feed)
+- [RSS](https://github.com/n0mn0m/feed)
 - [Favorites](https://n0mn0m.newsblur.com)

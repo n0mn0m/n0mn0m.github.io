@@ -19,7 +19,7 @@ I enjoy tinkering with hardware to understand my garden, playing
 music with Rachael and Maris, and story telling with friends.
 
 If you want to chat you can [message](mailto:alexander@burningdaylight.io)
-me, send a [patch](https://git.burningdaylight.io/), or you can view
+me, send a [patch](https://github.com/n0mn0m/), or you can view
 my resume [here](@/docs/resume.md).
 
 The animation above is [Flyby](https://portfolio.hyperlinkyourheart.com/flyby.html?previous=https%3A//portfolio.hyperlinkyourheart.com/category/pixel-art.html%23flyby). Created by [Kevin Houlihan](https://portfolio.hyperlinkyourheart.com/pages/about.html) shared under a [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) license.

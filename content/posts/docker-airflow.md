@@ -236,7 +236,7 @@ database I'm familiar with, a durable queue and packages across the Python and
 Data Science ecosystems via `conda`.
 
 You can find these changes in my fork of the
-[docker-airflow](https://git.burningdaylight.io/airflow-docker) project. I've also
+[docker-airflow](https://github.com/n0mn0m/airflow-docker) project. I've also
 opened a [GitHub issue](https://github.com/puckel/docker-airflow/issues/289)
 with the goal of creating some way to track other community variations of
 docker-airflow with the hope of helping others discover setups specific to

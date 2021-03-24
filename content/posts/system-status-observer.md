@@ -158,5 +158,5 @@ ergonomic at this time. Other than that my experience with Workers and K/V has
 been great and I've already got more ideas for future experiments.
 
 The code, docs, etc for the project can be found
-[here](https://git.burningdaylight.io/system-status). If you have any questions or
+[here](https://github.com/n0mn0m/system-status). If you have any questions or
 ideas reach [out](mailto:n0mn0m@burningdaylight.io).

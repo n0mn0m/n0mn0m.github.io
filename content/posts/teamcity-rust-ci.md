@@ -5,7 +5,7 @@ date = 2021-02-10
 tags = ["rust", "ci", "pipeline", "jetbrains", "teamcity"]
 +++
 
-Towards the end of last year I started working on a [project](https://git.burningdaylight.io/artemis/)
+Towards the end of last year I started working on a [project](https://github.com/n0mn0m/artemis/)
 in rust that would listen to a message queue and send an email. Additionally it
 used [rocket](https://rocket.rs/) to expose some diagnostic endpoints to check
 on the health of the service, change log levels, etc. When starting new projects
@@ -21,8 +21,8 @@ it convenient for others to run on their local machine. Make and it's derivative
 [cargo-make](https://github.com/sagiegurari/cargo-make) project that lets us capture
 task and mix together inline simple commands with scripts, dependencies etc.
 
-For this project you can find my cargo make file [here](https://git.burningdaylight.io/artemis/tree/Makefile.toml).
-I also experimented with using Powershell for my [scripts/wrappers](https://git.burningdaylight.io/artemis/tree/tools).
+For this project you can find my cargo make file [here](https://github.com/n0mn0m/artemis/tree/Makefile.toml).
+I also experimented with using Powershell for my [scripts/wrappers](https://github.com/n0mn0m/artemis/tree/tools).
 I've been using this in my day job where our projects run on Win, macOS and Linux.
 Overall I'm pretty happy with the experience, but it is another tool to install and
 maintain along with various platforms missing support.
@@ -45,11 +45,11 @@ test steps in Teamcity. Overall the process was pretty easy, but I ran into a co
 bumps I'll highlight.
 
 - The `cargo` step doesn't support custom commands, so I don't use that by default
-  - I wrote [CI.ps1](https://git.burningdaylight.io/artemis/tree/tools/CI.ps1)
-    as a wrapper to use in each [step](https://git.burningdaylight.io/artemis/tree/.teamcity/settings.kts#n88).
-- Enable the [xml-report-plugin](https://git.burningdaylight.io/artemis/tree/.teamcity/settings.kts#n186)
+  - I wrote [CI.ps1](https://github.com/n0mn0m/artemis/tree/tools/CI.ps1)
+    as a wrapper to use in each [step](https://github.com/n0mn0m/artemis/tree/.teamcity/settings.kts#n88).
+- Enable the [xml-report-plugin](https://github.com/n0mn0m/artemis/tree/.teamcity/settings.kts#n186)
 
-And with those two things the [pipeline](https://git.burningdaylight.io/artemis/tree/.teamcity/settings.kts)
+And with those two things the [pipeline](https://github.com/n0mn0m/artemis/tree/.teamcity/settings.kts)
 is ready to [go](https://teamcity.burningdaylight.io/). From there you may want
 to add your own environment variables, plugin, agent deps etc.
 

@@ -46,7 +46,7 @@ with docker.
 While k8s is the current hot orchestration tool I wanted to keep things
 simple. I don't have a need to cluster any of my home tools, and while
 distributed systems are interesting they also require a lot of work. I
-left those at my day job and use compose + [duplicity](https://git.burningdaylight.io/duplicity-helpers.git/)
+left those at my day job and use compose + [duplicity](https://github.com/n0mn0m/duplicity-helpers.git/)
 for my home setup. This makes service management easy, the labels
 allow traefik to detect and handle traffic management while my
 [duplicty](http://duplicity.nongnu.org) ensures I won't lose much work
@@ -64,7 +64,7 @@ A quick list of the services I'm hosting:
 - youtrack
 - rust home services API
 
-The service management can be found [here](https://git.burningdaylight.io/arcade.git/tree/).
+The service management can be found [here](https://github.com/n0mn0m/arcade.git/tree/).
 
 ## Wrap Up
 

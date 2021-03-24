@@ -81,6 +81,6 @@ written or just want to reach out feel free to follow up via
 [email](mailto:n0mn0m@burningdaylight.io) or on
 .
 
-I also have a [repo](https://git.burningdaylight.io/presentations) with the material
+I also have a [repo](https://github.com/n0mn0m/presentations) with the material
 I used for a presentation on this at the
 [Louisville DerbyPy](https://www.meetup.com/derbypy/) meetup in March of 2019.

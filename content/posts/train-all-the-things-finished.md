@@ -5,12 +5,12 @@ date = 2020-03-30
 tags = ["hackaday","maker","machine learning","tensorflow","esp","train all the things"]
 +++
 
-And now I'm at `v0.1` of the [`on-air`](https://git.burningdaylight.io/on-air)
+And now I'm at `v0.1` of the [`on-air`](https://github.com/n0mn0m/on-air)
 project. I was able to achieve what I was hoping to along the way. I learned
 more about model development, tensorflow and esp. While this version has some
 distinct differences from what I outlined for the logic flow (keywords, VAD) it
 achieves the functional goal. The code, docs, images etc for the project can be
-found in [this](https://git.burningdaylight.io/on-air) repo, and the project details
+found in [this](https://github.com/n0mn0m/on-air) repo, and the project details
 live on [HackadayIO](https://hackaday.io/project/170228-on-air). When I get back
 to this project and work on `v1.x` I'll make updates available to each.
 

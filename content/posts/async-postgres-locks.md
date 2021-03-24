@@ -113,4 +113,4 @@ realized this might be helpful to others looking for the same control, or as
 a reference for those learning to test with asyncio.
 
 You can find the full implementation and Docker setup
-[on Sourcehut](https://git.burningdaylight.io/PostgresAdvisoryLock).
+[on Sourcehut](https://github.com/n0mn0m/PostgresAdvisoryLock).
