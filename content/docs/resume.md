@@ -18,9 +18,15 @@ problems.
 
 ##  Professional Experience
 
+**Software Engineer**
+
+02/2021 - Current | RENCI
+- Working to develop the [helxplatform](https://github.com/helxplatform) to support
+NIH HEAL research.
+
 **Lead Software Engineer**
 
-06/2020 - Current | Samtec
+06/2020 - 02/20201 | Samtec
 - Lead/manage the development of new asset management system to synchronize
 asset data and streamline existing assets.
 - Created an improved asset maintenance system to support global operations.

@@ -8,6 +8,20 @@ weight = 1
 
 ## Professional
 
+### RENCI
+
+1. [HeLx](https://rencisystems.web.unc.edu/helx/)
+
+  **Summary**
+
+  HeLx is a digital home for data science communities. RENCI leverages HeLx to
+  empower plant genomics, biomedical, clinical, and neuroscience researchers to
+  do work with their tools, close to the data, in the cloud, at scale:
+
+  **Core Technology**
+
+  Python, React, bash, Kubernetes, Docker, Jenkins
+
 ### Samtec
 
 1. Asset Management System
