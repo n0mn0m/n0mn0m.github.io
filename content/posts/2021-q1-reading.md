@@ -1,6 +1,6 @@
 +++
 title = "Reading highlights from Q1 2021"
-date = 2021-04-05
+date = 2021-03-29
 [taxonomies]
 tags = ["reading", "review"]
 +++
@@ -35,3 +35,5 @@ a lot of fun and I look forward to reading it with my daughter one day.
 - Think Julia - I've heard a bit about Julia and decided to check this out. A
 pretty good book revisiting a lot of programming first principles in the context
 of learning them with Julia.
+- Math for Programmers - I really enjoyed this. I try to keep math as a regular
+reading topic, and I like it when math is demonstrated via programming.

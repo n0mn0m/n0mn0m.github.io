@@ -9,7 +9,7 @@ I started collecting notes here almost 3 years ago at my first PyCon. I had been
 working in Python for 3 years at that point and wanted to share some notes with
 anybody that might find them useful.
 
-Since then I've veered into building a homelab, C#, rust, racket, infrastructure
+Since then I've veered into building a homelab, C#, rust, infrastructure, gardening
 and all kinds of other fun experiences.
 
 More importantly my daughter was born, and is turning 3 this year. Over 2020 I
