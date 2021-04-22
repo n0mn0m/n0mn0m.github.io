@@ -30,8 +30,6 @@ navbar_items = [
 	{ url = "$BASE_URL/posts", name = "Posts" },
 	{ url = "$BASE_URL/docs", name = "Docs" },
 	{ url = "https://github.com/n0mn0m", name = "Repos" },
-	{ url = "https://youtrack.burningdaylight.io/projects", name = "Projects" },
-	{ url = "https://teamcity.burningdaylight.io/overview.html?guest=1", name = "Builds" },
 ]
 
 [extra.favicon]
