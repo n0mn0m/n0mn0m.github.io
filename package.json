@@ -1,13 +1,16 @@
 {
   "name": "blog",
-  "version": "3.0.0",
+  "version": "5.0.0",
   "scripts": {
-    "dev": "tsc --noEmit && vite",
     "build": "tsc --noEmit && vite build",
-    "build:dev": "tsc --noEmit && vite --mode development build",
-    "preview": "tsc --noEmit && vite preview",
-    "lint": "eslint --fix main.js",
-    "format": "prettier -w ."
+    "dev": "tsc --noEmit && vite",
+    "format": "prettier -w .",
+    "lint": "eslint --ext ts,tsx src",
+    "prettier": "prettier --check .",
+    "prettier:write": "prettier --write .",
+    "preview": "vite preview",
+    "test": "jest --watchAll=false",
+    "test:watch": "jest --watchAll=true"
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
@@ -43,10 +46,11 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "gh-pages": "^3.2.3",
     "jest": "^27.4.5",
     "prettier": "^2.5.1",
     "ts-jest": "^27.1.2",
     "typescript": "^4.4.4",
-    "vite": "^2.7.2"
+    "vite": "^2.7.10"
   }
 }
