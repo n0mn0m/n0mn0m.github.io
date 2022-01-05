@@ -1,8 +1,3 @@
-# Notes for my future self
+# BurningDaylight
 
-## Commands
-
-```
-markdownlint
-zola <build/serve>
-```
+Source repo for my content at [burningdaylight.io](https://burningdaylight.io). 
