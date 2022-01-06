@@ -9,6 +9,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import {
   faCube,
+  faStopwatch,
   faTerminal,
   faTools,
   faUserAstronaut,
@@ -29,6 +30,17 @@ const SocialBar = () => {
         className="social-link"
         style={{ color: 'hsl(0, 0%, 0%)' }}
         anchorContent={<FontAwesomeIcon icon={faGithubAlt} />}
+      />
+      <Anchor
+        href="https://wakatime.com/@n0mn0m"
+        className="social-link"
+        style={{
+          color: 'hsl(0, 0%, 0%)',
+          fontSize: '1.6rem',
+        }}
+        anchorContent={
+          <FontAwesomeIcon icon={faStopwatch} style={{ paddingBottom: 2 }} />
+        }
       />
       <Anchor
         href="https://www.behance.net/alexandhagerma1"
