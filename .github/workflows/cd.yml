@@ -1,13 +1,14 @@
-name: Build and Test
+name: Deploy
 
 on:
-  push:
-    branches: [main]
   pull_request:
-    branches: [main]
+    branches:
+      - main
+    types: [closed]
 
 jobs:
   build_test:
+    if: ${{ github.event.pull_request.merged }}
     runs-on: ubuntu-latest
 
     strategy:
@@ -25,3 +26,9 @@ jobs:
           npm ci
           npm run build
           npm test
+      - name: deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
