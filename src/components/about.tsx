@@ -32,8 +32,8 @@ const About = () => {
             interpret the world around us.
           </p>
           <p>
-            In my spare time I enjoy tinkering with hardware, cooking, playing
-            music with Maris, and story telling with friends.
+            In my spare time I enjoy tinkering with hardware, swimming, cooking,
+            playing music with Maris, and story telling with friends.
           </p>
           <p>
             If you want to chat you can{' '}
