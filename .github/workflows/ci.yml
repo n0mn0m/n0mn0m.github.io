@@ -3,10 +3,10 @@ name: Build and Test
 on:
   pull_request:
     branches: [main]
+    types: [assigned, opened, synchronize, reopened]
 
 jobs:
   build:
-    if: ${{ github.ref !== 'refs/heads/main' }}
     runs-on: ubuntu-latest
 
     strategy:
