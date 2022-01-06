@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { AnchorHTMLAttributes, ReactElement } from 'react';
 
-interface AnchorProps {
-  anchorTitle: string;
-  targetUrl: string;
+interface AnchorProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+  anchorContent: string | ReactElement;
 }
-
-const Anchor = ({ anchorTitle, targetUrl }: AnchorProps) => {
+const Anchor = ({ href, className, style, anchorContent }: AnchorProps) => {
   return (
-    <a href={targetUrl} target="_blank" rel="noreferrer nofollow">
-      {anchorTitle}
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer nofollow"
+      className={className}
+      style={style}
+    >
+      {anchorContent}
     </a>
   );
 };
