@@ -28,6 +28,7 @@ const Portfolio = () => (
       </p>
       <div className="icon-group">
         <div className="icon-container">
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           <Link to="#">
             <FontAwesomeIcon
               icon={faPenAlt}
@@ -39,6 +40,7 @@ const Portfolio = () => (
           </Link>
         </div>
         <div className="icon-container">
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           <Link to="#">
             <FontAwesomeIcon
               icon={faCodeBranch}
@@ -50,6 +52,7 @@ const Portfolio = () => (
           </Link>
         </div>
         <div className="icon-container">
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           <Link to="#">
             <FontAwesomeIcon
               icon={faMusic}

@@ -10,41 +10,41 @@ const ResumeExperience = () => {
       <h1>Professional Experience</h1>
       <ol style={{ listStyleType: 'none' }}>
         <ResumeItem
-          role="ML Tooling Engineer"
+          jobRole="ML Tooling Engineer"
           dateRange="06/2021 - Current"
           organization={
             <Anchor
-              anchorTitle="Flock Safety"
-              targetUrl="https://www.flocksafety.com/"
+              anchorContent="Flock Safety"
+              href="https://www.flocksafety.com/"
             />
           }
           responsibilities={[
-            <span>
+            <span key={1}>
               Responsible for the design and development of audio, video and
               image annotation tools.
             </span>,
-            <span>
+            <span key={2}>
               Responsible for ML annotation schema design, data access and
               maintenance.
             </span>,
-            <span>
+            <span key={3}>
               Designing a data versioning tool to support model development,
               data lineage and characteristic summary.
             </span>,
-            <span>
+            <span key={4}>
               Collaborate across teams to maintain and support front end build
               tooling.
             </span>,
           ]}
         />
         <ResumeItem
-          role="Software Engineer"
+          jobRole="Software Engineer"
           dateRange="02/2021 - 06/2021"
           organization={
-            <Anchor anchorTitle="RENCI" targetUrl="https://renci.org/" />
+            <Anchor anchorContent="RENCI" href="https://renci.org/" />
           }
           responsibilities={[
-            <span>
+            <span key={1}>
               Working to develop the{' '}
               <a
                 href="https://github.com/helxplatform"
@@ -55,109 +55,109 @@ const ResumeExperience = () => {
               </a>{' '}
               to support NIH HEAL research.
             </span>,
-            <span>
+            <span key={2}>
               Refactor HeLx platform Django application to surface data via REST
               endpoints.
             </span>,
-            <span>
+            <span key={3}>
               Collaborated on a new react based frontend for the HeLx Appstore.
             </span>,
-            <span>
+            <span key={4}>
               Instrument Kubernetes pod utilization and surface data through
               service endpoints.
             </span>,
-            <span>
+            <span key={5}>
               Refactor application packaging and update continuous integration
               practices.
             </span>,
           ]}
         />
         <ResumeItem
-          role="Lead Software Engineer"
+          jobRole="Lead Software Engineer"
           dateRange="06/2020 - 02/2021"
           organization={
-            <Anchor anchorTitle="Samtec" targetUrl="https://www.samtec.com/" />
+            <Anchor anchorContent="Samtec" href="https://www.samtec.com/" />
           }
           responsibilities={[
-            <span>
+            <span key={1}>
               Lead/manage the development of new asset management system to
               synchronize asset data and streamline existing assets.
             </span>,
-            <span>
+            <span key={2}>
               Created an improved asset maintenance system to support global
               operations.
             </span>,
-            <span>
+            <span key={3}>
               Collaborate with engineers and internal stakeholders to execute
               feature implementations and process improvement.
             </span>,
-            <span>
+            <span key={4}>
               Provide key insights for organizational planning on long-term data
               management and optimization.
             </span>,
-            <span>
+            <span key={5}>
               Showcase leadership by mentoring, coaching, and training engineers
               in new practices/tools/technology.
             </span>,
-            <span>
+            <span key={6}>
               Develop and oversee continuous integration and deployment
               infrastructure to increase overall productivity.
             </span>,
           ]}
         />
         <ResumeItem
-          role="Senior Software Engineer"
+          jobRole="Senior Software Engineer"
           dateRange="08/2019 - 06/2020; 07-2015 - 03/2019"
           organization={
-            <Anchor anchorTitle="Humana" targetUrl="https://www.humana.com/" />
+            <Anchor anchorContent="Humana" href="https://www.humana.com/" />
           }
           responsibilities={[
-            <span>
+            <span key={1}>
               Spearheaded the creation of a provider fax routing system by
               building out OCR as a service for patient record documents.
             </span>,
-            <span>
+            <span key={2}>
               Facilitated the implementation of middleware layer/rule management
               for company Sytrue initiatives.
             </span>,
-            <span>
+            <span key={3}>
               Setup, deployed, and managed first real time NLP services on Azure
               to strengthen job progression and computer capabilities.
             </span>,
-            <span>
+            <span key={4}>
               Collaborated on breast cancer research project by utilizing NLP to
               research stage information based on diagnosis markers.
             </span>,
-            <span>
+            <span key={5}>
               Increased Doctor Patient Note OCR post processing data throughput
               by migrating localized python services to pyspark.
             </span>,
-            <span>
+            <span key={6}>
               Monitored potential fraud rule detection by processing provider
               documentation a set of NLP rules.
             </span>,
-            <span>
+            <span key={7}>
               Built/managed a library of queries and reports to assist fraud
               investigators.
             </span>,
-            <span>
+            <span key={8}>
               Assisted NLP development team in the transition to Agile
               methodologies through change management and team leadership
               skills.
             </span>,
-            <span>
+            <span key={9}>
               Foster continuous process improvement by implementing Azure
               identity service (MSAL/AAD) into C# and Python services.
             </span>,
-            <span>
+            <span key={10}>
               Develop prem to Azure Databricks deployment service, ADLS
               Generation 2 C# library, and CLI.
             </span>,
-            <span>
+            <span key={11}>
               Served as architect and senior developer of the Retail Data
               Science Research and Development platform.
             </span>,
-            <span>
+            <span key={12}>
               Introduced and streamlined multiple software development practices
               like version control, continuous integration/deployment, code
               review, and dependency management.
@@ -165,71 +165,71 @@ const ResumeExperience = () => {
           ]}
         />
         <ResumeItem
-          role="Senior Software Engineer"
+          jobRole="Senior Software Engineer"
           dateRange="04/2019 - 08/2019"
           organization={
-            <Anchor anchorTitle="Elastic" targetUrl="https://www.elastic.co/" />
+            <Anchor anchorContent="Elastic" href="https://www.elastic.co/" />
           }
           responsibilities={[
-            <span>
+            <span key={1}>
               Partnered with cross-functional teams to develop end-to-end
               testing framework for customer journey through GCP marketplace to
               Elastic.
             </span>,
-            <span>
+            <span key={2}>
               Provided value-added contributions in the migration of backend
               services from Python 2 to Python 3.7.
             </span>,
-            <span>
+            <span key={3}>
               Applied expansion efforts and process improvements in automated
               testing practices for Python 2 and 3 code bases.
             </span>,
-            <span>
+            <span key={4}>
               Built a tool that enabled data migration from Elasticsearch to
               Postgres.
             </span>,
-            <span>
+            <span key={5}>
               Formulated the billing integration service for Elastic stack and
               Google Cloud Platform Marketplace.
             </span>,
-            <span>
+            <span key={6}>
               Delivered troubleshooting and production incident response for
               billing services and clusters.
             </span>,
           ]}
         />
         <ResumeItem
-          role="Senior Analytic Consultant | Analytic Consultant | Developer"
+          jobRole="Senior Analytic Consultant | Analytic Consultant | Developer"
           dateRange="01/2012 - 07/2015"
           organization={
-            <Anchor anchorTitle="Aspect" targetUrl="https://www.alvaria.com/" />
+            <Anchor anchorContent="Aspect" href="https://www.alvaria.com/" />
           }
           responsibilities={[
-            <span>
+            <span key={1}>
               Built out Microsoft SSIS/SSAS analytics infrastructure to support
               customer service call center operations for PetSafe, Delta, and
               Jet Blue.
             </span>,
-            <span>
+            <span key={2}>
               Created enhanced web-based data visualizations to facilitate
               cross-functional application development teams on healthcare
               projects.
             </span>,
-            <span>
+            <span key={3}>
               Delivered on-site consulting and guidance to clients by evaluating
               call center analytic needs.
             </span>,
-            <span>
+            <span key={4}>
               Developed new productivity KPIs for call center clients via
               Microsoft BI stack to transform overall day-to-day operations and
               facilitate process improvement.
             </span>,
-            <span>
+            <span key={5}>
               Headed client training programs on business intelligence
               tools/concepts to assist in future BI projects and process
               improvement identification.
             </span>,
-            <span>
+            <span key={6}>
               Served as developer on SharePoint 2013 C# Applications, C# MVP
               Applications, and custom C# CLI applications to handle token
               management.
@@ -237,40 +237,40 @@ const ResumeExperience = () => {
           ]}
         />
         <ResumeItem
-          role="Junior Developer"
+          jobRole="Junior Developer"
           dateRange="03/2012 - 11/2012"
           organization={
             <Anchor
-              anchorTitle="All Safe Industries"
-              targetUrl="https://www.allsafeindustries.com/"
+              anchorContent="All Safe Industries"
+              href="https://www.allsafeindustries.com/"
             />
           }
           responsibilities={[
-            <span>
+            <span key={1}>
               Built a product catalog ETL to consolidate product data into a
               single CMS.
             </span>,
-            <span>
+            <span key={2}>
               Analyzed historical sales trends to improve decision making for
               web store strategies.
             </span>,
           ]}
         />
         <ResumeItem
-          role="Intern"
+          jobRole="Intern"
           dateRange="01/2011 - 05/2011"
           organization={
             <Anchor
-              anchorTitle="Owensboro Catholic High School"
-              targetUrl="https://owensborocatholic.org/schools/ochs/"
+              anchorContent="Owensboro Catholic High School"
+              href="https://owensborocatholic.org/schools/ochs/"
             />
           }
           responsibilities={[
-            <span>
+            <span key={1}>
               Developed VB6 scripts for printer fleet management by scripting
               out the install/management for printers across all computer labs.
             </span>,
-            <span>
+            <span key={2}>
               Administered active directory group policy/deployment by
               developing policies and implementing across all school groups.
             </span>,
@@ -395,50 +395,50 @@ const ResumeVolunteerOSSExperience = () => {
       <ul>
         <li>
           <Anchor
-            anchorTitle="aioodbc"
-            targetUrl="https://aioodbc.readthedocs.io/en/latest/"
+            anchorContent="aioodbc"
+            href="https://aioodbc.readthedocs.io/en/latest/"
           />{' '}
           - configuration tuning documentation
         </li>
         <li>
           <Anchor
-            anchorTitle="Annotorious"
-            targetUrl="https://recogito.github.io/annotorious/"
+            anchorContent="Annotorious"
+            href="https://recogito.github.io/annotorious/"
           />{' '}
           - docs and gitter chat help
         </li>
         <li>
           <Anchor
-            anchorTitle="Apache Arrow"
-            targetUrl="https://arrow.apache.org/"
+            anchorContent="Apache Arrow"
+            href="https://arrow.apache.org/"
           />{' '}
           - setup.py and API documentation updates, Subpool implementation, and
           add has capabilities for scalar values in Python
         </li>
         <li>
           <Anchor
-            anchorTitle="Code Louisville"
-            targetUrl="https://www.codelouisville.org/"
+            anchorContent="Code Louisville"
+            href="https://www.codelouisville.org/"
           />{' '}
           - taught a range of topics including Python, debugging, databases, and
           Django
         </li>
         <li>
           <Anchor
-            anchorTitle="Firefox Mobile"
-            targetUrl="https://www.mozilla.org/en-US/firefox/browsers/mobile/"
+            anchorContent="Firefox Mobile"
+            href="https://www.mozilla.org/en-US/firefox/browsers/mobile/"
           />{' '}
           - bug fix for incorrect axis locking
         </li>
         <li>
-          <Anchor anchorTitle="PyMSSQL" targetUrl="https://www.pymssql.org/" />{' '}
-          - mentor contributors, updated CI and platform builds, release manager
+          <Anchor anchorContent="PyMSSQL" href="https://www.pymssql.org/" /> -
+          mentor contributors, updated CI and platform builds, release manager
           for 2.1.4
         </li>
         <li>
           <Anchor
-            anchorTitle="wavesurfer.js"
-            targetUrl="https://wavesurfer-js.org/"
+            anchorContent="wavesurfer.js"
+            href="https://wavesurfer-js.org/"
           />{' '}
           - region plugin update for event broadcasting
         </li>
@@ -453,19 +453,16 @@ const ResumeMemberships = () => {
       <h1>Memberships</h1>
       <ul>
         <li>
-          <Anchor anchorTitle="ACM" targetUrl="https://www.acm.org" />
+          <Anchor anchorContent="ACM" href="https://www.acm.org" />
         </li>
         <li>
           <Anchor
-            anchorTitle="Hardware Happy Hour Louisville"
-            targetUrl="https://h3lou.org"
+            anchorContent="Hardware Happy Hour Louisville"
+            href="https://h3lou.org"
           />
         </li>
         <li>
-          <Anchor
-            anchorTitle="DerbyPy"
-            targetUrl="https://github.com/derbypy"
-          />
+          <Anchor anchorContent="DerbyPy" href="https://github.com/derbypy" />
         </li>
       </ul>
     </>
