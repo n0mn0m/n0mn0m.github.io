@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Helmet } from 'react-helmet';
-import App from './components/app';
 import { HashRouter, Route, Routes } from 'react-router-dom';
+import App from './components/app';
 import About from './components/about';
 import Portfolio from './components/portfolio/core';
 import Copyright from './components/copyright';

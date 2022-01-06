@@ -39,11 +39,7 @@ const About = () => {
             If you want to chat you can{' '}
             <a href="mailto:alexander@burningdaylight.io">message</a> me, or
             send a{' '}
-            <Anchor
-              anchorTitle="patch"
-              targetUrl="https://github.com/n0mn0m/"
-            />
-            .
+            <Anchor anchorContent="patch" href="https://github.com/n0mn0m/" />.
           </p>
           <p>
             My resume is available for{' '}

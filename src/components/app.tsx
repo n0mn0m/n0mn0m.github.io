@@ -1,5 +1,4 @@
-import { Routes, Route, Link } from 'react-router-dom';
-import About from './about';
+import { Link } from 'react-router-dom';
 import Footer from './frame/footer';
 import Header from './frame/header';
 import SocialBar from './social/menu';
