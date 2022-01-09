@@ -39,7 +39,7 @@ const ResumeExperience = () => {
         />
         <ResumeItem
           jobRole="Software Engineer"
-          dateRange="02/2021 - 06/2021"
+          dateRange="02/2021 - 05/2021"
           organization={
             <Anchor anchorContent="RENCI" href="https://renci.org/" />
           }
