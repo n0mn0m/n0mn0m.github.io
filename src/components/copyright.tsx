@@ -1,6 +1,6 @@
-import React from 'react';
 import { faCreativeCommonsZero } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
 import Home from './frame/home';
 
 const Copyright = () => {
@@ -27,7 +27,7 @@ const Copyright = () => {
         </div>
         <div>
           Site Code
-          <a href="https://www.gnu.org/licenses/lgpl-3.0.txt"> LGPL</a>
+          <a href="https://opensource.org/licenses/0BSD"> Zero Clause BSD</a>
         </div>
       </section>
     </>
