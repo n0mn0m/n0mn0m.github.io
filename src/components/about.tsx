@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import Anchor from './element/anchor';
 import Footer from './frame/footer';
 import Home from './frame/home';
+import AppleMusicPlayer from './music/player';
 
 const About = () => {
   return (
@@ -49,10 +50,14 @@ const About = () => {
             , and I maintain a project list{' '}
             <Link to="/project-list" target="_blank">
               here
-            </Link>{' '}
+            </Link>
             .
           </p>
         </article>
+        <section>
+          <p>Finally if you have a moment enjoy some tracks.</p>
+          <AppleMusicPlayer />
+        </section>
       </div>
       <Footer />
     </>
