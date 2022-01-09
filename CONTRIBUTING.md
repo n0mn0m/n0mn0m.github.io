@@ -3,7 +3,7 @@
 Contributions are welcome!
 
 Contributions can be bug reports, feature requests, testing and documentation
-in addition to code. 
+in addition to code.
 
 Contributions to this project are accepted on an
 ["inbound=outbound"](https://opensource.com/law/11/7/trouble-harmony-part-1) basis.
@@ -35,21 +35,21 @@ will not be tolerated).
 
 This is an overview of the contribution workflow:
 
- * Clone the repo
- * Create a branch
- * Make your change
-   * Make commits to your branch using the following guidelines:
-     * Start with a subject line (beginning with a capital, ending without a period, no more than 50 characters)
-     * The second line should be blank
-     * The body starts on the third line
-     * Use the imperative mood in the subject line: "Add x", "Fix y", "Support z", "Remove x"
-     * Wrap the body at 72 characters
-     * Use the body to explain what and why vs. how
-     * Finish the commit message with the sign off: `Signed-off-by: Your Name <me@e.mail>`
- * Test
- * If applicable make sure formatting rules are applied
- * [Email](https://www.devroom.io/2009/10/26/how-to-create-and-apply-a-patch-with-git/) a [patchset](https://www.devroom.io/2009/10/26/how-to-create-and-apply-a-patch-with-git/)
-   to n0mn0m@burningdaylight.io
+- Clone the repo
+- Create a branch
+- Make your change
+  - Make commits to your branch using the following guidelines:
+    - Start with a subject line (beginning with a capital, ending without a period, no more than 50 characters)
+    - The second line should be blank
+    - The body starts on the third line
+    - Use the imperative mood in the subject line: "Add x", "Fix y", "Support z", "Remove x"
+    - Wrap the body at 72 characters
+    - Use the body to explain what and why vs. how
+    - Finish the commit message with the sign off: `Signed-off-by: Your Name <me@e.mail>`
+- Test
+- If applicable make sure formatting rules are applied
+- [Email](https://www.devroom.io/2009/10/26/how-to-create-and-apply-a-patch-with-git/) a [patchset](https://www.devroom.io/2009/10/26/how-to-create-and-apply-a-patch-with-git/)
+  to n0mn0m@burningdaylight.io
 
 ## Verified commits with GPG
 

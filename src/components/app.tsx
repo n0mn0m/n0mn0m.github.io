@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
+import '../assets/app.css';
 import Footer from './frame/footer';
 import Header from './frame/header';
 import SocialBar from './social/menu';
-import '../assets/app.css';
 
 function App() {
   return (
