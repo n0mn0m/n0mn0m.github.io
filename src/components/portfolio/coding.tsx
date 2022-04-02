@@ -47,15 +47,15 @@ const CodingPortfolio = () => {
           <strong>Summary</strong>
         </p>
         <p>
-          Develop new tools for annotating and managing datasets for ML model
-          training.
+          Design and develop tools for annotating and managing ML model training
+          datasets.
         </p>
         <p>
           <strong>Core Technology</strong>
         </p>
         <p>
           Python, Django, TypeScript, React, Postgres, DoltDB, Kubernetes,
-          Docker, Jenkins
+          Docker, Jenkins, OAuth2, REST
         </p>
       </ol>
       <h3>RENCI</h3>
@@ -75,7 +75,7 @@ const CodingPortfolio = () => {
         <p>
           <strong>Core Technology</strong>
         </p>
-        <p>Python, React, bash, Kubernetes, Docker, Jenkins</p>
+        <p>Python, React, bash, Kubernetes, Docker, Jenkins, OIDC, REST</p>
       </ol>
       <h3>Samtec</h3>
       <ol>
@@ -128,9 +128,9 @@ const CodingPortfolio = () => {
             <strong>Core Technology</strong>
           </p>
           <p>
-            Python 3, REST API, Tesseract, Jupyter, Docker, docker-compose,
-            Azure Dev Ops, Azure Pipelines, Azure Functions, Azure Queues, Azure
-            Blob Storage, CosmosDB Artifactory, git, bash
+            Python 3, REST, Tesseract, Jupyter, Docker, docker-compose, Azure
+            Dev Ops, Azure Pipelines, Azure Functions, Azure Queues, Azure Blob
+            Storage, CosmosDB Artifactory, git, bash
           </p>
         </li>
         <li>
@@ -146,10 +146,9 @@ const CodingPortfolio = () => {
             <strong>Core Technology</strong>
           </p>
           <p>
-            Python 3, Django, REST API, Jupyter, NLP, Docker, docker-compose,
-            Azure Dev Ops, Azure Pipelines, Azure Blob Storage, Azure Datalake
-            Storage Gen 2, SQL Server, Databricks, Apache Spark, Artifactory,
-            git
+            Python 3, Django, REST, Jupyter, NLP, Docker, docker-compose, Azure
+            Dev Ops, Azure Pipelines, Azure Blob Storage, Azure Datalake Storage
+            Gen 2, SQL Server, Databricks, Apache Spark, Artifactory, git
           </p>
         </li>
         <li>
@@ -165,10 +164,9 @@ const CodingPortfolio = () => {
             <strong>Core Technology</strong>
           </p>
           <p>
-            Python 3, Django, REST API, Jupyter, NLP, Docker, docker-compose,
-            Azure Dev Ops, Azure Pipelines, Azure Blob Storage, Azure Datalake
-            Storage Gen 2, SQL Server, Databricks, Apache Spark, Artifactory,
-            git
+            Python 3, Django, REST, Jupyter, NLP, Docker, docker-compose, Azure
+            Dev Ops, Azure Pipelines, Azure Blob Storage, Azure Datalake Storage
+            Gen 2, SQL Server, Databricks, Apache Spark, Artifactory, git
           </p>
         </li>
         <li>
@@ -197,7 +195,7 @@ const CodingPortfolio = () => {
           <p>
             <strong>Core Technology</strong>
           </p>
-          <p>Python 3, PySpark, SQL, XML, HDFS, Flask, REST API, bash</p>
+          <p>Python 3, PySpark, SQL, XML, HDFS, Flask, REST, bash</p>
         </li>
         <li>
           <p>Potential Fraud Rule Detection</p>
@@ -323,7 +321,7 @@ const CodingPortfolio = () => {
           <p>
             <strong>Core Technology</strong>
           </p>
-          <p>C#, .NET Framework 3, Razor Pages, REST API</p>
+          <p>C#, .NET Framework 3, Razor Pages, REST</p>
         </li>
       </ol>
       <h3>Owensboro Catholic High School</h3>

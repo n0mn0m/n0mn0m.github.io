@@ -20,20 +20,23 @@ const ResumeExperience = () => {
           }
           responsibilities={[
             <span key={1}>
-              Responsible for the design and development of audio, video and
-              image annotation tools.
+              Lead the design and implementation of audio and image annotation
+              tools.
             </span>,
             <span key={2}>
-              Responsible for ML annotation schema design, data access and
-              maintenance.
+              Set up and maintain frontend build and testing tools.
             </span>,
             <span key={3}>
-              Designing a data versioning tool to support model development,
-              data lineage and characteristic summary.
+              Designed and implemented a data versioning tool to support
+              annotation lineage and management.
             </span>,
             <span key={4}>
-              Collaborate across teams to maintain and support front end build
-              tooling.
+              Responsible for supporting and securing data interfaces allowing
+              service to service, frontend and other ad hoc integrations.
+            </span>,
+            <span key={5}>
+              Mentor other engineers and collaborate across teams for new
+              product features.
             </span>,
           ]}
         />
@@ -490,10 +493,13 @@ const Resume = () => {
       </div>
       <section style={{ textAlign: 'center' }}>
         <p>
-          I am a software engineer with a decade of experience across various
-          stacks, domains and engineering practices. I enjoy working in
+          I am a software engineer with over a decade of experience. In that
+          time I have worked across a variety of domains, stacks and teams
+          building frontend web and mobile interfaces, distributed backend
+          services while managing legacy systems. I enjoy working in
           environments that require continuous learning and collaboration to
-          solve new and challenging problems.
+          solve challenging problems. These days I prefer working on tools that
+          empower individuals to create.
         </p>
       </section>
       <section>
