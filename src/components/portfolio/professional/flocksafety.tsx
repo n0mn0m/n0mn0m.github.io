@@ -9,7 +9,7 @@ const FlockProjects = () => {
         {
           title: 'Annotation Platform',
           description:
-            'Design and develop tools for annotating and managing multimedia ML datasets.',
+            'Design and develop tools to annotate and manage multimedia ML datasets',
           technologies: [
             'Python',
             'Django',

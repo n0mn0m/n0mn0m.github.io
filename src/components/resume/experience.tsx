@@ -18,8 +18,8 @@ const ResumeExperience = () => {
           }
           responsibilities={[
             <span key={0}>
-              Designed and implemented audio and object tracking annotation
-              tools.
+              Design and implement audio, object tracking and device health
+              annotation tools.
             </span>,
             <span key={1}>
               Responsible for identifying candidates to grow the team,
@@ -52,7 +52,7 @@ const ResumeExperience = () => {
           ]}
         />
         <ResumeItem
-          jobRole="Software Engineer"
+          jobRole="Senior Software Engineer"
           dateRange="02/2021 - 05/2021"
           organization={
             <Anchor anchorContent="RENCI" href="https://renci.org/" />
