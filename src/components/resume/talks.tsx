@@ -8,7 +8,7 @@ const ResumeTalks = () => {
         <li>
           <a href="https://github.com/DerbyPy/python_for_embedded_systems">
             Python for Embedded Hardware
-          </a>
+          </a>{' '}
           (DerbyPy, Louisville, KY) - June 2019
         </li>
         <li>
@@ -24,7 +24,7 @@ const ResumeTalks = () => {
         <li>
           <a href="https://github.com/DerbyPy/modules-and-packages-intro">
             Python Modules and Packages
-          </a>
+          </a>{' '}
           (DerbyPy, Louisville, KY) - September 2018
         </li>
         <li>Column Oriented Data (DerbyPy, Louisville, KY) - June 2018</li>

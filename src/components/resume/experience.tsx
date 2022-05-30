@@ -59,7 +59,7 @@ const ResumeExperience = () => {
           }
           responsibilities={[
             <span key={1}>
-              Working to develop the{' '}
+              Worked to develop the{' '}
               <a
                 href="https://github.com/helxplatform"
                 target="_blank"
@@ -106,12 +106,12 @@ const ResumeExperience = () => {
               feature implementations and process improvement.
             </span>,
             <span key={4}>
-              Provide key insights for organizational planning on long-term data
+              Provide key insights for organizational planning on data
               management and optimization.
             </span>,
             <span key={5}>
-              Showcase leadership by mentoring, coaching, and training engineers
-              in new practices/tools/technology.
+              Mentor, coach, and train engineers in new
+              practices/tools/technology.
             </span>,
             <span key={6}>
               Develop and oversee continuous integration and deployment
@@ -186,27 +186,21 @@ const ResumeExperience = () => {
           }
           responsibilities={[
             <span key={1}>
-              Partnered with cross-functional teams to develop end-to-end
-              testing framework for customer journey through GCP marketplace to
-              Elastic.
+              Worked across teams to develop an end-to-end testing framework for
+              the customer journey through GCP marketplace to Elastic.
             </span>,
             <span key={2}>
-              Provided value-added contributions in the migration of backend
-              services from Python 2 to Python 3.7.
+              Migration of backend services from Python 2 to Python 3.7.
             </span>,
             <span key={3}>
-              Applied expansion efforts and process improvements in automated
-              testing practices for Python 2 and 3 code bases.
+              Expanded automated testing practices for Python 2 and 3 code
+              bases.
             </span>,
             <span key={4}>
               Built a tool that enabled data migration from Elasticsearch to
               Postgres.
             </span>,
             <span key={5}>
-              Formulated the billing integration service for Elastic stack and
-              Google Cloud Platform Marketplace.
-            </span>,
-            <span key={6}>
               Delivered troubleshooting and production incident response for
               billing services and clusters.
             </span>,
