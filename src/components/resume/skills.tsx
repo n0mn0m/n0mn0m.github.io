@@ -5,14 +5,20 @@ const ResumeSkills = () => {
     <>
       <h1>Technical Skills & Competencies</h1>
       <p>
-        Python, C#, TypeScript, Rust, .NET Core, Django, React, Angular, Bash,
-        PowerShell, SQL, Postgres, Hadoop, Spark, Elasticsearch, RabbitMQ,
+        Python, C#, TypeScript, Rust, C++, .NET Core, Django, React, Bash, SQL
         <br />
-        Netezza, MongoDB, CosmosDB, SQS, PubSub, S3, Azure Data Lake Storage Gen
-        2, S3, HDFS, Apache Spark, XML, JSON, MDX, SSIS, SSAS,
+        Postgres, SQL Server, SQLite, Elasticsearch, MongoDB, Redis, Netezza,
+        CosmosDB
         <br />
-        SSRS, AWS, Azure, GCP, DataBricks, Azure Pipelines, Azure DevOps, Linux,
-        Docker, Kubernetes, Fargate, Artifactory, Jenkins, Terraform, git,
+        SQS, PubSub, Azure Queues, Kafka, RabbitMQ
+        <br />
+        HDFS, Azure Data Lake Storage Gen 2, S3
+        <br />
+        AWS, Azure, GCP
+        <br />
+        Azure Pipelines, Azure DevOps, Circle CI, GitHub Actions, Jenkins
+        <br />
+        Linux, Docker, Kubernetes, Fargate, Terraform
         <br />
         Software Architecture, Software Testing, Pair Programming, CI/CD
         <br />

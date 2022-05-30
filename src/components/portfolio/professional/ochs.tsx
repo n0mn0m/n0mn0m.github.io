@@ -7,7 +7,7 @@ const OchsProjects = () => {
       orgName="Owensboro Catholic High School"
       projectInfo={[
         {
-          title: 'Printer Fleet Managment',
+          title: 'Printer Fleet Management',
           description:
             'Scripted out the install and management of printers across computer labs.',
           technologies: ['VB6', 'COM'],

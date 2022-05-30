@@ -1,7 +1,7 @@
 import React from 'react';
 import ProjectItem from './item';
 
-const AiodbcContributions = () => {
+const AioOdbcContributions = () => {
   return (
     <ProjectItem
       projectName="aioodbc"
@@ -20,4 +20,4 @@ const AiodbcContributions = () => {
   );
 };
 
-export default AiodbcContributions;
+export default AioOdbcContributions;

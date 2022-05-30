@@ -1,5 +1,5 @@
 import React from 'react';
-import AiodbcContributions from './aioodbc';
+import AioOdbcContributions from './aioodbc';
 import ApacheArrowContributions from './arrow';
 import CodeLouisvilleContributions from './codelouisville';
 import FireFoxContributions from './firefox';
@@ -9,7 +9,7 @@ import WavesurferContributions from './wavesurfer';
 const OpenSourceProjects = () => {
   return (
     <>
-      <AiodbcContributions />
+      <AioOdbcContributions />
       <ApacheArrowContributions />
       <CodeLouisvilleContributions />
       <FireFoxContributions />
