@@ -17,6 +17,9 @@ function App() {
           <ul>
             <Link to="portfolio">Portfolio</Link>
           </ul>
+          <ul>
+            <Link to="my-lists">Lists</Link>
+          </ul>
         </nav>
       </div>
       <Footer />

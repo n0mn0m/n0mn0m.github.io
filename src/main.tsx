@@ -8,6 +8,9 @@ import Portfolio from './components/portfolio/core';
 import Copyright from './components/copyright';
 import Resume from './components/resume/core';
 import CodingPortfolio from './components/portfolio/coding';
+import MyLists from './components/lists/core';
+import BookList from './components/lists/books';
+import PodcastList from './components/lists/podcasts';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -19,6 +22,9 @@ ReactDOM.render(
         <Route path="/" element={<App />} />
         <Route path="about" element={<About />} />
         <Route path="copyright" element={<Copyright />} />
+        <Route path="my-lists" element={<MyLists />} />
+        <Route path="my-lists/books" element={<BookList />} />
+        <Route path="my-lists/podcasts" element={<PodcastList />} />
         <Route path="portfolio" element={<Portfolio />} />
         <Route path="portfolio/art" element={<div />} />
         <Route path="portfolio/music" element={<div />} />
