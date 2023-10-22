@@ -1,4 +1,0 @@
-{
-  "cSpell.words": ["burningdaylight", "docstrings", "stackexchange", "xywh"],
-  "jest.jestCommandLine": "source $HOME/.nvm/nvm.sh; nvm use; npm run test:watch --"
-}
