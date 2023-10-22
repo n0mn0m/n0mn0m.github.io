@@ -1,0 +1,15 @@
+- name: About
+  link: /about/
+- name: Blog
+  link: /blog/
+- name: Me
+  link: /me/
+- name: Portfolio
+  link: /portfolio/
+- name: List
+  link: /list/
+  dropdown:
+    - name: Books
+      link: /books/
+    - name: Podcast
+      link: /podcast/
