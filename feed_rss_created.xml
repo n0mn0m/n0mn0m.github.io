@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    
+    <title>burningdaylight</title>
+    
+    <link>https://burningdaylight.io/</link>
+    <atom:link href="https://burningdaylight.io/feed_rss_created.xml" rel="self" type="application/rss+xml" />
+
+    
+    <managingEditor>Alexander Hagerman</managingEditor>
+    
+    <language>en</language>
+
+    
+    <pubDate>Tue, 17 Dec 2024 17:08:06 -0000</pubDate>
+    <lastBuildDate>Tue, 17 Dec 2024 17:08:06 -0000</lastBuildDate>
+    <ttl>1440</ttl>
+
+    
+    <generator>MkDocs RSS plugin - v1.17.1</generator>
+
+    
+    
+    <image>
+      <url>None</url>
+      <title>burningdaylight</title>
+      <link>https://burningdaylight.io/</link>
+    </image>
+    
+
+    
+    
+    <item>
+      <title>More Interactions of Interest</title>
+      
+      
+      
+      
+        
+      
+      <description>&lt;p&gt;Following up on Interaction of Interest here are a few more things I’ve messed with in the last couple of months that I
+found to be pretty neat.&lt;/p&gt;
+&lt;p&gt;Using a Wac...&lt;/p&gt;</description>
+      <link>https://burningdaylight.io/blog/2022/06/07/more-interactions-of-interest/</link>
+      <pubDate>Tue, 07 Jun 2022 00:00:00 +0000</pubDate>
+      <source url="https://burningdaylight.io/feed_rss_created.xml">burningdaylight</source>
+      
+      <guid isPermaLink="true">https://burningdaylight.io/blog/2022/06/07/more-interactions-of-interest/</guid>
+      
+    </item>
+    
+    <item>
+      <title>Interface Discovery</title>
+      
+      
+      
+      
+        
+      
+      <description>&lt;p&gt;I spend a lot of my days building new tools that individuals use to power their day to day work. Because of this I
+always keep an eye out for behavior in the...&lt;/p&gt;</description>
+      <link>https://burningdaylight.io/blog/2022/06/01/interface-discovery/</link>
+      <pubDate>Wed, 01 Jun 2022 00:00:00 +0000</pubDate>
+      <source url="https://burningdaylight.io/feed_rss_created.xml">burningdaylight</source>
+      
+      <guid isPermaLink="true">https://burningdaylight.io/blog/2022/06/01/interface-discovery/</guid>
+      
+    </item>
+    
+    <item>
+      <title>Pokemon Legends Arceus: Exploring Hisui with my daughter</title>
+      
+      
+      
+      
+        
+      
+      <description>&lt;p&gt;A couple of months ago I had a pile of games built up that were ready to trade in. When I took them to the shop I saw a
+new Pokemon game was out, and my daug...&lt;/p&gt;</description>
+      <link>https://burningdaylight.io/blog/2022/05/30/pokemon-legends-arceus-exploring-hisui-with-my-daughter/</link>
+      <pubDate>Mon, 30 May 2022 00:00:00 +0000</pubDate>
+      <source url="https://burningdaylight.io/feed_rss_created.xml">burningdaylight</source>
+      
+      <guid isPermaLink="true">https://burningdaylight.io/blog/2022/05/30/pokemon-legends-arceus-exploring-hisui-with-my-daughter/</guid>
+      
+    </item>
+    
+    <item>
+      <title>Tailored Experiences</title>
+      
+      
+      
+      
+        
+      
+      <description>&lt;p&gt;A couple of months ago I got to spend a few days hacking on an idea involving client side Tensorflow.js. Having spent
+much of my career in what I call ML adj...&lt;/p&gt;</description>
+      <link>https://burningdaylight.io/blog/2022/05/29/tailored-experiences/</link>
+      <pubDate>Sun, 29 May 2022 00:00:00 +0000</pubDate>
+      <source url="https://burningdaylight.io/feed_rss_created.xml">burningdaylight</source>
+      
+      <guid isPermaLink="true">https://burningdaylight.io/blog/2022/05/29/tailored-experiences/</guid>
+      
+    </item>
+    
+    <item>
+      <title>Interactions of Interest</title>
+      
+      
+      
+      
+        
+      
+      <description>&lt;p&gt;Over at Hackaday there is an ongoing series of articles
+called &lt;a href=&#34;https://hackaday.com/series_of_posts/inputs-of-interest/&#34;&gt;Inputs of Interest&lt;/a&gt;. Last year I wr...&lt;/p&gt;</description>
+      <link>https://burningdaylight.io/blog/2022/05/28/interactions-of-interest/</link>
+      <pubDate>Sat, 28 May 2022 00:00:00 +0000</pubDate>
+      <source url="https://burningdaylight.io/feed_rss_created.xml">burningdaylight</source>
+      
+      <guid isPermaLink="true">https://burningdaylight.io/blog/2022/05/28/interactions-of-interest/</guid>
+      
+    </item>
+    
+    <item>
+      <title>I realized something similar a few years back.</title>
+      
+      
+      
+      
+        
+      
+      <description>&lt;p&gt;I realized something similar a few years back. Discovery is arguably easier than ever, but it&#39;s also super easy to fall
+into just listening to what you know ...&lt;/p&gt;</description>
+      <link>https://burningdaylight.io/blog/2022/03/28/i-realized-something-similar-a-few-years-back/</link>
+      <pubDate>Mon, 28 Mar 2022 00:00:00 +0000</pubDate>
+      <source url="https://burningdaylight.io/feed_rss_created.xml">burningdaylight</source>
+      
+      <guid isPermaLink="true">https://burningdaylight.io/blog/2022/03/28/i-realized-something-similar-a-few-years-back/</guid>
+      
+    </item>
+    
+    <item>
+      <title>Productive tools can be observed</title>
+      
+      
+      
+      
+        
+      
+      <description>&lt;p&gt;Last year I started working on a new React app. I was late to the React game, having only started using it with React 16
+I had experience with some existing ...&lt;/p&gt;</description>
+      <link>https://burningdaylight.io/blog/2022/03/28/productive-tools-can-be-observed/</link>
+      <pubDate>Mon, 28 Mar 2022 00:00:00 +0000</pubDate>
+      <source url="https://burningdaylight.io/feed_rss_created.xml">burningdaylight</source>
+      
+      <guid isPermaLink="true">https://burningdaylight.io/blog/2022/03/28/productive-tools-can-be-observed/</guid>
+      
+    </item>
+    
+    <item>
+      <title>Software Engineering Mythology</title>
+      
+      
+      
+      
+        
+      
+      <description>&lt;p&gt;Over the last few years I’ve had the opportunity to see how a variety of teams&lt;br&gt;
+and companies build software. Along with that (like many others in the field...&lt;/p&gt;</description>
+      <link>https://burningdaylight.io/blog/2022/03/28/software-engineering-mythology/</link>
+      <pubDate>Mon, 28 Mar 2022 00:00:00 +0000</pubDate>
+      <source url="https://burningdaylight.io/feed_rss_created.xml">burningdaylight</source>
+      
+      <guid isPermaLink="true">https://burningdaylight.io/blog/2022/03/28/software-engineering-mythology/</guid>
+      
+    </item>
+    
+    <item>
+      <title>Without Trust</title>
+      
+      
+      
+      
+        
+      
+      <description>&lt;p&gt;There is a lof of talk these days about building systems that don’t require trust. On paper this has some appealing
+characteristics, and throughout history w...&lt;/p&gt;</description>
+      <link>https://burningdaylight.io/blog/2022/03/28/without-trust/</link>
+      <pubDate>Mon, 28 Mar 2022 00:00:00 +0000</pubDate>
+      <source url="https://burningdaylight.io/feed_rss_created.xml">burningdaylight</source>
+      
+      <guid isPermaLink="true">https://burningdaylight.io/blog/2022/03/28/without-trust/</guid>
+      
+    </item>
+    
+    <item>
+      <title>Novel Interactions</title>
+      
+      
+      
+      
+        
+      
+      <description>&lt;p&gt;I started my career as a software engineer working on a lot of data visualization projects. After a couple years I
+switched to working primarily on backend s...&lt;/p&gt;</description>
+      <link>https://burningdaylight.io/blog/2022/01/22/novel-interactions/</link>
+      <pubDate>Sat, 22 Jan 2022 00:00:00 +0000</pubDate>
+      <source url="https://burningdaylight.io/feed_rss_created.xml">burningdaylight</source>
+      
+      <guid isPermaLink="true">https://burningdaylight.io/blog/2022/01/22/novel-interactions/</guid>
+      
+    </item>
+    
+    <item>
+      <title>An Interlude</title>
+      
+      
+      
+      
+        
+      
+      <description>&lt;p&gt;I started collecting notes here almost 3 years ago at my first PyCon. I had been working in Python for 3 years at that
+point and wanted to share some notes w...&lt;/p&gt;</description>
+      <link>https://burningdaylight.io/blog/2021/04/02/an-interlude/</link>
+      <pubDate>Fri, 02 Apr 2021 00:00:00 +0000</pubDate>
+      <source url="https://burningdaylight.io/feed_rss_created.xml">burningdaylight</source>
+      
+      <guid isPermaLink="true">https://burningdaylight.io/blog/2021/04/02/an-interlude/</guid>
+      
+    </item>
+    
+    <item>
+      <title>Reading Highlights from Q1 2021</title>
+      
+      
+      
+      
+        
+      
+      <description>&lt;p&gt;I read a lot of books throughout the year, but rarely write anything up after finishing them. While I don’t think I have
+enough to say about any one book aft...&lt;/p&gt;</description>
+      <link>https://burningdaylight.io/blog/2021/03/29/reading-highlights-from-q1-2021/</link>
+      <pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
+      <source url="https://burningdaylight.io/feed_rss_created.xml">burningdaylight</source>
+      
+      <guid isPermaLink="true">https://burningdaylight.io/blog/2021/03/29/reading-highlights-from-q1-2021/</guid>
+      
+    </item>
+    
+    <item>
+      <title>Entropy</title>
+      
+      
+      
+      
+        
+      
+      <description>&lt;h4&gt;noun: entropy; plural noun: entropies; symbol: S&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;a thermodynamic quantity representing the unavailability of a system’s thermal energy for conversio...&lt;/li&gt;
+&lt;/ol&gt;</description>
+      <link>https://burningdaylight.io/blog/2021/03/25/entropy/</link>
+      <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
+      <source url="https://burningdaylight.io/feed_rss_created.xml">burningdaylight</source>
+      
+      <guid isPermaLink="true">https://burningdaylight.io/blog/2021/03/25/entropy/</guid>
+      
+    </item>
+    
+    <item>
+      <title>Finding good defaults</title>
+      
+      
+      
+      
+        
+      
+      <description>&lt;p&gt;At heart many of us are tinkerers. We like to take things apart and see how they work. We enjoy spending hours
+customizing our tools, scripts and application...&lt;/p&gt;</description>
+      <link>https://burningdaylight.io/blog/2021/03/23/finding-good-defaults/</link>
+      <pubDate>Tue, 23 Mar 2021 00:00:00 +0000</pubDate>
+      <source url="https://burningdaylight.io/feed_rss_created.xml">burningdaylight</source>
+      
+      <guid isPermaLink="true">https://burningdaylight.io/blog/2021/03/23/finding-good-defaults/</guid>
+      
+    </item>
+    
+    <item>
+      <title>Setting up a CI pipeline for Rust in Teamcity</title>
+      
+      
+      
+      
+        
+      
+      <description>&lt;p&gt;Towards the end of last year I started working on a &lt;a href=&#34;https://github.com/n0mn0m/artemis/&#34;&gt;project&lt;/a&gt; in rust that would
+listen to a message queue and send an em...&lt;/p&gt;</description>
+      <link>https://burningdaylight.io/blog/2021/02/10/setting-up-a-ci-pipeline-for-rust-in-teamcity/</link>
+      <pubDate>Wed, 10 Feb 2021 00:00:00 +0000</pubDate>
+      <source url="https://burningdaylight.io/feed_rss_created.xml">burningdaylight</source>
+      
+      <guid isPermaLink="true">https://burningdaylight.io/blog/2021/02/10/setting-up-a-ci-pipeline-for-rust-in-teamcity/</guid>
+      
+    </item>
+    
+    <item>
+      <title>The joy of repair</title>
+      
+      
+      
+      
+        
+      
+      <description>&lt;p&gt;A few weeks ago the Z Upper Right Assembly broke on my Mini 2. At first, I wasn’t quite sure what was wrong I only knew
+that the tool head couldn’t raise on ...&lt;/p&gt;</description>
+      <link>https://burningdaylight.io/blog/2021/02/01/the-joy-of-repair/</link>
+      <pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate>
+      <source url="https://burningdaylight.io/feed_rss_created.xml">burningdaylight</source>
+      
+      <guid isPermaLink="true">https://burningdaylight.io/blog/2021/02/01/the-joy-of-repair/</guid>
+      
+    </item>
+    
+    <item>
+      <title>Reading highlights from Q4 2020</title>
+      
+      
+      
+      
+        
+      
+      <description>&lt;p&gt;I read a lot of books this year, but rarely write anything up after finishing them. While I don’t think I have enough to
+say about any one book after my firs...&lt;/p&gt;</description>
+      <link>https://burningdaylight.io/blog/2021/01/14/reading-highlights-from-q4-2020/</link>
+      <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
+      <source url="https://burningdaylight.io/feed_rss_created.xml">burningdaylight</source>
+      
+      <guid isPermaLink="true">https://burningdaylight.io/blog/2021/01/14/reading-highlights-from-q4-2020/</guid>
+      
+    </item>
+    
+    <item>
+      <title>Org templates and checklist</title>
+      
+      
+      
+      
+        
+      
+      <description>&lt;p&gt;Last year I read the &lt;a href=&#34;http://atulgawande.com/book/the-checklist-manifesto/&#34;&gt;“The Checklist Manifesto”&lt;/a&gt; about the
+outsized impact a checklist can have on an i...&lt;/p&gt;</description>
+      <link>https://burningdaylight.io/blog/2021/01/05/org-templates-and-checklist/</link>
+      <pubDate>Tue, 05 Jan 2021 00:00:00 +0000</pubDate>
+      <source url="https://burningdaylight.io/feed_rss_created.xml">burningdaylight</source>
+      
+      <guid isPermaLink="true">https://burningdaylight.io/blog/2021/01/05/org-templates-and-checklist/</guid>
+      
+    </item>
+    
+    <item>
+      <title>Use data structures for your business logic</title>
+      
+      
+      
+      
+        
+      
+      <description>&lt;p&gt;A few months ago I was reviewing a PR that handled relationships between entities. As I was working through the code I
+started to notice a pattern that made ...&lt;/p&gt;</description>
+      <link>https://burningdaylight.io/blog/2020/12/28/use-data-structures-for-your-business-logic/</link>
+      <pubDate>Mon, 28 Dec 2020 00:00:00 +0000</pubDate>
+      <source url="https://burningdaylight.io/feed_rss_created.xml">burningdaylight</source>
+      
+      <guid isPermaLink="true">https://burningdaylight.io/blog/2020/12/28/use-data-structures-for-your-business-logic/</guid>
+      
+    </item>
+    
+    <item>
+      <title>Self Hosting</title>
+      
+      
+      
+      
+        
+      
+      <description>&lt;p&gt;Over the last few years I built up a sprawling list of dependencies for my home project and blog workflow. Earlier this
+year I decided it was time to cut dow...&lt;/p&gt;</description>
+      <link>https://burningdaylight.io/blog/2020/11/21/self-hosting/</link>
+      <pubDate>Sat, 21 Nov 2020 00:00:00 +0000</pubDate>
+      <source url="https://burningdaylight.io/feed_rss_created.xml">burningdaylight</source>
+      
+      <guid isPermaLink="true">https://burningdaylight.io/blog/2020/11/21/self-hosting/</guid>
+      
+    </item>
+    
+  </channel>
+</rss>

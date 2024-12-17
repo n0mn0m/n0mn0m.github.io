@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'permanent-marker';
+    src: url('/fonts/Permanent_Marker/PermanentMarker-Regular.ttf')
+    format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.app-title {
+    font-family: 'permanent-marker', sans-serif;
+    font-size: 3rem;
+    font-weight: normal;
+    font-style: normal;
+    text-align: center;
+    color: white;
+    margin-top: 0;
+}
+
+.color-run {
+    color: #f6cb8c;
+    text-shadow: 1px -1px hsl(195, 80%, 42%), 2px -2px hsl(195, 80%, 42%),
+    3px -3px hsl(195, 80%, 42%), -1px 1px hsl(348, 34%, 35%),
+    -2px 2px hsl(195, 80%, 42%), -3px 3px hsl(195, 80%, 42%),
+    1px 1px hsl(348, 34%, 35%), 2px 2px hsl(197, 8%, 18%),
+    3px 3px hsl(197, 8%, 18%), -4px 4px hsl(197, 8%, 18%),
+    5px 5px hsl(195, 80%, 42%), 6px 6px hsl(284, 22%, 36%),
+    7px 7px hsl(197, 8%, 18%), -8px 8px hsl(186, 30%, 39%),
+    -9px 9px hsl(186, 30%, 39%), -10px 10px hsl(186, 30%, 39%),
+    11px 11px hsl(284, 22%, 36%), 12px 12px hsl(284, 22%, 36%),
+    -13px 13px hsl(185, 71%, 45%), -14px 14px hsl(185, 71%, 45%),
+    -15px 15px hsl(185, 71%, 45%);
+}

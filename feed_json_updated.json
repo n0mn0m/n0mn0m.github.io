@@ -1,0 +1,216 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "burningdaylight",
+    "home_page_url": "https://burningdaylight.io/",
+    "feed_url": "https://burningdaylight.io/feed_json_updated.json",
+    "description": null,
+    "icon": null,
+    "authors": [
+        {
+            "name": "Alexander Hagerman"
+        }
+    ],
+    "language": "en",
+    "items": [
+        {
+            "id": "https://burningdaylight.io/blog/2022/06/07/more-interactions-of-interest/",
+            "url": "https://burningdaylight.io/blog/2022/06/07/more-interactions-of-interest/",
+            "title": "More Interactions of Interest",
+            "content_html": "<p>Following up on Interaction of Interest here are a few more things I\u2019ve messed with in the last couple of months that I\nfound to be pretty neat.</p>\n<p>Using a Wac...</p>",
+            "image": null,
+            "date_modified": "2024-12-17T17:08:07.610185+00:00",
+            "authors": [],
+            "tags": []
+        },
+        {
+            "id": "https://burningdaylight.io/blog/2022/06/01/interface-discovery/",
+            "url": "https://burningdaylight.io/blog/2022/06/01/interface-discovery/",
+            "title": "Interface Discovery",
+            "content_html": "<p>I spend a lot of my days building new tools that individuals use to power their day to day work. Because of this I\nalways keep an eye out for behavior in the...</p>",
+            "image": null,
+            "date_modified": "2024-12-17T17:08:07.605786+00:00",
+            "authors": [],
+            "tags": []
+        },
+        {
+            "id": "https://burningdaylight.io/blog/2022/05/30/pokemon-legends-arceus-exploring-hisui-with-my-daughter/",
+            "url": "https://burningdaylight.io/blog/2022/05/30/pokemon-legends-arceus-exploring-hisui-with-my-daughter/",
+            "title": "Pokemon Legends Arceus: Exploring Hisui with my daughter",
+            "content_html": "<p>A couple of months ago I had a pile of games built up that were ready to trade in. When I took them to the shop I saw a\nnew Pokemon game was out, and my daug...</p>",
+            "image": null,
+            "date_modified": "2024-12-17T17:08:07.602391+00:00",
+            "authors": [],
+            "tags": []
+        },
+        {
+            "id": "https://burningdaylight.io/blog/2022/05/29/tailored-experiences/",
+            "url": "https://burningdaylight.io/blog/2022/05/29/tailored-experiences/",
+            "title": "Tailored Experiences",
+            "content_html": "<p>A couple of months ago I got to spend a few days hacking on an idea involving client side Tensorflow.js. Having spent\nmuch of my career in what I call ML adj...</p>",
+            "image": null,
+            "date_modified": "2024-12-17T17:08:07.598083+00:00",
+            "authors": [],
+            "tags": []
+        },
+        {
+            "id": "https://burningdaylight.io/blog/2022/05/28/interactions-of-interest/",
+            "url": "https://burningdaylight.io/blog/2022/05/28/interactions-of-interest/",
+            "title": "Interactions of Interest",
+            "content_html": "<p>Over at Hackaday there is an ongoing series of articles\ncalled <a href=\"https://hackaday.com/series_of_posts/inputs-of-interest/\">Inputs of Interest</a>. Last year I wr...</p>",
+            "image": null,
+            "date_modified": "2024-12-17T17:08:07.594864+00:00",
+            "authors": [],
+            "tags": []
+        },
+        {
+            "id": "https://burningdaylight.io/blog/2022/03/28/without-trust/",
+            "url": "https://burningdaylight.io/blog/2022/03/28/without-trust/",
+            "title": "Without Trust",
+            "content_html": "<p>There is a lof of talk these days about building systems that don\u2019t require trust. On paper this has some appealing\ncharacteristics, and throughout history w...</p>",
+            "image": null,
+            "date_modified": "2024-12-17T17:08:07.591000+00:00",
+            "authors": [],
+            "tags": []
+        },
+        {
+            "id": "https://burningdaylight.io/blog/2022/03/28/software-engineering-mythology/",
+            "url": "https://burningdaylight.io/blog/2022/03/28/software-engineering-mythology/",
+            "title": "Software Engineering Mythology",
+            "content_html": "<p>Over the last few years I\u2019ve had the opportunity to see how a variety of teams<br>\nand companies build software. Along with that (like many others in the field...</p>",
+            "image": null,
+            "date_modified": "2024-12-17T17:08:07.588728+00:00",
+            "authors": [],
+            "tags": []
+        },
+        {
+            "id": "https://burningdaylight.io/blog/2022/03/28/productive-tools-can-be-observed/",
+            "url": "https://burningdaylight.io/blog/2022/03/28/productive-tools-can-be-observed/",
+            "title": "Productive tools can be observed",
+            "content_html": "<p>Last year I started working on a new React app. I was late to the React game, having only started using it with React 16\nI had experience with some existing ...</p>",
+            "image": null,
+            "date_modified": "2024-12-17T17:08:07.583766+00:00",
+            "authors": [],
+            "tags": []
+        },
+        {
+            "id": "https://burningdaylight.io/blog/2022/03/28/i-realized-something-similar-a-few-years-back/",
+            "url": "https://burningdaylight.io/blog/2022/03/28/i-realized-something-similar-a-few-years-back/",
+            "title": "I realized something similar a few years back.",
+            "content_html": "<p>I realized something similar a few years back. Discovery is arguably easier than ever, but it's also super easy to fall\ninto just listening to what you know ...</p>",
+            "image": null,
+            "date_modified": "2024-12-17T17:08:07.579232+00:00",
+            "authors": [],
+            "tags": []
+        },
+        {
+            "id": "https://burningdaylight.io/blog/2022/01/22/novel-interactions/",
+            "url": "https://burningdaylight.io/blog/2022/01/22/novel-interactions/",
+            "title": "Novel Interactions",
+            "content_html": "<p>I started my career as a software engineer working on a lot of data visualization projects. After a couple years I\nswitched to working primarily on backend s...</p>",
+            "image": null,
+            "date_modified": "2024-12-17T17:08:07.576737+00:00",
+            "authors": [],
+            "tags": []
+        },
+        {
+            "id": "https://burningdaylight.io/blog/2021/04/02/an-interlude/",
+            "url": "https://burningdaylight.io/blog/2021/04/02/an-interlude/",
+            "title": "An Interlude",
+            "content_html": "<p>I started collecting notes here almost 3 years ago at my first PyCon. I had been working in Python for 3 years at that\npoint and wanted to share some notes w...</p>",
+            "image": null,
+            "date_modified": "2024-12-17T17:08:07.570811+00:00",
+            "authors": [],
+            "tags": []
+        },
+        {
+            "id": "https://burningdaylight.io/blog/2021/03/29/reading-highlights-from-q1-2021/",
+            "url": "https://burningdaylight.io/blog/2021/03/29/reading-highlights-from-q1-2021/",
+            "title": "Reading Highlights from Q1 2021",
+            "content_html": "<p>I read a lot of books throughout the year, but rarely write anything up after finishing them. While I don\u2019t think I have\nenough to say about any one book aft...</p>",
+            "image": null,
+            "date_modified": "2024-12-17T17:08:07.567865+00:00",
+            "authors": [],
+            "tags": []
+        },
+        {
+            "id": "https://burningdaylight.io/blog/2021/03/25/entropy/",
+            "url": "https://burningdaylight.io/blog/2021/03/25/entropy/",
+            "title": "Entropy",
+            "content_html": "<h4>noun: entropy; plural noun: entropies; symbol: S</h4>\n<ol>\n<li>a thermodynamic quantity representing the unavailability of a system\u2019s thermal energy for conversio...</li>\n</ol>",
+            "image": null,
+            "date_modified": "2024-12-17T17:08:07.563816+00:00",
+            "authors": [],
+            "tags": []
+        },
+        {
+            "id": "https://burningdaylight.io/blog/2021/03/23/finding-good-defaults/",
+            "url": "https://burningdaylight.io/blog/2021/03/23/finding-good-defaults/",
+            "title": "Finding good defaults",
+            "content_html": "<p>At heart many of us are tinkerers. We like to take things apart and see how they work. We enjoy spending hours\ncustomizing our tools, scripts and application...</p>",
+            "image": null,
+            "date_modified": "2024-12-17T17:08:07.561316+00:00",
+            "authors": [],
+            "tags": []
+        },
+        {
+            "id": "https://burningdaylight.io/blog/2021/02/10/setting-up-a-ci-pipeline-for-rust-in-teamcity/",
+            "url": "https://burningdaylight.io/blog/2021/02/10/setting-up-a-ci-pipeline-for-rust-in-teamcity/",
+            "title": "Setting up a CI pipeline for Rust in Teamcity",
+            "content_html": "<p>Towards the end of last year I started working on a <a href=\"https://github.com/n0mn0m/artemis/\">project</a> in rust that would\nlisten to a message queue and send an em...</p>",
+            "image": null,
+            "date_modified": "2024-12-17T17:08:07.557950+00:00",
+            "authors": [],
+            "tags": []
+        },
+        {
+            "id": "https://burningdaylight.io/blog/2021/02/01/the-joy-of-repair/",
+            "url": "https://burningdaylight.io/blog/2021/02/01/the-joy-of-repair/",
+            "title": "The joy of repair",
+            "content_html": "<p>A few weeks ago the Z Upper Right Assembly broke on my Mini 2. At first, I wasn\u2019t quite sure what was wrong I only knew\nthat the tool head couldn\u2019t raise on ...</p>",
+            "image": null,
+            "date_modified": "2024-12-17T17:08:07.550906+00:00",
+            "authors": [],
+            "tags": []
+        },
+        {
+            "id": "https://burningdaylight.io/blog/2021/01/14/reading-highlights-from-q4-2020/",
+            "url": "https://burningdaylight.io/blog/2021/01/14/reading-highlights-from-q4-2020/",
+            "title": "Reading highlights from Q4 2020",
+            "content_html": "<p>I read a lot of books this year, but rarely write anything up after finishing them. While I don\u2019t think I have enough to\nsay about any one book after my firs...</p>",
+            "image": null,
+            "date_modified": "2024-12-17T17:08:07.547699+00:00",
+            "authors": [],
+            "tags": []
+        },
+        {
+            "id": "https://burningdaylight.io/blog/2021/01/05/org-templates-and-checklist/",
+            "url": "https://burningdaylight.io/blog/2021/01/05/org-templates-and-checklist/",
+            "title": "Org templates and checklist",
+            "content_html": "<p>Last year I read the <a href=\"http://atulgawande.com/book/the-checklist-manifesto/\">\u201cThe Checklist Manifesto\u201d</a> about the\noutsized impact a checklist can have on an i...</p>",
+            "image": null,
+            "date_modified": "2024-12-17T17:08:07.542170+00:00",
+            "authors": [],
+            "tags": []
+        },
+        {
+            "id": "https://burningdaylight.io/blog/2020/12/28/use-data-structures-for-your-business-logic/",
+            "url": "https://burningdaylight.io/blog/2020/12/28/use-data-structures-for-your-business-logic/",
+            "title": "Use data structures for your business logic",
+            "content_html": "<p>A few months ago I was reviewing a PR that handled relationships between entities. As I was working through the code I\nstarted to notice a pattern that made ...</p>",
+            "image": null,
+            "date_modified": "2024-12-17T17:08:07.539343+00:00",
+            "authors": [],
+            "tags": []
+        },
+        {
+            "id": "https://burningdaylight.io/blog/2020/11/21/self-hosting/",
+            "url": "https://burningdaylight.io/blog/2020/11/21/self-hosting/",
+            "title": "Self Hosting",
+            "content_html": "<p>Over the last few years I built up a sprawling list of dependencies for my home project and blog workflow. Earlier this\nyear I decided it was time to cut dow...</p>",
+            "image": null,
+            "date_modified": "2024-12-17T17:08:07.535258+00:00",
+            "authors": [],
+            "tags": []
+        }
+    ]
+}
