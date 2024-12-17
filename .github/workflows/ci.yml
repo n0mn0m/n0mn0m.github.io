@@ -1,20 +1,25 @@
-name: Build Jekyll site
+name: ci
 on:
-  pull_request:
-    branches: main
+  push:
+    branches:
+      - master
+      - main
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-      - name: Build
-        uses: actions/jekyll-build-pages@v1
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - uses: actions/cache@v2
+        with:
+          key: ${{ github.ref }}
+          path: .cache
+      - run: pip install mkdocs-material
+      - run: pip install mkdocs-roamlinks-plugin
+      - run: pip install mkdocs-rss-plugin
+      # - run: pip install mkdocs-mermaid2-plugin
+      - run: mkdocs gh-deploy --force

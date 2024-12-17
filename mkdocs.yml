@@ -1,0 +1,90 @@
+site_name: burningdaylight
+site_url: https://burningdaylight.io
+site_author: Alexander Hagerman
+#repo_url: https://github.com/n0mn0m/n0mn0m.github.io
+
+theme:
+    name: 'material'
+    logo: icons/favicon.png
+    favicon: icons/favicon.ico
+    features:
+      - navigation.path
+      - icons
+    palette:
+
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: hsl(195, 80%, 42%)
+      accent: hsl(284, 22%, 36%)
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: hsl(284, 22%, 36%)
+      accent: hsl(195, 80%, 42%)
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+
+# Extensions
+markdown_extensions:
+  - footnotes
+  # - attr_list
+  - pymdownx.arithmatex:
+      generic: true
+  # - pymdownx.superfences
+  # - pymdownx.details
+  # - pymdownx.magiclink
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - def_list
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+  - roamlinks
+  - blog:
+      blog_toc: true
+  - rss:
+      use_git: false
+      match_path: blog/posts/.*
+      date_from_meta:
+        as_creation: date
+      categories:
+        - tags        # will look into page.meta.tags
+        - categories  # will also look into page.meta.categories
+      pretty_print: true
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - https://unpkg.com/mermaid/dist/mermaid.min.js 
+
+extra_css:
+  - css/styles.css
+  - css/portfolio.css
+  - css/resume.css
+
+extra:
+  homepage: https://burningdaylight.io
+  social:
+    - icon: fontawesome/solid/rss
+      link: /feed_rss_updated.xml
+      name: RSS Feed

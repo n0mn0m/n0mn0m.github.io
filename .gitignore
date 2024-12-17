@@ -9,3 +9,4 @@ vendor/
 venv
 .venv
 .vscode
+.obsidian
