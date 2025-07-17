@@ -1,0 +1,1079 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Alexander Hagerman">
+      
+      
+        <link rel="canonical" href="https://burningdaylight.io/blog/2019/07/14/creating-a-con-badge-with-pyportal/">
+      
+      
+        <link rel="prev" href="../../../06/23/using-dataclasses-for-configuration/">
+      
+      
+        <link rel="next" href="../../../08/01/connected-roomba---possibilities/">
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="RSS feed of updated content" href="../../../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../../../icons/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>Creating a Con Badge with PyPortal - burningdaylight</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../css/styles.css">
+    
+      <link rel="stylesheet" href="../../../../../css/portfolio.css">
+    
+      <link rel="stylesheet" href="../../../../../css/resume.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="hsl(195,-80%,-42%)" data-md-color-accent="hsl(284,-22%,-36%)">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#curiosities" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://burningdaylight.io" title="burningdaylight" class="md-header__button md-logo" aria-label="burningdaylight" data-md-component="logo">
+      
+  <img src="../../../../../icons/favicon.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            burningdaylight
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Creating a Con Badge with PyPortal
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="hsl(195,-80%,-42%)" data-md-color-accent="hsl(284,-22%,-36%)"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="hsl(284,-22%,-36%)" data-md-color-accent="hsl(195,-80%,-42%)"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://burningdaylight.io" title="burningdaylight" class="md-nav__button md-logo" aria-label="burningdaylight" data-md-component="logo">
+      
+  <img src="../../../../../icons/favicon.png" alt="logo">
+
+    </a>
+    burningdaylight
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../me/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Me
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archive
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2022/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2022
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2021/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2021
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2020/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2020
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2019/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2019
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../archive/2018/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2018
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Lists
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Lists
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../lists/books/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Books
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../lists/podcast/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Podcast
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Programming
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Programming
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../programming/portfolio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Portfolio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../programming/resume/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resume
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#curiosities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Curiosities
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lessons-learned" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lessons Learned
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next Steps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acknowledgements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Acknowledgements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contact" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contact
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contact">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#more-photos" class="md-nav__link">
+    <span class="md-ellipsis">
+      More Photos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2019-07-14 00:00:00+00:00" class="md-ellipsis">July 14, 2019</time>
+                      </div>
+                    </li>
+                    
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              6 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+
+
+  <h1>Creating a Con Badge with PyPortal</h1>
+
+<p>Recently I've heard about multiple people working on con badges and decided to try my hand at a simple take on the idea.
+Since I had just recently received my PyPortal Adabox I thought I would use that as my first platform to get started.</p>
+<p>From the product <a href="https://www.adafruit.com/product/4116">page</a> the PyPortal is:</p>
+<blockquote>
+<p><em>An easy-to-use IoT device that allows you to create all the things for the “Internet of Things” in minutes. Make
+custom touch screen interface GUIs, all open-source, and Python-powered using tinyJSON / APIs to get news, stock,
+weather, cat photos, and more – all over Wi-Fi with the latest technologies. Create little pocket universes of joy that
+connect to something good. Rotate it 90 degrees, it’s a web-connected conference badge #badgelife.</em>Like many other
+CircuitPython powered devices the PyPortal has a great <a href="https://learn.adafruit.com/adafruit-pyportal">Explore and Learn</a>
+page available that walks you through getting the right firmware installed as well as providing hardware breakdowns,
+code demos and FAQ.</p>
+</blockquote>
+<p>Once I had the PyPortal up to date and had gone through a couple demos I landed on having my first badge being a simple
+menu systems. While many badges will contain easter eggs or ways to interact with other badges I decided to keep it
+simple for this first run. I wanted my badge to be able to display a couple pieces of static data and have a couple
+interactive options.</p>
+<p>I landed on a Button menu that would show a couple maps, a photo of my badge, a countdown to Gen Con, and a simple D20
+roller.</p>
+<p>Along the way I made extensive use of the <a href="https://circuitpython.readthedocs.io/en/latest/">docs</a>
+and <a href="https://github.com/adafruit">source code</a> that <a href="https://www.adafruit.com/">Adafruit</a> provides.</p>
+<p>I also found it easy to find documentation for the module I would pull in from the library modules by referencing the
+list of submodules on <a href="https://readthedocs.org/projects/circuitpython/">Read the Docs</a></p>
+<h3 id="curiosities">Curiosities<a class="headerlink" href="#curiosities" title="Permanent link">&para;</a></h3>
+<p>While building my badge I ran into some interesting edges that I hope to explore further. I'm sharing these here just in
+case somebody else reads this and can avoid similar pitfalls or suggest a different direction.</p>
+<ul>
+<li>Large buttons seem to lead to performance and OOM errors</li>
+<li>Originally my menu had 8 buttons (one with information about Adafruit, another with information about the project),
+  but that wasn't stable. After 3 or 4 clicks gc or something else couldn't keep up with the memory allocation and the
+  badge would crash with a MemoryError</li>
+<li>My schedule was also a menu of buttons originally. This let me setup a list of tuples I could manipulate in code, but
+  when I had 5 buttons span the screen render time was visibly slow, and lead to inconsistent OOM errors.</li>
+<li>Different fonts have different performance characteristics</li>
+<li>Looking back this makes sense. Different glyphs will have different structures. Depending on that a glyph can place
+  different loads on the system. I tried a few of the "performance" font from GoogleFonts, but ultimately landed on
+  Arial Bold for a font that looked consistent, rendered quickly and didn't have a large file size.</li>
+<li>Better ways to sleep?</li>
+<li>My badge spends a lot of time in the main super loop polling if a button has been pressed. At this time I don't think
+  CircuitPython supports interrupts. I hope in the future i can figure out a better was to let the device sleep, but
+  capture an interrupt type event such as the display being touched.</li>
+<li>PDB for CircuitPython</li>
+<li>I spent a lot of time running snippets in the REPL. This is a nice experience to have for an embedded device, but I do
+  miss having PDB or WebPDB to drop a breakpoint in my code, let it run and then inspect the stack, heap etc from a
+  given point in my program. I believe MicroPython contains this functionality so I'm guessing it's possible with
+  CircuitPython I just haven't dug in to make it happen yet.</li>
+</ul>
+<h3 id="lessons-learned">Lessons Learned<a class="headerlink" href="#lessons-learned" title="Permanent link">&para;</a></h3>
+<p>Similar to the interesting behaviors I found above I learned a bit about developing with CircuitPython and how it can
+differ from my day to day Python development along the way.</p>
+<ul>
+<li>Python data structure sizes</li>
+<li>Many code bases make liberal use of dictionaries. In fact some say that Python is built on top of the dict data
+  structure. It's incredibly useful to look items up by key, and provides some human readability over indexing into a
+  collection with no reference beyond position. That said Dictionaries are one of
+  the <a href="https://stackoverflow.com/questions/1331471/in-memory-size-of-a-python-structure/1331541#1331541">largest</a>
+  builtin Python objects. One of the reasons for this is something called a load factor that I won't go into now, but
+  suffice to say as you add more objects to a dictionary and it approaches a given load factor it will automatically
+  grow in size. Because of this in a memory constrained environment I found myself removing dictionaries or list of
+  dicts and using more tuples and list of tuples.</li>
+<li>Take out the garbage</li>
+<li>Python Garbage Collection is handled via reference counting. Because of this it's important to think about when an
+  object (especially large objects ) you are using come in scope, and when they leave scope. In an environment like
+  CircuitPython you may also want to call gc.collect() when you leave scopes with large objects to make sure they are
+  garbage collected before you carry on. This can help avoid some OOM errors.</li>
+<li>Careful wih that indirection.</li>
+<li>I found myself removing helper functions and other pieces of code that helped keep things "clean". Often times I did
+  this because I was hitting performance of OOM errors that would go away when I put the functionality in the parent
+  scope. Because of this I have repeated code, and code that isn't what I would expect to pass code review day to day,
+  but it works, achieved stability and gave the performance I'm looking for on my badge.</li>
+<li>Testing and profiling for this environment is still a challenge for me.</li>
+<li>I would love to be able to write a test for my function and then profile that test to capture things like stack depth,
+  object sizes, timing, etc. And since I have a test I could do this N times to see what kind of behaviors emerge.
+  Instead right now I manually make a change and validate. Because of this I think I'm building an intuition of what is
+  happening, but I can't verify it which leads me to assume my understanding has gaps, and potentially wrong assumptions
+  today. Making this better can help me address the point above.</li>
+</ul>
+<h3 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h3>
+<p>So with v1 of the badge prepared and ready for Gen Con 2019 I'm going to step back and work on some other items in this
+space. While working on the project I found out that labels don't support an orientation flag. After mentioning this in
+discord I opened an <a href="https://github.com/adafruit/Adafruit_CircuitPython_Display_Button/issues/9">issue</a> on Github with
+some encouragement from @ladyada. Hopefully I can spend some cycles working on that.</p>
+<p>I also continue to think about how to write tests for CircuitPython. Since the runtime is tied to the boards it's not as
+simple as running the code in a CPython unittest environment. While there is a lot of overlap in the API and behavior
+it's not a one to one match. I think being able to test the code would lead to faster development cycles and would open
+the door to better profiling and understanding of my applications behavior.</p>
+<p>Finally I plan to back up and read Making Embdedded Systems by Elicia White and visit some other embedded getting
+started materials. While I had a lot of ideas for this project (and I'm happy with how it turned out) I realized that
+since I'm not as familiar with this type of hardware environment I struggled at times to get the functionality I was
+looking for with the performance I needed.</p>
+<h3 id="acknowledgements">Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permanent link">&para;</a></h3>
+<p>Thanks to the team at Adafruit. The devices they build and the creation of CircuitPython has lead me to pick up a hobby
+that continues to be fun and encourages me to think in new ways about hardware and the programs I'm writing.
+Additionally Adafruit has
+a <a href="https://blog.adafruit.com/2017/07/20/adafruit-is-on-discord-discordapp-adafruit-discord-adafruit/">discord</a> where
+many people have been incredibly patient and helpful as I learn and ask questions.</p>
+<h3 id="contact">Contact<a class="headerlink" href="#contact" title="Permanent link">&para;</a></h3>
+<p>I've really enjoyed working on this project. If you want to reach out feel free to follow up
+via <a href="mailto:n0mn0m@burningdaylight.io">email</a> or on.</p>
+<p>You can find out more about the badge and source code in the <a href="https://github.com/n0mn0m/gencon-portal">repo</a></p>
+<h4 id="more-photos">More Photos<a class="headerlink" href="#more-photos" title="Permanent link">&para;</a></h4>
+<p>Some additional photos of the portal. I've ordered a case
+off <a href="https://www.thingiverse.com/search?q=pyportal&amp;dwh=345d2cd0845a6f9">thingiverse</a> , but using the Adabox case while I
+wait.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="/feed_rss_updated.xml" target="_blank" rel="noopener" title="RSS Feed" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M0 64c0-17.7 14.3-32 32-32 229.8 0 416 186.2 416 416 0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96 14.3 96 0 81.7 0 64m0 352a64 64 0 1 1 128 0 64 64 0 1 1-128 0m32-256c159.1 0 288 128.9 288 288 0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224-17.7 0-32-14.3-32-32s14.3-32 32-32"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.path", "icons"], "search": "../../../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+        <script src="../../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
