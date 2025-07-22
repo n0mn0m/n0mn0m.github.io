@@ -119,7 +119,7 @@ def test_static_pages_generation(test_content, test_config):
         "podcast.md": ["lists", "podcast"],
     }
     for fname, title in pages:
-        rel_parts = page_url_map.get(fname, [fname.replace('.md', '')])
+        rel_parts = page_url_map.get(fname, [fname.replace(".md", "")])
         out_dir = config.output_dir
         for part in rel_parts:
             out_dir = out_dir / part
@@ -128,6 +128,8 @@ def test_static_pages_generation(test_content, test_config):
         with open(out_path) as f:
             html = f.read()
             assert title in html
+
+
 def test_blog_views_generation(test_content, test_config):
     """Test that tag, category, and date-based blog views are generated."""
     root_dir = test_content
@@ -135,7 +137,7 @@ def test_blog_views_generation(test_content, test_config):
         root_dir=root_dir,
         content_dir=root_dir / "content",
         static_dir=root_dir / "static",
-        output_dir=root_dir / "dist"
+        output_dir=root_dir / "dist",
     )
     # Create a blog post with tags, categories, and date
     posts_dir = config.content_dir / "blog" / "posts"
@@ -158,6 +160,10 @@ Test content
     assert (config.output_dir / "blog" / "tags" / "testtag" / "index.html").exists()
     assert (config.output_dir / "blog" / "tags" / "another" / "index.html").exists()
     # Check category views
-    assert (config.output_dir / "blog" / "categories" / "testing" / "index.html").exists()
-    assert (config.output_dir / "blog" / "categories" / "python" / "index.html").exists()
+    assert (
+        config.output_dir / "blog" / "categories" / "testing" / "index.html"
+    ).exists()
+    assert (
+        config.output_dir / "blog" / "categories" / "python" / "index.html"
+    ).exists()
     # Date view removed, so no assertion for date view

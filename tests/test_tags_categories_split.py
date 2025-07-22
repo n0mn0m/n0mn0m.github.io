@@ -1,6 +1,7 @@
 from minigen.builder import Builder
 from minigen.config import Config
 
+
 def test_tags_and_categories_are_split(tmp_path):
     # Create minimal config and post
     config = Config(

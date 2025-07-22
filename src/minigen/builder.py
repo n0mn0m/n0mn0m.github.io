@@ -8,7 +8,8 @@ from typing import Dict, Any, List
 import frontmatter
 import markdown
 from feedgen.feed import FeedGenerator
-from .config import Config
+from minigen.config import Config
+from minigen.logger import logger
 
 
 @dataclass
@@ -22,13 +23,13 @@ class Post:
 class Builder:
     def generate_feeds(self) -> None:
         """Generate RSS and Atom feeds."""
-        print("Generating RSS and Atom feeds...")
+        logger.info("Generating RSS and Atom feeds...")
 
         # Validate feed configuration
         validation = self.config.validate_feed_config()
         if not validation.is_valid:
-            print(f"Error: {validation.error_message}")
-            print("Feed generation skipped.")
+            logger.error(f"Feed configuration error: {validation.error_message}")
+            logger.warning("Feed generation skipped.")
             return
 
         try:
@@ -70,19 +71,20 @@ class Builder:
                     for cat in categories:
                         fe.category(term=cat)
                 except Exception as e:
-                    print(f"Error adding entry: {e}")
+                    logger.error(f"Error adding entry: {e}")
                     continue
 
             # Generate both RSS and Atom feeds
             rss_path = self.config.output_dir / self.config.rss_path
             atom_path = self.config.output_dir / self.config.atom_path
-            print(f"Writing RSS feed to {rss_path}")
+            logger.info(f"Writing RSS feed to {rss_path}")
             fg.rss_file(str(rss_path))
-            print(f"Writing Atom feed to {atom_path}")
+            logger.info(f"Writing Atom feed to {atom_path}")
             fg.atom_file(str(atom_path))
-            print("Feed generation complete!")
+            logger.info("Feed generation complete!")
         except Exception as e:
-            print(f"Error generating feeds: {e}")
+            logger.error(f"Error generating feeds: {e}")
+
     """Static site generator that converts markdown content to HTML."""
 
     def __init__(self, config: Config):
@@ -107,16 +109,16 @@ class Builder:
 
     def build(self) -> None:
         """Build the complete site."""
-        print("Cleaning output directory...")
+        logger.info("Cleaning output directory...")
         self.clean()
 
-        print("Copying static files...")
+        logger.info("Copying static files...")
         self.copy_static()
 
-        print("Loading and processing posts...")
+        logger.info("Loading and processing posts...")
         self.load_posts()
 
-        print("Creating pages...")
+        logger.info("Creating pages...")
         self._create_index()
         self._create_blog_index()
         self._create_posts()
@@ -125,11 +127,12 @@ class Builder:
         self._create_blog_category_views()
         # Date view removed for now
 
-        print("Generating feeds...")
-        print(f"Posts to include in feed: {len(self.posts)}")
+        logger.info("Generating feeds...")
+        logger.debug(f"Posts to include in feed: {len(self.posts)}")
         self.generate_feeds()
 
-        print("Build complete!")
+        logger.info("Build complete!")
+
     def _create_blog_tag_views(self) -> None:
         """Create tag-based blog views."""
         tag_map = {}
@@ -249,14 +252,19 @@ class Builder:
             for field in ["tags", "categories"]:
                 val = post.metadata.get(field)
                 if isinstance(val, str):
-                    post.metadata[field] = [t.strip() for t in val.split(",") if t.strip()]
+                    post.metadata[field] = [
+                        t.strip() for t in val.split(",") if t.strip()
+                    ]
 
             self.posts.append(
                 Post(content=self.md.convert(post.content), metadata=post.metadata)
             )
         # Sort posts by date descending
-        self.posts.sort(key=lambda p: p.metadata.get("date", datetime.now()), reverse=True)
+        self.posts.sort(
+            key=lambda p: p.metadata.get("date", datetime.now()), reverse=True
+        )
         # Validate feed configuration
+
     def _wrap_content(self, content: str, *, title: str, description: str = "") -> str:
         """Wrap content in HTML boilerplate."""
         meta_tags = [
@@ -282,19 +290,23 @@ class Builder:
         ]
 
         # Only center content on homepage, reduce gap between menu and title, add space above menu
-        center_style = """
+        center_style = (
+            """
     <style>
         body { display: flex; flex-direction: column; align-items: center; margin: 0; }
         main { width: 100%; max-width: 700px; margin: 1rem auto; text-align: center; }
         header nav { margin: 1em 0 0.5em 0; } /* 1em top margin, 0.5em bottom */
     </style>
-""" if title == "Home" else ""
+"""
+            if title == "Home"
+            else ""
+        )
 
         # Add RSS/Atom feed links below copyright, centered
-        feed_links = f'<div class="feeds" style="margin-top:0.5em;font-size:0.95em;text-align:center;">'
+        feed_links = '<div class="feeds" style="margin-top:0.5em;font-size:0.95em;text-align:center;">'
         feed_links += f'<a href="/{self.config.rss_path}">RSS Feed</a> | '
         feed_links += f'<a href="/{self.config.atom_path}">Atom Feed</a>'
-        feed_links += '</div>'
+        feed_links += "</div>"
         html = f"""<!DOCTYPE html>
 <html lang=\"en\">
 <head>
@@ -329,7 +341,9 @@ class Builder:
             index_content = self.md.convert(post.content)
         else:
             # Generate simple index with latest posts
-            index_content = f"<h1 style='margin-bottom:0.5em'>{self.config.site_title}</h1>"
+            index_content = (
+                f"<h1 style='margin-bottom:0.5em'>{self.config.site_title}</h1>"
+            )
             if self.config.site_description:
                 index_content += f"<p>{self.config.site_description}</p>"
 

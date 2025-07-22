@@ -7,6 +7,7 @@ from pathlib import Path
 
 from minigen.config import Config
 from minigen.builder import Builder
+from minigen.logger import logger
 from minigen.server import Server
 
 
@@ -30,7 +31,7 @@ def main():
     # Find config file
     config_path = Path(os.getcwd()) / args.config
     if not config_path.exists():
-        print(f"Error: Could not find {args.config} in {os.getcwd()}")
+        logger.error(f"Could not find {args.config} in {os.getcwd()}")
         sys.exit(1)
 
     # Load config
@@ -59,18 +60,20 @@ def main():
         # Check feed configuration first
         validation = config.validate_feed_config()
         if not validation.is_valid:
-            print(f"Error: {validation.error_message}")
-            print("Please update your config.toml with the required feed settings:")
-            print("  - site_title")
-            print("  - site_description")
-            print("  - site_url")
-            print("  - site_author")
+            logger.error(f"Feed configuration error: {validation.error_message}")
+            logger.error(
+                "Please update your config.toml with the required feed settings:"
+            )
+            logger.error("  - site_title")
+            logger.error("  - site_description")
+            logger.error("  - site_url")
+            logger.error("  - site_author")
             sys.exit(1)
 
         builder.load_posts()
         builder.generate_feeds()
     else:
-        print(f"Unknown command: {command}")
+        logger.error(f"Unknown command: {command}")
         sys.exit(1)
 
 

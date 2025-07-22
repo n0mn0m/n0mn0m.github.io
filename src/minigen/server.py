@@ -6,6 +6,8 @@ import socketserver
 from pathlib import Path
 from typing import Optional
 
+from minigen.logger import logger
+
 
 class Server:
     """Development server for serving the static site."""
@@ -36,7 +38,7 @@ class Server:
 
             # Create and start the server
             self._httpd = socketserver.TCPServer((self.host, self.port), handler)
-            print(f"Serving at http://{self.host}:{self.port}")
+            logger.info(f"Serving at http://{self.host}:{self.port}")
             self._httpd.serve_forever()
         finally:
             # Always change back to original directory

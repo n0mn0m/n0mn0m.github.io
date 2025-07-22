@@ -1,6 +1,4 @@
 import feedparser
-"""Tests for feed generation."""
-
 import shutil
 from minigen.builder import Builder
 from minigen.config import Config
@@ -33,6 +31,7 @@ title: Test Post 2
 date: 2025-02-01
 # Test Post 2
 """)
+
 
 def test_feed_includes_tags_and_categories(test_content, test_config):
     """Test that RSS feed entries include tags and categories."""
