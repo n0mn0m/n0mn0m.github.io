@@ -3,11 +3,13 @@
 import pytest
 from pathlib import Path
 
+
 @pytest.fixture
 def test_config():
     """Create test configuration."""
     config_path = Path("tests/test_config.toml")
     return config_path
+
 
 @pytest.fixture
 def test_base_dir(tmp_path):

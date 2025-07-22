@@ -2,10 +2,12 @@
 
 import pytest
 
+
 @pytest.fixture
 def test_base_dir(tmp_path):
     """Create a base directory for tests."""
     return tmp_path
+
 
 @pytest.fixture
 def test_config(test_base_dir):
@@ -30,6 +32,7 @@ atom_path = "atom.xml"
 """)
 
     return config_file
+
 
 @pytest.fixture
 def test_content(tmp_path):

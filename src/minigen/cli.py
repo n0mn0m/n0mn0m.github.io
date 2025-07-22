@@ -9,18 +9,20 @@ from minigen.config import Config
 from minigen.builder import Builder
 from minigen.server import Server
 
+
 def main():
     """Main entry point."""
     parser = argparse.ArgumentParser(description="minigen static site generator")
     parser.add_argument(
         "command",
         choices=["build", "serve", "clean", "feeds"],
-        help="Command to execute"
+        help="Command to execute",
     )
     parser.add_argument(
-        "-c", "--config",
+        "-c",
+        "--config",
         default="config.toml",
-        help="Path to config file (default: config.toml)"
+        help="Path to config file (default: config.toml)",
     )
 
     args = parser.parse_args()
@@ -40,9 +42,9 @@ def main():
     # Process command
     command = args.command
 
-    if command == 'build':
+    if command == "build":
         builder.build()
-    elif command == 'serve':
+    elif command == "serve":
         # Build first
         builder.build()
         # Then serve
@@ -51,9 +53,9 @@ def main():
             server.serve()
         except KeyboardInterrupt:
             server.shutdown()
-    elif command == 'clean':
+    elif command == "clean":
         builder.clean()
-    elif command == 'feeds':
+    elif command == "feeds":
         # Check feed configuration first
         validation = config.validate_feed_config()
         if not validation.is_valid:
@@ -71,5 +73,6 @@ def main():
         print(f"Unknown command: {command}")
         sys.exit(1)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

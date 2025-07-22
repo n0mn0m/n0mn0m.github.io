@@ -1,8 +1,7 @@
 """Tests for configuration module."""
 
-import pytest
-from pathlib import Path
 from minigen.config import Config
+
 
 def test_nested_config_loading(tmp_path):
     """Test loading config from nested TOML structure."""
@@ -35,6 +34,7 @@ atom_path = "atom.xml"
     assert config.rss_path == "rss.xml"
     assert config.atom_path == "atom.xml"
 
+
 def test_feed_config_validation(tmp_path):
     """Test feed configuration validation."""
     config = Config(
@@ -46,7 +46,7 @@ def test_feed_config_validation(tmp_path):
         site_title="",
         site_description="",
         site_url="",
-        site_author=""
+        site_author="",
     )
 
     # Test with default empty values

@@ -6,15 +6,11 @@ import socketserver
 from pathlib import Path
 from typing import Optional
 
+
 class Server:
     """Development server for serving the static site."""
 
-    def __init__(
-        self,
-        root_dir: Path,
-        host: str = "localhost",
-        port: int = 8000
-    ):
+    def __init__(self, root_dir: Path, host: str = "localhost", port: int = 8000):
         """Initialize the server.
 
         Args:

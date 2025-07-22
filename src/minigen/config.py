@@ -1,4 +1,5 @@
 """Configuration module for the site generator."""
+
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Union, NamedTuple
@@ -7,6 +8,7 @@ import tomli
 
 class ValidationResult(NamedTuple):
     """Result of a configuration validation check."""
+
     is_valid: bool
     error_message: str
 
@@ -14,6 +16,7 @@ class ValidationResult(NamedTuple):
 @dataclass
 class Config:
     """Application configuration."""
+
     root_dir: Path
     content_dir: Path
     static_dir: Path
@@ -36,13 +39,21 @@ class Config:
             ValidationResult: Result containing validation status and any error message
         """
         if not self.site_title:
-            return ValidationResult(False, "Feed generation requires site_title to be set in config")
+            return ValidationResult(
+                False, "Feed generation requires site_title to be set in config"
+            )
         if not self.site_description:
-            return ValidationResult(False, "Feed generation requires site_description to be set in config")
+            return ValidationResult(
+                False, "Feed generation requires site_description to be set in config"
+            )
         if not self.site_url:
-            return ValidationResult(False, "Feed generation requires site_url to be set in config")
+            return ValidationResult(
+                False, "Feed generation requires site_url to be set in config"
+            )
         if not self.site_author:
-            return ValidationResult(False, "Feed generation requires site_author to be set in config")
+            return ValidationResult(
+                False, "Feed generation requires site_author to be set in config"
+            )
 
         return ValidationResult(True, "")
 
@@ -84,5 +95,5 @@ class Config:
             site_author=site_data.get("author", ""),
             site_url=site_data.get("url", ""),
             rss_path=feed_data.get("rss_path", "feed.xml"),
-            atom_path=feed_data.get("atom_path", "atom.xml")
+            atom_path=feed_data.get("atom_path", "atom.xml"),
         )

@@ -5,6 +5,7 @@ from pathlib import Path
 from minigen.builder import Builder
 from minigen.config import Config
 
+
 @pytest.fixture
 def test_static(tmp_path):
     """Create test static assets structure."""
@@ -31,6 +32,7 @@ console.log('Hello World');
 
     return tmp_path
 
+
 def test_static_copy(test_static, test_config):
     """Test that static files are copied correctly."""
     config = Config.from_file(test_config)
@@ -51,6 +53,7 @@ def test_static_copy(test_static, test_config):
 
     with open(config.output_dir / "static" / "javascripts" / "main.js") as f:
         assert "console.log('Hello World');" in f.read()
+
 
 def test_static_update(test_static, test_config):
     """Test that static files are updated when changed."""
