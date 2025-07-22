@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ site.title }}{% endblock %}</title>
+
+    <meta name="description" content="{{ site.description }}">
+    <meta name="author" content="{{ site.author }}">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="{{ site.url }}/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="{{ site.url }}/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; {{ now.year }} {{ site.author }}. All rights reserved.</p>
+        <p>
+            <a href="/{{ site.rss_path }}">RSS</a> |
+            <a href="/{{ site.atom_path }}">Atom</a>
+        </p>
+    </footer>
+
+    {% block scripts %}
+    <script src="/static/javascripts/mathjax.js"></script>
+    {% endblock %}
+</body>
+</html>

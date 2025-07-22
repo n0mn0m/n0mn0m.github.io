@@ -1,0 +1,45 @@
+# Site-wide settings
+[site]
+title = "burningdaylight"
+url = "https://burningdaylight.io"
+author = "Alexander Hagerman"
+description = "Various notes and ideas."
+
+[site.theme_color.light]
+primary = "hsl(195, 80%, 42%)"
+accent = "hsl(284, 22%, 36%)"
+
+[site.theme_color.dark]
+primary = "hsl(284, 22%, 36%)"
+accent = "hsl(195, 80%, 42%)"
+
+# Build settings
+[build]
+content_dir = "content"
+dist_dir = "dist"
+static_dir = "static"
+templates_dir = "templates"
+
+# Content settings
+[content]
+pages_dir = "content/pages"
+pages_url_format = "/{slug}/"
+
+# Blog settings
+[blog]
+posts_dir = "content/blog/posts"
+posts_url_format = "/blog/{year}/{month}/{day}/{slug}/"
+posts_per_page = 10
+
+# Special pages
+[special_pages]
+portfolio_url = "/programming/portfolio/"
+resume_url = "/programming/resume/"
+books_url = "/lists/books/"
+podcast_url = "/lists/podcast/"
+
+# Feed settings
+[feed]
+feed_max_posts = 15
+rss_path = "feed.xml"
+atom_path = "atom.xml"

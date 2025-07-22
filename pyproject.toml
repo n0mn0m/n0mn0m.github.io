@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "minigen"
+version = "0.1.0"
+description = "A minimalist static site generator"
+authors = [
+    { name = "Alexander Hagerman" },
+]
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "Jinja2==2.11.3",
+    "MarkupSafe==1.1.1",
+    "staticjinja==2.0.0",
+    "markdown==3.4.3",
+    "feedgen==0.9.0",
+    "livereload==2.6.3",
+    "pyyaml==6.0.1",
+    "python-frontmatter==1.0.0",
+    "tomli==2.0.1",
+]
+
+[project.optional-dependencies]
+dev = ["build", "wheel", "ruff", "mypy"]
+test= ["pytest", "pytest-cov", "requests"]
+publishing = ["twine"]
+
+[project.scripts]
+minigen = "minigen.cli:main"

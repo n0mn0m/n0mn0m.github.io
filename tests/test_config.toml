@@ -1,0 +1,9 @@
+site_title = "Test Site"
+site_description = "A test site"
+site_author = "Test Author"
+site_url = "http://test.com"
+
+# These are optional - will use defaults relative to root_dir if not specified
+content_dir = "content"
+static_dir = "static"
+output_dir = "dist"
