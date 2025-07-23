@@ -85,6 +85,60 @@ def test_content_generation(test_content, test_config):
         assert '<a href="/lists/podcast/">Podcast</a>' in content
 
 
+def test_mermaid_block_rendering(test_content, test_config):
+    """Test that mermaid code blocks are rendered as <div class='mermaid'>...</div>."""
+    root_dir = test_content
+    config = Config(
+        root_dir=root_dir,
+        content_dir=root_dir / "content",
+        static_dir=root_dir / "static",
+        output_dir=root_dir / "dist",
+    )
+    # Add a post with both mermaid and python code blocks
+    posts_dir = config.content_dir / "blog" / "posts"
+    post_md = posts_dir / "2025-07-23-mermaid-test.md"
+    post_md.write_text("""---
+title: Mermaid Test
+date: 2025-07-23
+---
+# Mermaid Test
+```mermaid
+graph TD;
+    A-->B;
+    B-->C;
+```
+
+```python
+def foo():
+    return 'bar'
+```
+""")
+    builder = Builder(config)
+    builder.build()
+    post_html_path = (
+        config.output_dir / "blog" / "posts" / "2025-07-23-mermaid-test.html"
+    )
+    assert post_html_path.exists()
+    with open(post_html_path) as f:
+        html = f.read()
+        # Mermaid block should be rendered as a div
+        assert '<div class="mermaid">' in html
+        assert "graph TD;" in html
+        # Python block should remain a code block
+        assert (
+            '<pre><code class="language-python">' in html
+            or '<code class="language-python">' in html
+        )
+        assert "def foo():" in html
+        # Check navigation links (use the same content we already read)
+        assert '<a href="/">Home</a>' in html
+        assert '<a href="/blog/">Blog</a>' in html
+        assert '<a href="/programming/portfolio/">Portfolio</a>' in html
+        assert '<a href="/programming/resume/">Resume</a>' in html
+        assert '<a href="/lists/books/">Books</a>' in html
+        assert '<a href="/lists/podcast/">Podcast</a>' in html
+
+
 def test_static_pages_generation(test_content, test_config):
     """Test that static pages are generated from content/pages/."""
     root_dir = test_content

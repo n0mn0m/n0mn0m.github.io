@@ -10,6 +10,7 @@ import markdown
 from feedgen.feed import FeedGenerator
 from minigen.config import Config
 from minigen.logger import logger
+from minigen.mermaid import MermaidExtension
 
 
 @dataclass
@@ -92,7 +93,7 @@ class Builder:
         self.config = config
         self.posts: List[Post] = []
         self.md = markdown.Markdown(
-            extensions=["meta", "fenced_code", "footnotes", "tables", "toc"]
+            extensions=["meta", "footnotes", "tables", "toc", MermaidExtension()]
         )
 
     def clean(self) -> None:
