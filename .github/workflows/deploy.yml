@@ -25,6 +25,9 @@ jobs:
           pip install -e "."
       - name: Build site
         run: minigen build
+      - name: Copy CNAME file to dist for GitHub Pages
+        run: |
+          cp static/CNAME dist/CNAME
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
