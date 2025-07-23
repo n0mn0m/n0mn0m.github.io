@@ -1,6 +1,6 @@
 ---
 title: Healthy Systems
-date: 2025-01-17
+date: 2025-07-02
 page.meta.tags: programming
 page.meta.categories: programming
 ---
