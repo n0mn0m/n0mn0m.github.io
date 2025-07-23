@@ -21,7 +21,7 @@ class Config:
     content_dir: Path
     static_dir: Path
     output_dir: Path
-    site_title: str = "My Site"
+    site_title: str = "You have one right?"
     site_description: str = ""
     site_author: str = ""
     site_url: str = ""

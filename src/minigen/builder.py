@@ -265,143 +265,109 @@ class Builder:
         )
         # Validate feed configuration
 
+    def _render_template(self, template_name: str, context: dict) -> str:
+        """Render a Jinja2 template with the given context."""
+        from jinja2 import Environment, FileSystemLoader
+        import os
+
+        templates_path = os.path.join(os.path.dirname(__file__), "templates")
+        env = Environment(loader=FileSystemLoader(templates_path), autoescape=True)
+        template = env.get_template(template_name)
+        return str(template.render(**context))
+
     def _wrap_content(self, content: str, *, title: str, description: str = "") -> str:
-        """Wrap content in HTML boilerplate."""
-        meta_tags = [
-            '<meta charset="UTF-8">',
-            '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
-            f'<meta name="description" content="{description}">',
-            f'<meta name="author" content="{self.config.site_author}">',
-        ]
-
-        css_links = [
-            '<link rel="stylesheet" href="/static/css/styles.css">',
-            '<link rel="stylesheet" href="/static/css/portfolio.css">',
-            '<link rel="stylesheet" href="/static/css/resume.css">',
-        ]
-
-        nav_links = [
-            '<a href="/">Home</a>',
-            '<a href="/blog/">Blog</a>',
-            '<a href="/programming/portfolio/">Portfolio</a>',
-            '<a href="/programming/resume/">Resume</a>',
-            '<a href="/lists/books/">Books</a>',
-            '<a href="/lists/podcast/">Podcast</a>',
-        ]
-
-        # Only center content on homepage, reduce gap between menu and title, add space above menu
-        center_style = (
-            """
-    <style>
-        body { display: flex; flex-direction: column; align-items: center; margin: 0; }
-        main { width: 100%; max-width: 700px; margin: 1rem auto; text-align: center; }
-        header nav { margin: 1em 0 0.5em 0; } /* 1em top margin, 0.5em bottom */
-    </style>
-"""
-            if title == "Home"
-            else ""
-        )
-
-        # Add RSS/Atom feed links below copyright, centered
-        feed_links = '<div class="feeds" style="margin-top:0.5em;font-size:0.95em;text-align:center;">'
-        feed_links += f'<a href="/{self.config.rss_path}">RSS Feed</a> | '
-        feed_links += f'<a href="/{self.config.atom_path}">Atom Feed</a>'
-        feed_links += "</div>"
-        html = f"""<!DOCTYPE html>
-<html lang=\"en\">
-<head>
-    <title>{title} - {self.config.site_title}</title>
-    {chr(10).join(meta_tags)}
-    {chr(10).join(css_links)}
-    {center_style}
-</head>
-<body>
-    <header>
-        <nav>
-            {chr(10).join(nav_links)}
-        </nav>
-    </header>
-    <main>
-        {content}
-    </main>
-    <footer>
-        <p>&copy; {datetime.now().year} {self.config.site_author}</p>
-        {feed_links}
-    </footer>
-</body>
-</html>"""
-        return html
+        """Render a generic page using the page.html template."""
+        context = {
+            "site": {
+                "title": self.config.site_title,
+                "description": description or self.config.site_description,
+                "author": self.config.site_author,
+                "url": self.config.site_url,
+                "rss_path": self.config.rss_path,
+                "atom_path": self.config.atom_path,
+            },
+            "now": datetime.now(),
+            "title": title,
+            "content": content,
+        }
+        return self._render_template("page.html", context)
 
     def _create_index(self) -> None:
         """Create the main index page."""
-        # Load index.md if it exists, otherwise generate one
         index_md_path = self.config.content_dir / "index.md"
         if index_md_path.exists():
             post = frontmatter.load(index_md_path)
-            index_content = self.md.convert(post.content)
+            intro_content = self.md.convert(post.content)
         else:
-            # Generate simple index with latest posts
-            index_content = (
-                f"<h1 style='margin-bottom:0.5em'>{self.config.site_title}</h1>"
-            )
+            intro_content = f"<h1>{self.config.site_title}</h1>"
             if self.config.site_description:
-                index_content += f"<p>{self.config.site_description}</p>"
-
-            # Place navigation links below site title
-            nav_links = [
-                '<a href="/">Home</a>',
-                '<a href="/blog/">Blog</a>',
-                '<a href="/programming/portfolio/">Portfolio</a>',
-                '<a href="/programming/resume/">Resume</a>',
-                '<a href="/lists/books/">Books</a>',
-                '<a href="/lists/podcast/">Podcast</a>',
-            ]
-            index_content += f"<div style='margin:1em 0;'>{' | '.join(nav_links)}</div>"
-
-            if self.posts:
-                index_content += "\n<h2>Latest Posts</h2>\n<ul>"
-                for post in self.posts[:5]:  # Show last 5 posts
-                    index_content += f'\n    <li><a href="{post.metadata["url"]}">{post.metadata["title"]}</a></li>'
-                index_content += "\n</ul>"
-
-        # Write index.html
-        index_html = self._wrap_content(
-            content=index_content,
-            title="Home",
-            description=self.config.site_description,
-        )
+                intro_content += f"<p>{self.config.site_description}</p>"
+        # Convert Post objects to dicts for template compatibility
+        latest_posts = []
+        for post in self.posts[:5] if self.posts else []:
+            meta = post.metadata
+            latest_posts.append(
+                {
+                    "date": meta.get("date"),
+                    "title": meta.get("title"),
+                    "url": meta.get("url"),
+                    "tags": meta.get("tags", []),
+                    "categories": meta.get("categories", []),
+                    "author": meta.get("author", self.config.site_author),
+                }
+            )
+        context = {
+            "site": {
+                "title": self.config.site_title,
+                "description": self.config.site_description,
+                "author": self.config.site_author,
+                "url": self.config.site_url,
+                "rss_path": self.config.rss_path,
+                "atom_path": self.config.atom_path,
+            },
+            "now": datetime.now(),
+            "intro_content": intro_content,
+            "posts": latest_posts,
+        }
+        index_html = self._render_template("index.html", context)
         index_path = self.config.output_dir / "index.html"
         index_path.write_text(index_html)
 
     def _create_blog_index(self) -> None:
-        """Create the blog index page."""
-        blog_content = "<h1>Blog Posts</h1>"
-
-        # Add links to tags and categories only
-        tag_dir = "/blog/tags/"
-        cat_dir = "/blog/categories/"
-        blog_content += "\n<div class='blog-views'>"
-        blog_content += f'<a href="{tag_dir}">Tags</a> | '
-        blog_content += f'<a href="{cat_dir}">Categories</a>'
-        blog_content += "</div>"
-
-        if self.posts:
-            blog_content += "\n<ul>"
-            for post in self.posts:
-                blog_content += f'\n    <li><a href="{post.metadata["url"]}">{post.metadata["title"]}</a></li>'
-            blog_content += "\n</ul>"
-        else:
-            blog_content += "\n<p>No posts yet.</p>"
-
-        # Write blog/index.html
-        blog_html = self._wrap_content(
-            content=blog_content,
-            title="Blog",
-            description=f"Blog posts from {self.config.site_title}",
-        )
+        """Create paginated blog index pages."""
+        per_page = 5
+        total_posts = len(self.posts)
+        total_pages = (total_posts // per_page) + (1 if total_posts % per_page else 0)
         blog_path = self.config.output_dir / "blog"
         blog_path.mkdir(exist_ok=True)
-        (blog_path / "index.html").write_text(blog_html)
+        pagination_base = "page-"
+        for page in range(1, total_pages + 1):
+            start = (page - 1) * per_page
+            end = start + per_page
+            page_posts = self.posts[start:end]
+            context = {
+                "site": {
+                    "title": self.config.site_title,
+                    "description": self.config.site_description,
+                    "author": self.config.site_author,
+                    "url": self.config.site_url,
+                    "rss_path": self.config.rss_path,
+                    "atom_path": self.config.atom_path,
+                },
+                "now": datetime.now(),
+                "posts": page_posts,
+                "page": page,
+                "per_page": per_page,
+                "total_posts": total_posts,
+                "total_pages": total_pages,
+                "pagination_base": "/blog/" + pagination_base,
+            }
+            if page == 1:
+                out_path = blog_path / "index.html"
+            else:
+                out_path = blog_path / f"{pagination_base}{page}.html"
+            blog_html = self._render_template("blog.html", context)
+            out_path.write_text(blog_html)
 
     def _create_posts(self) -> None:
         """Create individual post pages."""
@@ -409,15 +375,20 @@ class Builder:
         posts_path.mkdir(parents=True, exist_ok=True)
 
         for post in self.posts:
-            # Add post title/header above content
-            post_content = f"<h1>{post.metadata['title']}</h1>\n{post.content}"
-            post_html = self._wrap_content(
-                content=post_content,
-                title=post.metadata["title"],
-                description=post.metadata.get("description", ""),
-            )
-
-            # Write post file
+            context = {
+                "site": {
+                    "title": self.config.site_title,
+                    "description": self.config.site_description,
+                    "author": self.config.site_author,
+                    "url": self.config.site_url,
+                    "rss_path": self.config.rss_path,
+                    "atom_path": self.config.atom_path,
+                },
+                "now": datetime.now(),
+                "post": post.metadata,
+                "post_html": post.content,
+            }
+            post_html = self._render_template("post.html", context)
             post_path = self.config.output_dir / post.metadata["url"].lstrip("/")
             post_path.parent.mkdir(parents=True, exist_ok=True)
             post_path.write_text(post_html)

@@ -1,41 +1,69 @@
 {% extends "base.html" %}
 
-{% block title %}Blog - {{ config.SITE.title }}{% endblock %}
+{% block title %}Blog - {{ site.title }}{% endblock %}
 
 {% block content %}
 <section class="blog-index">
-    <h1>Blog Posts</h1>
+    <div class="blog-links" style="margin-bottom:2rem;">
+        <a href="/blog/tags/">Browse by Tag</a> |
+        <a href="/blog/categories/">Browse by Category</a>
+    </div>
 
     <div class="post-list">
         {% for post in posts %}
         <article class="post-preview">
             <header>
                 <h2>
-                    <a href="{{ post.url }}">{{ post.title }}</a>
+                    <a href="{{ post.metadata.url }}">{{ post.metadata.title }}</a>
                 </h2>
-                <time datetime="{{ post.date.strftime('%Y-%m-%d') }}">
-                    {{ post.date.strftime('%B %d, %Y') }}
-                </time>
+                <div class="post-meta-line">
+                    {% if post.metadata.date %}
+                    <span class="post-date">
+                        {{ post.metadata.date.strftime('%B %d, %Y') }}
+                    </span>
+                    {% endif %}
+                    {% if post.metadata.tags %}
+                    <div class="tags">
+                        Tags:
+                        {% for tag in post.metadata.tags %}
+                        <a href="/blog/tags/{{ tag }}/">{{ tag }}</a>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% if post.metadata.categories %}
+                    <div class="categories">
+                        Categories:
+                        {% for cat in post.metadata.categories %}
+                        <a href="/blog/categories/{{ cat }}/">{{ cat }}</a>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
             </header>
 
-            {% if post.description %}
+            {% if post.metadata.description %}
             <div class="description">
-                {{ post.description }}
+                {{ post.metadata.description }}
             </div>
             {% endif %}
-
-            <footer>
-                {% if post.tags %}
-                <div class="tags">
-                    Tags:
-                    {% for tag in post.tags %}
-                    <a href="/tags/{{ tag }}/">{{ tag }}</a>
-                    {% endfor %}
-                </div>
-                {% endif %}
-            </footer>
         </article>
         {% endfor %}
     </div>
+
+    {% if total_pages > 1 %}
+    <div class="pagination" style="margin-top:2rem;">
+        {% for p in range(1, total_pages + 1) %}
+            {% if p == page %}
+                <span style="font-weight:bold;">{{ p }}</span>
+            {% else %}
+                {% if p == 1 %}
+                    <a href="/blog/">{{ p }}</a>
+                {% else %}
+                    <a href="{{ pagination_base }}{{ p }}.html">{{ p }}</a>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
 </section>
 {% endblock %}

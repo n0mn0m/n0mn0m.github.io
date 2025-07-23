@@ -4,22 +4,8 @@
 
 {% block content %}
 <main>
-    <section class="intro">
-        {{ content | safe }}
-    </section>
-
-    <section class="latest-posts">
-        <h2>Latest Posts</h2>
-        <ul>
-        {% for post in posts %}
-            <li>
-                <time datetime="{{ post.metadata.date.strftime('%Y-%m-%d') }}">
-                    {{ post.metadata.date.strftime('%B %d, %Y') }}
-                </time>
-                <a href="{{ post.metadata.url }}">{{ post.metadata.title }}</a>
-            </li>
-        {% endfor %}
-        </ul>
+    <section class="homepage-intro">
+        {{ intro_content | safe }}
     </section>
 </main>
 {% endblock %}
