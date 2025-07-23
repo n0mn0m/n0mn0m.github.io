@@ -1,8 +1,9 @@
 name: Build and Deploy
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["ci"]
+    types:
+      - completed
 
 permissions:
   contents: write
@@ -10,6 +11,7 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' }}
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python
