@@ -26,6 +26,7 @@ print_error() {
 check_venv() {
     if [[ -z "${VIRTUAL_ENV:-}" && -d ".venv" ]]; then
         print_warning "Virtual environment not activated. Trying to activate .venv..."
+        # shellcheck disable=SC1091
         source .venv/bin/activate || {
             print_error "Failed to activate .venv. Please activate it manually."
             exit 1
