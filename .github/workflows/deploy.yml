@@ -25,6 +25,9 @@ jobs:
           pip install -e "."
       - name: Build site
         run: minigen build
+      - name: Create legacy RSS feed for backward compatibility
+        run: |
+          cp dist/feed.xml dist/rss.xml
       - name: Copy CNAME file to dist for GitHub Pages
         run: |
           cp static/CNAME dist/CNAME
