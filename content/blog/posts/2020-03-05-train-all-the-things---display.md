@@ -1,5 +1,5 @@
 ---
-title: "Train All the Things — Display"
+title: Train All the Things — Display
 date: 2020-03-05
 page.meta.tags: python, circuit-python, hackaday
 page.meta.categories: programming
@@ -12,15 +12,15 @@ new [modules](https://circuitpython.org/libraries) which were easy enough to dow
 PyPortal makes it incredibly easy to point at an endpoint to fetch data:
 
 ```python
-import board  
+import board
 from adafruit import PyPortalpyportal
 
-pyportal = PyPortal(  
- url=<your url here>,  
- default="green.bmp"  
+pyportal = PyPortal(
+ url=<your url here>,
+ default="green.bmp"
 )
 
-status = pyportal.fetch()  
+status = pyportal.fetch()
 print(status)
 ```
 
@@ -28,33 +28,33 @@ With that small snippet we have our status, and all we need to do is put that in
 on the bit returned.
 
 ```python
-import board  
-from time import sleep  
-from adafruitpyportal import PyPortaltry:  
-from secrets import secrets * # noqa  
+import board
+from time import sleep
+from adafruitpyportal import PyPortaltry:
+from secrets import secrets * # noqa
 
-except ImportError:  
- print("WiFi secrets are kept in secrets.py, please add them there!")  
- 
-raisepyportal = PyPortal(  
- url=secrets["signal"],  
- defaultbg="green.bmp"  
+except ImportError:
+ print("WiFi secrets are kept in secrets.py, please add them there!")
+
+raisepyportal = PyPortal(
+ url=secrets["signal"],
+ defaultbg="green.bmp"
 )
 
 current = 0
 
-while True:  
- status = int(pyportal.fetch())  
- if status == 0 and status == current:  
-     pass  
- elif status == 0 and status != current:  
-     pyportal.setbackground("green.bmp")  
- current = 0  
-     elif status == 1 and status != current:  
- pyportal.setbackground("red.bmp")  
-     current = 1  
- elif status == 1 and status == current:  
-     pass  
+while True:
+ status = int(pyportal.fetch())
+ if status == 0 and status == current:
+     pass
+ elif status == 0 and status != current:
+     pyportal.setbackground("green.bmp")
+ current = 0
+     elif status == 1 and status != current:
+ pyportal.setbackground("red.bmp")
+     current = 1
+ elif status == 1 and status == current:
+     pass
  sleep(30)
 ```
 
@@ -81,4 +81,3 @@ FreeRTOS.
 The code, docs, images etc for the project can be found [here](https://github.com/n0mn0m/on-air) and I’ll be posting
 updates as I continue along to [HackadayIO](https://hackaday.io/project/170228-on-air) and this blog. If you have any
 questions or ideas reach [out](mailto:n0mn0m@burningdaylight.io).
-  

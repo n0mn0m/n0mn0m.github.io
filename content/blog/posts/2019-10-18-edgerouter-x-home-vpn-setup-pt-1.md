@@ -1,5 +1,5 @@
 ---
-title: "EdgeRouter X Home VPN Setup Pt 1"
+title: EdgeRouter X Home VPN Setup Pt 1
 date: 2019-10-18
 page.meta.tags: homelab, programming
 page.meta.categories: programming
@@ -10,8 +10,8 @@ home setup isn’t too complicated, but it’s a bit different from other setups
 
 **Network Components: Arris Surfboard SB6141, Ubiquiti EdgeRouter X, Ubiquiti AmplifiHD**
 
-**I am not a network or sysadmin by day. This is something I’m actively learning on and figuring out. If you see
-something wrong or have suggestions I would love to hear about it. **[**Reach out.**](mailto:n0mn0m@burningdaylight.io)
+\*\*I am not a network or sysadmin by day. This is something I’m actively learning on and figuring out. If you see
+something wrong or have suggestions I would love to hear about it. \*\*[**Reach out.**](mailto:n0mn0m@burningdaylight.io)
 
 ### Preparing the network
 
@@ -43,7 +43,7 @@ disable, and then logout.
 
 Now you can log back in on the new network range 192.168.x.1. Login, select switch0 from the Dashboardtab as we did
 earlier, and remove the original DHCP server. For any devices on your network that were active you will need to do a
-dhclient -r; dhclient to refresh your device (on *nix) ip and lease in the new range.
+dhclient -r; dhclient to refresh your device (on \*nix) ip and lease in the new range.
 
 ### Next Steps
 

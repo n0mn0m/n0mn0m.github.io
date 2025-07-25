@@ -18,45 +18,45 @@ The pre-push hook I built for our project looks like:
 
 ```shell
 #!/bin/sh
-PROJECTROOT=$(git rev-parse --show-toplevel)  
+PROJECTROOT=$(git rev-parse --show-toplevel)
 echo "Running pre-push hook for${PROJECTROOT}"
-dotnet restore $PROJECTROOTecho "Running resharper formatter"  
+dotnet restore $PROJECTROOTecho "Running resharper formatter"
 dotnet jb cleanupcode --verbosity=ERROR --config=$PROJECTROOT/.config/cleanup --settings=$PROJECTROOT/.editorconfig --no-buildin-settings $PROJECTROOT/AMS.sln
-formatted=$(git status --porcelain=v1 2>/dev/null | wc -l)  
+formatted=$(git status --porcelain=v1 2>/dev/null | wc -l)
 
 $formatted
-echo "Running dotnet resharper inspector"  
-dotnet jb inspectcode --verbosity=ERROR AMS.sln -p=$PROJECTROOT/.editorconfig -o=$PROJECTROOT/reports/resharperInspect.xmlpwsh $PROJECTROOT/tools/CheckResharperInspection.ps1  
+echo "Running dotnet resharper inspector"
+dotnet jb inspectcode --verbosity=ERROR AMS.sln -p=$PROJECTROOT/.editorconfig -o=$PROJECTROOT/reports/resharperInspect.xmlpwsh $PROJECTROOT/tools/CheckResharperInspection.ps1
 
-if [[ $? -eq 0 ]]  
-then  
- echo "Running resharper dupe finder"  
-else  
- echo "Inspector Errors Found"  
- exit $?  
+if [[ $? -eq 0 ]]
+then
+ echo "Running resharper dupe finder"
+else
+ echo "Inspector Errors Found"
+ exit $?
 fi
 
-dotnet jb dupfinder --verbosity=ERROR AMS.sln -o=$PROJECTROOT/reports/resharperDupFinder.xmlpwsh $PROJECTROOT/tools/CheckDupeFinder.ps1  
+dotnet jb dupfinder --verbosity=ERROR AMS.sln -o=$PROJECTROOT/reports/resharperDupFinder.xmlpwsh $PROJECTROOT/tools/CheckDupeFinder.ps1
 
-if [[ $? -eq 0 ]]  
-then  
- echo "Running dotnet test"  
-else  
- echo "Dupe Errors Found"  
- exit $?  
+if [[ $? -eq 0 ]]
+then
+ echo "Running dotnet test"
+else
+ echo "Dupe Errors Found"
+ exit $?
 fi
 
-dotnet cake --target=docker-bg  
-dotnet cake --target=dotnet-test  
+dotnet cake --target=docker-bg
+dotnet cake --target=dotnet-test
 
-if [[ $? -eq 0 ]]  
-then  
- dotnet cake --target=docker-down  
- echo "Go go go!"  
-else  
- dotnet cake --target=docker-down  
- echo "Test failed"  
- exit 1  
+if [[ $? -eq 0 ]]
+then
+ dotnet cake --target=docker-down
+ echo "Go go go!"
+else
+ dotnet cake --target=docker-down
+ echo "Test failed"
+ exit 1
 fi
 ```
 
@@ -83,5 +83,3 @@ While you may have heard of projects like [pre-commit](https://pre-commit.com/)
 or [husky](https://typicode.github.io/husky/#/) rolling your own hook is relatively straight forward. While wrappers may
 help with complex hook setups I personally like the low amount of indirection and abstraction that helps with debugging
 when rolling your own.
-
-  

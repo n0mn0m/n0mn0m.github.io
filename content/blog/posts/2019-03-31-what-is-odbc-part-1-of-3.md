@@ -1,5 +1,5 @@
 ---
-title: "What is ODBC Part 1 of 3"
+title: What is ODBC Part 1 of 3
 date: 2019-03-31
 page.meta.tags: odbc, databases, programming
 page.meta.categories: programming

@@ -1,5 +1,5 @@
 ---
-title: "Train All the Things — Signaling"
+title: Train All the Things — Signaling
 date: 2020-03-01
 page.meta.tags: javascript, hackaday
 page.meta.categories: programming
@@ -12,43 +12,43 @@ fetching data quick and easy. I ended up with a simple endpoint that I POST to s
 the PyPortal retrieves that status to determine what to display:
 
 ```javascript
-const setCache = (key, data) => SIGNALS.put(key, data);  
-const getCache = key => SIGNALS.get(key);async function getStatus(cacheKey) {  
- var serviceStat = await getCache(cacheKey); if (!serviceStat) {  
-  return new Response('invalid status key', { status: 500 });  
- } else {  
-  return new Response(serviceStat, {status: 200});  
- }  
+const setCache = (key, data) => SIGNALS.put(key, data);
+const getCache = key => SIGNALS.get(key);async function getStatus(cacheKey) {
+ var serviceStat = await getCache(cacheKey); if (!serviceStat) {
+  return new Response('invalid status key', { status: 500 });
+ } else {
+  return new Response(serviceStat, {status: 200});
+ }
 }
 
-async function setStatus(cacheKey, cacheValue) {  
- try {  
-  await setCache(cacheKey, cacheValue);  
-  return new Response((cacheKey + " set to " + cacheValue + "\n"), { status: 200 });  
- } catch (err) {  
-  return new Response(err, { status: 500 });  
- }  
+async function setStatus(cacheKey, cacheValue) {
+ try {
+  await setCache(cacheKey, cacheValue);
+  return new Response((cacheKey + " set to " + cacheValue + "\n"), { status: 200 });
+ } catch (err) {
+  return new Response(err, { status: 500 });
+ }
 }
 
-async function handleRequest(request) {  
-  var psk = await getCache("PSK")  
-  let presharedKey = new URL(request.url).searchParams.get('psk');  
-  let statusKey = new URL(request.url).searchParams.get('service');  
-  let statusValue = new URL(request.url).searchParams.get('status'); if (presharedKey === psk) {  
-  if (request.method === 'POST') {  
-   return setStatus(statusKey, statusValue);  
-  } else if (request.method === 'GET' && statusKey) {  
-   return getStatus(statusKey);  
-  } else {  
-   return new Response("\n", { status: 418 });  
-  }  
-  } else {  
-   return new Response("Hello")  
-  }  
-}  
-  
-addEventListener('fetch', event => {  
- event.respondWith(handleRequest(event.request))  
+async function handleRequest(request) {
+  var psk = await getCache("PSK")
+  let presharedKey = new URL(request.url).searchParams.get('psk');
+  let statusKey = new URL(request.url).searchParams.get('service');
+  let statusValue = new URL(request.url).searchParams.get('status'); if (presharedKey === psk) {
+  if (request.method === 'POST') {
+   return setStatus(statusKey, statusValue);
+  } else if (request.method === 'GET' && statusKey) {
+   return getStatus(statusKey);
+  } else {
+   return new Response("\n", { status: 418 });
+  }
+  } else {
+   return new Response("Hello")
+  }
+}
+
+addEventListener('fetch', event => {
+ event.respondWith(handleRequest(event.request))
 })
 ```
 

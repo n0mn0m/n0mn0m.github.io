@@ -1,5 +1,5 @@
 ---
-title: "Review EdX UT601 Embedded Systems"
+title: Review EdX UT601 Embedded Systems
 date: 2019-12-01
 page.meta.tags: hardware, embedded, programming
 page.meta.categories: programming

@@ -62,6 +62,6 @@ hearing sounds on tracks for the first time and I continue to go back and check 
 around for albums I had heard in the past to see what new sounds I might hear while also enjoying what people are doing
 with spatial audio in games and other mediums.
 
-[Listen to Jonathan x Friends - Best of Dolby Atmos + Spatial Audio by Jonathan & Friends on Apple Music.]("https://music.apple.com/us/playlist/jonathan-x-friends-best-of-dolby-atmos-spatial-audio/pl.69e109bfed3148fc9b3b1f70bdb96d33")
+[Listen to Jonathan x Friends - Best of Dolby Atmos + Spatial Audio by Jonathan & Friends on Apple Music.](%22https://music.apple.com/us/playlist/jonathan-x-friends-best-of-dolby-atmos-spatial-audio/pl.69e109bfed3148fc9b3b1f70bdb96d33%22)
 So last year had quite a few new and interesting digital experiences. Hopefully this year has just as many for me to
 share.

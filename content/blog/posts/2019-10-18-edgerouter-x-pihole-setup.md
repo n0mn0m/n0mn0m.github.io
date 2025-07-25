@@ -1,5 +1,5 @@
 ---
-title: "EdgeRouter X PiHole Setup"
+title: EdgeRouter X PiHole Setup
 date: 2019-10-18
 page.meta.tags: homelab, raspberrypi, programming
 page.meta.categories: programming

@@ -1,5 +1,5 @@
 ---
-title: "Pokemon Legends Arceus: Exploring Hisui with my daughter"
+title: 'Pokemon Legends Arceus: Exploring Hisui with my daughter'
 date: 2022-05-30
 page.meta.tags: family, gaming
 ---

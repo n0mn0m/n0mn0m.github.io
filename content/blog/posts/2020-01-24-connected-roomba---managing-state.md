@@ -1,5 +1,5 @@
 ---
-title: "Connected Roomba - Managing State"
+title: Connected Roomba - Managing State
 date: 2020-01-24
 page.meta.tags: python, programming, roomba, hackaday
 page.meta.categories: programming
@@ -18,14 +18,14 @@ In previous version of the application that ran on the Feather listening for mes
 application state in this class:
 
 ```python
-class OpenInterface:  
- def init(self, txpin, rxpin, brcpin, baudrate=115200):  
- self.board = busio.UART(txpin, rxpin, baudrate=baudrate)  
- self.txpin = txpin  
- self.rxpin = rxpin  
- self.brcpin = brcpin  
- self.brcpin.direction = digitalio.Direction.OUTPUT  
- self.baudrate = baudrate  
+class OpenInterface:
+ def init(self, txpin, rxpin, brcpin, baudrate=115200):
+ self.board = busio.UART(txpin, rxpin, baudrate=baudrate)
+ self.txpin = txpin
+ self.rxpin = rxpin
+ self.brcpin = brcpin
+ self.brcpin.direction = digitalio.Direction.OUTPUT
+ self.baudrate = baudrate
  self.stopped = True
 ```
 
@@ -52,23 +52,23 @@ on it’s internal state.
 The new implementation discards the class object and instead just uses a super loop and signal functions.
 
 ```python
-while True:  
- try:  
- packet = rfm9x.receive(1) if packet is not None:  
- packettxt = str(packet, "ascii")  
- print(packettxt) if packettxt == "0":  
- commandreceived(led)  
- led.value = True  
- stop(bot)  
- led.value = False  
- elif packettxt == "1":  
- commandreceived(led)  
- wakeup(brc)  
- start(bot)  
- led.value = True  
- else:  
- print("\nUnknown packet: {}\n".format(packettxt))  
- except:  
+while True:
+ try:
+ packet = rfm9x.receive(1) if packet is not None:
+ packettxt = str(packet, "ascii")
+ print(packettxt) if packettxt == "0":
+ commandreceived(led)
+ led.value = True
+ stop(bot)
+ led.value = False
+ elif packettxt == "1":
+ commandreceived(led)
+ wakeup(brc)
+ start(bot)
+ led.value = True
+ else:
+ print("\nUnknown packet: {}\n".format(packettxt))
+ except:
  pass
 ```
 
@@ -82,24 +82,24 @@ case of signaling the Roomba the stakes are low and this is something I'm comfor
 After fixing up the Feather board code I moved onto the Pi applications. Previously I had setup a Flask application to
 act as the SMS webhook for Twilio. This worked pretty well and was consistent over time, but there was the occasional
 hang running on the Zero that led me to look into managing the Python and Ngrok application with systemd. Converting
-from crontab was fairly easy. I created a few *.service files and placed them in /etc/systemd/system.
+from crontab was fairly easy. I created a few \*.service files and placed them in /etc/systemd/system.
 
 ```systemd
-[Unit]  
-Description=sms listener  
-After=ngrok.service[Service]  
-Type=simple  
-User=pi  
-WorkingDirectory=/home/pi  
-ExecStart=/home/pi/.virtualenvs/lora-pi/bin/python /home/pi/projects/roombasupervisor/smslistener.py  
-Restart=on-failure[Install]  
+[Unit]
+Description=sms listener
+After=ngrok.service[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi
+ExecStart=/home/pi/.virtualenvs/lora-pi/bin/python /home/pi/projects/roombasupervisor/smslistener.py
+Restart=on-failure[Install]
 WantedBy=multi-user.target
 ```
 
 Once the files were created I ran the following commands:
 
 ```bash
-systemctl enable smslistener.service  
+systemctl enable smslistener.service
 systemctl start smslistener.service
 ```
 

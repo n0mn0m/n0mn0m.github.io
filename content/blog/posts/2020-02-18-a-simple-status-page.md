@@ -1,5 +1,5 @@
 ---
-title: "A Simple Status Page"
+title: A Simple Status Page
 date: 2020-02-18
 page.meta.tags: programming, web, cloudflare
 page.meta.categories: programming
@@ -20,77 +20,77 @@ systems a simple status. Naturally that lead to me building a status page. I set
 POST from N systems, stores the date of the last POST uses that to provide a status when asked.
 
 ```javascript
-const setCache = (key, data) => LOCALSTATUS.put(key, data);  
-const getCache = key => LOCALSTATUS.get(key);function sleep(ms) {  
-  return new Promise(resolve => setTimeout(resolve, ms));  
+const setCache = (key, data) => LOCALSTATUS.put(key, data);
+const getCache = key => LOCALSTATUS.get(key);function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function dateToStatus(dateTime) {  
- var isoDateNow = Date.now();  
- var dateDiff = (isoDateNow - dateTime);  
- if (dateDiff < 180000) {  
-  return 1  
- } else {  
-  return 0  
- }  
-}
-
-async function getStatuses() {  
- const cacheKeys = await LOCALSTATUS.list();  
- while (!(cacheKeys.listcomplete === true)) {  
-  sleep(5)  
- } 
- 
- const numKeys = cacheKeys.keys.length;  
- 
- var statuses = []; for (var i = 0; i < numKeys; i++) {  
-  var c = cacheKeys.keys[i];  
-  var epcDate = await getCache(c.name);  
-  var data = {date: Number(epcDate), name: c.name};  
-  data.strDate = new Date(data.date).toISOString();  
-  data.status = dateToStatus(data.date);  
-  data.statusIndicator = getStatusIndicator(data.status);  
-  statuses.push(data);  
+function dateToStatus(dateTime) {
+ var isoDateNow = Date.now();
+ var dateDiff = (isoDateNow - dateTime);
+ if (dateDiff < 180000) {
+  return 1
+ } else {
+  return 0
  }
- 
- const body = html(JSON.stringify(statuses || [])); return new Response(body, {  
-  headers: { 'Content-Type': 'text/html' },  
- });  
 }
 
-async function getStatus(cacheKey) {  
-  var cacheDate = await getCache(cacheKey); if (!cacheDate) {  
-    return new Response('invalid status key', { status: 500 });  
-  } else {  
-   var status = dateToStatus(cacheDate);  
-   return new Response(status, {status: 200});  
-  }  
+async function getStatuses() {
+ const cacheKeys = await LOCALSTATUS.list();
+ while (!(cacheKeys.listcomplete === true)) {
+  sleep(5)
+ }
+
+ const numKeys = cacheKeys.keys.length;
+
+ var statuses = []; for (var i = 0; i < numKeys; i++) {
+  var c = cacheKeys.keys[i];
+  var epcDate = await getCache(c.name);
+  var data = {date: Number(epcDate), name: c.name};
+  data.strDate = new Date(data.date).toISOString();
+  data.status = dateToStatus(data.date);
+  data.statusIndicator = getStatusIndicator(data.status);
+  statuses.push(data);
+ }
+
+ const body = html(JSON.stringify(statuses || [])); return new Response(body, {
+  headers: { 'Content-Type': 'text/html' },
+ });
 }
 
-async function updateStatus(cacheKey) {  
-  try {  
-   var isoDate = Date.now();  
-   await setCache(cacheKey, isoDate);  
-   var strDate = new Date(isoDate).toISOString();  
-   return new Response((cacheKey + " set at " + strDate + "\n"), { status: 200 });  
-  } catch (err) {  
-   return new Response(err, { status: 500 });  
-  }  
+async function getStatus(cacheKey) {
+  var cacheDate = await getCache(cacheKey); if (!cacheDate) {
+    return new Response('invalid status key', { status: 500 });
+  } else {
+   var status = dateToStatus(cacheDate);
+   return new Response(status, {status: 200});
+  }
 }
 
-async function handleRequest(request) {  
-  let statusKey = new URL(request.url).searchParams.get('service');  
-  let queryType = new URL(request.url).searchParams.get('query'); 
-  if (request.method === 'POST') {  
-   return updateStatus(statusKey);  
-  } else if (queryType === 'simple') {  
-   return getStatus(statusKey);  
-  } else {  
-   return getStatuses();  
-  }  
+async function updateStatus(cacheKey) {
+  try {
+   var isoDate = Date.now();
+   await setCache(cacheKey, isoDate);
+   var strDate = new Date(isoDate).toISOString();
+   return new Response((cacheKey + " set at " + strDate + "\n"), { status: 200 });
+  } catch (err) {
+   return new Response(err, { status: 500 });
+  }
 }
-addEventListener('fetch', event => {  
- event.respondWith(handleRequest(event.request))  
+
+async function handleRequest(request) {
+  let statusKey = new URL(request.url).searchParams.get('service');
+  let queryType = new URL(request.url).searchParams.get('query');
+  if (request.method === 'POST') {
+   return updateStatus(statusKey);
+  } else if (queryType === 'simple') {
+   return getStatus(statusKey);
+  } else {
+   return getStatuses();
+  }
+}
+addEventListener('fetch', event => {
+ event.respondWith(handleRequest(event.request))
 })
 ```
 
@@ -99,18 +99,18 @@ working [here](https://status.burningdaylight.io/). I also went ahead and wrote 
 on to different machines I want to have report in to the endpoint.
 
 ```ini
-[Unit]  
-Description=Regular check in  
-Wants=check-in.timer[Service]  
-Type=oneshot  
-ExecStart=/usr/bin/curl -X POST https://status.burningdaylight.io/?service=JETSON[Install]  
+[Unit]
+Description=Regular check in
+Wants=check-in.timer[Service]
+Type=oneshot
+ExecStart=/usr/bin/curl -X POST https://status.burningdaylight.io/?service=JETSON[Install]
 WantedBy=multi-user.targetAnd a timer for the service.
 
-[Unit]  
-Description=Run checkin every 2 minutes  
-Requires=check-in.service[Timer]  
-Unit=check-in.service  
-OnUnitInactiveSec=1m[Install]  
+[Unit]
+Description=Run checkin every 2 minutes
+Requires=check-in.service[Timer]
+Unit=check-in.service
+OnUnitInactiveSec=1m[Install]
 WantedBy=timers.target
 ```
 

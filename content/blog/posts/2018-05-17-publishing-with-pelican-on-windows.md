@@ -29,8 +29,8 @@ The main thing to pay attention to when you go through the quickstart prompts is
 the makefile with Windows. Once you have completed the quikstart there are a couple things to pay attention to.
 
 1. Your articles should be markdown documents in the content folder.
-2. pelicanconf.py contains various settings related to you blog.
-3. publishconf.py can be left alone because we are using ghp-import
+1. pelicanconf.py contains various settings related to you blog.
+1. publishconf.py can be left alone because we are using ghp-import
 
 ### Publishing
 

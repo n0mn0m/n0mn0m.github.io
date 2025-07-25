@@ -1,5 +1,5 @@
 ---
-title: "docker-airflow"
+title: docker-airflow
 date: 2018-12-22
 page.meta.tags: python, airflow, docker, programming
 page.meta.categories: programming
@@ -15,7 +15,7 @@ with Airflow and docker.
 
 From the [home page](https://airflow.apache.org/):
 
-* Airflow is a platform to programmatically author, schedule and monitor workflows.
+- Airflow is a platform to programmatically author, schedule and monitor workflows.
   **Programatically** being a key part so that you can create and orchestrate worflows/data pipelines using the same
   processes and tools that let you create reliable, scaling software.
 
@@ -27,10 +27,10 @@ talking about Airflow the question of why Airflow versus X traditional solution 
 inevitably comes up. The primary reason I prefer a solution like Airflow to more traditional solutions is because my ETL
 is code. While there are numerous benefits to ETL as code my talking points are:
 
-* Your data pipes/workflows go through the same processes that helps you create better products like TDD
-* Your ETL development and production can be integrated with your CI/CD process
-* Better debugging tools
-* Flexibility
+- Your data pipes/workflows go through the same processes that helps you create better products like TDD
+- Your ETL development and production can be integrated with your CI/CD process
+- Better debugging tools
+- Flexibility
 
 That’s not to say the traditional tools don’t have their place, but my experience is that any significantly complex data
 pipeline ends up making use of that tools script task (C# for SSIS, Java for Informatica) and now you have an
@@ -84,9 +84,9 @@ to want to checkout either the LocalExecutor or CeleryExecutor docker-compose fi
 Finally you might want to make bigger changes like I did such as using a different database, base docker image etc.
 Doing this requires changing quite a few items. The changes I made were:
 
-* switch to miniconda for my base image to use Intel Dist Python
-* switch to Microsoft SQL Server for the database
-* switch the task queue to RabbitMQ
+- switch to miniconda for my base image to use Intel Dist Python
+- switch to Microsoft SQL Server for the database
+- switch the task queue to RabbitMQ
 
 Most of this was driven by a desire to experiment and to learn more about tools that I use day to day. Since I work in a
 data engineering shop there are packages from conda-forge that I like to use driving the miniconda switch, I've used MS
@@ -97,9 +97,9 @@ The switch to miniconda was a one liner in the Dockfile:
 ```Dockerfile
 FROM continuumio/miniconda3Then to use IDP (Intel Distribution of Python) within the container I added this towards the bottom:
 
-RUN conda config --add channels intel\  
- && conda config --add channels conda-forge \  
- && conda install -y -q intelpython3core=2019.1 python=3 \  
+RUN conda config --add channels intel\
+ && conda config --add channels conda-forge \
+ && conda install -y -q intelpython3core=2019.1 python=3 \
  && conda clean --all \And with that I can make use of conda packages alongside traditional Python packages within my Airflow environment.
 ```
 
@@ -109,14 +109,14 @@ MSSQL Linux drivers to the base docker-airflow Dockerfile.
 **docker-compose**
 
 ```yaml
-mssql:  
- image: microsoft/mssql-server-linux:latest  
- environment:  
- - ACCEPTEULA=Y  
- - SAPASSWORD=YourStrong!Passw0rd  
- ports:  
- - 1433:1433  
- volumes:  
+mssql:
+ image: microsoft/mssql-server-linux:latest
+ environment:
+ - ACCEPTEULA=Y
+ - SAPASSWORD=YourStrong!Passw0rd
+ ports:
+ - 1433:1433
+ volumes:
  - /var/opt/mssqlYou may or may not want to preserver your database volume so keep that in mind.
 ```
 
@@ -128,8 +128,8 @@ from Microsoft.
 
 ```Dockerfile
 ENV ACCEPTEULA=Y
-RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \  
- && curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/msprod.listRUN apt-get update -yqq \  
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+ && curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/msprod.listRUN apt-get update -yqq \
  && apt-get install -yqq mssql-tools unixodbc-dev
 ```
 
@@ -138,11 +138,11 @@ libssl1.0.0. Without that installed you will get some obscure unixodbc error con
 remedy this add the below to your Dockerfile.
 
 ```Dockerfile
-RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashprofile  
+RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashprofile
 RUN echo "deb http://httpredir.debian.org/debian jessie main contrib non-free\
  deb-src http://httpredir.debian.org/debian jessie main contrib non-free\n
  deb http://security.debian.org/ jessie/updates main contrib non-free\
- deb-src http://security.debian.org/ jessie/updates main contrib non-free" >> /etc/apt/sources.list.d/jessie.listRUN apt update \  
+ deb-src http://security.debian.org/ jessie/updates main contrib non-free" >> /etc/apt/sources.list.d/jessie.listRUN apt update \
  && apt install libssl1.0.0
 ```
 
@@ -151,21 +151,21 @@ Airflow [environment variable](https://airflow.readthedocs.io/en/stable/howto/se
 Airflow environment variables and pass them in from a .env file with docker-compose.
 
 ```yaml
-environment:  
- - LOADEX=n  
- - FERNETKEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=  
- - EXECUTOR=Celery  
- - AIRFLOWCELERYBROKERURL=${CELERYRABBITBROKER}  
- - AIRFLOWCORESQLALCHEMYCONN=${SQLALCHEMYCONN}  
+environment:
+ - LOADEX=n
+ - FERNETKEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
+ - EXECUTOR=Celery
+ - AIRFLOWCELERYBROKERURL=${CELERYRABBITBROKER}
+ - AIRFLOWCORESQLALCHEMYCONN=${SQLALCHEMYCONN}
  - AIRFLOWCELERYRESULTBACKEND=${CELERYRESULTSBACKEND}And finally the last big change I implemented was the switch to RabbitMQ instead of Redis. Similar to the MSSQL switch this was just an update to the docker-compose file.
 
-rabbitmq:  
- image: rabbitmq:3-management  
- hostname: rabbitmq  
- environment:  
- - RABBITMQERLANGCOOKIE=${RABBITMQERLANGCOOKIE}  
- - RABBITMQDEFAULTUSER=${RABBITMQDEFAULTUSER}  
- - RABBITMQDEFAULTPASS=${RABBITMQDEFAULTPASS}  
+rabbitmq:
+ image: rabbitmq:3-management
+ hostname: rabbitmq
+ environment:
+ - RABBITMQERLANGCOOKIE=${RABBITMQERLANGCOOKIE}
+ - RABBITMQDEFAULTUSER=${RABBITMQDEFAULTUSER}
+ - RABBITMQDEFAULTPASS=${RABBITMQDEFAULTPASS}
  - RABBITMQDEFAULTVHOST=${RABBITMQDEFAULTVHOST}
 ```
 
@@ -192,12 +192,12 @@ I’ve been using the setup above for a couple weeks now with pretty good result
 hdfs3 that have their latest releases in conda-forge and my familiarity with MSSQL has saved me some maintenance time.
 The experience hasn’t been without it’s issues. The highlights are:
 
-* [Airflow packages](https://airflow.apache.org/installation.html#extra-packages) may not be what you want. See
+- [Airflow packages](https://airflow.apache.org/installation.html#extra-packages) may not be what you want. See
   librabbitmq and celery. It's best to manage a requirements.txt or conda.txt with your dependencies still.
-* Dependency management across multiple dags. In short with a standard setup you need one package version and it needs
+- Dependency management across multiple dags. In short with a standard setup you need one package version and it needs
   to be installed everywhere. For an interesting approach to this
   read [We’re All Using Airflow Wrong and How to Fix It](https://medium.com/bluecore-engineering/were-all-using-airflow-wrong-and-how-to-fix-it-a56f14cb0753)
-* Silent failures. Be aware of all the reasons why a worker may provide exit code 0 especially with docker. This took a
+- Silent failures. Be aware of all the reasons why a worker may provide exit code 0 especially with docker. This took a
   minute to catch when an NFS mount stopped showing new files being available, but the exit code 0 made things seem ok.
   This isn’t Airflows fault, but just something to keep in mind when using Airflow in an environment with docker and
   remote resources.

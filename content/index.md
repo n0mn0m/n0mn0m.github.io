@@ -3,13 +3,16 @@ hide:
   - title
   - path
 ---
-#
+
+# 
+
 <style>
   .md-typeset h1,
   .md-content__button {
     display: none;
   }
 </style>
+
 <p class="app-title color-run">BurningDaylight</p>
 
 Welcome to burningdaylight.io

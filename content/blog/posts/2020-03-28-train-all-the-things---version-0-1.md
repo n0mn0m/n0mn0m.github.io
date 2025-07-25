@@ -1,5 +1,5 @@
 ---
-title: "Train All the Things — Version 0.1"
+title: Train All the Things — Version 0.1
 date: 2020-03-28
 page.meta.tags: python, programming, esp, tensorflow
 page.meta.categories: programming
@@ -33,10 +33,10 @@ reach [out](mailto:n0mn0m@burningdaylight.io).
 **Required Hardware:**
 
 1. [ESP-EYE](https://www.espressif.com/en/products/hardware/esp-eye/overview)
-2. Optional [ESP-EYE case](https://www.thingiverse.com/thing:3586384)
-3. [PyPortal](https://www.adafruit.com/product/4116)
-4. Optional [PyPortal case](https://www.thingiverse.com/thing:3469747)
-5. Two 3.3v usb to outler adapters and two usb to usb mini cables
+1. Optional [ESP-EYE case](https://www.thingiverse.com/thing:3586384)
+1. [PyPortal](https://www.adafruit.com/product/4116)
+1. Optional [PyPortal case](https://www.thingiverse.com/thing:3469747)
+1. Two 3.3v usb to outler adapters and two usb to usb mini cables
 
 OR
 
@@ -51,41 +51,41 @@ Cloudflare Worker:
 1. Setup [Cloudflare](https://www.cloudflare.com/dns/) DNS records for your domain and endpoint, or setup a
    new [domain](https://www.cloudflare.com/products/registrar/) with Cloudflare if you don’t have one to resolve the
    endpoint.
-2. Setup a [Cloudflare workers](https://workers.cloudflare.com/) account with worker K/V.
-3. Setup the [Wrangler](https://developers.cloudflare.com/workers/tooling/wrangler) CLI tool.
-4. cd into the on-air/sighandler directory.
-5. Update [toml](https://github.com/n0mn0m/on-air/tree/main/sighandler/wrangler.toml)
-6. Run wrangler preview
-7. wrangler publish
-8. Update [Makefile](https://github.com/n0mn0m/on-air/tree/main/sighandler/Makefile) with your domain and test calling.
+1. Setup a [Cloudflare workers](https://workers.cloudflare.com/) account with worker K/V.
+1. Setup the [Wrangler](https://developers.cloudflare.com/workers/tooling/wrangler) CLI tool.
+1. cd into the on-air/sighandler directory.
+1. Update [toml](https://github.com/n0mn0m/on-air/tree/main/sighandler/wrangler.toml)
+1. Run wrangler preview
+1. wrangler publish
+1. Update [Makefile](https://github.com/n0mn0m/on-air/tree/main/sighandler/Makefile) with your domain and test calling.
 
 PyPortal:
 
 1. Setup CircuitPython 5.x on the [PyPortal](https://circuitpython.org/board/pyportal/).
-2. If you’re new to CircuitPython you
+1. If you’re new to CircuitPython you
    should [read](https://learn.adafruit.com/welcome-to-circuitpython/circuitpython-essentials) this first.
-3. Go to the directory where you cloned on-air.
-4. cd into display.
-5. Update [secrets.py`](https://github.com/n0mn0m/on-air/tree/main/display/secrets.py) with your wifi information and
+1. Go to the directory where you cloned on-air.
+1. cd into display.
+1. Update [secrets.py\`](https://github.com/n0mn0m/on-air/tree/main/display/secrets.py) with your wifi information and
    status URL endpoint.
-6. Copy code.py, secrets.py and the bitmap files in screens/ to the root of the PyPortal.
-7. The display is now good to go.
+1. Copy code.py, secrets.py and the bitmap files in screens/ to the root of the PyPortal.
+1. The display is now good to go.
 
 ESP-EYE:
 
 1. Setup [esp-idf](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/) using the 4.1 release
    branch.
-2. Install [espeak](http://espeak.sourceforge.net/) and [sox](http://sox.sourceforge.net/).
-3. Setup a Python 3.7 virtual environment and install Tensorflow 1.15.
-4. cd into on-air/voice-assistant/train
-5. chmod +x orchestrate.sh and ./orchestrate.sh
-6. Once training completes cd ../smalltalk
-7. Activate the esp-idf tooling so that $IDFPATH is set correctly and all requirements are met.
-8. idf.py menuconfig and set your wifi settings.
-9. Update the URL
-   in [toggle\status.cc](https://github.com/n0mn0m/on-air/tree/main/voice-assistant/smalltalk/main/http/togglestatus.cc)
-10. This should match the host and endpoint you deployed the Cloudflare worker to above
-11. idf.py build
-12. idf.py --port \<device port\> flash monitor
-13. You should see the device start, attach to WiFi and begin listening for the wake word “visual” followed by “on” or
-    “off”.
+1. Install [espeak](http://espeak.sourceforge.net/) and [sox](http://sox.sourceforge.net/).
+1. Setup a Python 3.7 virtual environment and install Tensorflow 1.15.
+1. cd into on-air/voice-assistant/train
+1. chmod +x orchestrate.sh and ./orchestrate.sh
+1. Once training completes cd ../smalltalk
+1. Activate the esp-idf tooling so that $IDFPATH is set correctly and all requirements are met.
+1. idf.py menuconfig and set your wifi settings.
+1. Update the URL
+   in [toggle\\status.cc](https://github.com/n0mn0m/on-air/tree/main/voice-assistant/smalltalk/main/http/togglestatus.cc)
+1. This should match the host and endpoint you deployed the Cloudflare worker to above
+1. idf.py build
+1. idf.py --port \<device port> flash monitor
+1. You should see the device start, attach to WiFi and begin listening for the wake word “visual” followed by “on” or
+   “off”.

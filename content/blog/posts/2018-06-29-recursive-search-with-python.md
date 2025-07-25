@@ -22,9 +22,9 @@ searched.
 
 ### Gotchas
 
-* This needed to be Python 2 and 3 compatible so pay attention to iterating dictionary keys and values when you have
+- This needed to be Python 2 and 3 compatible so pay attention to iterating dictionary keys and values when you have
   this requirement. There are different ways to handle this. I used future.
-* The way that Python appends to list can be tricky. This bit me when I found that results contained the right number of
+- The way that Python appends to list can be tricky. This bit me when I found that results contained the right number of
   results, but all of my results where the same and where based on the last hit. This is because I was calling append on
   base which was creating bindings that I mutated on each search result. Luckily Python has acopy module in the standard
   library to help with this scenario.
@@ -35,47 +35,47 @@ The function below represents my final result. This worked well on the sample da
 RDDs to process hundreds of millions of structures quickly.
 
 ```python
-import copy from future.utils   
-import iteritems 
+import copy from future.utils
+import iteritems
 
-def search ( input , rowbase , searchkey , results ):   
-     """ A search function to help transform nested JSON   
-     like objects into tabular rows. The function takes  
-     a JSON like object as input along with a search key   
-     and returns a row for each occurrence of the key in   
-     the object. rowbase is expected to be a list containing  
-     any base data you would like associated with the   
-     searchkey data.   
+def search ( input , rowbase , searchkey , results ):
+     """ A search function to help transform nested JSON
+     like objects into tabular rows. The function takes
+     a JSON like object as input along with a search key
+     and returns a row for each occurrence of the key in
+     the object. rowbase is expected to be a list containing
+     any base data you would like associated with the
+     searchkey data.
      """
-     if input :   
-         for i in input :   
-             # If input contains a list run it through search   
-             # again since it may contain dictionaries with   
-             # the key being searched   
-             if isinstance (i, list):   
-                 search (i, rowbase, searchkey, results)   
-             # If input contains a dictionary check if it   
-             # contains the searchkey. Also check if any of   
-             # the values are list or dictionaries that need   
-             # to be searched   
-             if isinstance (i, dict):   
-                 for k, v in iteritems (i):   
-                 # If the searchkey is located deepcopy   
-                 # rowbase to prevent changing rowbase   
-                 # on future hits. Create full row and   
-                 # append to results   
-                 if k == searchkey:   
-                     row = copy.deepcopy(rowbase)   
-                     row.append(i)  
-                     results.append(row)   
-                     continue  
-             elif isinstance(v, list):   
-                 search(v, rowbase, searchkey, results)  
-             elif isinstance(v, dict):   
-                 search(v, rowbase, searchkey, results)  
-         # Search has been exhausted return search  
-         # results to caller. Results will be a   
-         # list of list. 
+     if input :
+         for i in input :
+             # If input contains a list run it through search
+             # again since it may contain dictionaries with
+             # the key being searched
+             if isinstance (i, list):
+                 search (i, rowbase, searchkey, results)
+             # If input contains a dictionary check if it
+             # contains the searchkey. Also check if any of
+             # the values are list or dictionaries that need
+             # to be searched
+             if isinstance (i, dict):
+                 for k, v in iteritems (i):
+                 # If the searchkey is located deepcopy
+                 # rowbase to prevent changing rowbase
+                 # on future hits. Create full row and
+                 # append to results
+                 if k == searchkey:
+                     row = copy.deepcopy(rowbase)
+                     row.append(i)
+                     results.append(row)
+                     continue
+             elif isinstance(v, list):
+                 search(v, rowbase, searchkey, results)
+             elif isinstance(v, dict):
+                 search(v, rowbase, searchkey, results)
+         # Search has been exhausted return search
+         # results to caller. Results will be a
+         # list of list.
          return results
 ```
 
@@ -83,11 +83,11 @@ def search ( input , rowbase , searchkey , results ):
 
 Since this works there are a couple of ideas I want to explore with it.
 
-* This seems like a good place to gain experience with Python type annotations.
-* Since this needs to work in a pure Python environment as well as a PySpark environment I want to do some profiling,
+- This seems like a good place to gain experience with Python type annotations.
+- Since this needs to work in a pure Python environment as well as a PySpark environment I want to do some profiling,
   but I’m not sure how tools like Cython or Numba will work/interact with the PySpark piece of this. That will be
   interesting to explore.
-* It would be interesting to add depth tracking and see if there are any levels where the search key never occurs so
+- It would be interesting to add depth tracking and see if there are any levels where the search key never occurs so
   that the function could potentially skip iteritems at that level.
 
 ### Docs

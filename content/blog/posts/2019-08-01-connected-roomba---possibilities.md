@@ -1,5 +1,5 @@
 ---
-title: "Connected Roomba - Possibilities"
+title: Connected Roomba - Possibilities
 date: 2019-08-01
 page.meta.tags: python, hackaday, hardware, programming
 page.meta.categories: programming

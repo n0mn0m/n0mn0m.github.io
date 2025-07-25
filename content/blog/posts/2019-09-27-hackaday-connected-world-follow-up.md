@@ -1,5 +1,5 @@
 ---
-title: "Hackaday Connected World Follow Up"
+title: Hackaday Connected World Follow Up
 date: 2019-09-27
 page.meta.tags: python, hackaday, hardware, programming
 page.meta.categories: programming

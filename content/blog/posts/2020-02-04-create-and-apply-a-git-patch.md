@@ -1,5 +1,5 @@
 ---
-title: "Create and Apply a Git Patch"
+title: Create and Apply a Git Patch
 date: 2020-02-04
 page.meta.tags: git, programming
 page.meta.categories: programming
@@ -14,9 +14,9 @@ of us are used to. Hopefully this helps somebody else that is learning to use pa
 Build your feature or modify your code on a separate branch:
 
 ```shell
-git checkout -b ...  
-git add ...  
-git commit  
+git checkout -b ...
+git add ...
+git commit
 git push
 ```
 
@@ -35,7 +35,7 @@ git format-patch main -o patches
 Or login and find the link to download the patch:
 
 ```shell
-curl -O https://github.com/n0mn0m/circuitroomba/commit/ae635ce6533e33ff5277a0428a59c736a98649d6.patchls | grep ".patch"  
+curl -O https://github.com/n0mn0m/circuitroomba/commit/ae635ce6533e33ff5277a0428a59c736a98649d6.patchls | grep ".patch"
 ```
 
 Switch back to main:

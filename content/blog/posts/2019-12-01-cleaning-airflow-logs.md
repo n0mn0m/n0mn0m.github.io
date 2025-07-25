@@ -1,5 +1,5 @@
 ---
-title: "Cleaning Airflow Logs"
+title: Cleaning Airflow Logs
 date: 2019-12-01
 page.meta.tags: airflow, python, programming
 page.meta.categories: programming
@@ -18,34 +18,34 @@ Airflow in a setup other than LocalExecutor you will want to handle this with so
 you need to clean logs up on the Scheduler, Worker and Webserver.
 
 ```python
-def truncateprocessmanagerlog(logbasepath):  
- """  
- The scheduler records all acitivty related to dag processing in the same file.  
- This file can grow large fast, and is actively in use. Intead of unlinking the  
- file and pulling it out from under the scheduler truncate.  
- """  
- dagprocessmanagerlog = os.path.join(  
- logbasepath, "dagprocessormanager", "dagprocessormanager.log"  
- )  
- open(dagprocessmanagerlog, "w").close()  
-  
-def traverseandunlink(fobject):  
- """  
- Traverse the log directory on the given airflow instance (webserver, scheduler,  
- worker, etc) and remove any logs not modified in the last hour.  
- """  
- for entry in os.scandir(fobject):  
-  newfobject = os.path.join(fobject, entry)  
-  if os.path.isfile(newfobject):  
-   lastmodified = os.stat(newfobject).stmtime  
-   delta = datetime.utcnow().timestamp() - lastmodified  
-  if delta > HOURSINMILLISECONDS:  
-   print(  
-    f"{newfobject} has not been used in the last hour. \  
-   \nCleaning up."  
-   )  
-   os.unlink(newfobject)  
-  elif os.path.isdir(newfobject):  
+def truncateprocessmanagerlog(logbasepath):
+ """
+ The scheduler records all acitivty related to dag processing in the same file.
+ This file can grow large fast, and is actively in use. Intead of unlinking the
+ file and pulling it out from under the scheduler truncate.
+ """
+ dagprocessmanagerlog = os.path.join(
+ logbasepath, "dagprocessormanager", "dagprocessormanager.log"
+ )
+ open(dagprocessmanagerlog, "w").close()
+
+def traverseandunlink(fobject):
+ """
+ Traverse the log directory on the given airflow instance (webserver, scheduler,
+ worker, etc) and remove any logs not modified in the last hour.
+ """
+ for entry in os.scandir(fobject):
+  newfobject = os.path.join(fobject, entry)
+  if os.path.isfile(newfobject):
+   lastmodified = os.stat(newfobject).stmtime
+   delta = datetime.utcnow().timestamp() - lastmodified
+  if delta > HOURSINMILLISECONDS:
+   print(
+    f"{newfobject} has not been used in the last hour. \
+   \nCleaning up."
+   )
+   os.unlink(newfobject)
+  elif os.path.isdir(newfobject):
    traverseandunlink(newfobject)
 ```
 

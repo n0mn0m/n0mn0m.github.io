@@ -1,5 +1,5 @@
 ---
-title: "Connected Roomba - SMS"
+title: Connected Roomba - SMS
 date: 2019-08-03
 page.meta.tags: python, hackaday, hardware, circuitpython, programming
 page.meta.categories: programming
@@ -19,40 +19,40 @@ Since I was already using the Pi Zero to send commands to the Roomba setting up 
 pass on the new command was simple enough.
 
 ```python
-import busio  
-import board  
-import adafruitrfm9x  
-from digitalio import DigitalInOut  
-from flask import Flask, request  
-from twilio.twiml.messagingresponse import MessagingResponseCS = DigitalInOut(board.CE1)  
+import busio
+import board
+import adafruitrfm9x
+from digitalio import DigitalInOut
+from flask import Flask, request
+from twilio.twiml.messagingresponse import MessagingResponseCS = DigitalInOut(board.CE1)
 
-RESET = DigitalInOut(board.D25)  
-spi = busio.SPI(board.SCK, MOSI=board.MOSI, MISO=board.MISO)  
-rfm9x = adafruitrfm9x.RFM9x(spi, CS, RESET, 433.0)  
-rfm9x.txpower = 23app = Flask(name)  
-  
-@app.route("/sms", methods=["GET", "POST"])  
-def smsstartroomba():  
-  """  
-  When a message is received determine which  
-  signal to send the Roomba and reply  
-  to the sender.  
-  """** *txt = request.values.get("Body").lower() if txt == "start":  
-  msg = "Starting the Roomba."  
-  cmd = bytes("1", "ascii")  
-  elif txt == "halt":  
-  msg = "Stopping the Roomba."  
-  cmd = bytes("0", "ascii")  
-  elif txt == "dock":  
-  msg = "Roomba beginning to dock."  
-  cmd = bytes("2", "ascii")  
-  else:  
-  msg = "Unknown command. Continuing."  
-  cmd = None if cmd:  
-  rfm9x.send(cmd) resp = MessagingResponse()  
-  resp.message(msg) return str(resp)  
-  
-if name == "main":  
+RESET = DigitalInOut(board.D25)
+spi = busio.SPI(board.SCK, MOSI=board.MOSI, MISO=board.MISO)
+rfm9x = adafruitrfm9x.RFM9x(spi, CS, RESET, 433.0)
+rfm9x.txpower = 23app = Flask(name)
+
+@app.route("/sms", methods=["GET", "POST"])
+def smsstartroomba():
+  """
+  When a message is received determine which
+  signal to send the Roomba and reply
+  to the sender.
+  """** *txt = request.values.get("Body").lower() if txt == "start":
+  msg = "Starting the Roomba."
+  cmd = bytes("1", "ascii")
+  elif txt == "halt":
+  msg = "Stopping the Roomba."
+  cmd = bytes("0", "ascii")
+  elif txt == "dock":
+  msg = "Roomba beginning to dock."
+  cmd = bytes("2", "ascii")
+  else:
+  msg = "Unknown command. Continuing."
+  cmd = None if cmd:
+  rfm9x.send(cmd) resp = MessagingResponse()
+  resp.message(msg) return str(resp)
+
+if name == "main":
  app.run(debug=False)
 ```
 

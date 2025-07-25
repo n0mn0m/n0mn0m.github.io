@@ -5,7 +5,7 @@ page.meta.tags: programming, software-engineering, system-design
 page.meta.categories: programming
 ---
 
-Over the last few years I’ve had the opportunity to see how a variety of teams  
+Over the last few years I’ve had the opportunity to see how a variety of teams\
 and companies build software. Along with that (like many others in the field) I’ve kept up with the content coming
 through various aggregators. Among the many things that every team has to decide is how they are going to actually build
 and maintain a project(s). We make decisions like:
@@ -22,9 +22,9 @@ Some of these have grown community standards, some platforms make the decision f
 are made off a mix of experience and a lot of personal preference. Those preferences I imagine are largely impacted by
 the industry of personality and marketing that has sprung up around:
 
-* software education
-* dogma articles
-* self proclaimed experts
+- software education
+- dogma articles
+- self proclaimed experts
 
 Some of the problems with our judgement being so strongly influenced by these voices is that they often lack data for us
 to place them in our context and judge the merit of what is being offered. Rarely do we know what didn’t work, what came
@@ -45,10 +45,8 @@ want to make sure I spend as much time with these sources as I do with articles 
 something along the way that I haven’t heard before. I hope to find some research spanning groups, companies and project
 scopes that provides a data analysis of the results on top of the stories of those followed.
 
-[ACM](https://dl.acm.org/action/doSearch?AllField=software+engineering)  
-[IEEE](https://scholar.google.com/scholar?q=ieee+software+engineering&hl=en&as_sdt=0&as_vis=1&oi=scholart)  
-[Microsoft Research](https://www.microsoft.com/en-us/research/group/research-software-engineering-rise/)  
-[Jetbrains Research](https://research.jetbrains.org/publications/)  
+[ACM](https://dl.acm.org/action/doSearch?AllField=software+engineering)\
+[IEEE](https://scholar.google.com/scholar?q=ieee+software+engineering&hl=en&as_sdt=0&as_vis=1&oi=scholart)\
+[Microsoft Research](https://www.microsoft.com/en-us/research/group/research-software-engineering-rise/)\
+[Jetbrains Research](https://research.jetbrains.org/publications/)\
 [ISO](https://www.iso.org/standard/72189.html)
-
-  

@@ -1,5 +1,5 @@
 ---
-title: "(define zero(….))"
+title: (define zero(….))
 date: 2020-02-03
 page.meta.tags: sicp, lisp, racket, programming
 page.meta.categories: programming
@@ -20,25 +20,25 @@ we can build from that. Towards the beginning of day two we kicked things off by
 Racket. Our first step? Defining TRUE and FALSE.
 
 ```racket
-(define (TRUE x y) x)  
-(define (FALSE x y) y)(define t (TRUE 0 1))  
-'t  
-(define f (FALSE 0 1))  
+(define (TRUE x y) x)
+(define (FALSE x y) y)(define t (TRUE 0 1))
+'t
+(define f (FALSE 0 1))
 'fTake a minute and reread that block, because the first time I did it threw me for a loop. We just passed in the same arguments and got TRUE and FALSE. In Racket, and in this scenario we have defined the behavior of our basic TRUE and FALSE operators. The next challenge we were provided was to implement all boolean logic operators.
 
-(define (NOT x) (x FALSE TRUE))(NOT TRUE)  
-'f  
-(NOT FALSE)  
-'t  
-  
-(define (AND x y) (x y x))  
-(AND TRUE FALSE)  
-'t(define (OR x y) (x x y))  
-(OR FALSE FALSE)  
-'f  
-(OR TRUE FALSE)  
-'t  
-(OR FALSE TRUE)  
+(define (NOT x) (x FALSE TRUE))(NOT TRUE)
+'f
+(NOT FALSE)
+'t
+
+(define (AND x y) (x y x))
+(AND TRUE FALSE)
+'t(define (OR x y) (x x y))
+(OR FALSE FALSE)
+'f
+(OR TRUE FALSE)
+'t
+(OR FALSE TRUE)
 't*;;
 ```
 
@@ -51,23 +51,23 @@ Before working on boolean logic we had been discussing the substitution model of
 with it. After our truth searching exercise it seemed like looking at how numbers could work might be fun.
 
 ```racket
-(define zero (lambda (f) (lambda (x) x)))  
-(define two (lambda (f) (lambda (x) (f (f x)))))  
+(define zero (lambda (f) (lambda (x) x)))
+(define two (lambda (f) (lambda (x) (f (f x)))))
 (define three (lambda (f) (lambda (x) (f (f (f x))))))
 ```
 
 Defining numbers as symbols for the application of a function N times then let us implement addition:
 
 ```racket
-(define (plus a b)  
- (lambda (f) (lambda (x) ((a f) ((b f) x))))  
+(define (plus a b)
+ (lambda (f) (lambda (x) ((a f) ((b f) x))))
  )(define five (plus two three))
-``` 
+```
 
 Or to make it concrete
 
 ```rackaet
-(define (inc x) (+ x 1))((five inc) 0)  
+(define (inc x) (+ x 1))((five inc) 0)
 '5
 ```
 

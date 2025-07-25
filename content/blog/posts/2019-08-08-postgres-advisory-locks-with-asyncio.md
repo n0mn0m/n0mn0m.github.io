@@ -1,5 +1,5 @@
 ---
-title: "Postgres Advisory Locks with Asyncio"
+title: Postgres Advisory Locks with Asyncio
 date: 2019-08-08
 page.meta.tags: python, postgres, sql, programming
 page.meta.categories: programming
@@ -31,19 +31,19 @@ context manager. Since this is meant to be used with asyncio and asyncpg, we con
 lock via aenter and aexit.
 
 ```python
-class AdvisoryLock:  
- async def aenter(self) -> asyncpg.connection.Connection:  
- self.lockedconnection = await asyncpg.connect(...)  
- await self.setlock()  
- if self.gotlock:  
- return self.lockedconnection  
- else:  
- if self.lockedconnection:  
- await self.lockedconnection.close()  
- raise AdvisoryLockException async def aexit(self, exctype, excval, exctb):  
+class AdvisoryLock:
+ async def aenter(self) -> asyncpg.connection.Connection:
+ self.lockedconnection = await asyncpg.connect(...)
+ await self.setlock()
+ if self.gotlock:
+ return self.lockedconnection
+ else:
+ if self.lockedconnection:
+ await self.lockedconnection.close()
+ raise AdvisoryLockException async def aexit(self, exctype, excval, exctb):
  await self.release()Now this can be called like any other async context manager.
 
-async with AdvisoryLock(config, "appname") as connection:  
+async with AdvisoryLock(config, "appname") as connection:
  val = await connection.fetchrow("SELECT 1")
 ```
 
@@ -54,30 +54,30 @@ acquiring the lock, running a query, and validating we can't get the lock inside
 asynctest library to help work with asyncio inside unittest.
 
 ```python
-async def testgetresultswithlock(self):  
- async with AdvisoryLock("goldleader", dbconfig) as connection:  
- val = await connection.fetchrow("SELECT 1;")  
- self.assertEqual(val[0], 1) async def testlockpreventssecondlock(self):  
- with self.assertRaises(AdvisoryLockException):  
- async with AdvisoryLock("goldleader", dbconfig) as connection:  
- await connection.fetchrow("SELECT 1;")  
- async with AdvisoryLock("goldleader", dbconfig) as secondconnection:  
+async def testgetresultswithlock(self):
+ async with AdvisoryLock("goldleader", dbconfig) as connection:
+ val = await connection.fetchrow("SELECT 1;")
+ self.assertEqual(val[0], 1) async def testlockpreventssecondlock(self):
+ with self.assertRaises(AdvisoryLockException):
+ async with AdvisoryLock("goldleader", dbconfig) as connection:
+ await connection.fetchrow("SELECT 1;")
+ async with AdvisoryLock("goldleader", dbconfig) as secondconnection:
  await secondconnection.fetchrow("SELECT 1;")
-``` 
+```
 
 Since we are going to use this to control the execution of code across many processes, we also need to verify external
 process behavior. To do this we use the asyncio subprocess.createsubprocessexec function to create a new process. This
 process attempts to get the lock our main process already has, and it should fail.
 
 ```python
-async def testadvisorylockpreventsaccessfromseparateprocess(self):  
- with self.assertRaises(AdvisoryLockException):  
- async with AdvisoryLock("goldleader", dbconfig) as connection:  
- proc = await asyncio.subprocess.createsubprocessexec(  
- sys.executable,  
- "-c",  
- executable,  
- stderr=asyncio.subprocess.PIPE,  
+async def testadvisorylockpreventsaccessfromseparateprocess(self):
+ with self.assertRaises(AdvisoryLockException):
+ async with AdvisoryLock("goldleader", dbconfig) as connection:
+ proc = await asyncio.subprocess.createsubprocessexec(
+ sys.executable,
+ "-c",
+ executable,
+ stderr=asyncio.subprocess.PIPE,
  )
 ```
 

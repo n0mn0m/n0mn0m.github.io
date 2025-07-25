@@ -1,5 +1,5 @@
 ---
-title: "Subdomain SSL with Gitlab Pages"
+title: Subdomain SSL with Gitlab Pages
 date: 2019-02-10
 page.meta.tags: python, dns, gitlab, programming
 page.meta.categories: programming
@@ -18,9 +18,9 @@ Between that and the
 Gitlab [custom domain and ssl](https://docs.gitlab.com/ee/user/project/pages/getting_started_part_three.html) I was able
 to get up and running pretty quickly. I had accomplished my goals:
 
-* migrate to Gitlab
-* setup CI/CD of the Pelican site project
-* setup ssl
+- migrate to Gitlab
+- setup CI/CD of the Pelican site project
+- setup ssl
 
 Good to go, done in an afternoon with plenty of time to work on a new post. I thought.
 
@@ -44,16 +44,16 @@ install steps for your OS and continue.
 you will validate with certbot by a DNS record setup via your Domain Management Console.**
 
 ```bash
-sudo aptget install certbotcertbot certonly -a manual -d *.<yourdomainhere>.<topleveldomainhere> \  
---config-dir ~/letsencrypt/config --work-dir ~/letsencrypt/work \  
---logs-dir ~/letsencrypt/logs \  
+sudo aptget install certbotcertbot certonly -a manual -d *.<yourdomainhere>.<topleveldomainhere> \
+--config-dir ~/letsencrypt/config --work-dir ~/letsencrypt/work \
+--logs-dir ~/letsencrypt/logs \
 --server <https://acme-v02.api.letsencrypt.org/directory>Follow the instructions entering your email, reviewing ToS, etc
 ```
 
 You will then see this prompt:
 
 ```bash
-Please deploy a DNS TXT record under the name  
+Please deploy a DNS TXT record under the name
 acme-challenge.burningdaylight.io with the following value:
 ```
 
@@ -74,13 +74,13 @@ and [here](https://docs.gitlab.com/ee/user/project/pages/getting_started_part_th
 
 I highly recommend reading the Gitlab documentation above, but to summarize:
 
-* In your Gitlab pages project settings click add a new site
-* Enter the url
-* Add the data from your fullchain.pem and privkey.pem files generated via certbot
-* Copy the gitlab-pages-verfication-code= section from the Gitlab validation record box
-* Login to your domain management console
-* Setup a new TXT record for your subdomain: NAMETYPETTLVALUEWWWTXT1800gitlab-pages-verification-code=
-* Setup a new A record for
+- In your Gitlab pages project settings click add a new site
+- Enter the url
+- Add the data from your fullchain.pem and privkey.pem files generated via certbot
+- Copy the gitlab-pages-verfication-code= section from the Gitlab validation record box
+- Login to your domain management console
+- Setup a new TXT record for your subdomain: NAMETYPETTLVALUEWWWTXT1800gitlab-pages-verification-code=
+- Setup a new A record for
 
 [Gitlab](https://docs.gitlab.com/ee/user/project/pages/getting_started_part_three.html)
 
@@ -88,7 +88,7 @@ I highly recommend reading the Gitlab documentation above, but to summarize:
 NAMETYPETTLVALUEWWWA180035.185.44.232
 ```
 
-* Return to your Gitlab Pages settings console and click the verify button.
+- Return to your Gitlab Pages settings console and click the verify button.
 
 ### Wrapping Up
 
@@ -101,7 +101,6 @@ You can see that [here](https://gitlab.com/n0mn0m/docker-airflow)
 
 Hopefully you find the above helpful. If you run into issues I recommend:
 
-* Make sure you used the * wildcard in the domain cert setup
-* Setup your acme-challenge record correctly in your domain management console and left it there
-* Setup the right TXT and A records for Gitlab
-  
+- Make sure you used the * wildcard in the domain cert setup
+- Setup your acme-challenge record correctly in your domain management console and left it there
+- Setup the right TXT and A records for Gitlab

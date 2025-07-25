@@ -11,30 +11,36 @@ part of the setup I took the time to look at what lint and analysis tools we wan
 
 For C# some of the more common tools appear to be:
 
-* [Roslyn Analyzers](https://github.com/dotnet/roslyn-analyzers)
-* [Sonarsource](http://www.sonarsource.com/)
-* [NDepend](https://www.ndepend.com/)
-* [Jetbrains Resharper](https://www.jetbrains.com/resharper/)
+- [Roslyn Analyzers](https://github.com/dotnet/roslyn-analyzers)
+
+- [Sonarsource](http://www.sonarsource.com/)
+
+- [NDepend](https://www.ndepend.com/)
+
+- [Jetbrains Resharper](https://www.jetbrains.com/resharper/)
   I won’t go into the full criteria for our choice of Resharper (I’ll update this post if I end up writing that up one
   day), instead I’ll summarize that Resharper provided:
 
-* easy cross platform setup
-* ide/editor and shell agnostic
-* works the same locally and in CI.
-* opinionated by default
+- easy cross platform setup
+
+- ide/editor and shell agnostic
+
+- works the same locally and in CI.
+
+- opinionated by default
 
 ### Resharper Command Line Tools
 
 From the [docs](https://www.jetbrains.com/help/resharper/ReSharper_Command_Line_Tools.html)
 
-ReSharper Command Line Tools is a set of free cross-platform standalone tools  
-that help you integrate automatic code quality procedures into your CI, version  
+ReSharper Command Line Tools is a set of free cross-platform standalone tools\
+that help you integrate automatic code quality procedures into your CI, version\
 control, or any other server.You can also run coverage analysis from the command line.The Command Line Tools package
 includes the following tools:- InspectCode, which executes hundreds of ReSharper code inspections
 
-- dupFinder, which detects duplicated code in the whole solution or narrower  
+- dupFinder, which detects duplicated code in the whole solution or narrower\
   scope
-- CleanupCode, which instantly eliminates code style violations and ensures a  
+- CleanupCode, which instantly eliminates code style violations and ensures a\
   uniform code base### Install
 
 To get started with Resharper tools (assuming you already have .NET Core installed) run
@@ -75,11 +81,11 @@ With everything running in our shell locally we can also set things up to run in
 easy as long as your CI platform has a shell like task/step/operator:
 
 ```yaml
-- script: |  
-  dotnet tool restore  
-  jb cleanupcode --verbosity=ERROR --config=./.config/cleanup --settings=./.editorconfig --no-buildin-settings ./Project.sln  
-  jb inspectcode --verbosity=ERROR Project.sln -o=./reports/resharperInspect.xml  
-  jb dupfinder --verbosity=ERROR Project..sln -o=./reports/resharperDupFinder.xml  
+- script: |
+  dotnet tool restore
+  jb cleanupcode --verbosity=ERROR --config=./.config/cleanup --settings=./.editorconfig --no-buildin-settings ./Project.sln
+  jb inspectcode --verbosity=ERROR Project.sln -o=./reports/resharperInspect.xml
+  jb dupfinder --verbosity=ERROR Project..sln -o=./reports/resharperDupFinder.xml
   displayName: 'Resharper'
 ```
 
@@ -94,7 +100,7 @@ issues. As it stands the tools only exit with an error if the tool fails, not wh
 Since CleanupCode will format our file rewriting it on disk we can use git to detect the change.
 
 ```powershell
-formatted=$(git status --porcelain=v1 2>/dev/null | wc -l)  
+formatted=$(git status --porcelain=v1 2>/dev/null | wc -l)
 exit $formatted
 ```
 
@@ -117,13 +123,13 @@ If ($Result -eq $null) { [Environment]::Exit(0) } Else { [Environment]::Exit(1) 
 ```
 
 ```yaml
-- task: PublishPipelineArtifact@1  
-  inputs:  
-  targetPath: '$(System.DefaultWorkingDirectory)/reports/'  
-  artifactName: 'measurements'  
-  condition: always()  
+- task: PublishPipelineArtifact@1
+  inputs:
+  targetPath: '$(System.DefaultWorkingDirectory)/reports/'
+  artifactName: 'measurements'
+  condition: always()
   displayName: 'Save ReSharper Results For Review.'### Wrapping Up
- ```
+```
 
 We’ve been using the ReSharper tools for a few months now and I have to say they provided what I was looking for in the
 beginning. The tools have been easy to use, help us maintain our code and haven’t boxed us in or required a lot of extra

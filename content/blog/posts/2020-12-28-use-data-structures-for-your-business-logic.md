@@ -16,9 +16,8 @@ Going back with this information I paired with the team on an update to the PR w
 tied directly to the business domain, and refactored names so that future maintainers could interact with the code
 understanding a tree, but maybe not understanding all the business logic around the entities.
 
-
-> *in case it’s helpful the *[*C5*](https://github.com/sestoft/C5/)* project has some collections not found in the .NET
-> Standard library for interacting with Trees. In general an interesting project I’m glad I learned about.*A similar
+> \*in case it’s helpful the *[*C5*](https://github.com/sestoft/C5/)* project has some collections not found in the .NET
+> Standard library for interacting with Trees. In general an interesting project I’m glad I learned about.\*A similar
 > opportunity emerged on the same project when we needed to make sure a value was unique over a series of operations. In
 > this scenario while working on a collection of objects we were able to use
 > a [HashSet](https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.hashset-1?view=net-5.0)to exit

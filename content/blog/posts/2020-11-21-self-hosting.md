@@ -12,11 +12,11 @@ process.
 
 A quick list of the tools I used for orchestration:
 
-* shell
-* DNS
-* Traefik2
-* docker/docker-compose
-* alpine linux
+- shell
+- DNS
+- Traefik2
+- docker/docker-compose
+- alpine linux
 
 ### (D)DNS
 
@@ -46,12 +46,12 @@ any services in a few minutes on any box with docker.
 
 A quick list of the services I’m hosting:
 
-* git
-* cgit
-* minio
-* teamcity
-* youtrack
-* rust home services API
+- git
+- cgit
+- minio
+- teamcity
+- youtrack
+- rust home services API
 
 The service management can be found [here](https://github.com/n0mn0m/arcade.git/tree/).
 
@@ -62,5 +62,3 @@ setup I’m not worried about what happens when something crashes, certificate m
 just works. I’ve linked to my orchestration code above, but if you have any questions, or suggestions send
 them [my way](mailto:contact@burningdaylight.io). If you are starting out on your own self hosted setup, good luck, have
 fun it’s easier now than ever and I imagine it will continue to get better.
-
-  

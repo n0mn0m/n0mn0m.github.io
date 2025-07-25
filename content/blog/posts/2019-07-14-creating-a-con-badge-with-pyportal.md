@@ -1,5 +1,5 @@
 ---
-title: "Creating a Con Badge with PyPortal"
+title: Creating a Con Badge with PyPortal
 date: 2019-07-14
 page.meta.tags: python, circuitpython, hardware, programming
 page.meta.categories: programming
@@ -10,11 +10,10 @@ Since I had just recently received my PyPortal Adabox I thought I would use that
 
 From the product [page](https://www.adafruit.com/product/4116) the PyPortal is:
 
-
-> *An easy-to-use IoT device that allows you to create all the things for the “Internet of Things” in minutes. Make
+> \*An easy-to-use IoT device that allows you to create all the things for the “Internet of Things” in minutes. Make
 > custom touch screen interface GUIs, all open-source, and Python-powered using tinyJSON / APIs to get news, stock,
 > weather, cat photos, and more – all over Wi-Fi with the latest technologies. Create little pocket universes of joy that
-> connect to something good. Rotate it 90 degrees, it’s a web-connected conference badge #badgelife.*Like many other
+> connect to something good. Rotate it 90 degrees, it’s a web-connected conference badge #badgelife.\*Like many other
 > CircuitPython powered devices the PyPortal has a great [Explore and Learn](https://learn.adafruit.com/adafruit-pyportal)
 > page available that walks you through getting the right firmware installed as well as providing hardware breakdowns,
 > code demos and FAQ.
@@ -38,22 +37,22 @@ list of submodules on [Read the Docs](https://readthedocs.org/projects/circuitpy
 While building my badge I ran into some interesting edges that I hope to explore further. I'm sharing these here just in
 case somebody else reads this and can avoid similar pitfalls or suggest a different direction.
 
-* Large buttons seem to lead to performance and OOM errors
-* Originally my menu had 8 buttons (one with information about Adafruit, another with information about the project),
+- Large buttons seem to lead to performance and OOM errors
+- Originally my menu had 8 buttons (one with information about Adafruit, another with information about the project),
   but that wasn't stable. After 3 or 4 clicks gc or something else couldn't keep up with the memory allocation and the
   badge would crash with a MemoryError
-* My schedule was also a menu of buttons originally. This let me setup a list of tuples I could manipulate in code, but
+- My schedule was also a menu of buttons originally. This let me setup a list of tuples I could manipulate in code, but
   when I had 5 buttons span the screen render time was visibly slow, and lead to inconsistent OOM errors.
-* Different fonts have different performance characteristics
-* Looking back this makes sense. Different glyphs will have different structures. Depending on that a glyph can place
+- Different fonts have different performance characteristics
+- Looking back this makes sense. Different glyphs will have different structures. Depending on that a glyph can place
   different loads on the system. I tried a few of the "performance" font from GoogleFonts, but ultimately landed on
   Arial Bold for a font that looked consistent, rendered quickly and didn't have a large file size.
-* Better ways to sleep?
-* My badge spends a lot of time in the main super loop polling if a button has been pressed. At this time I don't think
+- Better ways to sleep?
+- My badge spends a lot of time in the main super loop polling if a button has been pressed. At this time I don't think
   CircuitPython supports interrupts. I hope in the future i can figure out a better was to let the device sleep, but
   capture an interrupt type event such as the display being touched.
-* PDB for CircuitPython
-* I spent a lot of time running snippets in the REPL. This is a nice experience to have for an embedded device, but I do
+- PDB for CircuitPython
+- I spent a lot of time running snippets in the REPL. This is a nice experience to have for an embedded device, but I do
   miss having PDB or WebPDB to drop a breakpoint in my code, let it run and then inspect the stack, heap etc from a
   given point in my program. I believe MicroPython contains this functionality so I'm guessing it's possible with
   CircuitPython I just haven't dug in to make it happen yet.
@@ -63,8 +62,8 @@ case somebody else reads this and can avoid similar pitfalls or suggest a differ
 Similar to the interesting behaviors I found above I learned a bit about developing with CircuitPython and how it can
 differ from my day to day Python development along the way.
 
-* Python data structure sizes
-* Many code bases make liberal use of dictionaries. In fact some say that Python is built on top of the dict data
+- Python data structure sizes
+- Many code bases make liberal use of dictionaries. In fact some say that Python is built on top of the dict data
   structure. It's incredibly useful to look items up by key, and provides some human readability over indexing into a
   collection with no reference beyond position. That said Dictionaries are one of
   the [largest](https://stackoverflow.com/questions/1331471/in-memory-size-of-a-python-structure/1331541#1331541)
@@ -72,18 +71,18 @@ differ from my day to day Python development along the way.
   suffice to say as you add more objects to a dictionary and it approaches a given load factor it will automatically
   grow in size. Because of this in a memory constrained environment I found myself removing dictionaries or list of
   dicts and using more tuples and list of tuples.
-* Take out the garbage
-* Python Garbage Collection is handled via reference counting. Because of this it's important to think about when an
+- Take out the garbage
+- Python Garbage Collection is handled via reference counting. Because of this it's important to think about when an
   object (especially large objects ) you are using come in scope, and when they leave scope. In an environment like
   CircuitPython you may also want to call gc.collect() when you leave scopes with large objects to make sure they are
   garbage collected before you carry on. This can help avoid some OOM errors.
-* Careful wih that indirection.
-* I found myself removing helper functions and other pieces of code that helped keep things "clean". Often times I did
+- Careful wih that indirection.
+- I found myself removing helper functions and other pieces of code that helped keep things "clean". Often times I did
   this because I was hitting performance of OOM errors that would go away when I put the functionality in the parent
   scope. Because of this I have repeated code, and code that isn't what I would expect to pass code review day to day,
   but it works, achieved stability and gave the performance I'm looking for on my badge.
-* Testing and profiling for this environment is still a challenge for me.
-* I would love to be able to write a test for my function and then profile that test to capture things like stack depth,
+- Testing and profiling for this environment is still a challenge for me.
+- I would love to be able to write a test for my function and then profile that test to capture things like stack depth,
   object sizes, timing, etc. And since I have a test I could do this N times to see what kind of behaviors emerge.
   Instead right now I manually make a change and validate. Because of this I think I'm building an intuition of what is
   happening, but I can't verify it which leads me to assume my understanding has gaps, and potentially wrong assumptions

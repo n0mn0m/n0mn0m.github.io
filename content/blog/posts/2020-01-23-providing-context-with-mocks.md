@@ -1,5 +1,5 @@
 ---
-title: "Providing Context with Mocks"
+title: Providing Context with Mocks
 date: 2020-01-23
 page.meta.tags: python, testing, programming
 page.meta.categories: programming
@@ -24,31 +24,31 @@ couldn’t find any good examples for accomplishing this. Below I’ve provided 
 in your test, showing when you are interacting with different parts of your mock and the mocked context manager API.
 
 ```python
-def updateentity(k, v):  
- with pyodbc.connect(cnxnstr, autocommit=True): as cnxn:  
-  with cnxn.cursor() as crsr:  
-   crsr.execute()  
+def updateentity(k, v):
+ with pyodbc.connect(cnxnstr, autocommit=True): as cnxn:
+  with cnxn.cursor() as crsr:
+   crsr.execute()
 ```
 
 ```python
-from unittest import TestCase  
-from unittest.mock import patchclass InterfaceTest(TestCase):  
- @patch("mod.pyodbc.connect")  
- def testupdateentity(self, mockcnxn):  
- # result of pyodbc.connect  
- mockcnxncontextmanager = mockcnxn.returnvalue  
- # object assigned to in with ... as con  
- mockcm = mockcnxncontextmanager.enter.returnvalue  
- # result of with ... as crsr, note the extra enter.returnvalue  
- # from the context manager  
- mockcrsr = mockcm.cursor.returnvalue.enter.returnvalue  
- mockcrsr.fetchone.returnvalue = (1,)  
+from unittest import TestCase
+from unittest.mock import patchclass InterfaceTest(TestCase):
+ @patch("mod.pyodbc.connect")
+ def testupdateentity(self, mockcnxn):
+ # result of pyodbc.connect
+ mockcnxncontextmanager = mockcnxn.returnvalue
+ # object assigned to in with ... as con
+ mockcm = mockcnxncontextmanager.enter.returnvalue
+ # result of with ... as crsr, note the extra enter.returnvalue
+ # from the context manager
+ mockcrsr = mockcm.cursor.returnvalue.enter.returnvalue
+ mockcrsr.fetchone.returnvalue = (1,)
 ```
 
 Or if you want to test a sideeffect:
 
 ```python
-mockcrsr.fetchone.sideeffect** 
+mockcrsr.fetchone.sideeffect**
 *self.assertEqueal(....)
 ```
 
@@ -58,5 +58,5 @@ Good luck mocking, context is what you make it.
 
 If you want to know more about context managers in Python checkout:
 
-* [PEP 343](https://www.python.org/dev/peps/pep-0343/)
-* [contextlib](https://docs.python.org/3/library/contextlib.html)
+- [PEP 343](https://www.python.org/dev/peps/pep-0343/)
+- [contextlib](https://docs.python.org/3/library/contextlib.html)

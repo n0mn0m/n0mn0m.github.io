@@ -1,5 +1,5 @@
 ---
-title: "Connected Roomba Remote - LoRa"
+title: Connected Roomba Remote - LoRa
 date: 2019-08-02
 page.meta.tags: python, hackaday, hardware, programming
 page.meta.categories: programming
@@ -29,27 +29,27 @@ removing the debug and abstraction code, so I only compiled the commands I knew 
 continued moving forward.
 
 ```python
-class OpenInterface:  
- def init(self, txpin, rxpin, brcpin, baudrate=115200):  
- self.board = busio.UART(txpin, rxpin, baudrate=baudrate)  
- self.txpin = txpin  
- self.rxpin = rxpin  
- self.brcpin = brcpin  
- self.brcpin.direction = digitalio.Direction.OUTPUT  
- self.baudrate = baudrate  
- self.stopped = True def start(self):  
- if self.stopped:  
- self.wakeup() for command in (b"\x80", b"\x83", b"\x87"):  
- self.board.write(command) def stop(self):  
- for command in (b"\x85", b"\xAD"):  
- self.board.write(command)  
- self.stopped = True def wakeup(self):  
- for i in range(3):  
- self.brcpin.value = False  
- time.sleep(0.5)  
- self.brcpin.value = True  
- time.sleep(0.5)  
- self.brcpin.value = False  
+class OpenInterface:
+ def init(self, txpin, rxpin, brcpin, baudrate=115200):
+ self.board = busio.UART(txpin, rxpin, baudrate=baudrate)
+ self.txpin = txpin
+ self.rxpin = rxpin
+ self.brcpin = brcpin
+ self.brcpin.direction = digitalio.Direction.OUTPUT
+ self.baudrate = baudrate
+ self.stopped = True def start(self):
+ if self.stopped:
+ self.wakeup() for command in (b"\x80", b"\x83", b"\x87"):
+ self.board.write(command) def stop(self):
+ for command in (b"\x85", b"\xAD"):
+ self.board.write(command)
+ self.stopped = True def wakeup(self):
+ for i in range(3):
+ self.brcpin.value = False
+ time.sleep(0.5)
+ self.brcpin.value = True
+ time.sleep(0.5)
+ self.brcpin.value = False
  time.sleep(0.5) self.stopped = False
 ```
 
@@ -65,21 +65,21 @@ quick [script](https://github.com/n0mn0m/bot_commander/tree/main/pi/button_liste
 via LoRa working in no time.
 
 ```python
-while True:  
- try:  
- if not startbutton.value:  
- msg = "Starting Roomba."  
- logger.info(msg)  
- rfm9x.send(bytes("1", "ascii"))  
- display.fill(0)  
- display.text(msg, 25, 15, 1)  
- elif not stopbutton.value:  
- msg = "Stopping Roomba."  
- logger.info(msg)  
- rfm9x.send(bytes("0", "ascii"))  
- display.fill(0)  
+while True:
+ try:
+ if not startbutton.value:
+ msg = "Starting Roomba."
+ logger.info(msg)
+ rfm9x.send(bytes("1", "ascii"))
+ display.fill(0)
  display.text(msg, 25, 15, 1)
-``` 
+ elif not stopbutton.value:
+ msg = "Stopping Roomba."
+ logger.info(msg)
+ rfm9x.send(bytes("0", "ascii"))
+ display.fill(0)
+ display.text(msg, 25, 15, 1)
+```
 
 The display on the bonnet was a nice touch so that I could watch the Feather in a terminal while the Pi let me know
 immediately which button was pressed and which command I should expect the Feather to receive.

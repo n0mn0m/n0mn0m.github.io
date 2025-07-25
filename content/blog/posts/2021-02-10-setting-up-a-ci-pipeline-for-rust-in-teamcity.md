@@ -29,18 +29,18 @@ Rust comes with a build tool and test runner built in via cargo. Running test is
 make use of a couple tools to get the cargo test output into a format that a CI tool parses. I ended getting test and
 coverage data in the junit and lcov formats that way various tools and platforms can be used across time and projects.
 
-* [grcov](https://github.com/mozilla/grcov)
-* [cargo2junit](https://github.com/johnterickson/cargo2junit)
+- [grcov](https://github.com/mozilla/grcov)
+- [cargo2junit](https://github.com/johnterickson/cargo2junit)
 
 ### Teamcity
 
 With those tools orchestrated via cargo make it's time to setup the build and test steps in Teamcity. Overall the
 process was pretty easy, but I ran into a couple bumps I'll highlight.
 
-* The cargo step doesn't support custom commands, so I don't use that by default
-* I wrote [CI.ps1](https://github.com/n0mn0m/artemis/tree/tools/CI.ps1) as a wrapper to use in
+- The cargo step doesn't support custom commands, so I don't use that by default
+- I wrote [CI.ps1](https://github.com/n0mn0m/artemis/tree/tools/CI.ps1) as a wrapper to use in
   each [step](https://github.com/n0mn0m/artemis/tree/.teamcity/settings.kts#n88).
-* Enable the [xml-report-plugin](https://github.com/n0mn0m/artemis/tree/.teamcity/settings.kts#n186)
+- Enable the [xml-report-plugin](https://github.com/n0mn0m/artemis/tree/.teamcity/settings.kts#n186)
   And with those two things the [pipeline](https://github.com/n0mn0m/artemis/tree/.teamcity/settings.kts) is ready
   to [go](https://teamcity.burningdaylight.io/). From there you may want to add your own environment variables, plugin,
   agent deps etc.
@@ -49,9 +49,9 @@ process was pretty easy, but I ran into a couple bumps I'll highlight.
 
 With this pipeline up an running the next steps are:
 
-* Setup build caching with something like [sccache](https://github.com/mozilla/sccache)
-* Work on local and CI build times
-* This has been [written](https://endler.dev/2020/rust-compile-times/) about
+- Setup build caching with something like [sccache](https://github.com/mozilla/sccache)
+- Work on local and CI build times
+- This has been [written](https://endler.dev/2020/rust-compile-times/) about
   a [number](https://blog.mozilla.org/nnethercote/2020/04/24/how-to-speed-up-the-rust-compiler-in-2020/)
   of [times](https://pingcap.com/blog/rust-compilation-model-calamity)
   I would need to make both of these better before taking the project further. As the project grows these would only get

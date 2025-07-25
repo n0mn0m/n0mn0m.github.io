@@ -1,5 +1,5 @@
 ---
-title: "EdgeRouter X DDNS with Gandi"
+title: EdgeRouter X DDNS with Gandi
 date: 2019-10-18
 page.meta.tags: homelab, dns, programming
 page.meta.categories: programming
@@ -19,20 +19,18 @@ work [here](https://github.com/georgr/erx-gandi-nat-ddns). Their README provides
 
 With the above script updated and working on my router the next thing to do was schedule it.
 
-
-> *Quick note only specific directories persist between firmware updates on the EdgeRouter. Because of this I suggest
-> putting the script above in **config/scripts/** or **config/user-data**.*The EdgeRouter OS provides a helper utility
+> \*Quick note only specific directories persist between firmware updates on the EdgeRouter. Because of this I suggest
+> putting the script above in **config/scripts/** or **config/user-data**.\*The EdgeRouter OS provides a helper utility
 > called task-scheduler which wraps cron. The benefit of task-schedule is that is saves our commands to config so they
 > persist through upgrades. ssh into your router:
 
 ```bash
-ssh <user>@<router>  
-configure  
-set system task-scheduler task ddnsupdate  
-set system task-scheduler task ddnsupdate crontab-spec '0 5 * * 0'  
-set system task-scheduler task ddnsupdate executable path '/config/user-data/'  
-commit  
-save  
+ssh <user>@<router>
+configure
+set system task-scheduler task ddnsupdate
+set system task-scheduler task ddnsupdate crontab-spec '0 5 * * 0'
+set system task-scheduler task ddnsupdate executable path '/config/user-data/'
+commit
+save
 cat /etc/cron.d/vyatta-crontab
 ```
-  

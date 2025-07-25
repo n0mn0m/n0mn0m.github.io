@@ -1,5 +1,5 @@
 ---
-title: "Kicking off Hardware Happy Hour 2020"
+title: Kicking off Hardware Happy Hour 2020
 date: 2020-02-01
 page.meta.tags: python, programming, hardware, embedded, adafruit, circuitpython
 page.meta.categories: programming

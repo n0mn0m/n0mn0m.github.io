@@ -1,5 +1,5 @@
 ---
-title: "Train All the Things — Model Training"
+title: Train All the Things — Model Training
 date: 2020-03-24
 page.meta.tags: python, programming, hackaday
 page.meta.categories: programming
@@ -14,23 +14,23 @@ I started by training using the keywords hi, smalltalk and on. This let me have 
 synthetic words. Although training went well:
 
 ```bash
-INFO:tensorflow:Saving to "/Users/n0mn0m/projects/on-air/voice-assistant/train/model/speechcommandstrain/tinyconv.ckpt-18000"  
-I0330 10:34:28.514455 4629171648 train.py:297] Saving to "/Users/n0mn0m/projects/on-air/voice-assistant/train/model/speechcommandstrain/tinyconv.ckpt-18000"  
-INFO:tensorflow:setsize=1445  
-I0330 10:34:28.570324 4629171648 train.py:301] setsize=1445  
-WARNING:tensorflow:Confusion Matrix:  
- [[231 3 3 0 4]  
- [ 2 178 6 29 26]  
- [ 3 12 146 2 2]  
- [ 4 17 2 352 21]  
- [ 2 16 7 16 361]]  
-W0330 10:34:32.116044 4629171648 train.py:320] Confusion Matrix:  
- [[231 3 3 0 4]  
- [ 2 178 6 29 26]  
- [ 3 12 146 2 2]  
- [ 4 17 2 352 21]  
- [ 2 16 7 16 361]]  
-WARNING:tensorflow:Final test accuracy = 87.8% (N=1445)  
+INFO:tensorflow:Saving to "/Users/n0mn0m/projects/on-air/voice-assistant/train/model/speechcommandstrain/tinyconv.ckpt-18000"
+I0330 10:34:28.514455 4629171648 train.py:297] Saving to "/Users/n0mn0m/projects/on-air/voice-assistant/train/model/speechcommandstrain/tinyconv.ckpt-18000"
+INFO:tensorflow:setsize=1445
+I0330 10:34:28.570324 4629171648 train.py:301] setsize=1445
+WARNING:tensorflow:Confusion Matrix:
+ [[231 3 3 0 4]
+ [ 2 178 6 29 26]
+ [ 3 12 146 2 2]
+ [ 4 17 2 352 21]
+ [ 2 16 7 16 361]]
+W0330 10:34:32.116044 4629171648 train.py:320] Confusion Matrix:
+ [[231 3 3 0 4]
+ [ 2 178 6 29 26]
+ [ 3 12 146 2 2]
+ [ 4 17 2 352 21]
+ [ 2 16 7 16 361]]
+WARNING:tensorflow:Final test accuracy = 87.8% (N=1445)
 W0330 10:34:32.116887 4629171648 train.py:322] Final test accuracy = 87.8% (N=1445)The model didn’t respond well once it was loaded onto the ESP-EYE. I tried a couple more rounds with other keywords and spectrogram samples with similar results.
 ```
 
@@ -57,22 +57,22 @@ TF [docs](https://www.tensorflow.org/lite/microcontrollers?hl=he) to represent t
 it onto the board with the rest of the program. Using idf monitor I was able to observe the model working as expected:
 
 ```shell
-I (31) boot: ESP-IDF v4.1  
-I (31) boot: compile time 13:35:43  
-I (704) wifi: config NVS flash: enabled  
-I (734) WIFI STATION: Setting WiFi configuration SSID Hallow...  
-I (824) WIFI STATION: wifiinitsta finished.  
-I (1014) TFLITEAUDIOPROVIDER: Audio Recording started  
-Waking up  
-Recognized on  
-I (20434) HTTPSHANDLING: HTTPS Status = 200, contentlength = 1  
-I (20434) HTTPSHANDLING: HTTPEVENTDISCONNECTED  
-I (20444) HTTPSHANDLING: HTTPEVENTDISCONNECTED  
-Going back to sleep.  
-Waking up  
-Recognized off  
-I (45624) HTTPSHANDLING: HTTPS Status = 200, contentlength = 1  
-I (45624) HTTPSHANDLING: HTTPEVENTDISCONNECTED  
+I (31) boot: ESP-IDF v4.1
+I (31) boot: compile time 13:35:43
+I (704) wifi: config NVS flash: enabled
+I (734) WIFI STATION: Setting WiFi configuration SSID Hallow...
+I (824) WIFI STATION: wifiinitsta finished.
+I (1014) TFLITEAUDIOPROVIDER: Audio Recording started
+Waking up
+Recognized on
+I (20434) HTTPSHANDLING: HTTPS Status = 200, contentlength = 1
+I (20434) HTTPSHANDLING: HTTPEVENTDISCONNECTED
+I (20444) HTTPSHANDLING: HTTPEVENTDISCONNECTED
+Going back to sleep.
+Waking up
+Recognized off
+I (45624) HTTPSHANDLING: HTTPS Status = 200, contentlength = 1
+I (45624) HTTPSHANDLING: HTTPEVENTDISCONNECTED
 I (45634) HTTPSHANDLING: HTTPEVENTDISCONNECTEDThis was an educational experiment. It helped me put some new tools in my belt while thinking further about the problem of voice and audio processing. I developed some [scripts](https://github.com/n0mn0m/on-air/tree/main/voice-assistant/train) to run through the full data generation, train and export cycle. Training will need to be done based on the architecture somebody is using, but hopefully it’s useful.
 ```
 

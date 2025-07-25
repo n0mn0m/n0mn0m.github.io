@@ -1,5 +1,5 @@
 ---
-title: "Train All the Things — Synthetic Generation"
+title: Train All the Things — Synthetic Generation
 date: 2020-03-19
 page.meta.tags: python, bash, programming, hackaday
 page.meta.categories: programming
@@ -28,15 +28,15 @@ using [espeak](http://espeak.sourceforge.net/) and [sox](http://sox.sourceforge.
 The first step was to generate the [phonemes](https://en.wikipedia.org/wiki/Phoneme) for the wake words:
 
 ```shell
-$ espeak -v en -X smalltalk  
+$ espeak -v en -X smalltalk
 ```
 
 then stored the phoneme in a word file that will be used by generate.sh.
 
 ```shell
-$ cat words  
-hi 001 
-busy 002 
+$ cat words
+hi 001
+busy 002
 free 003
 smalltalk 004
 ```
@@ -45,32 +45,32 @@ After modifying generate.sh from the spoken command repo (eliminating some extra
 generating more samples) I had everything I needed to synthetically generate a new labeled word dataset.
 
 ```bash
-#!/bin/bash  
-# For the various loops the variable stored in the index variable  
-# is used to attenuate the voices being created from espeak.*lastwordid=""cat words | while read word wordid phonemedo  
-echo $word  
-mkdir -p db/$word 
+#!/bin/bash
+# For the various loops the variable stored in the index variable
+# is used to attenuate the voices being created from espeak.*lastwordid=""cat words | while read word wordid phonemedo
+echo $word
+mkdir -p db/$word
 
-if [[ $word != $lastword ]]; then  
- versionid=0  
- fi 
- 
-lastword=$word 
+if [[ $word != $lastword ]]; then
+ versionid=0
+ fi
 
-# Generate voices with various dialects  
-for i in english english-north en-scottish englishrp englishwmids english-us en-westindies  
-do  
-    # Loop changing the pitch in each iteration  
-    for k in $(seq 1 99); do  
-        # Change the speed of words per minute  
-        for j in 80 100 120 140 160; do  
-            echo $versionid "$phoneme" $i $j $k  
-            echo "$phoneme" | espeak -p $k -s $j -v $i -w db/$word/$versionid.wav  
-            # Set sox options for Tensorflow  
-            sox db/$word/$versionid.wav -b 16 --endian little db/$word/tf$versionid.wav rate 16k  
-            ((versionid++))  
-        done  
-     done  
+lastword=$word
+
+# Generate voices with various dialects
+for i in english english-north en-scottish englishrp englishwmids english-us en-westindies
+do
+    # Loop changing the pitch in each iteration
+    for k in $(seq 1 99); do
+        # Change the speed of words per minute
+        for j in 80 100 120 140 160; do
+            echo $versionid "$phoneme" $i $j $k
+            echo "$phoneme" | espeak -p $k -s $j -v $i -w db/$word/$versionid.wav
+            # Set sox options for Tensorflow
+            sox db/$word/$versionid.wav -b 16 --endian little db/$word/tf$versionid.wav rate 16k
+            ((versionid++))
+        done
+     done
 done
 ```
 

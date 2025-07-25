@@ -1,5 +1,5 @@
 ---
-title: "What is ODBC Part 3 of 3"
+title: What is ODBC Part 3 of 3
 date: 2019-05-24
 page.meta.tags: odbc, database, python, programming
 page.meta.categories: programming
@@ -14,14 +14,14 @@ happening with ODBC. To do this with Python you should be running a version with
 via:
 
 ```python
-git clone git@github.com:python/cpython.git  
-mkdir debug  
-cd debug  
-../configure --with-pydebug  
-make  
+git clone git@github.com:python/cpython.git
+mkdir debug
+cd debug
+../configure --with-pydebug
+make
 make testAdditionally you will want to clone pyodbc so that we can make use of symbols.
 
-git clone git@github.com:mkleehammer/pyodbc.git  
+git clone git@github.com:mkleehammer/pyodbc.git
 CFLAGS='-Wall -O0 -g' python setup.py build
 ```
 
@@ -51,9 +51,9 @@ From here you can execute the application, use normal step, thread and frame fun
 steps or get additional dump file information. Some breakpoints I found interesting can be set with:
 
 ```bash
-breakpoint set --file connection.cpp --line 232  
-breakpoint set --file connection.cpp --line 52  
-breakpoint set --file cursor.cpp --line 1100  
+breakpoint set --file connection.cpp --line 232
+breakpoint set --file connection.cpp --line 52
+breakpoint set --file cursor.cpp --line 1100
 breakpoint set --file getdata.cpp --line 776runIn case it is helpful you can find an lldb to gdb map [here](https://lldb.llvm.org/use/map.html).
 ```
 

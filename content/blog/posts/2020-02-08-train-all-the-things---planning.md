@@ -1,5 +1,5 @@
 ---
-title: "Train All the Things - Planning"
+title: Train All the Things - Planning
 date: 2020-02-08
 page.meta.tags: hackaday, programming
 page.meta.categories: programming

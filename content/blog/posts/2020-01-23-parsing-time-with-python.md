@@ -1,5 +1,5 @@
 ---
-title: "Parsing Time with Python"
+title: Parsing Time with Python
 date: 2020-01-23
 page.meta.tags: python, programming
 page.meta.categories: programming
@@ -22,13 +22,13 @@ relating to that time information.
 ```bash
 #!/bin/bash
 
-SRCDIRPATH=/data  
-RESULTS=/profilefor file in $SRDDIRFILES; do  
- filename=$(basename -- "$file")  
- filebase="${filename%.*}"  
- echo $filebase  
- /usr/bin/time -v --output=$PROFILERESULTSDIR$filebase.txt cmd args  
- echo "done"  
+SRCDIRPATH=/data
+RESULTS=/profilefor file in $SRDDIRFILES; do
+ filename=$(basename -- "$file")
+ filebase="${filename%.*}"
+ echo $filebase
+ /usr/bin/time -v --output=$PROFILERESULTSDIR$filebase.txt cmd args
+ echo "done"
 donels -1sh $SRCDIRPATH &> profileddirectory.size
 ```
 
@@ -37,43 +37,43 @@ just a text blob not ready for aggregation. Overall parsing time is relatively s
 the below to translate the blob into rows and columns:
 
 ```python
-import os  
-from typing import Tuple, List, Any, Union  
-  
-def formattimeprofileoutput(fpath, fobject) -> List[Any]:  
- """  
- Takes a directory of files containing the output of /usr/bin/time  
- and transforms the time blob data to a series of rows and columns.  
- """  
- f = os.path.join(fpath, fobject)  
- timemetrics = [fobject] with open(f, "r") as tfile:  
- for line in tfile:  
-  if "Elapsed" not in line:  
-   cleanline = line.lstrip()  
-   metric, sep, value = cleanline.rpartition(":")  
-   timemetrics.append(value.strip())  
-  else:  
-   # Handling the special case of the Elapsed time  
-   # format using : in the time formatting.  
-   cleanline = line.lstrip()  
-   metric, sep, seconds = cleanline.rpartition(":")  
-   # we now have something like val = 43.45  
-   # metric = Elapsed (Wall Clock) time (H:MM:SS or M:ss) 1  
-   # partition again on metric, then combine back our time.  
-   metric, sep, minutes = metric.rpartition(":")  
-   # put time back into metrics  
-   value = f"{min}:{secs}"  
-   timemetrics.append(value.strip())  
-   # setup tool second metric for easier evaluation of  
-   # time metrics  
-   minutes = float(int(minutes) * 60)  
-   seconds = float(seconds)  
-   seconds += minutes  
-   timemetrics.append(seconds)  
+import os
+from typing import Tuple, List, Any, Union
+
+def formattimeprofileoutput(fpath, fobject) -> List[Any]:
+ """
+ Takes a directory of files containing the output of /usr/bin/time
+ and transforms the time blob data to a series of rows and columns.
+ """
+ f = os.path.join(fpath, fobject)
+ timemetrics = [fobject] with open(f, "r") as tfile:
+ for line in tfile:
+  if "Elapsed" not in line:
+   cleanline = line.lstrip()
+   metric, sep, value = cleanline.rpartition(":")
+   timemetrics.append(value.strip())
+  else:
+   # Handling the special case of the Elapsed time
+   # format using : in the time formatting.
+   cleanline = line.lstrip()
+   metric, sep, seconds = cleanline.rpartition(":")
+   # we now have something like val = 43.45
+   # metric = Elapsed (Wall Clock) time (H:MM:SS or M:ss) 1
+   # partition again on metric, then combine back our time.
+   metric, sep, minutes = metric.rpartition(":")
+   # put time back into metrics
+   value = f"{min}:{secs}"
+   timemetrics.append(value.strip())
+   # setup tool second metric for easier evaluation of
+   # time metrics
+   minutes = float(int(minutes) * 60)
+   seconds = float(seconds)
+   seconds += minutes
+   timemetrics.append(seconds)
  return timemetrics
 ```
 
-Notice the one edge case in Elapsed (wall clock) time...). All other rows end with \n and seperate the metric name from
+Notice the one edge case in Elapsed (wall clock) time...). All other rows end with \\n and seperate the metric name from
 the value with :. Elapsed wall clock time however throws in a couple extra colons for fun. Overall not a big deal, but a
 little gotcha waiting in the details when going from a string to another object/format.
 
@@ -84,12 +84,12 @@ A quick bonus script, since my application was reading in and writing out new fi
 input files so I could begin to understand the impact of the input file size on the applications time metrics.
 
 ```python
-import osdef formatsizeoutput(fpath, fobject) -> List[List[str]]:  
- f = os.path.join(fpath, fobject)  
- sizemetrics = [] with open(f, "r") as sfile:  
- for line in sfile:  
- metric, sep, filename = line.rpartition(" ")  
- sizemetrics.append([metric.strip(), filename.strip()])  
+import osdef formatsizeoutput(fpath, fobject) -> List[List[str]]:
+ f = os.path.join(fpath, fobject)
+ sizemetrics = [] with open(f, "r") as sfile:
+ for line in sfile:
+ metric, sep, filename = line.rpartition(" ")
+ sizemetrics.append([metric.strip(), filename.strip()])
  return sizemetrics[1:]
 ```
 

@@ -1,5 +1,5 @@
 ---
-title: "Finding good defaults"
+title: Finding good defaults
 date: 2021-03-23
 page.meta.tags: tools, programming
 page.meta.categories: programming
@@ -16,12 +16,12 @@ onboarding to new code bases as I change teams.
 I want to try out something new over the next few years, and that is finding good defaults. If I feel the need to
 tweak/change a tool out of the box, I’ll try other options. I have some theories around this.
 
-* Good defaults save us time
-* Don’t require extra conversations for team consensus
-* Help manage complexity
-* Build on expertise
-* Teach us to expect good defaults, and to build our software with good defaults
-* Good defaults help others join in
+- Good defaults save us time
+- Don’t require extra conversations for team consensus
+- Help manage complexity
+- Build on expertise
+- Teach us to expect good defaults, and to build our software with good defaults
+- Good defaults help others join in
 
 Against this list I also believe there is a counter culture around defaults wrapped up in programmer/hacker/software
 engineer reputation that drives us to distrust or question anything we haven’t pulled apart and customized. This creates

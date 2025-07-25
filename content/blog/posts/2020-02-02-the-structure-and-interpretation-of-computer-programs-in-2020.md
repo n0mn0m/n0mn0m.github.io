@@ -1,5 +1,5 @@
 ---
-title: "The Structure and Interpretation of Computer Programs in 2020"
+title: The Structure and Interpretation of Computer Programs in 2020
 date: 2020-02-02
 page.meta.tags: sicp, lisp, programming, abstraction
 page.meta.categories: programming

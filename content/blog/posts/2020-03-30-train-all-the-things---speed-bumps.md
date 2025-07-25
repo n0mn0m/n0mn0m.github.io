@@ -62,23 +62,23 @@ required.
 The example code:
 
 ```javascript
-esphttpclientconfigt config = {  
- .url = "http://httpbin.org/get",  
- .eventhandler = httpeventhandler,  
- .userdata = localresponsebuffer,  
-};  
-esphttpclienthandlet client = esphttpclientinit(&config);  
+esphttpclientconfigt config = {
+ .url = "http://httpbin.org/get",
+ .eventhandler = httpeventhandler,
+ .userdata = localresponsebuffer,
+};
+esphttpclienthandlet client = esphttpclientinit(&config);
 esperrt err = esphttpclientperform(client);
 ```
 
 And how I had to do it in C++:
 
 ```cpluscplus
-esphttpclientconfigt* config = (esphttpclientconfigt*)calloc(sizeof(esphttpclientconfigt), 1);  
-config->url = URL;  
-config->certpem = burningdaylightiorootcertpemstart;  
-config->eventhandler = httpeventhandler;esphttpclienthandlet client = esphttpclientinit(config);  
-esphttpclientsetmethod(client, HTTPMETHODPUT);  
+esphttpclientconfigt* config = (esphttpclientconfigt*)calloc(sizeof(esphttpclientconfigt), 1);
+config->url = URL;
+config->certpem = burningdaylightiorootcertpemstart;
+config->eventhandler = httpeventhandler;esphttpclienthandlet client = esphttpclientinit(config);
+esphttpclientsetmethod(client, HTTPMETHODPUT);
 esperrt err = esphttpclientperform(client);
 ```
 
@@ -89,12 +89,12 @@ I really enjoyed my lite trip into idf. It's an interesting set of components an
 appreciate. I wrote a couple aliases that somebody might find useful:
 
 ```bash
-alias adf="export ADFPATH=$HOME/projects/esp-adf"  
-alias idf-refresh="rm -rf $HOME/projects/esp-idf && git clone --recursive git@github.com:espressif/esp-idf.git $HOME/projects/esp-idf && $HOME/projects/esp-idf/install.sh"  
-alias idf=". $HOME/projects/esp-idf/export.sh"  
-alias idf3="pushd $HOME/projects/esp-idf && git checkout release/v3.3 && popd && . $HOME/projects/esp-idf/export.sh"  
-alias idf4x="pushd $HOME/projects/esp-idf && git checkout release/v4.0 && popd && . $HOME/projects/esp-idf/export.sh"  
-alias idf4="pushd $HOME/projects/esp-idf && git checkout release/v4.1 && popd && . $HOME/projects/esp-idf/export.sh"  
+alias adf="export ADFPATH=$HOME/projects/esp-adf"
+alias idf-refresh="rm -rf $HOME/projects/esp-idf && git clone --recursive git@github.com:espressif/esp-idf.git $HOME/projects/esp-idf && $HOME/projects/esp-idf/install.sh"
+alias idf=". $HOME/projects/esp-idf/export.sh"
+alias idf3="pushd $HOME/projects/esp-idf && git checkout release/v3.3 && popd && . $HOME/projects/esp-idf/export.sh"
+alias idf4x="pushd $HOME/projects/esp-idf && git checkout release/v4.0 && popd && . $HOME/projects/esp-idf/export.sh"
+alias idf4="pushd $HOME/projects/esp-idf && git checkout release/v4.1 && popd && . $HOME/projects/esp-idf/export.sh"
 alias idf-test="idf.py --port /dev/cu.SLABUSBtoUART flash monitor"And I look forward to writing more about esp as I continue to use it in new projects.
 ```
 

@@ -1,5 +1,5 @@
 ---
-title: "Connected Roomba - Wrapping Up"
+title: Connected Roomba - Wrapping Up
 date: 2019-08-04
 page.meta.tags: python, hackaday, hardware, circuitpython, programming
 page.meta.categories: programming
@@ -15,23 +15,23 @@ Similar to the Feather code I wrapped everything in a while loop, added exceptio
 that I could understand if errors are created by the OS, the code or something else:
 
 ```python
-import logging  
+import logging
 
-LOGFORMAT = "%(asctime)s:%(levelname)s:%(message)s"  
+LOGFORMAT = "%(asctime)s:%(levelname)s:%(message)s"
 
-logging.basicConfig(  
- filename="/home/pi/logs/button.log",  
- level=logging.INFO,  
- format=LOGFORMAT,  
- datefmt="%m/%d/%Y %I:%M:%S %p",  
-)  
+logging.basicConfig(
+ filename="/home/pi/logs/button.log",
+ level=logging.INFO,
+ format=LOGFORMAT,
+ datefmt="%m/%d/%Y %I:%M:%S %p",
+)
 
-logger = logging.getLogger(name)...if name == "main":  
-while True:  
- try:  
- ...  
- except BaseException as e:  
-  logger.exception(e)  
+logger = logging.getLogger(name)...if name == "main":
+while True:
+ try:
+ ...
+ except BaseException as e:
+  logger.exception(e)
  pass
 ```
 
@@ -39,9 +39,9 @@ And since this is running on Linux setting up cron to handle starting the applic
 away.
 
 ```bash
-sudo crontab -e@reboot cd /home/pi/ && /home/pi/.virtualenvs/lora-pi/bin/python /home/pi/projects/roombasupervisor/buttonlistener.py 2>&1 >> /home/pi/logs/button.log  
-@reboot cd /home/pi/ && /home/pi/.virtualenvs/lora-pi/bin/python /home/pi/projects/roombasupervisor/smslistener.py 2>&1 >> /home/pi/logs/sms.log  
-@reboot sleep 10 && cd /home/pi/ && /home/pi/ngrok http 5000 2>&1 >> /home/pi/logs/ngrok.log  
+sudo crontab -e@reboot cd /home/pi/ && /home/pi/.virtualenvs/lora-pi/bin/python /home/pi/projects/roombasupervisor/buttonlistener.py 2>&1 >> /home/pi/logs/button.log
+@reboot cd /home/pi/ && /home/pi/.virtualenvs/lora-pi/bin/python /home/pi/projects/roombasupervisor/smslistener.py 2>&1 >> /home/pi/logs/sms.log
+@reboot sleep 10 && cd /home/pi/ && /home/pi/ngrok http 5000 2>&1 >> /home/pi/logs/ngrok.log
 @reboot sleep 20 && curl http://127.0.0.1:4040/api/tunnels 2>&1 > /home/pi/logs/ngrokdetails.log
 ```
 

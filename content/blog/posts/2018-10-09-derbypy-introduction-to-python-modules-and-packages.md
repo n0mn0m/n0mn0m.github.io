@@ -21,47 +21,47 @@ underscore) attributes that define additional data about that module. We can use
 before we ever start to use it.
 
 ```python
-import pprintext  
-  
-print(pprintext.doc)  
-print(dir(pprintext))  
- A module providing extensions to pretty print structures that pprint may not handle well.  
-  
+import pprintext
+
+print(pprintext.doc)
+print(dir(pprintext))
+ A module providing extensions to pretty print structures that pprint may not handle well.
+
  ['builtins', 'cached', 'doc', 'file', 'loader', 'name', 'package', 'spec', 'listdirectory', 'os']From the output of dir() we can see there is a function called listdirectory that is part of this module.
 
-pprintext.listdirectory("plugins")  
-  
- plugins/  
- ipynb/  
- init.py  
- liquid.py  
- markup.py  
- requirements.txt  
- .git  
- README.md  
- ipynb.py  
- LICENSE  
- .gitignore  
- core.py  
- pycache/  
- core.cpython-36.pyc  
- init.cpython-36.pyc  
- markup.cpython-36.pyc  
- ipynb.cpython-36.pyc  
- tests/  
- pelican/  
- pelicanconfmarkup.py  
- pelicanconfliquid.py  
- theme/  
- templates/  
- base.html  
- content/  
- with-meta-file.ipynb-meta  
- with-liquid-tag.ipynb  
- with-metacell.ipynb  
- with-meta-file.ipynb  
+pprintext.listdirectory("plugins")
+
+ plugins/
+ ipynb/
+ init.py
+ liquid.py
+ markup.py
+ requirements.txt
+ .git
+ README.md
+ ipynb.py
+ LICENSE
+ .gitignore
+ core.py
+ pycache/
+ core.cpython-36.pyc
+ init.cpython-36.pyc
+ markup.cpython-36.pyc
+ ipynb.cpython-36.pyc
+ tests/
+ pelican/
+ pelicanconfmarkup.py
+ pelicanconfliquid.py
+ theme/
+ templates/
+ base.html
+ content/
+ with-meta-file.ipynb-meta
+ with-liquid-tag.ipynb
+ with-metacell.ipynb
+ with-meta-file.ipynb
  with-liquid-tag.md
- 
+
 ```
 
 Finally, we can see where we are importing this module from with .file and we see that this is a module local to our
@@ -79,20 +79,20 @@ Another way of saying this is:
 Just like we did with our module we can call dir() on our package to see associated attributes and objects.
 
 ```python
-import pprintextension  
-dir(pprintextension)  
-  
- ['all',  
- 'builtins',  
- 'cached',  
- 'doc',  
- 'file',  
- 'loader',  
- 'name',  
- 'package',  
- 'path',  
- 'spec',  
- 'network',  
+import pprintextension
+dir(pprintextension)
+
+ ['all',
+ 'builtins',
+ 'cached',
+ 'doc',
+ 'file',
+ 'loader',
+ 'name',
+ 'package',
+ 'path',
+ 'spec',
+ 'network',
  'pprintextension']
 ```
 
@@ -103,33 +103,33 @@ make a directory a package, but as of Python 3.3 thanks to pep-420 it is no long
 are provided at the end of the notebook.
 
 ```python
-help(pprintextension)  
-  
- Help on package pprintextension:  
-  
- NAME  
- pprintextension  
-  
- DESCRIPTION  
- A package providing functions to pretty print structures that may have alternative renderings from the standard  
- pprint package.  
-  
- PACKAGE CONTENTS  
- filesystem  
- network  
-  
- DATA  
- all = ['filesystem']  
-  
- FILE  
+help(pprintextension)
+
+ Help on package pprintextension:
+
+ NAME
+ pprintextension
+
+ DESCRIPTION
+ A package providing functions to pretty print structures that may have alternative renderings from the standard
+ pprint package.
+
+ PACKAGE CONTENTS
+ filesystem
+ network
+
+ DATA
+ all = ['filesystem']
+
+ FILE
  /home/alex/projects/modules-and-packages-into/pprintextension/init.pyAdditionally we can import modules from packages and refer to them directly instead of using the fully qualified namespacing syntax <package>.<module>.<object>
 
-from pprintextension import filesystem  
-filesystem.listhiddendirectory()  
-  
- ./  
- .ipynbcheckpoints/  
- .git/  
+from pprintextension import filesystem
+filesystem.listhiddendirectory()
+
+ ./
+ .ipynbcheckpoints/
+ .git/
  .idea/Packages go way beyond what we have covered here. As you build packages you want to consider their structure relative to the public API you’re creating. Publishing and distributing packages is a talk or series of talks on its own. For now what we have covered is how we can group modules together in a package and some basics for how to control the initialization behavior of a package.
 ```
 
@@ -140,17 +140,16 @@ I'll leave you with sys.path and you can begin exploring how this relates to our
 our application as well as those we might install with tools such as pip or conda.
 
 ```python
-import sys  
-sys.path  
-  
- ['',  
- '/home/alex/miniconda3/envs/blogging/lib/python36.zip',  
- '/home/alex/miniconda3/envs/blogging/lib/python3.6',  
- '/home/alex/miniconda3/envs/blogging/lib/python3.6/lib-dynload',  
- '/home/alex/miniconda3/envs/blogging/lib/python3.6/site-packages',  
- '/home/alex/miniconda3/envs/blogging/lib/python3.6/site-packages/IPython/extensions',  
+import sys
+sys.path
+
+ ['',
+ '/home/alex/miniconda3/envs/blogging/lib/python36.zip',
+ '/home/alex/miniconda3/envs/blogging/lib/python3.6',
+ '/home/alex/miniconda3/envs/blogging/lib/python3.6/lib-dynload',
+ '/home/alex/miniconda3/envs/blogging/lib/python3.6/site-packages',
+ '/home/alex/miniconda3/envs/blogging/lib/python3.6/site-packages/IPython/extensions',
  '/home/alex/.ipython']<https://docs.python.org/3/library/sys.html#sys.path>
 ```
 
 ### Additional Reading
-  

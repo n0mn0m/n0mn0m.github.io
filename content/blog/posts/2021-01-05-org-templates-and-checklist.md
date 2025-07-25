@@ -18,4 +18,3 @@ True to the goal, I’ve got a lot more consistent in my reviews and with captur
 checklist has been turned into a dotnet template that saves even more time.
 
 Yay checklist!
-  
