@@ -19,18 +19,22 @@ def test_feed_generation(test_content, test_config):
     posts_dir.mkdir(parents=True, exist_ok=True)
 
     post1 = posts_dir / "post1.md"
-    post1.write_text("""---
+    post1.write_text(
+        """---
 title: Test Post 1
 date: 2025-01-01
 # Test Post 1
-""")
+"""
+    )
 
     post2 = posts_dir / "post2.md"
-    post2.write_text("""---
+    post2.write_text(
+        """---
 title: Test Post 2
 date: 2025-02-01
 # Test Post 2
-""")
+"""
+    )
 
 
 def test_feed_includes_tags_and_categories(test_content, test_config):
@@ -48,14 +52,16 @@ def test_feed_includes_tags_and_categories(test_content, test_config):
     posts_dir.mkdir(parents=True, exist_ok=True)
 
     post = posts_dir / "post-tags-cats.md"
-    post.write_text("""---
+    post.write_text(
+        """---
 title: Tagged Post
 date: 2025-03-01
 tags: tag1, tag2
 categories: cat1, cat2
 ---
 # Tagged Post
-""")
+"""
+    )
 
     builder = Builder(config)
     builder.build()
@@ -112,20 +118,24 @@ def test_feed_order(test_content, test_config):
     config.output_dir.mkdir(parents=True, exist_ok=True)
 
     post1 = posts_dir / "post1.md"
-    post1.write_text("""---
+    post1.write_text(
+        """---
 title: Test Post 1
 date: 2025-01-01
 ---
 # Test Post 1
-""")
+"""
+    )
 
     post2 = posts_dir / "post2.md"
-    post2.write_text("""---
+    post2.write_text(
+        """---
 title: Test Post 2
 date: 2025-02-01
 ---
 # Test Post 2
-""")
+"""
+    )
 
     builder = Builder(config)
     builder.build()

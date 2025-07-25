@@ -14,17 +14,20 @@ def test_content(test_base_dir):
 
     # Create index.md
     index_md = content_dir / "index.md"
-    index_md.write_text("""---
+    index_md.write_text(
+        """---
 title: Test Site
 ---
 # Welcome to test site
-""")
+"""
+    )
 
     # Create a blog post
     posts_dir = content_dir / "blog" / "posts"
     posts_dir.mkdir(parents=True)
     post_md = posts_dir / "2025-07-21-test-post.md"
-    post_md.write_text("""---
+    post_md.write_text(
+        """---
 title: Test Post
 date: 2025-07-21
 page.meta.tags: test
@@ -32,7 +35,8 @@ page.meta.categories: testing
 ---
 # Test Post
 Test content
-""")
+"""
+    )
 
     return test_base_dir
 
@@ -97,7 +101,8 @@ def test_mermaid_block_rendering(test_content, test_config):
     # Add a post with both mermaid and python code blocks
     posts_dir = config.content_dir / "blog" / "posts"
     post_md = posts_dir / "2025-07-23-mermaid-test.md"
-    post_md.write_text("""---
+    post_md.write_text(
+        """---
 title: Mermaid Test
 date: 2025-07-23
 ---
@@ -112,7 +117,8 @@ graph TD;
 def foo():
     return 'bar'
 ```
-""")
+"""
+    )
     builder = Builder(config)
     builder.build()
     post_html_path = (
@@ -197,7 +203,8 @@ def test_blog_views_generation(test_content, test_config):
     posts_dir = config.content_dir / "blog" / "posts"
     posts_dir.mkdir(parents=True, exist_ok=True)
     post_md = posts_dir / "2025-07-21-test-post.md"
-    post_md.write_text("""---
+    post_md.write_text(
+        """---
 title: Test Post
 date: 2025-07-21
 tags: [testtag, another]
@@ -205,7 +212,8 @@ categories: [testing, python]
 ---
 # Test Post
 Test content
-""")
+"""
+    )
 
     builder = Builder(config)
     builder.build()

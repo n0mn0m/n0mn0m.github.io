@@ -13,14 +13,16 @@ def test_tags_and_categories_are_split(tmp_path):
     posts_dir = config.content_dir / "blog" / "posts"
     posts_dir.mkdir(parents=True, exist_ok=True)
     post_md = posts_dir / "2025-07-22-test.md"
-    post_md.write_text("""---
+    post_md.write_text(
+        """---
 title: Test Post
 tags: python, bash, programming, hackaday
 categories: programming, devops
 ---
 # Test Post
 Test content
-""")
+"""
+    )
     builder = Builder(config)
     builder.load_posts()
     post = builder.posts[0]

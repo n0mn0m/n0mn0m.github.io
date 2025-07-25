@@ -46,6 +46,6 @@ def test_blog_pagination_links(tmp_dist):
     href = page1_link[0].get("href")
     assert href == "/blog/", f"Page 1 link should be /blog/, got {href}"
     # There should NOT be a link to page-1.html
-    assert not any("1.html" in (a.get("href") or "") for a in links), (
-        "Should not link to 1.html for page 1"
-    )
+    assert not any(
+        "1.html" in (a.get("href") or "") for a in links
+    ), "Should not link to 1.html for page 1"

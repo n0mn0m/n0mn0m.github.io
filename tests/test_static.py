@@ -16,19 +16,23 @@ def test_static(tmp_path):
     css_dir = static_dir / "css"
     css_dir.mkdir()
     css_file = css_dir / "styles.css"
-    css_file.write_text("""
+    css_file.write_text(
+        """
 body {
     font-family: sans-serif;
 }
-""")
+"""
+    )
 
     # Create JS file
     js_dir = static_dir / "javascripts"
     js_dir.mkdir()
     js_file = js_dir / "main.js"
-    js_file.write_text("""
+    js_file.write_text(
+        """
 console.log('Hello World');
-""")
+"""
+    )
 
     return tmp_path
 
@@ -68,11 +72,13 @@ def test_static_update(test_static, test_config):
 
     # Modify CSS file
     css_file = Path(config.static_dir) / "css" / "styles.css"
-    css_file.write_text("""
+    css_file.write_text(
+        """
 body {
     font-family: serif;
 }
-""")
+"""
+    )
 
     builder.build()
 

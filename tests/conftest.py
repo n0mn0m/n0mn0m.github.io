@@ -14,7 +14,8 @@ def test_config(test_base_dir):
     """Create a test configuration."""
     # Create and write test config file
     config_file = test_base_dir / "test_config.toml"
-    config_file.write_text("""
+    config_file.write_text(
+        """
 [site]
 title = "Test Site"
 description = "A test site"
@@ -29,7 +30,8 @@ dist_dir = "dist"
 [feed]
 rss_path = "feed.xml"
 atom_path = "atom.xml"
-""")
+"""
+    )
 
     return config_file
 
@@ -54,11 +56,13 @@ def test_content(tmp_path):
 
     # Create index.md
     index_md = content_dir / "index.md"
-    index_md.write_text("""---
+    index_md.write_text(
+        """---
 title: Test Site
 ---
 # Welcome to test site
-This is a test site.""")
+This is a test site."""
+    )
 
     # Create blog posts directory
     posts_dir = content_dir / "blog" / "posts"
@@ -66,7 +70,8 @@ This is a test site.""")
 
     # Create a test post
     post_md = posts_dir / "2025-07-21-test-post.md"
-    post_md.write_text("""---
+    post_md.write_text(
+        """---
 title: Test Post
 date: 2025-07-21
 page.meta.tags: test
@@ -74,6 +79,7 @@ page.meta.categories: testing
 ---
 # Test Post
 
-This is a test post.""")
+This is a test post."""
+    )
 
     return tmp_path

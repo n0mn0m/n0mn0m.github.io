@@ -6,7 +6,8 @@ from minigen.config import Config
 def test_nested_config_loading(tmp_path):
     """Test loading config from nested TOML structure."""
     config_file = tmp_path / "test_config.toml"
-    config_file.write_text("""
+    config_file.write_text(
+        """
 [site]
 title = "Nested Site"
 description = "A nested site"
@@ -21,7 +22,8 @@ dist_dir = "mydist"
 [feed]
 rss_path = "rss.xml"
 atom_path = "atom.xml"
-""")
+"""
+    )
 
     config = Config.from_file(config_file)
     assert config.site_title == "Nested Site"
