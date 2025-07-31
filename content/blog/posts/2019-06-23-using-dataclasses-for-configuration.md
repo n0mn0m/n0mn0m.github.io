@@ -37,15 +37,15 @@ that I’m not really using.
 1. Class attribute autocomplete. I can’t tell you how many times I used to check if I had the right , casing,
    abbreviation etc for the key I was calling. Now it's a class attribute, no more guessing.
 1. Hook up mypy and find some interesting errors.
-1. Above you’ll notice I used os.environ\[\]. A lot of people like to use an alternative .get(<key>)pattern with
-   dictionaries. The problem is often times a default of None gets supplied and you're dealing with Optional\[T\], but
+1. Above you’ll notice I used os.environ[]. A lot of people like to use an alternative .get(<key>)pattern with
+   dictionaries. The problem is often times a default of None gets supplied and you're dealing with Optional[T], but
    still acting like it's str everywhere in your code.
 1. postinit
 1. Dataclasses have an interesting method
    called [postinit](https://docs.python.org/3/library/dataclasses.html#post-init-processing) that gets called by init.
    On configuration objects this is a handy place to put any validation function/method calls you might build around
    attributes.
-1. Subjectively elastic.user is faster to type, and more appealing to the eyes than elastic\["user"\].
+1. Subjectively elastic.user is faster to type, and more appealing to the eyes than elastic["user"].
    So the next time you find yourself passing around configuration information remember dataclasses may be a useful and
    productive alternative to passing around a dictionary.
 

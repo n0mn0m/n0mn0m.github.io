@@ -7,7 +7,7 @@ page.meta.categories: programming
 
 Last year I started working on a new React app. I was late to the React game, having only started using it with React 16
 I had experience with some existing React projects, but this was an opportunity to start something new. Additionally, I
-was starting out small with one focused use case, but if that was successful \[it was!\] the app would grow to encompass
+was starting out small with one focused use case, but if that was successful [it was!] the app would grow to encompass
 quite a few screens and tools.
 
 In the process of determining how state would be managed I wanted to test out using useContext and useReducer to see how
@@ -25,7 +25,7 @@ This is pretty trivial in Redux when using Redux Dev Tools. Add in using RTK Que
 have superpowers for understanding the state patterns in your app. With the time travel and state sharing capabilities
 built right into Redux Dev Tools you can snapshot a session, share it and walk back through each dispatched action in a
 way that almost feels like magic compared to other debugging experiences I’ve had over the
-years \[writing to the console, re-constructing state manually, browser debugger step by step\].
+years [writing to the console, re-constructing state manually, browser debugger step by step].
 
 And that’s one of the primary reasons I ended up using Redux in 2022. There are plenty of valid reasons to use other
 tools, but after all these years I accept that bugs and edge cases are going to happen. Knowing that I want tools that
