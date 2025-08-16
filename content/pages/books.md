@@ -26,6 +26,7 @@
     </ul>
     <h2>Life and Hobbies</h2>
     <ul>
+        <li><a href="https://en.wikipedia.org/wiki/Amusing_Ourselves_to_Death">Amusing Ourselves to Death</a></li>
         <li><a href="https://en.wikipedia.org/wiki/A_Different_Mirror">A Different Mirror</a></li>
         <li><a href="https://us.macmillan.com/books/9780374538668">Blockchain Chicken Farm</a></li>
         <li><a href="https://www.parktool.com/product/big-blue-book-of-bicycle-repair-4th-edition-bbb-4">The Big Blue Book of Bicycle Repair 4th Edition</a></li>
