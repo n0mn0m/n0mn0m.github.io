@@ -1,6 +1,6 @@
 ---
 title: Surprising Assertions
-date: 2025-07-02
+date: 2025-07-24
 page.meta.tags: programming, python, c
 page.meta.categories: programming
 ---

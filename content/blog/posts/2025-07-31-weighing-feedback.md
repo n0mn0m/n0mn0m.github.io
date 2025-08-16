@@ -1,6 +1,6 @@
 ---
 title: Weighing feedback
-date: 2025-07-02
+date: 2025-07-31
 page.meta.tags: projects, teams
 page.meta.categories: programming
 ---

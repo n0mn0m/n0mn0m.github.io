@@ -1,6 +1,6 @@
 ---
 title: Building and Maintaining Teams
-date: 2025-08-04
+date: 2025-08-05
 page.meta.tags: projects, teams
 page.meta.categories: projects
 ---
