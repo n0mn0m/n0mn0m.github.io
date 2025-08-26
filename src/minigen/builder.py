@@ -189,6 +189,7 @@ class Builder:
             "resume.md": ["programming", "resume"],
             "books.md": ["lists", "books"],
             "podcast.md": ["lists", "podcast"],
+            "links.md": ["lists", "links"],
             "me.md": ["me"],
         }
         for page_file in pages_dir.glob("*.md"):
