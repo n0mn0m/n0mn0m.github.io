@@ -23,7 +23,7 @@ understandable while seeing how the devices we use impact how we interpret the w
 In my spare time I enjoy tinkering with hardware, biking, swimming, cooking, playing music with Maris, and story telling with
 friends.
 
-If you want to chat you can send me a [message](%22mailto:alexander@burningdaylight.io%22), or
+If you want to chat you can send me a [message](%22mailto:alexander.hagerman@icloud.com%22), or
 [patch](%22https://github.com/n0mn0m/%22).
 
 My resume is available for [review](programming/resume.md), and I maintain a project list [here](programming/portfolio.md).

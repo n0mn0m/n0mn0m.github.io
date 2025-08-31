@@ -61,4 +61,4 @@ With this pipeline up an running the next steps are:
 
 That’s it for now. I learned a lot along the way about Rust, cargo, and hooking it up with Teamcity. I’m not sure I’ll
 have a write up on artemis anytime soon. It was a good project, but I ultimately took another path. Hopefully this helps
-somebody, and as always feel free to [reach out](mailto:alexander@burningdaylight.io).
+somebody, and as always feel free to [reach out](mailto:alexander.hagerman@icloud.com).

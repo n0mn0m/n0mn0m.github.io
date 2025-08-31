@@ -8,7 +8,7 @@ page.meta.categories: reading
 I read a lot of books this year, but rarely write anything up after finishing them. While I don’t think I have enough to
 say about any one book after my first read, I want to capture a sentence or two about them to look back on, and to share
 with others. If I mention a book here that you want to talk about send me
-a [message](mailto:alexander@burningdaylight.io).
+a [message](mailto:alexander.hagerman@icloud.com).
 
 ### Q4 2020 List
 

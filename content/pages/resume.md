@@ -1,6 +1,6 @@
 <div id="root">
     <article style="padding: 20px;"><h1 style="text-align: center;">Alexander Hagerman</h1>
-        <div style="text-align: center; padding: 0px;"><a href="mailto:alexander@burningdaylight.io?subject=Resume">alexander@burningdaylight.io</a>
+        <div style="text-align: center; padding: 0px;"><a href="mailto:alexander.hagerman@icloud.com?subject=Resume">alexander.hagerman@icloud.com</a>
         </div>
         <div style="text-align: center; font-weight: bold;">Portfolios: <a href="/programming/portfolio">burningdaylight</a>&nbsp;|&nbsp;<a
                 href="https://github.com/n0mn0m" target="_blank" rel="noreferrer nofollow">github</a></div>
