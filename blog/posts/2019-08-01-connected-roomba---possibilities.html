@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connected Roomba - Possibilities - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>Connected Roomba - Possibilities</h1>
+        
+        <time datetime="2019-08-01">
+            August 01, 2019
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/python/">python</a>
+            
+            <a href="/tags/hackaday/">hackaday</a>
+            
+            <a href="/tags/hardware/">hardware</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>A couple years ago at PyCon I received a kit from Adafruit containing
+the <a href="https://www.adafruit.com/product/2769">Circuit Playground Express</a>. After going through the Hello World examples I
+boxed it up I didn’t have a project ready to go. Fast forward to the winter of 2018 when I decided I would like to be
+able to start our Roomba away from home because of the noise it makes, and suddenly I had the project I was looking for.
+Digging around I found out about
+the <a href="https://www.irobotweb.com/%7E/media/MainSite/PDFs/About/STEM/Create/iRobot_Roomba_600_Open_Interface_Spec.pdf">Roomba Open Interface</a>
+and set out to start talking to my Roomba with <a href="https://circuitpython.org/">CircuitPython</a>.</p>
+<h3 id="will-this-work">Will this work</h3>
+<p>After reading through the Open Interface spec I decided it should be possible for me to control the Roomba by using the
+Circuit Playground Express that I had waiting on the shelf. Getting the kit out and using the clips available I
+connected the Playground Express TX to the Roomba RX, opened a REPL and tried to wake the Roomba, but received no
+response.</p>
+<p>After some more searching
+I <a href="https://robotics.stackexchange.com/questions/18302/irobot-600-series-oi-wake-from-sleep-via-brc">found out</a> that
+certain series firmware will not respond to wake commands after 5 minutes without a signal. Knowing this, and pressing
+the power button once to wake the Roomba, I was able to START, STOP and DOCK the Roomba with controller code running on
+the Playground Express.</p>
+<p><img alt="" src="../../img/blog/1b31hiO4ynbDLRrXWEFF4aQ.png" /></p>
+<h3 id="next-steps">Next steps</h3>
+<p>After spending some more time confirming command structures, documentation and behavior between CircuitPython and the
+Roomba Open Interface I decided to make things easier by building a <a href="https://pypi.org/project/circuitroomba/">package</a>
+to abstract the interactions. With basic wiring and command functionality confirmed I decided it was time to start
+looking at making remote signalling covered in part 2.</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

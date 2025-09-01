@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train All the Things — Version 0.1 - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>Train All the Things — Version 0.1</h1>
+        
+        <time datetime="2020-03-28">
+            March 28, 2020
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/python/">python</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+            <a href="/tags/esp/">esp</a>
+            
+            <a href="/tags/tensorflow/">tensorflow</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>My first commit to on-air shows March 3, 2020. I know that the weeks leading up to that commit I spent some time reading
+through the TF Lite documentation, playing with Cloudflare Workers K/V and getting my first setup of esp-idf squared
+away. After that it was off to the races. I outlined my original goal in
+the <a href="https://burningdaylight.io/posts/train-all-the-things-planning/">planning</a> post. I didn't quite get to that goal.
+The project currently doesn't have a VAD to handle the scenario where I forget to activate the display before starting a
+call or hangout. Additionally I wasn't able to train a custom keyword as highlighted in
+the <a href="https://burningdaylight.io/posts/train-all-the-things-custom-model/">custom model</a> post. I was however able to get
+a functional implementation of the concept. I am able to hang the display up, and then in my lab with the ESP-EYEplugged
+in I can use the wake word visual followed by on/off to toggle the display status.</p>
+<p><img alt="" src="../../img/blog/0C-2uoh95x7lHo8Fk.gif" /></p>
+<p><img alt="" src="../../img/blog/0ygsQSW9CnHHNsacv.gif" /></p>
+<p>While it’s not quite what I had planned it’s a foundation. I’ve got a lot more tools and knowledge under my belt. Round
+2 will probably involved <a href="https://github.com/espressif/esp-skainet">Skainet</a> just due to the limitations in voice data
+that’s readily available. Keep an eye out for a couple more post highlighting some bumps along the way and summary of
+lessons learned.</p>
+<p>The code, docs, images etc for the project can be found <a href="https://github.com/n0mn0m/on-air">here</a> and I’ll be posting any
+further updates to <a href="https://hackaday.io/project/170228-on-air">HackadayIO</a>. For anybody that might be interested in
+building this the instructions below provide a brief outline. Updated versions will be hosted in
+the <a href="https://github.com/n0mn0m/on-air/tree/main/docs">repo</a>. If you have any questions or ideas
+reach <a href="mailto:alexander.hagerman@icloud.com">out</a>.</p>
+<p><strong>Required Hardware:</strong></p>
+<ol>
+<li><a href="https://www.espressif.com/en/products/hardware/esp-eye/overview">ESP-EYE</a></li>
+<li>Optional <a href="https://www.thingiverse.com/thing:3586384">ESP-EYE case</a></li>
+<li><a href="https://www.adafruit.com/product/4116">PyPortal</a></li>
+<li>Optional <a href="https://www.thingiverse.com/thing:3469747">PyPortal case</a></li>
+<li>Two 3.3v usb to outler adapters and two usb to usb mini cables</li>
+</ol>
+<p>OR</p>
+<ol>
+<li>Two 3.3v micro usb wall outlet chargers</li>
+</ol>
+<p>Build Steps:</p>
+<ol>
+<li>Clone the <a href="https://github.com/n0mn0m/on-air">on-air</a> repo.</li>
+</ol>
+<p>Cloudflare Worker:</p>
+<ol>
+<li>Setup <a href="https://www.cloudflare.com/dns/">Cloudflare</a> DNS records for your domain and endpoint, or setup a
+   new <a href="https://www.cloudflare.com/products/registrar/">domain</a> with Cloudflare if you don’t have one to resolve the
+   endpoint.</li>
+<li>Setup a <a href="https://workers.cloudflare.com/">Cloudflare workers</a> account with worker K/V.</li>
+<li>Setup the <a href="https://developers.cloudflare.com/workers/tooling/wrangler">Wrangler</a> CLI tool.</li>
+<li>cd into the on-air/sighandler directory.</li>
+<li>Update <a href="https://github.com/n0mn0m/on-air/tree/main/sighandler/wrangler.toml">toml</a></li>
+<li>Run wrangler preview</li>
+<li>wrangler publish</li>
+<li>Update <a href="https://github.com/n0mn0m/on-air/tree/main/sighandler/Makefile">Makefile</a> with your domain and test calling.</li>
+</ol>
+<p>PyPortal:</p>
+<ol>
+<li>Setup CircuitPython 5.x on the <a href="https://circuitpython.org/board/pyportal/">PyPortal</a>.</li>
+<li>If you’re new to CircuitPython you
+   should <a href="https://learn.adafruit.com/welcome-to-circuitpython/circuitpython-essentials">read</a> this first.</li>
+<li>Go to the directory where you cloned on-air.</li>
+<li>cd into display.</li>
+<li>Update <a href="https://github.com/n0mn0m/on-air/tree/main/display/secrets.py">secrets.py`</a> with your wifi information and
+   status URL endpoint.</li>
+<li>Copy code.py, secrets.py and the bitmap files in screens/ to the root of the PyPortal.</li>
+<li>The display is now good to go.</li>
+</ol>
+<p>ESP-EYE:</p>
+<ol>
+<li>Setup <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/">esp-idf</a> using the 4.1 release
+   branch.</li>
+<li>Install <a href="http://espeak.sourceforge.net/">espeak</a> and <a href="http://sox.sourceforge.net/">sox</a>.</li>
+<li>Setup a Python 3.7 virtual environment and install Tensorflow 1.15.</li>
+<li>cd into on-air/voice-assistant/train</li>
+<li>chmod +x orchestrate.sh and ./orchestrate.sh</li>
+<li>Once training completes cd ../smalltalk</li>
+<li>Activate the esp-idf tooling so that $IDFPATH is set correctly and all requirements are met.</li>
+<li>idf.py menuconfig and set your wifi settings.</li>
+<li>Update the URL
+   in <a href="https://github.com/n0mn0m/on-air/tree/main/voice-assistant/smalltalk/main/http/togglestatus.cc">toggle\status.cc</a></li>
+<li>This should match the host and endpoint you deployed the Cloudflare worker to above</li>
+<li>idf.py build</li>
+<li>idf.py --port \<device port> flash monitor</li>
+<li>You should see the device start, attach to WiFi and begin listening for the wake word “visual” followed by “on” or
+   “off”.</li>
+</ol>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

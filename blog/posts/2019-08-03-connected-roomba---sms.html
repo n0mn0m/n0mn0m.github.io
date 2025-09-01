@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connected Roomba - SMS - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>Connected Roomba - SMS</h1>
+        
+        <time datetime="2019-08-03">
+            August 03, 2019
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/python/">python</a>
+            
+            <a href="/tags/hackaday/">hackaday</a>
+            
+            <a href="/tags/hardware/">hardware</a>
+            
+            <a href="/tags/circuitpython/">circuitpython</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>As I mentioned before one of the primary reasons for starting this project was to let my wife and I start the Roomba
+when we are not at home. One device that most of us take everywhere is our phone. An easy way to to send information
+from your phone without a custom app, stack and hassle is SMS. While it’s easy to broadcast receiving that message can
+take a little work.</p>
+<h3 id="twilio">Twilio</h3>
+<p>Luckily monitoring a number for messages is pretty much a solved problem. Twilio offers an easy way to setup number with
+an attached webhook for receiving and sending messages. They also have a
+nice <a href="https://www.twilio.com/docs/quickstart/python">Python tutorial</a>that had me up and running in about 10 minutes.
+Since I was already using the Pi Zero to send commands to the Roomba setting up a script to watch for an SMS message and
+pass on the new command was simple enough.</p>
+<p>
+<pre><code class="language-python">import busio
+import board
+import adafruitrfm9x
+from digitalio import DigitalInOut
+from flask import Flask, request
+from twilio.twiml.messagingresponse import MessagingResponseCS = DigitalInOut(board.CE1)
+
+RESET = DigitalInOut(board.D25)
+spi = busio.SPI(board.SCK, MOSI=board.MOSI, MISO=board.MISO)
+rfm9x = adafruitrfm9x.RFM9x(spi, CS, RESET, 433.0)
+rfm9x.txpower = 23app = Flask(name)
+
+@app.route(&quot;/sms&quot;, methods=[&quot;GET&quot;, &quot;POST&quot;])
+def smsstartroomba():
+  &quot;&quot;&quot;
+  When a message is received determine which
+  signal to send the Roomba and reply
+  to the sender.
+  &quot;&quot;&quot;** *txt = request.values.get(&quot;Body&quot;).lower() if txt == &quot;start&quot;:
+  msg = &quot;Starting the Roomba.&quot;
+  cmd = bytes(&quot;1&quot;, &quot;ascii&quot;)
+  elif txt == &quot;halt&quot;:
+  msg = &quot;Stopping the Roomba.&quot;
+  cmd = bytes(&quot;0&quot;, &quot;ascii&quot;)
+  elif txt == &quot;dock&quot;:
+  msg = &quot;Roomba beginning to dock.&quot;
+  cmd = bytes(&quot;2&quot;, &quot;ascii&quot;)
+  else:
+  msg = &quot;Unknown command. Continuing.&quot;
+  cmd = None if cmd:
+  rfm9x.send(cmd) resp = MessagingResponse()
+  resp.message(msg) return str(resp)
+
+if name == &quot;main&quot;:
+ app.run(debug=False)
+</code></pre>
+</p>
+<p>And with that the same board I had used to test sending messages in response to button clicks can now receive SMS
+payloads and translate that into a command that the Feather will use to start, stop or dock the Roomba.</p>
+<h3 id="next-steps">Next Steps</h3>
+<p>With all the pieces assembled and working the last thing to do for version 1 was setup some redundancy, restart
+everything and make sure it all worked as expected without my intervention.</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

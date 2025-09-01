@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train All the Things - Planning - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>Train All the Things - Planning</h1>
+        
+        <time datetime="2020-02-08">
+            February 08, 2020
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/hackaday/">hackaday</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>Earlier this year Hackaday announced
+the <a href="https://hackaday.io/contest/169421-train-all-the-things#j-discussions-title">Train all the Things</a> contest. I
+immediately knew I wanted to submit something, but figuring out what to build took me a little bit. For my side projects
+I like to make something that is useful to me, or somebody I know; while also learning something new. A few days after
+the contest was announced my daughter was in the basement playing outside my office/homelab when I remembered my wife
+had asked me if there was a way for her to know when I was working with somebody so that they could avoid coming down in
+the basement. I thought a voice driven display could be a fun solution.</p>
+<h3 id="choosing-tools">Choosing Tools</h3>
+<p>After deciding on the project the next thing I wanted to figure out was what new boards I would need (if any) and how I
+would build my model. After doing some research I landed
+on <a href="https://www.tensorflow.org/lite/microcontrollers">Tensorflow</a> as my path forward for deploying a model to a
+microcontroller. Having used Tensorflow the barrier for model creation is a bit lower, but I am really curious about
+Tensorflow Lite and the potential it provides. Additionally a relatively new book <a href="https://tinymlbook.com/">TinyML</a>
+looks like a good resource to use along the way.</p>
+<p>After settling on TF Lite the next thing was picking a board. Most of my embedded experience has been with CircuitPython
+and Rust. For this project I thought it would be fun to learn something new. The Espressif ESP-EYE caught my eye as an
+interesting board known to work with TF Lite. I’ve seen the ESP32 and 8266 in a lot of other projects, so learning the
+ESP toolchain seems valuable. Additionally a lot of the Espressif ecosystem seems to be built around FreeRTOS which
+provides a whole other avenue of learning and hacking.</p>
+<p>Finally I will need a way to let somebody know when the model has picked up voice activity, to signal that I’m currently
+busy in the lab. The ESP32 has a WiFi chip providing the ability to send and receive signals via TCP if we want. The
+ESP-EYE has that built in, and I happend to have a PyPortal (with an ESP32) that could make a great display checking for
+a status using WiFi too. To signal from one to the other I decided to have some fun and use Cloudflare Workers K/V to
+set a bit from the ESP-EYE that would be read by the PyPortal at a given time interval to set the display.</p>
+<p>Putting it all together the initial idea looks something like this:</p>
+<p><img alt="" src="../../img/blog/07Ex2dh4NkgBHiLFg.jpg" /></p>
+<p>Which allows me to have a small board in my homelab listening and the display above the stairwell where somebody can get
+a status update before they ever come down.</p>
+<p>The code, docs, images etc for the project can be found <a href="https://github.com/n0mn0m/on-air">here</a> and I’ll be posting
+updates as I continue along to <a href="https://hackaday.io/project/170228-on-air">HackadayIO</a> and this blog. If you have any
+questions or ideas reach <a href="mailto:alexander.hagerman@icloud.com">out</a>.</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

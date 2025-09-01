@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roll your own git hook - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>Roll your own git hook</h1>
+        
+        <time datetime="2020-10-18">
+            October 18, 2020
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/git/">git</a>
+            
+            <a href="/tags/shell/">shell</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>As part of setting up <a href="https://burningdaylight.io/posts/resharper-global-tools/">tools</a> to run in our CI pipeline I also
+setup a git pre-push<a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks">hook</a> to run the same tools automatically
+in the local context. Git provides a variety of hooks as documented in the scm book, and they can be used to reliably
+automate different parts of your workflow.</p>
+<p><em>In addition to the official docs </em><a href="https://githooks.com/"><em>this</em></a><em> page has a nice summary</em></p>
+<h3 id="code">Code</h3>
+<p>The pre-push hook I built for our project looks like:</p>
+<p>
+<pre><code class="language-shell">#!/bin/sh
+PROJECTROOT=$(git rev-parse --show-toplevel)
+echo &quot;Running pre-push hook for${PROJECTROOT}&quot;
+dotnet restore $PROJECTROOTecho &quot;Running resharper formatter&quot;
+dotnet jb cleanupcode --verbosity=ERROR --config=$PROJECTROOT/.config/cleanup --settings=$PROJECTROOT/.editorconfig --no-buildin-settings $PROJECTROOT/AMS.sln
+formatted=$(git status --porcelain=v1 2&gt;/dev/null | wc -l)
+
+$formatted
+echo &quot;Running dotnet resharper inspector&quot;
+dotnet jb inspectcode --verbosity=ERROR AMS.sln -p=$PROJECTROOT/.editorconfig -o=$PROJECTROOT/reports/resharperInspect.xmlpwsh $PROJECTROOT/tools/CheckResharperInspection.ps1
+
+if [[ $? -eq 0 ]]
+then
+ echo &quot;Running resharper dupe finder&quot;
+else
+ echo &quot;Inspector Errors Found&quot;
+ exit $?
+fi
+
+dotnet jb dupfinder --verbosity=ERROR AMS.sln -o=$PROJECTROOT/reports/resharperDupFinder.xmlpwsh $PROJECTROOT/tools/CheckDupeFinder.ps1
+
+if [[ $? -eq 0 ]]
+then
+ echo &quot;Running dotnet test&quot;
+else
+ echo &quot;Dupe Errors Found&quot;
+ exit $?
+fi
+
+dotnet cake --target=docker-bg
+dotnet cake --target=dotnet-test
+
+if [[ $? -eq 0 ]]
+then
+ dotnet cake --target=docker-down
+ echo &quot;Go go go!&quot;
+else
+ dotnet cake --target=docker-down
+ echo &quot;Test failed&quot;
+ exit 1
+fi
+</code></pre>
+</p>
+<p>The first thing that should stand out is that this is just a shell script. Git hooks are just that, making it easy to
+use shell, python, powershell or other tools with your hook. Write the script, link it to .git/hooks.</p>
+<h3 id="script-breakdown">Script Breakdown</h3>
+<p>In this script the first thing I do is find the root of our project. This makes it easy to reference paths in a manner
+compatible with scripts and tools that are used throughout in other parts of our workflow.</p>
+<h3 id="install">Install</h3>
+<p>Since the hook above is just a shell script I like to keep it (and other hooks) in a tools subdirectory in the root
+project directory. Because git expects hooks to be under .git/hooks we can make it executable with a symlink.</p>
+<p>
+<pre><code class="language-shell">ln -s -f ../../tools/pre-push.sh .git/hooks/pre-pushWith this in place we get feedback before each push so that we don’t have to correct linting issues later, and we have can be confident our commit(s) will run through CI successfully.
+</code></pre>
+</p>
+<h3 id="wrapping-up">Wrapping Up</h3>
+<p>While you may have heard of projects like <a href="https://pre-commit.com/">pre-commit</a>
+or <a href="https://typicode.github.io/husky/#/">husky</a> rolling your own hook is relatively straight forward. While wrappers may
+help with complex hook setups I personally like the low amount of indirection and abstraction that helps with debugging
+when rolling your own.</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,16 @@
+.portfolio-item {
+    position: relative;
+    margin: 0;
+    padding-bottom: 1em;
+    padding-left: 20px;
+}
+
+.portfolio-item::before {
+    content: '';
+    background-color: black;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 6px;
+    width: 3px;
+}

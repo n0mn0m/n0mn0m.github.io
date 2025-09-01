@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EdgeRouter X Home VPN Setup Pt 1 - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>EdgeRouter X Home VPN Setup Pt 1</h1>
+        
+        <time datetime="2019-10-18">
+            October 18, 2019
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/homelab/">homelab</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>Recently I got the itch to setup a VPN for my home network to access my device lab on the go, or share with others. My
+home setup isn’t too complicated, but it’s a bit different from other setups I found when I started down this path.</p>
+<p><strong>Network Components: Arris Surfboard SB6141, Ubiquiti EdgeRouter X, Ubiquiti AmplifiHD</strong></p>
+<p>**I am not a network or sysadmin by day. This is something I’m actively learning on and figuring out. If you see
+something wrong or have suggestions I would love to hear about it. **<a href="mailto:alexander.hagerman@icloud.com"><strong>Reach out.</strong></a></p>
+<h3 id="preparing-the-network">Preparing the network</h3>
+<p>As my starting point I had used the EdgeRouter wizard for initial setup way back when. The default places the network in
+the 192.168.1.0/24 range which should be changed to prevent a conflict for devices on remote networks. To add a new dhcp
+server handing out address in a new range we will use the ubiquiti ui.</p>
+<p>To start login to the ubiquiti ui and navigate to the Services tab.</p>
+<p><img alt="" src="../../img/blog/0jrgqlMGhncAE9gc3.png" /></p>
+<p>From here you can see + Add DHCP Server on the left side of the screen.</p>
+<p><img alt="" src="../../img/blog/0ZZcInjSyTUYBaR9N.png" /></p>
+<p>Select Add and configure a new DHCP server leasing addresses in a new range ( 192.168.<x>.0).</p>
+<p><img alt="" src="../../img/blog/0y2M6lWwPQp5HixGe.png" /></p>
+<p>With this setup the next thing to do is test it works before removing the old DHCP server settings.</p>
+<p>Return to your Dashboard, and locate the switch0 interface. To the far right you should see an actions button.</p>
+<p><img alt="" src="../../img/blog/08rl1fzwIDLKRFWfl.png" /></p>
+<p>Click, select config, and add a manually configured IP for the dhcp server you just configured (192.168.x.1). With
+switch0 talking to our new network range return to the Services tab. Click actions on the original DHCP server, select
+disable, and then logout.</p>
+<p>Now you can log back in on the new network range 192.168.x.1. Login, select switch0 from the Dashboardtab as we did
+earlier, and remove the original DHCP server. For any devices on your network that were active you will need to do a
+dhclient -r; dhclient to refresh your device (on *nix) ip and lease in the new range.</p>
+<h3 id="next-steps">Next Steps</h3>
+<p>With the network configured we are now ready to install and setup wireguard Since this has already ran a bit long in the
+tooth part 2 can be found <a href="https://burningdaylight.io/posts/edgerouter-x-vpn-setup-prt-two/">here</a>.</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

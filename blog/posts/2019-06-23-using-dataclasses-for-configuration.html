@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using Dataclasses for Configuration - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>Using Dataclasses for Configuration</h1>
+        
+        <time datetime="2019-06-23">
+            June 23, 2019
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/python/">python</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>Introduced in Python 3.7 dataclasses are normal Python classes with some extra features for carrying around data and
+state. If you find yourself writing a class that is mostly attributes it's a dataclass.</p>
+<p>Dataclasses have some other nifty features out of the box such as default double underscore methods, type hinting, and
+more.</p>
+<p>For more information checkout the <a href="https://docs.python.org/3/library/dataclasses.html">docs</a>.</p>
+<h3 id="dataclasses-as-configuration-objects">Dataclasses as configuration objects</h3>
+<p>Recently I’ve had the opportunity to work on a couple of Python 3.7 projects. In each of them I was interacting with
+many databases and API Endpoints. Towards the beginning of one of the projects I did something like this:</p>
+<p>
+<pre><code class="language-python">elasticconfig = {&quot;user&quot;: os.environ[&quot;ESUSER&quot;],
+ &quot;endpoint&quot;: os.environ[&quot;ESENDPOINT&quot;],
+ ...
+ }When I checked in the code I had been working on one of the reviewers commented that this pattern was normal, but since we were using 3.7 let’s use a dataclass.
+
+import os
+from dataclasses import dataclass@dataclass
+class ElasticConfiguration:
+ user: str = os.environ[&quot;ESUSER&quot;]
+ endpoint: str = os.environ[&quot;ESENDPOINT&quot;]
+</code></pre>
+</p>
+<p>...Makes sense, but what’s the practical benefit? Before I wasn’t defining a class and carrying around the class model
+that I’m not really using.</p>
+<ol>
+<li>Class attribute autocomplete. I can’t tell you how many times I used to check if I had the right , casing,
+   abbreviation etc for the key I was calling. Now it's a class attribute, no more guessing.</li>
+<li>Hook up mypy and find some interesting errors.</li>
+<li>Above you’ll notice I used os.environ[]. A lot of people like to use an alternative .get(<key>)pattern with
+   dictionaries. The problem is often times a default of None gets supplied and you're dealing with Optional[T], but
+   still acting like it's str everywhere in your code.</li>
+<li>postinit</li>
+<li>Dataclasses have an interesting method
+   called <a href="https://docs.python.org/3/library/dataclasses.html#post-init-processing">postinit</a> that gets called by init.
+   On configuration objects this is a handy place to put any validation function/method calls you might build around
+   attributes.</li>
+<li>Subjectively elastic.user is faster to type, and more appealing to the eyes than elastic["user"].
+   So the next time you find yourself passing around configuration information remember dataclasses may be a useful and
+   productive alternative to passing around a dictionary.</li>
+</ol>
+<h3 id="additional-resources">Additional Resources</h3>
+<p>Beyond the docs here are some links I found useful when learning about Python dataclasses.</p>
+<ul>
+<li><a href="https://realpython.com/python-data-classes/">Real Python: Dataclasses</a></li>
+<li><a href="https://stackoverflow.com/questions/47955263/what-are-data-classes-and-how-are-they-different-from-common-classes">Stack Overflow: What’s the difference between a class and data class</a></li>
+<li><a href="https://hackernoon.com/a-brief-tour-of-python-3-7-data-classes-22ee5e046517">Hackernoon: Dataclasses tour</a></li>
+</ul>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

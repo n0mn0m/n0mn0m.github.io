@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting started with Resharper Global Tools - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>Getting started with Resharper Global Tools</h1>
+        
+        <time datetime="2020-10-11">
+            October 11, 2020
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/C#/">C#</a>
+            
+            <a href="/tags/tools/">tools</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>For a while now I’ve been interested in build tools, CI and code quality. I think I got a taste for it as a member of
+the PyMSSQL project and it has continued on from there. Recently I worked on the initial CI setup for a C# project. As
+part of the setup I took the time to look at what lint and analysis tools we wanted to integrate into our project.</p>
+<p>For C# some of the more common tools appear to be:</p>
+<ul>
+<li>
+<p><a href="https://github.com/dotnet/roslyn-analyzers">Roslyn Analyzers</a></p>
+</li>
+<li>
+<p><a href="http://www.sonarsource.com/">Sonarsource</a></p>
+</li>
+<li>
+<p><a href="https://www.ndepend.com/">NDepend</a></p>
+</li>
+<li>
+<p><a href="https://www.jetbrains.com/resharper/">Jetbrains Resharper</a>
+  I won’t go into the full criteria for our choice of Resharper (I’ll update this post if I end up writing that up one
+  day), instead I’ll summarize that Resharper provided:</p>
+</li>
+<li>
+<p>easy cross platform setup</p>
+</li>
+<li>
+<p>ide/editor and shell agnostic</p>
+</li>
+<li>
+<p>works the same locally and in CI.</p>
+</li>
+<li>
+<p>opinionated by default</p>
+</li>
+</ul>
+<h3 id="resharper-command-line-tools">Resharper Command Line Tools</h3>
+<p>From the <a href="https://www.jetbrains.com/help/resharper/ReSharper_Command_Line_Tools.html">docs</a></p>
+<p>ReSharper Command Line Tools is a set of free cross-platform standalone tools\
+that help you integrate automatic code quality procedures into your CI, version\
+control, or any other server.You can also run coverage analysis from the command line.The Command Line Tools package
+includes the following tools:- InspectCode, which executes hundreds of ReSharper code inspections</p>
+<ul>
+<li>dupFinder, which detects duplicated code in the whole solution or narrower\
+  scope</li>
+<li>CleanupCode, which instantly eliminates code style violations and ensures a\
+  uniform code base### Install</li>
+</ul>
+<p>To get started with Resharper tools (assuming you already have .NET Core installed) run</p>
+<p>
+<pre><code class="language-powershell">cd &lt;project&gt;
+dotnet new tool-manifest
+dotnet tool install JetBrains.ReSharper.GlobalTools --version 2020.2.4Which installs the [Resharper Global Tools](https://www.nuget.org/packages/JetBrains.ReSharper.GlobalTools/2020.2.4) at the project level. This then allows CI and other contributors to use dotnet tool restore in the future.
+</code></pre>
+</p>
+<h3 id="configuration">Configuration</h3>
+<p>Out of the box inspect, format, and dupefinder all have default configurations that work well. That said each team has
+their own needs and preferences you may want these tools to promote. While there are a few ways to configure these tools
+I found using <a href="https://www.jetbrains.com/help/resharper/Using_EditorConfig.html">editorconfig</a> to be the most human
+readable approach.</p>
+<p>For additional details on the editorconfig format see the <a href="https://editorconfig.org/">docs</a> and this
+property <a href="https://www.jetbrains.com/help/rider/EditorConfig_Index.html">index</a>.</p>
+<h3 id="running">Running</h3>
+<p>Running the tools from a shell is relatively easy:</p>
+<p>
+<pre><code class="language-powershell">jb cleanupcode --verbosity=ERROR --config=./.config/cleanup --settings=./.editorconfig --no-buildin-settings ./Project.sln
+jb inspectcode --verbosity=ERROR Project.sln -o=./reports/resharperInspect.xml
+jb dupfinder --verbosity=ERROR Project..sln -o=./reports/resharperDupFinder.xmlOne thing to note is that by default the autoformatting will attempt to enforce line endings. If you have a team working across multiple platforms and using git to automatically handle line endings these can come into conflict. It's up to you and your team to decide if you want to handle this by tweaking git behavior,editorconfig or another method.
+</code></pre>
+</p>
+<h3 id="ci">CI</h3>
+<p><em>If your using Team City
+see </em><a href="https://www.jetbrains.com/help/resharper/Detect_code_issues_in_a_build_using_ReSharper_and_TeamCity.html"><em>this</em></a><em>
+doc for details.</em></p>
+<p>With everything running in our shell locally we can also set things up to run in our CI pipeline. Running the tools is
+easy as long as your CI platform has a shell like task/step/operator:</p>
+<p>
+<pre><code class="language-yaml">- script: |
+  dotnet tool restore
+  jb cleanupcode --verbosity=ERROR --config=./.config/cleanup --settings=./.editorconfig --no-buildin-settings ./Project.sln
+  jb inspectcode --verbosity=ERROR Project.sln -o=./reports/resharperInspect.xml
+  jb dupfinder --verbosity=ERROR Project..sln -o=./reports/resharperDupFinder.xml
+  displayName: 'Resharper'
+</code></pre>
+</p>
+<p>Of course you will probably break these up for easier maintenance and reporting.</p>
+<p>Running the tools is easy. The trick is detecting when these tools find an issue. I’ll share what I did in case it’s
+helpful, but long term it would be great if Jetbrains had the tools exit with documented status codes for different
+issues. As it stands the tools only exit with an error if the tool fails, not when issues are reported.</p>
+<h3 id="cleanupcode">CleanupCode</h3>
+<p>Since CleanupCode will format our file rewriting it on disk we can use git to detect the change.</p>
+<p>
+<pre><code class="language-powershell">formatted=$(git status --porcelain=v1 2&gt;/dev/null | wc -l)
+exit $formatted
+</code></pre>
+</p>
+<h3 id="dupfinder">dupFinder</h3>
+<p>dupFinder outputs an XML file highlighting any issues found. Powershell's built in XML support makes it easy enough to
+query this file and see if any issues exist.</p>
+<p>
+<pre><code class="language-powershell">$Result = Select-Xml -Path $(System.DefaultWorkingDirectory)/reports/resharperDupFinder.xml -XPath &quot;/DuplicatesReport/Duplicates/*&quot;
+If ($Result -eq $null) { [Environment]::Exit(0) } Else { [Environment]::Exit(1) }### InspectCode
+</code></pre>
+</p>
+<p>Similar to dupFinder InspectCode documents issues with an XML file, and once again we can use Powershell to detect if
+there are any issues to fix.</p>
+<p>
+<pre><code class="language-powershell">$Result = Select-Xml -Path $(System.DefaultWorkingDirectory)/reports/resharperInspect.xml -XPath &quot;/Report/Issues/Project/*&quot;
+If ($Result -eq $null) { [Environment]::Exit(0) } Else { [Environment]::Exit(1) }And since dupFinder and InspectCode output XML it can be useful to save these as CI artifacts for review. In Azure Pipelines this looks like:
+</code></pre>
+</p>
+<p>
+<pre><code class="language-yaml">- task: PublishPipelineArtifact@1
+  inputs:
+  targetPath: '$(System.DefaultWorkingDirectory)/reports/'
+  artifactName: 'measurements'
+  condition: always()
+  displayName: 'Save ReSharper Results For Review.'### Wrapping Up
+</code></pre>
+</p>
+<p>We’ve been using the ReSharper tools for a few months now and I have to say they provided what I was looking for in the
+beginning. The tools have been easy to use, help us maintain our code and haven’t boxed us in or required a lot of extra
+time on configuration and unseen gotchas. The only criticism I have is cold start time is pretty slow for cleanupcode,
+and the return exit codes could be better. Both of these would also help with CI, and our git hook setup. Otherwise I
+think these will continue to serve us well and let us focus on our project delivery.</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

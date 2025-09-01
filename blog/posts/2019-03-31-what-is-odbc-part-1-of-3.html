@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What is ODBC Part 1 of 3 - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>What is ODBC Part 1 of 3</h1>
+        
+        <time datetime="2019-03-31">
+            March 31, 2019
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/odbc/">odbc</a>
+            
+            <a href="/tags/databases/">databases</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>At my last job we used pyodbc to manage database interactions in a few different projects. We did this because we
+interacted with 5 different relational databases, and not all of them had native driver libraries for Python. In
+addition to this our use of pyodbc meant that we had a nice consistent database API for on-boarding, or when somebody
+needed to interact with a database that might be new to them for their project. Recently though I had somebody ask me
+what ODBC was, and to be honest I didn’t have a good answer. I’ve used ODBC libraries in multiple languages, but I
+hadn’t really dug into the nuts and bolts of what it was because I hadn’t needed to. I knew enough to use it, it worked
+well and there were bigger problems to solve. It’s a good question though. What is ODBC?</p>
+<p>At a high level ODBC (Open Database Connectivity) is a specification for a database API creating a standard way for
+applications to interact with various databases via a series of translation and application layers. It is independent of
+any specific database, language or operating system. The specification lays out a series of functions that expose
+database functionality across systems. It’s an interesting, and I would say fairly successful abstraction since many
+programmers know how to connect, query and process data (via ODBC) in their language, but maybe they have never read
+sql.h or the SQLBrowseConnect function. For the full API Reference
+check <a href="https://docs.microsoft.com/en-us/sql/odbc/reference/syntax/odbc-api-reference?view=sql-server-2017">here</a>.</p>
+<h3 id="api-vs-protocol">API vs Protocol</h3>
+<p>Quick side note. You may have heard about wire protocols and databases. ODBC is not a protocol; it is an API. This is
+important because databases tend to define their own wire protocols (some share this now with things like the Postgres
+wire protocol being OSS) that dictate the sequence in which events or bytes must happen for communication to work. ODBC
+as an API doesn’t dictate this kind of detail, instead it describes how to expose the database functionality to the
+programmer consistently independent of the database.</p>
+<p>API: describes all valid functionality and interactions Protocol: defines the sequence of operations and bytes.</p>
+<h3 id="why-odbc">Why ODBC</h3>
+<p>If databases define their own protocols and have their own way of communicating why should we worry about ODBC? Turns
+out there are a <a href="https://hpi.de/naumann/projects/rdbms-genealogy.html">lot</a> of databases you can use. Factor in an
+explosion of languages and operating systems and suddenly you have as many developers writing low level wrappers for
+database drivers as you do building your actual product. Instead ODBC provides a standard for database developers to
+expose functionality without developers having to reinvent new bindings for each new language, database, operating
+system combination. You can read
+more <a href="https://docs.microsoft.com/en-us/sql/odbc/reference/why-was-odbc-created?view=sql-server-2017">here</a></p>
+<h3 id="next-up">Next Up</h3>
+<p>Now that we know ODBC is an API I want to look at the architecture of ODBC. In my next post I will cover the driver
+manager, ODBC drivers and the ODBC API. After that I plan on exploring ODBC from the application layer through the
+driver layer with Python and pyodbc looking to trace internals and see exactly how and where different layers connect.</p>
+<h3 id="contact">Contact</h3>
+<p>If you have experience with ODBC internals, want to correct something I’ve written or just want to reach out feel free
+to follow up via <a href="mailto:alexander.hagerman@icloud.com">email</a> or on .</p>
+<p>I also have a <a href="https://github.com/n0mn0m/presentations">repo</a> with the material I used for a presentation on this at
+the <a href="https://www.meetup.com/derbypy/">Louisville DerbyPy</a> meetup in March of 2019.</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

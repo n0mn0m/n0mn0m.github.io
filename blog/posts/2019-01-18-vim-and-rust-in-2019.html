@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vim and Rust in 2019 - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>Vim and Rust in 2019</h1>
+        
+        <time datetime="2019-01-18">
+            January 18, 2019
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/tools/">tools</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>I’ve been using Vim as my primary editor for a few months now. Recently I wanted to revisit some project work in Rust,
+but I hadn’t setup any tooling in Vim for rust yet. The first couple of hits I got on Google were great resources that
+I’ll provide links to, but they were also over a year old, so while using them as a starting point I’m documenting my
+setup since some things have changed from 2017.</p>
+<h3 id="tooling">Tooling</h3>
+<p>Core Installs:</p>
+<ul>
+<li>
+<p><a href="https://www.rust-lang.org/tools/install">Rust with rustup</a></p>
+</li>
+<li>
+<p><a href="https://github.com/racer-rust/racer">Racer</a>
+  Autocomplete:</p>
+</li>
+<li>
+<p><a href="https://github.com/Valloric/YouCompleteMe">YouCompleteMe</a>
+  Language Server Protocol</p>
+</li>
+<li>
+<p><a href="https://github.com/prabirshrestha/vim-lsp">vim-lsp</a></p>
+</li>
+<li>
+<p><a href="https://github.com/rust-lang/rls">RLS — Rust Language Server</a>
+  So far this has been a fairly pain free experience. As I use this (and vim) more I will likely add some updates
+  related to packaging, compiling and debugging in Vim, but for now these are the tools that got me started. One thing
+  to note is that I recommend installing in the order above and following the install directions (especially for the
+  lsp) since those appear to have made some QoL changes in the last year.</p>
+</li>
+</ul>
+<p>Source
+Articles: <a href="https://kadekillary.work/post/rust-ide/">https://kadekillary.work/post/rust-ide/</a> <a href="https://ddrscott.github.io/blog/2018/getting-rusty-with-vim/">https://ddrscott.github.io/blog/2018/getting-rusty-with-vim/</a></p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

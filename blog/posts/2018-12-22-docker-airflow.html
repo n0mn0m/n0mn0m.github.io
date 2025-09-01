@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>docker-airflow - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>docker-airflow</h1>
+        
+        <time datetime="2018-12-22">
+            December 22, 2018
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/python/">python</a>
+            
+            <a href="/tags/airflow/">airflow</a>
+            
+            <a href="/tags/docker/">docker</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>If you’ve spent time using Python for ETL processes or working with data pipelines using tools from the Apache ecosystem
+then you’ve probably heard about <a href="https://airflow.apache.org/">Apache Airflow</a>. In this post I’m going to briefly write
+about why I’m using Airflow, show how you can get started with Airflow using docker and I will show how I customized
+this setup so that you can do the same. Finally at the end I’ll talk about a couple of issues I ran into getting started
+with Airflow and docker.</p>
+<h3 id="what-is-apache-airflow">What is Apache Airflow</h3>
+<p>From the <a href="https://airflow.apache.org/">home page</a>:</p>
+<ul>
+<li>Airflow is a platform to programmatically author, schedule and monitor workflows.
+  <strong>Programatically</strong> being a key part so that you can create and orchestrate worflows/data pipelines using the same
+  processes and tools that let you create reliable, scaling software.</li>
+</ul>
+<h3 id="why-airflow">Why Airflow</h3>
+<p>I don’t plan to write much on this subject since it’s been covered in depth else where, but at work and often times when
+talking about Airflow the question of why Airflow versus X traditional solution where X is something like:</p>
+<p>inevitably comes up. The primary reason I prefer a solution like Airflow to more traditional solutions is because my ETL
+is code. While there are numerous benefits to ETL as code my talking points are:</p>
+<ul>
+<li>Your data pipes/workflows go through the same processes that helps you create better products like TDD</li>
+<li>Your ETL development and production can be integrated with your CI/CD process</li>
+<li>Better debugging tools</li>
+<li>Flexibility</li>
+</ul>
+<p>That’s not to say the traditional tools don’t have their place, but my experience is that any significantly complex data
+pipeline ends up making use of that tools script task (C# for SSIS, Java for Informatica) and now you have an
+amalgamation of GUI product and untested, undocumented and non versioned code in production data pipelines.</p>
+<h3 id="why-conda">Why conda</h3>
+<p>By day I’m a data engineer helping to build platforms, applications and pipelines to enable data scientist. Because of
+this conda is a tool I’ve become familiar with and it let’s me work across languages, but easily integrate those various
+languages into my Airflow dags.</p>
+<p>To get started with Airflow I highly recommend reading <a href="https://airflow.apache.org/index.html">the homepage</a>
+and <a href="https://airflow.apache.org/tutorial.html">tutorial</a> to get an idea of the core concepts and pick up on the
+vocabulary used within the framework.</p>
+<p>After that there is a great project called <a href="https://github.com/puckel/docker-airflow">docker-airflow</a> that you can get
+started with. This provides a quick way to get started with Airflow in an environment with sane defaults making use of
+Postgres and Redis.</p>
+<p>This project provides an example dag and also allows you to load the Airflow example dags via the LOADEX environment
+variable. Additionally you might want to open up the Airflow dashboard and checkout the Connections tab where you can
+setup things such as SSH an SSH connection to reference in your dags.</p>
+<h3 id="docker-airflow"><a href="https://github.com/puckel/docker-airflow">docker-airflow</a></h3>
+<p>To get started with Airflow I highly recommend reading <a href="https://airflow.apache.org/index.html">the homepage</a>
+and <a href="https://airflow.apache.org/tutorial.html">tutorial</a> to get an idea of the core concepts and pick up on the
+vocabulary used within the framework.</p>
+<p>After that there is a great project called <a href="https://github.com/puckel/docker-airflow">docker-airflow</a> that you can get
+started with. This provides a quick way to get started with Airflow in an environment with sane defaults making use of
+Postgres and Redis.</p>
+<p>This project provides an example dag and also allows you to load the Airflow example dags via the LOADEXenvironment
+variable. Additionally you might want to open up the Airflow dashboard and checkout the Connections tab where you can
+setup things such as SSH an SSH connection to reference in your dags.</p>
+<h3 id="customizing-the-setup">Customizing the setup</h3>
+<p>The <a href="https://github.com/puckel/docker-airflow">docker-airflow</a> project is a great start, but it makes assumptions that
+may not be true of your environment such as which database you plan to use, use of environment variables, etc.</p>
+<p>If all you’re needing to tweak is the behavior of the environment or Airflow your first stop should be airflow.cfg in
+the /config directory. This is a centralized location for Airflow settings and is checked after any settings from the
+environment are loaded. If you're trying to change settings related to work pools, ssl, kerberos, etc this is probably
+the best place to get started.</p>
+<p>If you’re looking to change things related to your containers such as when to restart, dependencies, etc then your going
+to want to checkout either the LocalExecutor or CeleryExecutor docker-compose files.</p>
+<p>Finally you might want to make bigger changes like I did such as using a different database, base docker image etc.
+Doing this requires changing quite a few items. The changes I made were:</p>
+<ul>
+<li>switch to miniconda for my base image to use Intel Dist Python</li>
+<li>switch to Microsoft SQL Server for the database</li>
+<li>switch the task queue to RabbitMQ</li>
+</ul>
+<p>Most of this was driven by a desire to experiment and to learn more about tools that I use day to day. Since I work in a
+data engineering shop there are packages from conda-forge that I like to use driving the miniconda switch, I've used MS
+SQL for the last 8 years professionally and I've been working on scaling with RabbitMQ over the last year.</p>
+<p>The switch to miniconda was a one liner in the Dockfile:</p>
+<p>
+<pre><code class="language-Dockerfile">FROM continuumio/miniconda3Then to use IDP (Intel Distribution of Python) within the container I added this towards the bottom:
+
+RUN conda config --add channels intel\
+ &amp;&amp; conda config --add channels conda-forge \
+ &amp;&amp; conda install -y -q intelpython3core=2019.1 python=3 \
+ &amp;&amp; conda clean --all \And with that I can make use of conda packages alongside traditional Python packages within my Airflow environment.
+</code></pre>
+</p>
+<p>Next up I wanted to switch to MSSQL. Doing this was a matter of switching from Postgres in docker-compose and adding the
+MSSQL Linux drivers to the base docker-airflow Dockerfile.</p>
+<p><strong>docker-compose</strong></p>
+<p>
+<pre><code class="language-yaml">mssql:
+ image: microsoft/mssql-server-linux:latest
+ environment:
+ - ACCEPTEULA=Y
+ - SAPASSWORD=YourStrong!Passw0rd
+ ports:
+ - 1433:1433
+ volumes:
+ - /var/opt/mssqlYou may or may not want to preserver your database volume so keep that in mind.
+</code></pre>
+</p>
+<p>Setting up the MSSQL Linux drivers is fairly straight forward following
+the <a href="https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-2017">documentation</a>
+from Microsoft.</p>
+<p><strong>Dockerfile</strong></p>
+<p>
+<pre><code class="language-Dockerfile">ENV ACCEPTEULA=Y
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+ &amp;&amp; curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/msprod.listRUN apt-get update -yqq \
+ &amp;&amp; apt-get install -yqq mssql-tools unixodbc-dev
+</code></pre>
+</p>
+<p>One thing to note if you’re using a Debian based image is that Microsoft has a somewhat obscure dependency on
+libssl1.0.0. Without that installed you will get some obscure unixodbc error connecting to MSSQL with sql-alchemy. To
+remedy this add the below to your Dockerfile.</p>
+<p>
+<pre><code class="language-Dockerfile">RUN echo 'export PATH=&quot;$PATH:/opt/mssql-tools/bin&quot;' &gt;&gt; ~/.bashprofile
+RUN echo &quot;deb http://httpredir.debian.org/debian jessie main contrib non-free\
+ deb-src http://httpredir.debian.org/debian jessie main contrib non-free\n
+ deb http://security.debian.org/ jessie/updates main contrib non-free\
+ deb-src http://security.debian.org/ jessie/updates main contrib non-free&quot; &gt;&gt; /etc/apt/sources.list.d/jessie.listRUN apt update \
+ &amp;&amp; apt install libssl1.0.0
+</code></pre>
+</p>
+<p>Finally setup your connection string either in airflow.cfg or an
+Airflow <a href="https://airflow.readthedocs.io/en/stable/howto/set-config.html">environment variable</a> . I like to use the
+Airflow environment variables and pass them in from a .env file with docker-compose.</p>
+<p>
+<pre><code class="language-yaml">environment:
+ - LOADEX=n
+ - FERNETKEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
+ - EXECUTOR=Celery
+ - AIRFLOWCELERYBROKERURL=${CELERYRABBITBROKER}
+ - AIRFLOWCORESQLALCHEMYCONN=${SQLALCHEMYCONN}
+ - AIRFLOWCELERYRESULTBACKEND=${CELERYRESULTSBACKEND}And finally the last big change I implemented was the switch to RabbitMQ instead of Redis. Similar to the MSSQL switch this was just an update to the docker-compose file.
+
+rabbitmq:
+ image: rabbitmq:3-management
+ hostname: rabbitmq
+ environment:
+ - RABBITMQERLANGCOOKIE=${RABBITMQERLANGCOOKIE}
+ - RABBITMQDEFAULTUSER=${RABBITMQDEFAULTUSER}
+ - RABBITMQDEFAULTPASS=${RABBITMQDEFAULTPASS}
+ - RABBITMQDEFAULTVHOST=${RABBITMQDEFAULTVHOST}
+</code></pre>
+</p>
+<p>And setting up the right connection string for Celery to talk with rabbitmq. Similar to the MSSQL connection string I
+put this in my .env file and reference it in my docker-compose file as seen above.</p>
+<p>
+<pre><code class="language-shell">CELERYRABBITBROKER=amqp://user:pass@host:port/
+</code></pre>
+</p>
+<p>One thing to note is anytime you are referencing the host and running with docker-compose you can reference the service
+id in this case rabbitmq as the host name.
+And with that I have a nice Airflow environment that lets me make use of the database I’m familiar with, a durable queue
+and packages across the Python and Data Science ecosystems via conda.</p>
+<p>You can find these changes in my fork of the <a href="https://github.com/n0mn0m/airflow-docker">docker-airflow</a> project. I’ve
+also opened a <a href="https://github.com/puckel/docker-airflow/issues/289">GitHub issue</a> with the goal of creating some way to
+track other community variations of docker-airflow with the hope of helping others discover setups specific to their
+need.</p>
+<h3 id="issues-so-far">Issues so far</h3>
+<p>I’ve been using the setup above for a couple weeks now with pretty good results. I’ve made use of some libraries like
+hdfs3 that have their latest releases in conda-forge and my familiarity with MSSQL has saved me some maintenance time.
+The experience hasn’t been without it’s issues. The highlights are:</p>
+<ul>
+<li><a href="https://airflow.apache.org/installation.html#extra-packages">Airflow packages</a> may not be what you want. See
+  librabbitmq and celery. It's best to manage a requirements.txt or conda.txt with your dependencies still.</li>
+<li>Dependency management across multiple dags. In short with a standard setup you need one package version and it needs
+  to be installed everywhere. For an interesting approach to this
+  read <a href="https://medium.com/bluecore-engineering/were-all-using-airflow-wrong-and-how-to-fix-it-a56f14cb0753">We’re All Using Airflow Wrong and How to Fix It</a></li>
+<li>Silent failures. Be aware of all the reasons why a worker may provide exit code 0 especially with docker. This took a
+  minute to catch when an NFS mount stopped showing new files being available, but the exit code 0 made things seem ok.
+  This isn’t Airflows fault, but just something to keep in mind when using Airflow in an environment with docker and
+  remote resources.</li>
+</ul>
+<h3 id="reaching-out">Reaching out</h3>
+<p>Hopefully this post helps you get started with <a href="https://github.com/puckel/docker-airflow">docker-airflow</a>. If you have
+questions or want to share something cool that you end up doing feel free to open up
+an <a href="https://todo.sr.ht/%7En0mn0m/Airflow-Bugs">issue</a> on Sourcehut or reach out to
+me <a href="mailto:alexander.hagerman@icloud.com">alexander.hagerman@icloud.com</a>.</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

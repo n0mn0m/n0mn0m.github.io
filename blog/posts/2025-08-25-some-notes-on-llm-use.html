@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Some notes and observations from using llms - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>Some notes and observations from using llms</h1>
+        
+        <time datetime="2025-08-25">
+            August 25, 2025
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/programming/">programming</a>
+            
+            <a href="/tags/practices/">practices</a>
+            
+            <a href="/tags/llm/">llm</a>
+            
+            <a href="/tags/machine-learning/">machine-learning</a>
+            
+            <a href="/tags/&#34;ai&#34;/">&#34;ai&#34;</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>I've been using some form of LLM code assist since GitHub Co-Pilot entered beta.
+Over the years that's included various GPT, Gemini and Claude versions along with
+trying different editor and CLI based assistants. How I integrate and use these
+tools is something that continues to change for personal and professional projects,
+but I thought it might be time to write down a few thoughts.</p>
+<ul>
+<li>This one should be obvious, but in case it's not you need to try different
+  models with different projects and teams to find which is the most efficient
+  in that context. Right now I've have found Claude Sonnet 4 to be the model
+  that provides the code I prefer to maintain, but it helps to have evaluation
+  criteria that you use to check the results of each new model release, and for
+  testing models across different vendors (Anthropic, OpenAI, Google, etc).</li>
+<li>Fundamentally these tools can change how you work if you let them, but:</li>
+<li>It's particularly important when using these tools to consider how different
+    "modes" (agent, agent + mcp, ask, etc) trade off agency and how that impacts
+    yourself, and your team.</li>
+<li>For many of us code is only part of the project, and sometimes not even the
+    hardest part, but consider that the LLM is more than happy to generate pages
+    of code. That can be a burden to maintain, and if operating in agent mode
+    I will wager when the agent runs off and implements a full feature that you
+    don't know it the same way you would if you used the LLM to provide suggestions/
+    snippets and or you implemented it yourself. There is a cost there, short
+    and long term.</li>
+<li>There is a larger team and <a href="https://news.ycombinator.com/item?id=44972151">organization</a>
+    conversation going on right now that you need to engage in. These tools can
+    boost and harm moral, and strong teams are foundational to success short
+    and long term.</li>
+<li>I go back and forth between how I use agents depending on the structure of my
+  week. Some weeks I'm spending a lot of time pairing, meeting or doing task that
+  don't provide hours at a time to be head down focused on the code in a flow state.
+  When that happens I'm happy to have tools like LLM agents that I can prompt and
+  check back on, but "with great power comes great responsibility". Don't check
+  in that code without doing a thorough review on your end first (including a very
+  detailed review of any generated tests). Your team will thank you for it, and
+  you won't find people (like myself) leaving frustrated review comments about
+  generated nonsensical code.</li>
+<li>LLMs are very verbose, tame this with your prompts if you expect to thoroughly
+    review and integrate their output.</li>
+<li>Be careful when allowing LLMs to generate tests. I've heard so many people talk
+  about how great it is they can use these tools to write test for code that doesn't
+  have any, or to have it write test with the new feature they are implementing.
+  That's not wrong, LLMs can generate test, but just like building maintainable
+  systems is a skill writing good test is also a skill. I would wager that the
+  code training datasets are not curated to projects such as <a href="https://aosabook.org/en/index.html">AOSA</a>.
+  We would probably disappointed to see where most projects sit on a quality curve
+  for training data sets. I can personally share that time and again LLMs will
+  generate test that erroneously pass. They will remove assertions, write assertions
+  that never fail, or write test that never call the function or DUT. Yes, you
+  can have an LLM generate good test, but it takes work, and be cautious, our test
+  are one of our strongest signal points in a project. Failing to keep their
+  integrity strong will only lead to bugs, and likely create a code base that
+  nobody wants to be responsible for.</li>
+<li>If using these tools in a team setting engage with them as a team. Share prompts,
+  agree on a set of minimal instructions. Make sure everybody understands context
+  and default prompts. Set guidelines and expectations for how the team uses
+  the tools and what quality markers are expected to be present and maintained.</li>
+</ul>
+<p>There are hundreds of blog post out there about LLMs. If I had to sum up my thoughts:
+The latest LLM generation is impressive, and can transform how we work, but they
+can also change the level of agency that individuals exhibit. Use the tool, but
+don't turn off your brain, and <a href="https://www.researchgate.net/profile/Tamera-Schneider-2/publication/334344580_The_Measurement_of_the_Propensity_to_Trust_Automation/links/5e501f76a6fdcc2f8f552ba8/The-Measurement-of-the-Propensity-to-Trust-Automation.pdf">recognize</a>
+our bias to <a href="https://www.tandfonline.com/doi/epdf/10.1080/10447318.2024.2307691?needAccess=true">trust</a>
+these tools.</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

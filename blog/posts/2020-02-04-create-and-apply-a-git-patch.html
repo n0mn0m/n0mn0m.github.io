@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create and Apply a Git Patch - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>Create and Apply a Git Patch</h1>
+        
+        <time datetime="2020-02-04">
+            February 04, 2020
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/git/">git</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>I’ve been using Source Hut as my primary host for source control and builds for a few months. I really enjoy it, but one
+of the main things I had to learn up front was how to apply a patch in git. Unlike Github and many other git host Source
+Hut makes use of the git patch work flow instead of PRs. At first I found this to be a bit frustrating, but I’ve
+actually come to see the value in the email and patch workflow that is different from the IM and PR work flow that many
+of us are used to. Hopefully this helps somebody else that is learning to use patches in the future.</p>
+<p>Build your feature or modify your code on a separate branch:</p>
+<p>
+<pre><code class="language-shell">git checkout -b ...
+git add ...
+git commit
+git push
+</code></pre>
+</p>
+<p>Prepare a patchset:</p>
+<p>
+<pre><code class="language-shell">git format-patch main
+</code></pre>
+</p>
+<p>Alternative for a patch directory</p>
+<p>
+<pre><code class="language-shell">git format-patch main -o patches
+</code></pre>
+</p>
+<p>Or login and find the link to download the patch:</p>
+<p>
+<pre><code class="language-shell">curl -O https://github.com/n0mn0m/circuitroomba/commit/ae635ce6533e33ff5277a0428a59c736a98649d6.patchls | grep &quot;.patch&quot;
+</code></pre>
+</p>
+<p>Switch back to main:</p>
+<p>
+<pre><code class="language-shell">git checkout main
+</code></pre>
+</p>
+<p>Check the patchset changes</p>
+<p>
+<pre><code class="language-shell">git apply --stat ae635ce6533e33ff5277a0428a59c736a98649d6.patch
+</code></pre>
+</p>
+<p>Check for errors</p>
+<p>
+<pre><code class="language-shell">git apply --check ae635ce6533e33ff5277a0428a59c736a98649d6.patch
+</code></pre>
+</p>
+<p>Assuming the above command doesn’t generate any errors you are ready to apply a clean patch. The git amcommand below
+includes the --signoff flag for others to view.</p>
+<p>
+<pre><code class="language-shell">git am --signoff &lt; ae635ce6533e33ff5277a0428a59c736a98649d6.patch
+</code></pre>
+</p>
+<p>And with that the patch has been applied to your main branch. Run your test again for sanity sake and push main.</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EdgeRouter X Home VPN Setup Pt 2 - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>EdgeRouter X Home VPN Setup Pt 2</h1>
+        
+        <time datetime="2019-10-18">
+            October 18, 2019
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/homelab/">homelab</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p><strong>I am not a network or sysadmin by day. This is something I’m actively learning on and figuring out. If you see
+something wrong or have suggestions I would love to </strong><a href="mailto:alexander.hagerman@icloud.com"><strong>hear about it</strong></a><strong>.</strong></p>
+<p>In <a href="https://burningdaylight.io/posts/edgerouter-x-vpn-setup-prt-one/">part one</a> we configured the network. Now we are
+ready to install Wireguard and create our interface. Before I jumped into doing this I referenced these post and docs.</p>
+<ul>
+<li><a href="https://www.wireguard.com/quickstart/">Wireguard</a></li>
+<li><a href="https://www.erianna.com/wireguard-ubiquity-edgeos/">Charles R. Portwood || Wireguard on Ubiquity OS</a></li>
+<li><a href="https://www.erianna.com/wireguard-ubiquity-edgeos/">David Wireguard Home Network</a></li>
+</ul>
+<p>To get started ssh into the EdgeRouter device.</p>
+<p>
+<pre><code class="language-bash">ssh &lt;user&gt;@&lt;edgerouterip&gt;Once logged in we need to pull, install the Wireguard .deb.
+
+cd /tmp*# Download the appropriate version, pay special attention here, if you are using the Ubiquity v2 firmware
+# you will need the wireguard-v2-*
+*curl -qLs https://github.com/Lochnair/vyatta-wireguard/releases/download/0.0.20190913-1/wireguard-v2.0-e50-0.0.20190913-1.debsudo dpkg -i wireguard.debAn important note from the source repo
+</code></pre>
+</p>
+<p><strong>Note that since Wireguard is not software bundled with the EdgeOS firmware, firmware upgrades necessitate
+re-installing the Wireguard debian package. Once the wireguard package is re-installed re-applying the existing Vyatta
+config file, or rebooting will restore your interfaces.</strong></p>
+<p>First things first we need to generate a private key for the router, and a public key to share with clients.</p>
+<p>
+<pre><code class="language-bash">$ wg genkey | tee /dev/tty | wg pubkey
+123ddgqeqe123123
+</code></pre>
+</p>
+<p>This will output two lines. The first is your private key, the second is your public key. Keep these secure, but ready
+since you will need to provide the public key to all clients.</p>
+<p>With our keys generated we can now configure the Wireguard interface. Ours will be wg0. In the terminal:</p>
+<p>
+<pre><code class="language-bash">configureset interfaces wireguard wg0 address 192.168.55.1/24
+set interfaces wireguard wg0 listen-port 51820
+set interfaces wireguard wg0 route-allowed-ips true
+set interfaces wireguard wg0 private-key &lt;private-key-from above-output&gt;commit
+saveThis created a new wireguard network on 192.168.55.1/24; listening to port 51820 and will route all the traffic through wg0.
+</code></pre>
+</p>
+<p>Now keeping our public key ready we can configure a client.</p>
+<h3 id="configuring-wireguard-on-ubuntu">Configuring Wireguard on Ubuntu</h3>
+<p>If you’re using Ubuntu 19.10 wireguard should be available from apt by default:</p>
+<p>
+<pre><code class="language-bash">sudo apt-get update
+sudo apt-get install wireguardWith prior versions:
+
+sudo add-apt-repository ppa:wireguard/wireguard
+sudo apt-get update
+sudo apt-get install wireguardOnce again we need to generate our keys, now on the client:
+
+wg genkey | tee /dev/tty | wg pubkeyNow, create the wireguard interface, still on the client.
+
+touch /etc/wireguard/wg0.conf
+chown root:root /etc/wireguard/wg0.conf
+chmod 600 /etc/wireguard/wg0.confsudo vim /etc/wireguard/wg0.conf&lt;--------wg0.conf--------&gt;
+</code></pre>
+</p>
+<p>
+<pre><code class="language-ini">[Interface]
+Address = 192.168.55.5/32
+PrivateKey = &lt;client-private-key&gt;[Peer]
+PublicKey = &lt;router-public-key&gt;
+AllowedIPs = 192.168.55.0/24
+Endpoint = publicipofrouter:51820
+</code></pre>
+</p>
+<h3 id="peering-the-router-and-client">Peering the router and client</h3>
+<p>With the client configured and keeping the public key it generated, return to the router. ssh and run:</p>
+<p>set interfaces wireguard wg0 peer <client-public-key> allowed-ips 192.168.55.5/32 commit save</p>
+<h3 id="starting-your-client-vpn">Starting your client VPN</h3>
+<p>With wg0 configured and ready bring up the VPN on our client.</p>
+<p>
+<pre><code class="language-bash">sudo wg-quick up wg0
+</code></pre>
+</p>
+<p>And verify connectivity by running sudo wg on the client, and router.</p>
+<h3 id="next-steps">Next Steps</h3>
+<p>With VPN setup I’m now able to access and provide access to my device lab. This also keeps devices using this router
+that are not part of the lab separated.</p>
+<p>Finally if you’re doing this for the first time some next steps you might want to take include:</p>
+<ul>
+<li>Switch devices to only allowing ssh via keys.</li>
+<li>Switch to a non default ssh port.</li>
+<li>Setup fail2ban.</li>
+<li>Pickup from <a href="https://opensource.com/article/19/10/linux-server-security">here</a></li>
+</ul>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

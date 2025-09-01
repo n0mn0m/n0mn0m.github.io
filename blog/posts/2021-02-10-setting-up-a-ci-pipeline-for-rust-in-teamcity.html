@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setting up a CI pipeline for Rust in Teamcity - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>Setting up a CI pipeline for Rust in Teamcity</h1>
+        
+        <time datetime="2021-02-10">
+            February 10, 2021
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/continous-integration/">continous-integration</a>
+            
+            <a href="/tags/ci/">ci</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>Towards the end of last year I started working on a <a href="https://github.com/n0mn0m/artemis/">project</a> in rust that would
+listen to a message queue and send an email. Additionally it used <a href="https://rocket.rs/">rocket</a> to expose some diagnostic
+endpoints to check on the health of the service, change log levels, etc. When starting new projects I default to setting
+up a build pipeline for them to. For this project I setup pipelines in teamcity which was overall pretty easy, but
+sharing here for anybody else that may go down this path.</p>
+<h3 id="cargo-make"><a href="https://github.com/sagiegurari/cargo-make">cargo-make</a></h3>
+<p>For new projects I like to capture the build, admin and CI steps in a way that makes it convenient for others to run on
+their local machine. Make and it’s derivatives (cmake, cake, etc) provide a useful task abstraction and Rust has the
+powerful <a href="https://github.com/sagiegurari/cargo-make">cargo-make</a> project that lets us capture task and mix together
+inline simple commands with scripts, dependencies etc.</p>
+<p>For this project you can find my cargo make file <a href="https://github.com/n0mn0m/artemis/tree/Makefile.toml">here</a>. I also
+experimented with using Powershell for my <a href="https://github.com/n0mn0m/artemis/tree/tools">scripts/wrappers</a>. I’ve been
+using this in my day job where our projects run on Win, macOS and Linux. Overall I’m pretty happy with the experience,
+but it is another tool to install and maintain along with various platforms missing support.</p>
+<h3 id="cargo-test">cargo test</h3>
+<p>Rust comes with a build tool and test runner built in via cargo. Running test is easy out of the box, but I needed to
+make use of a couple tools to get the cargo test output into a format that a CI tool parses. I ended getting test and
+coverage data in the junit and lcov formats that way various tools and platforms can be used across time and projects.</p>
+<ul>
+<li><a href="https://github.com/mozilla/grcov">grcov</a></li>
+<li><a href="https://github.com/johnterickson/cargo2junit">cargo2junit</a></li>
+</ul>
+<h3 id="teamcity">Teamcity</h3>
+<p>With those tools orchestrated via cargo make it's time to setup the build and test steps in Teamcity. Overall the
+process was pretty easy, but I ran into a couple bumps I'll highlight.</p>
+<ul>
+<li>The cargo step doesn't support custom commands, so I don't use that by default</li>
+<li>I wrote <a href="https://github.com/n0mn0m/artemis/tree/tools/CI.ps1">CI.ps1</a> as a wrapper to use in
+  each <a href="https://github.com/n0mn0m/artemis/tree/.teamcity/settings.kts#n88">step</a>.</li>
+<li>Enable the <a href="https://github.com/n0mn0m/artemis/tree/.teamcity/settings.kts#n186">xml-report-plugin</a>
+  And with those two things the <a href="https://github.com/n0mn0m/artemis/tree/.teamcity/settings.kts">pipeline</a> is ready
+  to <a href="https://teamcity.burningdaylight.io/">go</a>. From there you may want to add your own environment variables, plugin,
+  agent deps etc.</li>
+</ul>
+<h3 id="next-steps">Next steps</h3>
+<p>With this pipeline up an running the next steps are:</p>
+<ul>
+<li>Setup build caching with something like <a href="https://github.com/mozilla/sccache">sccache</a></li>
+<li>Work on local and CI build times</li>
+<li>This has been <a href="https://endler.dev/2020/rust-compile-times/">written</a> about
+  a <a href="https://blog.mozilla.org/nnethercote/2020/04/24/how-to-speed-up-the-rust-compiler-in-2020/">number</a>
+  of <a href="https://pingcap.com/blog/rust-compilation-model-calamity">times</a>
+  I would need to make both of these better before taking the project further. As the project grows these would only get
+  worse, and make the project unpleasant for others to work on.</li>
+</ul>
+<h3 id="done">Done</h3>
+<p>That’s it for now. I learned a lot along the way about Rust, cargo, and hooking it up with Teamcity. I’m not sure I’ll
+have a write up on artemis anytime soon. It was a good project, but I ultimately took another path. Hopefully this helps
+somebody, and as always feel free to <a href="mailto:alexander.hagerman@icloud.com">reach out</a>.</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

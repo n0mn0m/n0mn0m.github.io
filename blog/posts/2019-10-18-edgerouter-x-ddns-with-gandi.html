@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EdgeRouter X DDNS with Gandi - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>EdgeRouter X DDNS with Gandi</h1>
+        
+        <time datetime="2019-10-18">
+            October 18, 2019
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/homelab/">homelab</a>
+            
+            <a href="/tags/dns/">dns</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>I recently <a href="https://burningdaylight.io/posts/edgerouter-x-vpn-setup-prt-one/">setup</a> a VPN for my home network. To make
+use of it from remote networks I need to be able to resolve the public IP of my router. Instead of hard coding the IP I
+setup an domain with Gandi and created an A Record that I update from my router.</p>
+<h3 id="fetching-and-reporting-your-ip">Fetching and reporting your IP</h3>
+<p>This part was fairly easy. With a quick search I found that somebody else had already solved the problem of reporting
+the public IP from an Ubiquiti router to Gandi! Checkout their
+work <a href="https://github.com/georgr/erx-gandi-nat-ddns">here</a>. Their README provides a nice easy walk through of the setup.</p>
+<h3 id="scheduling-it">Scheduling it</h3>
+<p>With the above script updated and working on my router the next thing to do was schedule it.</p>
+<blockquote>
+<p>*Quick note only specific directories persist between firmware updates on the EdgeRouter. Because of this I suggest
+putting the script above in <strong>config/scripts/</strong> or <strong>config/user-data</strong>.*The EdgeRouter OS provides a helper utility
+called task-scheduler which wraps cron. The benefit of task-schedule is that is saves our commands to config so they
+persist through upgrades. ssh into your router:</p>
+</blockquote>
+<p>
+<pre><code class="language-bash">ssh &lt;user&gt;@&lt;router&gt;
+configure
+set system task-scheduler task ddnsupdate
+set system task-scheduler task ddnsupdate crontab-spec '0 5 * * 0'
+set system task-scheduler task ddnsupdate executable path '/config/user-data/'
+commit
+save
+cat /etc/cron.d/vyatta-crontab
+</code></pre>
+</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

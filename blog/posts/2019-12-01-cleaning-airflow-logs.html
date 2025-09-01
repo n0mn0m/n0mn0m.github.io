@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cleaning Airflow Logs - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>Cleaning Airflow Logs</h1>
+        
+        <time datetime="2019-12-01">
+            December 01, 2019
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/airflow/">airflow</a>
+            
+            <a href="/tags/python/">python</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>At home and work I make use of Airflow to automate various batch/time based task. I’ve even setup a container based
+Airflow <a href="https://github.com/n0mn0m/airflow-docker">environment</a> to make it easy to bring this up and down.</p>
+<p>One of the things you quickly find with Airflow is that while it doesn’t need a lot of resources to run, it can quickly
+eat up whatever disk space you provide it with logs. When this happens the first knobs to look at turning are your log
+level and your schedulers dag bag refresh rate. While you may not be refreshing dags often your may want to keep your
+log level low to capture more data and use your log store to put a TTL on things at the INFO level. Unfortunately you
+can't completely turn off Airflows disk logging without building in some custom functionality today. To help manage this
+I wrote a small Python script that handles cleaning up the local logs on a given interval. Note if you're running
+Airflow in a setup other than LocalExecutor you will want to handle this with something like Cron instead of a dag since
+you need to clean logs up on the Scheduler, Worker and Webserver.</p>
+<p>
+<pre><code class="language-python">def truncateprocessmanagerlog(logbasepath):
+ &quot;&quot;&quot;
+ The scheduler records all acitivty related to dag processing in the same file.
+ This file can grow large fast, and is actively in use. Intead of unlinking the
+ file and pulling it out from under the scheduler truncate.
+ &quot;&quot;&quot;
+ dagprocessmanagerlog = os.path.join(
+ logbasepath, &quot;dagprocessormanager&quot;, &quot;dagprocessormanager.log&quot;
+ )
+ open(dagprocessmanagerlog, &quot;w&quot;).close()
+
+def traverseandunlink(fobject):
+ &quot;&quot;&quot;
+ Traverse the log directory on the given airflow instance (webserver, scheduler,
+ worker, etc) and remove any logs not modified in the last hour.
+ &quot;&quot;&quot;
+ for entry in os.scandir(fobject):
+  newfobject = os.path.join(fobject, entry)
+  if os.path.isfile(newfobject):
+   lastmodified = os.stat(newfobject).stmtime
+   delta = datetime.utcnow().timestamp() - lastmodified
+  if delta &gt; HOURSINMILLISECONDS:
+   print(
+    f&quot;{newfobject} has not been used in the last hour. \
+   \nCleaning up.&quot;
+   )
+   os.unlink(newfobject)
+  elif os.path.isdir(newfobject):
+   traverseandunlink(newfobject)
+</code></pre>
+</p>
+<p>The full script is available <a href="https://github.com/n0mn0m/snippets/tree/main/airflow-log-cleanup.py">here</a>.</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

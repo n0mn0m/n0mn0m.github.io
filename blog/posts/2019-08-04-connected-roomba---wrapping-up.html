@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connected Roomba - Wrapping Up - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>Connected Roomba - Wrapping Up</h1>
+        
+        <time datetime="2019-08-04">
+            August 04, 2019
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/python/">python</a>
+            
+            <a href="/tags/hackaday/">hackaday</a>
+            
+            <a href="/tags/hardware/">hardware</a>
+            
+            <a href="/tags/circuitpython/">circuitpython</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>With everything working I wanted to make sure I didn’t have to reset everything anytime an odd decode error occurs,
+something loses and regains power, etc. For the Feather attached to the Roomba handling this is pretty straight forward.
+Everything is already running in a super loop, so all I need to add is a try/exceptblock to the while loop and discard
+errors. Doing the same thing for the Pi was again straight forward, but since it is running Linux I needed to make sure
+the applications handled failures, and that the scripts restart if the board restarts, the OS bounces, etc.</p>
+<p>Similar to the Feather code I wrapped everything in a while loop, added exception handlers, but I also added logging so
+that I could understand if errors are created by the OS, the code or something else:</p>
+<p>
+<pre><code class="language-python">import logging
+
+LOGFORMAT = &quot;%(asctime)s:%(levelname)s:%(message)s&quot;
+
+logging.basicConfig(
+ filename=&quot;/home/pi/logs/button.log&quot;,
+ level=logging.INFO,
+ format=LOGFORMAT,
+ datefmt=&quot;%m/%d/%Y %I:%M:%S %p&quot;,
+)
+
+logger = logging.getLogger(name)...if name == &quot;main&quot;:
+while True:
+ try:
+ ...
+ except BaseException as e:
+  logger.exception(e)
+ pass
+</code></pre>
+</p>
+<p>And since this is running on Linux setting up cron to handle starting the applications after reboot was one command
+away.</p>
+<p>
+<pre><code class="language-bash">sudo crontab -e@reboot cd /home/pi/ &amp;&amp; /home/pi/.virtualenvs/lora-pi/bin/python /home/pi/projects/roombasupervisor/buttonlistener.py 2&gt;&amp;1 &gt;&gt; /home/pi/logs/button.log
+@reboot cd /home/pi/ &amp;&amp; /home/pi/.virtualenvs/lora-pi/bin/python /home/pi/projects/roombasupervisor/smslistener.py 2&gt;&amp;1 &gt;&gt; /home/pi/logs/sms.log
+@reboot sleep 10 &amp;&amp; cd /home/pi/ &amp;&amp; /home/pi/ngrok http 5000 2&gt;&amp;1 &gt;&gt; /home/pi/logs/ngrok.log
+@reboot sleep 20 &amp;&amp; curl http://127.0.0.1:4040/api/tunnels 2&gt;&amp;1 &gt; /home/pi/logs/ngrokdetails.log
+</code></pre>
+</p>
+<p><img alt="" src="../../img/blog/0LW52qqaYhmwjQMbx.gif" /></p>
+<h3 id="wrapping-up">Wrapping Up</h3>
+<p>Since this was my first project interacting with an embedded system I learned quite a bit along the way. Abstractions
+are something that are useful, but can add bloat and load that won’t work in constrained environments. I wasn’t able to
+use the Roomba library I built with the Circuit Playground on the Feather that I connected to the Roomba. CircuitPython
+made learning and prototyping easy with a REPL and constant connection to the Open Interface. It also allowed me to
+focus on learning more about the boards and data interactions since I wasn’t busy rebuilding my software toolchain for a
+new environment. That said it has also inspired me to learn more and dig deeper into the embedded world since there are
+a lot of things I can’t user (interupts). There is a lot that I don’t know or understand yet, but with the help of some
+books and boards I am sure I will be busy expanding my understanding for the next few years.</p>
+<h3 id="contact">Contact</h3>
+<p>I really enjoyed working on this project. If you want to reach out feel free to follow up
+via <a href="mailto:alexander.hagerman@icloud.com">email</a> or on .</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>
