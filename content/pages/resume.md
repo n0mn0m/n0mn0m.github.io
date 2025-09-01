@@ -9,7 +9,7 @@
             <ol style="list-style-type: none;">
                 <li class="portfolio-item">
                     <div style="font-weight: bold;">Lead Software Engineer</div>
-                    <p style="color: rgb(74, 74, 74);">03/2025 - Current | <a href="https://www.bose.com/"
+                    <p style="color: rgb(74, 74, 74);">03/2024 - Current | <a href="https://www.bose.com/"
                                                                               target="_blank" rel="noreferrer nofollow">
                         Bose</a></p>
                     <ul>
@@ -23,7 +23,7 @@
                 </li>
                 <li class="portfolio-item">
                     <div style="font-weight: bold;">Senior Software Engineer</div>
-                    <p style="color: rgb(74, 74, 74);">01/2024 - Current | <a href="https://www.bose.com/"
+                    <p style="color: rgb(74, 74, 74);">01/2023 - 03/2024 | <a href="https://www.bose.com/"
                                                                               target="_blank" rel="noreferrer nofollow">
                         Bose</a></p>
                     <ul>
@@ -34,7 +34,7 @@
                 </li>
                 <li class="portfolio-item">
                     <div style="font-weight: bold;">Lead ML Tooling Engineer</div>
-                    <p style="color: rgb(74, 74, 74);">06/2021 - 01/2024 | <a href="https://www.flocksafety.com/"
+                    <p style="color: rgb(74, 74, 74);">06/2021 - 01/2023 | <a href="https://www.flocksafety.com/"
                                                                               target="_blank" rel="noreferrer nofollow">Flock
                         Safety</a></p>
                     <ul>
