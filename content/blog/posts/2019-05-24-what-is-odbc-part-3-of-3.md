@@ -60,7 +60,7 @@ breakpoint set --file getdata.cpp --line 776runIn case it is helpful you can fin
 ### Contact
 
 If you have experience with ODBC internals, want to correct something I’ve written or just want to reach out feel free
-to follow up via [email](mailto:n0mn0m@burningdaylight.io) or on .
+to follow up via [email](mailto:alexander.hagerman@icloud.com) or on .
 
 I also have a [repo](https://github.com/n0mn0m/presentations) with the material I used for a presentation on this at
 the [Louisville DerbyPy](https://www.meetup.com/derbypy/) meetup in March of 2019.

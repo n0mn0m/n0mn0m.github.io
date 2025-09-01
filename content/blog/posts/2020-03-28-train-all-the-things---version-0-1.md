@@ -28,7 +28,7 @@ The code, docs, images etc for the project can be found [here](https://github.co
 further updates to [HackadayIO](https://hackaday.io/project/170228-on-air). For anybody that might be interested in
 building this the instructions below provide a brief outline. Updated versions will be hosted in
 the [repo](https://github.com/n0mn0m/on-air/tree/main/docs). If you have any questions or ideas
-reach [out](mailto:n0mn0m@burningdaylight.io).
+reach [out](mailto:alexander.hagerman@icloud.com).
 
 **Required Hardware:**
 

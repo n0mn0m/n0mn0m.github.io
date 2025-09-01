@@ -33,5 +33,5 @@ you Hackaday, DigiKey and OSHPark for kick starting this new learning path :).
 
 ### Contact
 
-If you want to chat feel free to follow up via [email](mailto:n0mn0m@burningdaylight.io) or
+If you want to chat feel free to follow up via [email](mailto:alexander.hagerman@icloud.com) or
 on [Sourcehut](https://github.com/n0mn0m/gencon-portal).

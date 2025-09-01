@@ -60,5 +60,5 @@ The service management can be found [here](https://github.com/n0mn0m/arcade.git/
 I’ve started to self host a few times in the past and backed away. This time I think it’s here to stay. With my current
 setup I’m not worried about what happens when something crashes, certificate management is automated away and everything
 just works. I’ve linked to my orchestration code above, but if you have any questions, or suggestions send
-them [my way](mailto:contact@burningdaylight.io). If you are starting out on your own self hosted setup, good luck, have
+them [my way](mailto:alexander.hagerman@icloud.com). If you are starting out on your own self hosted setup, good luck, have
 fun it’s easier now than ever and I imagine it will continue to get better.

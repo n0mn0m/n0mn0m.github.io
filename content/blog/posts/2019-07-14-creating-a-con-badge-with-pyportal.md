@@ -116,7 +116,7 @@ many people have been incredibly patient and helpful as I learn and ask question
 ### Contact
 
 I've really enjoyed working on this project. If you want to reach out feel free to follow up
-via [email](mailto:n0mn0m@burningdaylight.io) or on.
+via [email](mailto:alexander.hagerman@icloud.com) or on.
 
 You can find out more about the badge and source code in the [repo](https://github.com/n0mn0m/gencon-portal)
 

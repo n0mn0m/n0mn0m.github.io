@@ -207,4 +207,4 @@ The experience hasn’t been without it’s issues. The highlights are:
 Hopefully this post helps you get started with [docker-airflow](https://github.com/puckel/docker-airflow). If you have
 questions or want to share something cool that you end up doing feel free to open up
 an [issue](https://todo.sr.ht/%7En0mn0m/Airflow-Bugs) on Sourcehut or reach out to
-me [n0mn0m@burningdaylight.io](mailto:n0mn0m@burningdaylight.io).
+me [alexander.hagerman@icloud.com](mailto:alexander.hagerman@icloud.com).

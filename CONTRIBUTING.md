@@ -49,7 +49,7 @@ This is an overview of the contribution workflow:
 - Test
 - If applicable make sure formatting rules are applied
 - [Email](https://www.devroom.io/2009/10/26/how-to-create-and-apply-a-patch-with-git/) a [patchset](https://www.devroom.io/2009/10/26/how-to-create-and-apply-a-patch-with-git/)
-  to n0mn0m@burningdaylight.io
+  to alexander.hagerman@icloud.com
 
 ## Verified commits with GPG
 

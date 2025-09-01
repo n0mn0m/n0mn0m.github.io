@@ -11,7 +11,7 @@ home setup isn’t too complicated, but it’s a bit different from other setups
 **Network Components: Arris Surfboard SB6141, Ubiquiti EdgeRouter X, Ubiquiti AmplifiHD**
 
 \*\*I am not a network or sysadmin by day. This is something I’m actively learning on and figuring out. If you see
-something wrong or have suggestions I would love to hear about it. \*\*[**Reach out.**](mailto:n0mn0m@burningdaylight.io)
+something wrong or have suggestions I would love to hear about it. \*\*[**Reach out.**](mailto:alexander.hagerman@icloud.com)
 
 ### Preparing the network
 

@@ -111,4 +111,4 @@ our.
 
 By observing and understanding the ways in which the prototyped system failed I was able to identify areas where
 behavior and functionality could be simplified resulting in an overall more reliable system. If you have any other tips
-to share [reach out](mailto:n0mn0m@burningdaylight.io) and good luck hacking.
+to share [reach out](mailto:alexander.hagerman@icloud.com) and good luck hacking.

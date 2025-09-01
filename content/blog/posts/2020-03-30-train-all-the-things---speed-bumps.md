@@ -102,4 +102,4 @@ Approaching the end of this project it’s been a larger undertaking than I expe
 definitely generated a few new project ideas. The code, docs, images etc for the project can be
 found [here](https://github.com/n0mn0m/on-air) and I’ll be posting updates as I continue along
 to [HackadayIO](https://hackaday.io/project/170228-on-air) and this blog. If you have any questions or ideas
-reach [out](mailto:n0mn0m@burningdaylight.io).
+reach [out](mailto:alexander.hagerman@icloud.com).
