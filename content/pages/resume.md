@@ -4,16 +4,37 @@
         </div>
         <div style="text-align: center; font-weight: bold;">Portfolios: <a href="/programming/portfolio">burningdaylight</a>&nbsp;|&nbsp;<a
                 href="https://github.com/n0mn0m" target="_blank" rel="noreferrer nofollow">github</a></div>
-        <section style="text-align: center;"><p>I am a software engineer with over a decade of experience. In that time
-            I have worked across a variety of domains, stacks and teams building frontend web and mobile interfaces,
-            distributed backend services while managing legacy systems. I enjoy working in environments that require
-            continuous learning and collaboration to solve challenging problems. These days I prefer working on tools
-            that empower individuals to create.</p></section>
+        <section style="text-align: center;"><p>I'm a software engineer with 15 years of experience building tools that help people solve problems. I enjoy taking complex, messy problems, breaking them down into tractable issues, and shipping solutions. I've worked on projects throughout their entire lifecycle—from initial prototypes to mature systems in maintenance mode, and I have grown projects from a small group of individuals into collaborative communities.</p></section>
         <section><h1>Professional Experience</h1>
             <ol style="list-style-type: none;">
                 <li class="portfolio-item">
+                    <div style="font-weight: bold;">Lead Software Engineer</div>
+                    <p style="color: rgb(74, 74, 74);">03/2025 - Current | <a href="https://www.bose.com/"
+                                                                              target="_blank" rel="noreferrer nofollow">
+                        Bose</a></p>
+                    <ul>
+                        <li style="color: rgb(74, 74, 74);"><span>Maintain and extend a DSP prototyping platform (PREQ) for research and development.</span>
+                        <li style="color: rgb(74, 74, 74);"><span>Demonstrate and promote software engineers practices to create a reliable platform and manage complexity.</span>
+                        <li style="color: rgb(74, 74, 74);"><span>Develop and maintain tools in C and Python for DSP algorithm development and deployment.</span>
+                        <li style="color: rgb(74, 74, 74);"><span>Foster a community of collaboration around the PREQ prototyping platform that engages engineers from multiple disciplines.</span>
+                        <li style="color: rgb(74, 74, 74);"><span>Through code review, pair programming and mentorship gor a team of software engineers to maintain the PREQ prototyping platform and ensure a high level of quality for the project, it's users and maintainers.</span>
+                        <li style="color: rgb(74, 74, 74);"><span>Foster a culture of writing for engineers and users. Promote the regular documentation of design decisions through ADRs, application manuals that live with the code, along with runbooks and user guides maintained by the community.</span>
+                    </ul>
+                </li>
+                <li class="portfolio-item">
+                    <div style="font-weight: bold;">Senior Software Engineer</div>
+                    <p style="color: rgb(74, 74, 74);">01/2024 - Current | <a href="https://www.bose.com/"
+                                                                              target="_blank" rel="noreferrer nofollow">
+                        Bose</a></p>
+                    <ul>
+                        <li style="color: rgb(74, 74, 74);"><span>Understand MATLABs packaging capabilities and offerings to define a path forward to reliably sharing MATLAB code at Bose.</span>
+                        <li style="color: rgb(74, 74, 74);"><span>Maintain a Jenkins CICD environment focused on testing, packaging and deploying MATLAB toolboxes.</span>
+                        <li style="color: rgb(74, 74, 74);"><span>Promote and extend the use of automated testing for MATLAB projects.</span>
+                    </ul>
+                </li>
+                <li class="portfolio-item">
                     <div style="font-weight: bold;">Lead ML Tooling Engineer</div>
-                    <p style="color: rgb(74, 74, 74);">06/2021 - Current | <a href="https://www.flocksafety.com/"
+                    <p style="color: rgb(74, 74, 74);">06/2021 - 01/2024 | <a href="https://www.flocksafety.com/"
                                                                               target="_blank" rel="noreferrer nofollow">Flock
                         Safety</a></p>
                     <ul>

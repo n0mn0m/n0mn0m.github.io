@@ -5,6 +5,20 @@
         <li><a href="#oss">Open Source</a></li>
     </ul>
     <h2 id="professional">Professional</h2>
+    <h3>Bose</h3>
+    <ol>
+        <li>PREQ</li>
+        <p><strong>Summary</strong></p>
+        <p>DSP Prototyping Platform</p>
+        <p><strong>Core Technology</strong></p>
+        <p>C, Python, Bash, Ubuntu, JACK Audio Connection Kit</p>
+        <li>MATLAB Packaging and Deployment</li>
+        <p><strong>Summary</strong></p>
+        <p>A reliable mechanism to package, deploy and install MATLAB toolboxes</p>
+        <p><strong>MATLAB, Jenkins, Artifactory, Windows, Mac, Linux</strong></p>
+        <p></p>
+    </ol>
+    <h3>RENCI</h3>
     <h3>FlockSafety</h3>
     <ol>
         <li>Annotation Platform</li>
@@ -12,7 +26,8 @@
         <p>Design and develop tools to annotate and manage multimedia ML datasets</p>
         <p><strong>Core Technology</strong></p>
         <p>Python, Django, TypeScript, React, Postgres, DoltDB, Kubernetes, Docker, Jenkins, OAuth2, REST, AWS,
-            Auth0</p></ol>
+            Auth0</p>
+    </ol>
     <h3>RENCI</h3>
     <ol>
         <li>HeLx</li>
@@ -21,7 +36,8 @@
             biomedical, clinical, and neuroscience researchers to do work with their tools, close to the data, in the
             cloud, at scale:</p>
         <p><strong>Core Technology</strong></p>
-        <p>Python, React, bash, Kubernetes, Docker, Jenkins, OIDC, REST</p></ol>
+        <p>Python, React, bash, Kubernetes, Docker, Jenkins, OIDC, REST</p>
+    </ol>
     <h3>Samtec</h3>
     <ol>
         <li>Asset Management System</li>
@@ -123,6 +139,14 @@
         <p><strong>Core Technology</strong></p>
         <p>Windows XP, Active Directory 2008</p></ol>
     <h2 id="personal">Personal</h2>
+    <h3>minigen</h3>
+    <ol><p><strong>Summary</strong></p>
+        <p>A Python project that builds my site (burningdaylight.io) from Markdown files.</p>
+        <p><strong>Core Technology</strong></p>
+        <p>Python, Markdown</p></ol>
+        <p>
+        <div><a href="https://github.com/n0mn0m/n0mn0m.github.io">Source Repo (test in root, application in src/minigen)</a></div>
+        </p>
     <h3>Circuit Roomba</h3>
     <ol><p><strong>Summary</strong></p>
         <p>Setup SMS interaction with home roomba to be able to text commands the roomba would process and respond
