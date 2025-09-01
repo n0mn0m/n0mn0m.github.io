@@ -15,7 +15,8 @@
         <li>MATLAB Packaging and Deployment</li>
         <p><strong>Summary</strong></p>
         <p>A reliable mechanism to package, deploy and install MATLAB toolboxes</p>
-        <p><strong>MATLAB, Jenkins, Artifactory, Windows, Mac, Linux</strong></p>
+        <p><strong>Core Technology</strong></p>
+        <p>MATLAB, Jenkins, Artifactory, Windows, Mac, Linux</p>
         <p></p>
     </ol>
     <h3>RENCI</h3>
