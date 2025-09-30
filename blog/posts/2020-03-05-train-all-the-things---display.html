@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train All the Things — Display - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>Train All the Things — Display</h1>
+        
+        <time datetime="2020-03-05">
+            March 05, 2020
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/python/">python</a>
+            
+            <a href="/tags/circuit-python/">circuit-python</a>
+            
+            <a href="/tags/hackaday/">hackaday</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>Continuing my project with things I know the PyPortal display was up next. Last year I spent a few weeks playing with
+the portal to make a badge at Gen Con and had a lot of fun with it. Since that
+time <a href="https://circuitpython.org/downloads">CircuitPython 5</a> has been released and the portal now expects a few
+new <a href="https://circuitpython.org/libraries">modules</a> which were easy enough to download and send to the board. The
+PyPortal makes it incredibly easy to point at an endpoint to fetch data:</p>
+<p>
+<pre><code class="language-python">import board
+from adafruit import PyPortalpyportal
+
+pyportal = PyPortal(
+ url=&lt;your url here&gt;,
+ default=&quot;green.bmp&quot;
+)
+
+status = pyportal.fetch()
+print(status)
+</code></pre>
+</p>
+<p>With that small snippet we have our status, and all we need to do is put that in a loop to set the background depending
+on the bit returned.</p>
+<p>
+<pre><code class="language-python">import board
+from time import sleep
+from adafruitpyportal import PyPortaltry:
+from secrets import secrets * # noqa
+
+except ImportError:
+ print(&quot;WiFi secrets are kept in secrets.py, please add them there!&quot;)
+
+raisepyportal = PyPortal(
+ url=secrets[&quot;signal&quot;],
+ defaultbg=&quot;green.bmp&quot;
+)
+
+current = 0
+
+while True:
+ status = int(pyportal.fetch())
+ if status == 0 and status == current:
+     pass
+ elif status == 0 and status != current:
+     pyportal.setbackground(&quot;green.bmp&quot;)
+ current = 0
+     elif status == 1 and status != current:
+ pyportal.setbackground(&quot;red.bmp&quot;)
+     current = 1
+ elif status == 1 and status == current:
+     pass
+ sleep(30)
+</code></pre>
+</p>
+<p>Even though it’s a small snippet I want to point out a couple things. First I’m wrapping the return from fetch in a cast
+to int. If you use Python, but you are new to CircuitPython this may seem odd. If you don't do this and try to compare a
+string to an int you're probably not going to get the result you expect. Try it out in a repl and then follow up
+with <a href="https://learn.adafruit.com/circuitpython-essentials/circuitpython-essentials">CircuitPython Essentials</a> . Also I'm
+only changing the background if the status we fetch is different than the current status. While repainting the screen is
+fast, it's noticeable and there's no reason to do it every 30 seconds if nothing is different.</p>
+<p>That’s it. Now whenever the endpoint receives an update the portal will see that status change and update the display.</p>
+<p><img alt="" src="../../img/blog/03CX8xYl9jomuqB3y.jpg" /></p>
+<p><img alt="" src="../../img/blog/0-oqB9-pFVqxL1xWc.jpg" /></p>
+<p>Thanks to Adafruit for publishing the <a href="https://www.thingiverse.com/search?q=pyportal&amp;dwh=915e616a3fbda6e">case</a> above.
+The logo on display is the Jolly Wrencher of <a href="https://hackaday.com/about/">Hackaday</a>.</p>
+<p>With the <a href="https://burningdaylight.io/posts/train-all-the-things-sighandler/">endpoint</a> and display done I’m off into the
+unknown. I’ll be setting up the ESP-EYE to update the endpoint, training the voice model and finally running it all with
+FreeRTOS.</p>
+<p>The code, docs, images etc for the project can be found <a href="https://github.com/n0mn0m/on-air">here</a> and I’ll be posting
+updates as I continue along to <a href="https://hackaday.io/project/170228-on-air">HackadayIO</a> and this blog. If you have any
+questions or ideas reach <a href="mailto:alexander.hagerman@icloud.com">out</a>.</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Providing Context with Mocks - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>Providing Context with Mocks</h1>
+        
+        <time datetime="2020-01-23">
+            January 23, 2020
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/python/">python</a>
+            
+            <a href="/tags/testing/">testing</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>Day to day I spend a lot of time interacting with database systems. While this is super useful it can also create issues
+with testing that have been covered many many times in many other articles.</p>
+<p>In some languages isolating database interactions comes from dependency injection and swapping out the interface while
+testing. I’ve seen this approach when working with C# for instance, but in Python I typically see code bases mocking out
+these interface points rather than passing in interfaces to functions and classes.</p>
+<h3 id="mocking-context">Mocking context</h3>
+<p>One of my favorite constructs in Python is
+the <a href="https://docs.python.org/3/reference/datamodel.html#context-managers">context manager</a>. These are incredibly useful
+objects for defining what the creation and destruction of different interfaces should do viaenter and exit. (Append a
+for async context managers)</p>
+<p>While useful they can be a bit tricky for mocking out in your test, and recently when I started doing just that I
+couldn’t find any good examples for accomplishing this. Below I’ve provided an example of mocking out a context manager
+in your test, showing when you are interacting with different parts of your mock and the mocked context manager API.</p>
+<p>
+<pre><code class="language-python">def updateentity(k, v):
+ with pyodbc.connect(cnxnstr, autocommit=True): as cnxn:
+  with cnxn.cursor() as crsr:
+   crsr.execute()
+</code></pre>
+</p>
+<p>
+<pre><code class="language-python">from unittest import TestCase
+from unittest.mock import patchclass InterfaceTest(TestCase):
+ @patch(&quot;mod.pyodbc.connect&quot;)
+ def testupdateentity(self, mockcnxn):
+ # result of pyodbc.connect
+ mockcnxncontextmanager = mockcnxn.returnvalue
+ # object assigned to in with ... as con
+ mockcm = mockcnxncontextmanager.enter.returnvalue
+ # result of with ... as crsr, note the extra enter.returnvalue
+ # from the context manager
+ mockcrsr = mockcm.cursor.returnvalue.enter.returnvalue
+ mockcrsr.fetchone.returnvalue = (1,)
+</code></pre>
+</p>
+<p>Or if you want to test a sideeffect:</p>
+<p>
+<pre><code class="language-python">mockcrsr.fetchone.sideeffect**
+*self.assertEqueal(....)
+</code></pre>
+</p>
+<p>Good luck mocking, context is what you make it.</p>
+<h3 id="additional-reading">Additional Reading</h3>
+<p>If you want to know more about context managers in Python checkout:</p>
+<ul>
+<li><a href="https://www.python.org/dev/peps/pep-0343/">PEP 343</a></li>
+<li><a href="https://docs.python.org/3/library/contextlib.html">contextlib</a></li>
+</ul>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

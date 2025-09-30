@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train All the Things — Wrapping Up - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>Train All the Things — Wrapping Up</h1>
+        
+        <time datetime="2020-03-30">
+            March 30, 2020
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/python/">python</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+            <a href="/tags/hackaday/">hackaday</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>And now I’m at v0.1 of the <a href="https://github.com/n0mn0m/on-air">on-air</a> project. I was able to achieve what I was hoping
+to along the way. I learned more about model development, tensorflow and esp. While this version has some distinct
+differences from what I outlined for the logic flow (keywords, VAD) it achieves the functional goal. The code, docs,
+images etc for the project can be found in <a href="https://github.com/n0mn0m/on-air">this</a> repo, and the project details live
+on <a href="https://hackaday.io/project/170228-on-air">HackadayIO</a>. When I get back to this project and work on v1.x I'll make
+updates available to each.</p>
+<p><img alt="" src="../../img/blog/012tf1MTuiXAahexs.gif" />
+<img alt="" src="../../img/blog/0lx6jwWNAwZhzb5vB.gif" /></p>
+<p>A couple thoughts having worked through this in the evening for a couple months:</p>
+<ul>
+<li>I really should have outlined the states that the esp program was going to cycle through, and then mapped those into
+  task on the FreeRTOS event loop. While the high level flow captures the external systems behavior the esp has the most
+  moving parts at the applications level, and is where most of the state is influenced.</li>
+<li>I want to spend some more time with C++ 14/17 understanding the gotchas of interfacing with C99. I ran into a few
+  different struct init issues and found a few ways to solve them. I’m sure there is a good reason for different
+  solutions, but it’s not something I’ve spent a lot of time dealing with so I need to learn.</li>
+<li>While continuing to learn about esp-idf I want to look into some of the esp hal work too. I briefly explored esp-adf
+  and skainet while working through on-air. Both focus on a couple boards but seems to have functionality that would be
+  interesting for a variety of devices. Understanding the HAL and components better seems to be where to start.</li>
+<li>Data, specifically structured data is going to continue to be a large barrier for open models and for anybody to be
+  able to train a model for their own want/need. While sources like Kaggle, arvix, data.world and others have worked to
+  help this there’s still a gulf between what I can get at home and what I can get at work. Additionally many open
+  datasets are numeric or text datasets while video, audio and other sources are still lacking.</li>
+<li>Document early, document often. Too many times I got so caught up in writing code, or just getting one more thing done
+  that by the time I did that getting myself to do a thorough write up of issues I experienced, interesting findings, or
+  even successful moments was difficult. I know that I put this off sometimes, and different parts of the project are
+  not as well documented, or details have been lost to the days in between.</li>
+<li>There’s a lot of fun stuff left to explore here I can see why I’ve heard a lot about esp and look forward to building
+  more.</li>
+</ul>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

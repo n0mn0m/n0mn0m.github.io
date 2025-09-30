@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes from a year of working with Jack Audio Connection Kit - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>Notes from a year of working with Jack Audio Connection Kit</h1>
+        
+        <time datetime="2025-01-17">
+            January 17, 2025
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/programming/">programming</a>
+            
+            <a href="/tags/debugging/">debugging</a>
+            
+            <a href="/tags/jack/">jack</a>
+            
+            <a href="/tags/audio/">audio</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>Last year I became the lead engineer on a new project. After joining the project I spent a lot of time helping users and engineers debug <a href="http://jackaudio.org">JACK audio</a> behavior (although JACK typically wasn't the cause of the observed issue). While I had used Core Audio in the past I wasn't as familiar with JACK at the time, so I thought I would write down a few of the things I have learned to check first when somebody tells me they are having an issue with JACK. These are specific to running JACK on Linux, in my case Ubuntu.</p>
+<div class="mermaid">flowchart LR
+    A[Does JACK server start?] --&gt; B{No}
+    B --&gt; C[What is your clock source, and is it valid?]
+    C --&gt; D{Does your device provide JACK a clock?}
+    D --&gt; E{"Does your device have an internal clock,\n or does it rely on an external clock\n (for instance a PCI MADI card setup)?"}
+    C --&gt; F{Are all of your cables connected?}
+    F --&gt; G{Are they in the right direction?}
+    F --&gt; H{Are they all showing healthy conditions on\n their LED or other connection health indicator?}
+    B --&gt; I[Does ALSA recognize your sound card/interface\n as a capture and/or playback device?]
+    I --&gt; J{No}
+    J --&gt; K{"How is the device connected (USB, PCI, etc),\n and do you need any additional drivers?"}
+    J --&gt; L{"Using the correct tools (lsusb, etc)\n does the kernel recognize the device is present?\n If not you're debugging hardware."}
+    I --&gt; M{Yes}
+    M --&gt; N{Does ALSA recognize that the device supports\n the sample rate you want to run the JACK server at?}
+    M --&gt; O{Do you need to customize any channel or other\n settings with alsa mixer to have the correct IO setup?}
+    M --&gt; P{Can you use alsa utilities to send or\n receive signal to the device?}
+    P --&gt; Q["If your clock source is valid, and ALSA\n recognizes the devices and can route signal in/out of the device\n (depending on playback and capture capabilities and requirements)\n then we probably have a JACK settings issue.\n If you don't verify the clock and ALSA\n settings first though you may be looking in the wrong spot for the issue."]
+    C --&gt; R{Clock is valid and ALSA can use the device}
+    R --&gt; S{Are you starting JACK in daemon mode or dbus?}
+    S --&gt; T{If daemon mode:}
+    T --&gt; U{Is there anything blocking the daemon from starting?\n For instance another jack server that is already\n running via pulseaudio or another process?}
+    R --&gt; V{Are you passing the right hardware identifier\n to JACK to select the correct playback/capture device\n that the process will use with the server?}
+    R --&gt; W{Are you starting the server with a sample rate,\n frame size and period supported by the device?}
+    W --&gt; X{Use ALSA tools or qjackctl to review device settings\n and configuration options.}
+    R --&gt; Y{What does JACK tell you if you start the process\n with the `--verbose` flag?}</div>
+<p>That's a lot to check, and I employ various ALSA cli utilities along with JACK tools like qjackctl to help collect information as I iterate through the items above until I get to a state where the JACK server will start. Once I get the JACK server started if errors are reported it tends to fall into a couple categories (I'm sure there are more, this is just based on my experience so far):</p>
+<ol>
+<li>JACK client issues</li>
+<li>This is a pretty broad space since really a jack client can represent just about any application/algorithm that you want to wrap as a jack client and have audio or midi in/out port support. A few things I've seen:<ol>
+<li>The application runs at a fixed rate that isn't compatible with the rate the server is running at.<ol>
+<li>You will either need to update the client, run the server at a different rate, or do sample rate conversion.</li>
+</ol>
+</li>
+<li>The application parses JACK server output information and doesn't behave correctly when the server runs in verbose mode.<ol>
+<li>There is probably a better way to get the information the client needs without parsing jack server output.</li>
+</ol>
+</li>
+<li>The MIDI messages that the application receives are not parsed correctly.<ol>
+<li>Use MIDI utilities to check the message format/structure and either fix the sending or receiving application code.</li>
+</ol>
+</li>
+<li>Resource errors - these tend to be addressable with standard tools (writing tests, profiling the application, static analysis, etc).<ol>
+<li>Memory errors.</li>
+<li>Callback code doesn't execute within the allotted time.</li>
+<li>Improper port management.</li>
+<li>Logic bugs.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Unstable clock</li>
+<li>This one is a little tricky. If the jack server starts, but loses the clock source you can check a few things.<ol>
+<li>Is the device still connected correctly, and if it's external did it lose power?</li>
+<li>Check syslogs and dbus. Did the hardware disconnect and reconnect?</li>
+<li>If the device clock is external does the device have any logs that you should review?</li>
+<li>If none of the points above expose any useful information then you will probably need to do deeper monitoring, and possibly troubleshooting at the driver/device level.<ul>
+<li>Does the error happens on a set time interval</li>
+<li>Can you replicate it on a second machine</li>
+<li>What debug information is available at the driver level</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<p>Working with and building JACK applications has been a really interesting experience. Making sure everything aligns as expected from hardware through software has taught me a lot. Maybe some of this will help somebody else if they are debugging JACK workflows for the first time.</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

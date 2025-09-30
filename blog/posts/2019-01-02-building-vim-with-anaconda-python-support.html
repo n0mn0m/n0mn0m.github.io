@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Vim with Anaconda Python Support - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>Building Vim with Anaconda Python Support</h1>
+        
+        <time datetime="2019-01-02">
+            January 02, 2019
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/python/">python</a>
+            
+            <a href="/tags/conda/">conda</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>This morning I was setting up a RHEL 7 box for development using my normal dot files, but when I was ready to sit down
+and start working on my project I noticed I got an error from You Complete Me letting me know that the version of vim
+that was installed wasn't compatible. After checking EPEL for a more up to date install I decided to try pulling vim
+from source and building it myself.</p>
+<p>Luckily this wasn’t too hard, but I did run into a small issue related to the vim .config --with-python* flags since I'm
+using conda as my Python environment manager. The short story is the vim needs some information from the Python config
+directory to enable python and python3 support. When you use Anaconda or Minionda to manage your environments these are
+in slightly different locations than the normal /usr or /lib64 paths you may find in vim build documentation. Instead
+they will be in your conda environment lib as seen below.</p>
+<p>Install additional build dependencies.</p>
+<p>
+<pre><code class="language-bash">sudo yum install cmake gcc-c++ make ncurses-devel
+</code></pre>
+</p>
+<p>Clone vim source, configure and build. Specifically pay attention to the — with-python* flags and the config directory
+they use in your conda environment.</p>
+<p>
+<pre><code class="language-bash">git clone https://github.com/vim/vim.gitpushd ~/vim/src./configure --with-features=huge \
+--enable-multibyte \
+--enable-rubyinterp=yes \
+--enable-pythoninterp=yes \
+--with-python-config-dir=/work/alex/miniconda3/envs/py27/lib/python2.7/config \
+--enable-python3interp=yes \
+--with-python3-config-dir=/work/alex/miniconda3/lib/python3.6/config-3.6m-x8664-linux-gnu \
+--enable-perlinterp=yes \
+--enable-luainterp=yes \
+--enable-cscope \
+--prefix=/home/alex/.local/vim | grep -i pythonmake &amp;&amp; make installpopdFinally if you use a custom prefix as seen above (prevents system level changes and conflicts impacting others) you probably want to add the below to you .bashrc file.
+
+if [ -d &quot;$HOME/.local/vim/bin/&quot; ] ; then
+ PATH=&quot;$HOME/.local/vim/bin/:$PATH&quot;
+fi
+</code></pre>
+</p>
+<p>And that’s it. You should now have an up to date vim install with Python.</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

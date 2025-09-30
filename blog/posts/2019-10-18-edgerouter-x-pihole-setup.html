@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EdgeRouter X PiHole Setup - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>EdgeRouter X PiHole Setup</h1>
+        
+        <time datetime="2019-10-18">
+            October 18, 2019
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/homelab/">homelab</a>
+            
+            <a href="/tags/raspberrypi/">raspberrypi</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>I’ve seen a few post from people asking for help adding a PiHole to their network with an EdgeRouter. One solution I’ve
+seen is to use <a href="https://github.com/britannic/blacklist">brittanics black-list</a>. This is nice for those wanting to run
+software on their router, but I didn’t want the load, and I want the functionality that the PiHole provides. Hopefully
+this guide help those looking to add a PiHole in the future.</p>
+<h3 id="setting-up-the-pihole">Setting up the PiHole</h3>
+<p>I’m going to assume you’ve already installed PiHole on your device. If not
+the <a href="https://github.com/pi-hole/pi-hole">docs</a> are a great place to start. If you set this up on a Raspberry Pi I
+encourage you to disable autologin, add a new user, add the user to the sudo group and enable ssh. For more information
+checkout the RaspberryPi <a href="https://www.raspberrypi.org/documentation/remote-access/ssh/">docs</a>.</p>
+<h3 id="configuring-edgerouter-to-use-the-pihole">Configuring EdgeRouter to use the PiHole</h3>
+<p><strong>I’m assuming your edgerouter is the DHCP server on your network.</strong></p>
+<p>With PiHole installed, connect the device to your network (preferably wired) and login to the Ubiquity web ui. Click on
+the Services tab.</p>
+<p><img alt="" src="../../img/blog/0oJpLVsMSHYQc8A9M.png" /></p>
+<p>On this tab you should see an action button on the right side of the screen across from your DHCP information. Click it,
+and select configure. In the pop up window select Leases, and you should see the device your PiHole is on. Click the
+Static MAC/IP Mapping tab and give this device a static IP.</p>
+<p>While we are here click the details tab and add the IP as DNS 1.</p>
+<p><img alt="" src="../../img/blog/0eVNmSkynpiX4nUYh.png" /></p>
+<p>Return to the main web ui Dashboard. At the bottom of the screen you should see a system tab with an arrow on the far
+right.</p>
+<p><img alt="" src="../../img/blog/0rwz9tJdMQwzQPbei.png" /></p>
+<p>Click it and on the right side of the pop up add the IP you just assigned the PiHole as your Name Server.</p>
+<p><img alt="" src="../../img/blog/0A7OE7Ka5iL7knB_D.png" /></p>
+<p>With this in place login to your PiHole, navigate to network and you should see your router listed. The device should be
+highlighted green with a query count indicating that traffic is flowing through the PiHole as expected.</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

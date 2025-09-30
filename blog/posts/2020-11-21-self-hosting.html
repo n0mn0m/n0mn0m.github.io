@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self Hosting - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>Self Hosting</h1>
+        
+        <time datetime="2020-11-21">
+            November 21, 2020
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/homelab/">homelab</a>
+            
+            <a href="/tags/dns/">dns</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>Over the last few years I built up a sprawling list of dependencies for my home project and blog workflow. Earlier this
+year I decided it was time to cut down on that list and host my service dependencies locally where I could. While it
+took me a while I reached a point where I no longer tweak the setup week to week and decided it was time to write up the
+process.</p>
+<p>A quick list of the tools I used for orchestration:</p>
+<ul>
+<li>shell</li>
+<li>DNS</li>
+<li>Traefik2</li>
+<li>docker/docker-compose</li>
+<li>alpine linux</li>
+</ul>
+<h3 id="ddns">(D)DNS</h3>
+<p>The first thing I needed to do was make my services easy to reach local and remote. Since this is all running behind my
+home router that also means that my IP can change from time to time. To handle this I made use of Gandi’s DNS API, and
+setup a <a href="https://github.com/georgr/erx-gandi-nat-ddns">shell script</a> to run with cron on my router to keep my DNS
+records up to date. With DNS ready I moved on to Traefik.</p>
+<h3 id="traefik">Traefik</h3>
+<p><a href="https://traefik.io/">Traefik</a> is a really nice routing/proxy service that can inspect container labels and setup route
+forwarding while handling certificate management, traffic metrics and more. The main callout (other than what you will
+find in the <a href="https://doc.traefik.io/traefik/v2.3/">docs</a> ) is to keep an eye on what version you are using versus what
+others used in examples, and that non http based traffic (for instance ssh) requires a little more setup. Beyond that
+Traefik has been really nice to use and made adding/removing various services easy when coupled with docker.</p>
+<h3 id="docker-compose">docker-compose</h3>
+<p>While k8s is the current hot orchestration tool I wanted to keep things simple. I don’t have a need to cluster any of my
+home tools, and while distributed systems are interesting they also require a lot of work. I left those at my day job
+and use compose + <a href="https://github.com/n0mn0m/duplicity-helpers.git/">duplicity</a> for my home setup. This makes service
+management easy, the labels allow traefik to detect and handle traffic management while
+my <a href="http://duplicity.nongnu.org/">duplicty</a> ensures I won’t lose much work and can quickly restore my data and restart
+any services in a few minutes on any box with docker.</p>
+<h3 id="services">Services</h3>
+<p>A quick list of the services I’m hosting:</p>
+<ul>
+<li>git</li>
+<li>cgit</li>
+<li>minio</li>
+<li>teamcity</li>
+<li>youtrack</li>
+<li>rust home services API</li>
+</ul>
+<p>The service management can be found <a href="https://github.com/n0mn0m/arcade.git/tree/">here</a>.</p>
+<h3 id="wrap-up">Wrap Up</h3>
+<p>I’ve started to self host a few times in the past and backed away. This time I think it’s here to stay. With my current
+setup I’m not worried about what happens when something crashes, certificate management is automated away and everything
+just works. I’ve linked to my orchestration code above, but if you have any questions, or suggestions send
+them <a href="mailto:alexander.hagerman@icloud.com">my way</a>. If you are starting out on your own self hosted setup, good luck, have
+fun it’s easier now than ever and I imagine it will continue to get better.</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

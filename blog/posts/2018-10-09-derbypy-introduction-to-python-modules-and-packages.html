@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DerbyPy Introduction to Python Modules and Packages - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>DerbyPy Introduction to Python Modules and Packages</h1>
+        
+        <time datetime="2018-10-09">
+            October 09, 2018
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/python/">python</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>Most programming languages offer ways to organize your code into namespaces. These namespaces are logical containers
+that group different names and behaviors together and isolate them to that namespace. By organizing your code with
+namespaces it makes it easier to structure your application without naming collisions and it can make it easier for you
+and others to maintain your code by adding some additional organization to your project.</p>
+<p>In Python we can use modules and packages to create namespaces that we can then reference in other modules as we build
+our application.</p>
+<p>A Python module is a .py file containing Python definitions and statements. The file name is the module name with the
+suffix.py appended.</p>
+<p>As with all things in Python when we import a module it is an object, and just like other objects it has dunder (double
+underscore) attributes that define additional data about that module. We can use that to learn more about the module
+before we ever start to use it.</p>
+<p>
+<pre><code class="language-python">import pprintext
+
+print(pprintext.doc)
+print(dir(pprintext))
+ A module providing extensions to pretty print structures that pprint may not handle well.
+
+ ['builtins', 'cached', 'doc', 'file', 'loader', 'name', 'package', 'spec', 'listdirectory', 'os']From the output of dir() we can see there is a function called listdirectory that is part of this module.
+
+pprintext.listdirectory(&quot;plugins&quot;)
+
+ plugins/
+ ipynb/
+ init.py
+ liquid.py
+ markup.py
+ requirements.txt
+ .git
+ README.md
+ ipynb.py
+ LICENSE
+ .gitignore
+ core.py
+ pycache/
+ core.cpython-36.pyc
+ init.cpython-36.pyc
+ markup.cpython-36.pyc
+ ipynb.cpython-36.pyc
+ tests/
+ pelican/
+ pelicanconfmarkup.py
+ pelicanconfliquid.py
+ theme/
+ templates/
+ base.html
+ content/
+ with-meta-file.ipynb-meta
+ with-liquid-tag.ipynb
+ with-metacell.ipynb
+ with-meta-file.ipynb
+ with-liquid-tag.md
+
+</code></pre>
+</p>
+<p>Finally, we can see where we are importing this module from with .file and we see that this is a module local to our
+application.</p>
+<p>
+<pre><code class="language-python">pprintext.file '/home/alex/projects/alexhagerman.github.io/pprintext.py'### Packages
+</code></pre>
+</p>
+<p>For the sake of brevity and simplicity tonight we can say that a Python package is a collection of Python modules. It is
+a folder that contains .py file and provides a parent namespace for the modules in the folder.</p>
+<p>Another way of saying this is:</p>
+<p>Just like we did with our module we can call dir() on our package to see associated attributes and objects.</p>
+<p>
+<pre><code class="language-python">import pprintextension
+dir(pprintextension)
+
+ ['all',
+ 'builtins',
+ 'cached',
+ 'doc',
+ 'file',
+ 'loader',
+ 'name',
+ 'package',
+ 'path',
+ 'spec',
+ 'network',
+ 'pprintextension']
+</code></pre>
+</p>
+<p>Additionally, we can call help which may provide more information about the package defined in init.py. You can think of
+init.py as a place to put initialization behavior and documentation for your package. In the way thatinit handles
+initializing your class init.py handles the initialization of your package during import.init.py used to be required to
+make a directory a package, but as of Python 3.3 thanks to pep-420 it is no longer required. More links and information
+are provided at the end of the notebook.</p>
+<p>
+<pre><code class="language-python">help(pprintextension)
+
+ Help on package pprintextension:
+
+ NAME
+ pprintextension
+
+ DESCRIPTION
+ A package providing functions to pretty print structures that may have alternative renderings from the standard
+ pprint package.
+
+ PACKAGE CONTENTS
+ filesystem
+ network
+
+ DATA
+ all = ['filesystem']
+
+ FILE
+ /home/alex/projects/modules-and-packages-into/pprintextension/init.pyAdditionally we can import modules from packages and refer to them directly instead of using the fully qualified namespacing syntax &lt;package&gt;.&lt;module&gt;.&lt;object&gt;
+
+from pprintextension import filesystem
+filesystem.listhiddendirectory()
+
+ ./
+ .ipynbcheckpoints/
+ .git/
+ .idea/Packages go way beyond what we have covered here. As you build packages you want to consider their structure relative to the public API you’re creating. Publishing and distributing packages is a talk or series of talks on its own. For now what we have covered is how we can group modules together in a package and some basics for how to control the initialization behavior of a package.
+</code></pre>
+</p>
+<h3 id="finishing-up">Finishing up</h3>
+<p>Now that we know what a Python module and package is next month we will look at the import statement. As a sneak peak
+I'll leave you with sys.path and you can begin exploring how this relates to our own packages and modules that make up
+our application as well as those we might install with tools such as pip or conda.</p>
+<p>
+<pre><code class="language-python">import sys
+sys.path
+
+ ['',
+ '/home/alex/miniconda3/envs/blogging/lib/python36.zip',
+ '/home/alex/miniconda3/envs/blogging/lib/python3.6',
+ '/home/alex/miniconda3/envs/blogging/lib/python3.6/lib-dynload',
+ '/home/alex/miniconda3/envs/blogging/lib/python3.6/site-packages',
+ '/home/alex/miniconda3/envs/blogging/lib/python3.6/site-packages/IPython/extensions',
+ '/home/alex/.ipython']&lt;https://docs.python.org/3/library/sys.html#sys.path&gt;
+</code></pre>
+</p>
+<h3 id="additional-reading">Additional Reading</h3>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

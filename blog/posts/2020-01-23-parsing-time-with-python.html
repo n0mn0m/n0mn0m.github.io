@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parsing Time with Python - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>Parsing Time with Python</h1>
+        
+        <time datetime="2020-01-23">
+            January 23, 2020
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/python/">python</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>I recently had the need to measure time and performance on an application that interacted with a lot of on disk files.
+Most of the time when talking about timing and measurement in Python we see the use of timeitand various built in timing
+techniques. For this work I wanted a little more information about how the application was interacting with the system,
+and what the performance looked like from outside the application. Getting a rough view of this is pretty easy on a nix
+using <a href="http://man7.org/linux/man-pages/man1/time.1.html">/usr/bin/time</a>.</p>
+<h3 id="parsing-time">Parsing Time</h3>
+<p>To make use of time you simply call it with your application as an argument. You can find the time args with man time,
+but on useful one is the -v flag for more system information in the output, and an --output file path. Doing this you
+get a fair amount of page, time and system information in your output packaged up in a file that you can parse. In my
+script I'm also including some information in the file name so I can know what source file my application was parsing
+relating to that time information.</p>
+<p>
+<pre><code class="language-bash">#!/bin/bash
+
+SRCDIRPATH=/data
+RESULTS=/profilefor file in $SRDDIRFILES; do
+ filename=$(basename -- &quot;$file&quot;)
+ filebase=&quot;${filename%.*}&quot;
+ echo $filebase
+ /usr/bin/time -v --output=$PROFILERESULTSDIR$filebase.txt cmd args
+ echo &quot;done&quot;
+donels -1sh $SRCDIRPATH &amp;&gt; profileddirectory.size
+</code></pre>
+</p>
+<p>Once the application has ran you can see the output of time in your file, but you will also probably notice that it’s
+just a text blob not ready for aggregation. Overall parsing time is relatively straight forward with one gotcha. I use
+the below to translate the blob into rows and columns:</p>
+<p>
+<pre><code class="language-python">import os
+from typing import Tuple, List, Any, Union
+
+def formattimeprofileoutput(fpath, fobject) -&gt; List[Any]:
+ &quot;&quot;&quot;
+ Takes a directory of files containing the output of /usr/bin/time
+ and transforms the time blob data to a series of rows and columns.
+ &quot;&quot;&quot;
+ f = os.path.join(fpath, fobject)
+ timemetrics = [fobject] with open(f, &quot;r&quot;) as tfile:
+ for line in tfile:
+  if &quot;Elapsed&quot; not in line:
+   cleanline = line.lstrip()
+   metric, sep, value = cleanline.rpartition(&quot;:&quot;)
+   timemetrics.append(value.strip())
+  else:
+   # Handling the special case of the Elapsed time
+   # format using : in the time formatting.
+   cleanline = line.lstrip()
+   metric, sep, seconds = cleanline.rpartition(&quot;:&quot;)
+   # we now have something like val = 43.45
+   # metric = Elapsed (Wall Clock) time (H:MM:SS or M:ss) 1
+   # partition again on metric, then combine back our time.
+   metric, sep, minutes = metric.rpartition(&quot;:&quot;)
+   # put time back into metrics
+   value = f&quot;{min}:{secs}&quot;
+   timemetrics.append(value.strip())
+   # setup tool second metric for easier evaluation of
+   # time metrics
+   minutes = float(int(minutes) * 60)
+   seconds = float(seconds)
+   seconds += minutes
+   timemetrics.append(seconds)
+ return timemetrics
+</code></pre>
+</p>
+<p>Notice the one edge case in Elapsed (wall clock) time...). All other rows end with \n and seperate the metric name from
+the value with :. Elapsed wall clock time however throws in a couple extra colons for fun. Overall not a big deal, but a
+little gotcha waiting in the details when going from a string to another object/format.</p>
+<p>Using the script above you end up with a collection of rows and columns that you can then use to find out how your
+application performed for that run instance.</p>
+<p>A quick bonus script, since my application was reading in and writing out new files I wanted to include the size of the
+input files so I could begin to understand the impact of the input file size on the applications time metrics.</p>
+<p>
+<pre><code class="language-python">import osdef formatsizeoutput(fpath, fobject) -&gt; List[List[str]]:
+ f = os.path.join(fpath, fobject)
+ sizemetrics = [] with open(f, &quot;r&quot;) as sfile:
+ for line in sfile:
+ metric, sep, filename = line.rpartition(&quot; &quot;)
+ sizemetrics.append([metric.strip(), filename.strip()])
+ return sizemetrics[1:]
+</code></pre>
+</p>
+<p>With this and the above time parsing we have the input file size, name, application command, page and time information.
+More than enough to begin looking at what our application is doing from the outside.</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

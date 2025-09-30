@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(define zero(….)) - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>(define zero(….))</h1>
+        
+        <time datetime="2020-02-03">
+            February 03, 2020
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/sicp/">sicp</a>
+            
+            <a href="/tags/lisp/">lisp</a>
+            
+            <a href="/tags/racket/">racket</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>A couple weeks ago I had the opportunity to attend
+the <a href="https://mitpress.mit.edu/sites/default/files/sicp/index.html">SICP</a> course taught
+by <a href="https://www.dabeaz.com/sicp.html">David Beazley</a>. I’ve written a short summary of my
+experience <a href="https://burningdaylight.io/posts/sicp-beazley-review/">here</a> (tldr; take the course if you get the chance).
+While the course as a whole was challenging and an interesting a couple of the exercises stood out to me, and I wanted
+to take a moment to share them here.</p>
+<h3 id="true">TRUE</h3>
+<p>At a deep level our computer is operating super fast on a state of ON/OFF with gates that define logic. Because of this
+it's an area of interest for me in how we express similar logic in our languages and the statement/operator capabilities
+we can build from that. Towards the beginning of day two we kicked things off by defining our own boolean logic in
+Racket. Our first step? Defining TRUE and FALSE.</p>
+<p>
+<pre><code class="language-racket">(define (TRUE x y) x)
+(define (FALSE x y) y)(define t (TRUE 0 1))
+'t
+(define f (FALSE 0 1))
+'fTake a minute and reread that block, because the first time I did it threw me for a loop. We just passed in the same arguments and got TRUE and FALSE. In Racket, and in this scenario we have defined the behavior of our basic TRUE and FALSE operators. The next challenge we were provided was to implement all boolean logic operators.
+
+(define (NOT x) (x FALSE TRUE))(NOT TRUE)
+'f
+(NOT FALSE)
+'t
+
+(define (AND x y) (x y x))
+(AND TRUE FALSE)
+'t(define (OR x y) (x x y))
+(OR FALSE FALSE)
+'f
+(OR TRUE FALSE)
+'t
+(OR FALSE TRUE)
+'t*;;
+</code></pre>
+</p>
+<p>Hint: x is not just TRUE/FLASE above. It is a procedure, it takes two arguments. And we now have our own set of truth
+tables.</p>
+<h3 id="defining-zero">Defining Zero</h3>
+<p>Before working on boolean logic we had been discussing the substitution model of evaluation and what you could express
+with it. After our truth searching exercise it seemed like looking at how numbers could work might be fun.</p>
+<p>
+<pre><code class="language-racket">(define zero (lambda (f) (lambda (x) x)))
+(define two (lambda (f) (lambda (x) (f (f x)))))
+(define three (lambda (f) (lambda (x) (f (f (f x))))))
+</code></pre>
+</p>
+<p>Defining numbers as symbols for the application of a function N times then let us implement addition:</p>
+<p>
+<pre><code class="language-racket">(define (plus a b)
+ (lambda (f) (lambda (x) ((a f) ((b f) x))))
+ )(define five (plus two three))
+</code></pre>
+</p>
+<p>Or to make it concrete</p>
+<p>
+<pre><code class="language-rackaet">(define (inc x) (+ x 1))((five inc) 0)
+'5
+</code></pre>
+</p>
+<p>Numbers are weird and amazing. Ever since I realized that anything we can express in a program (that I’m writing in
+letters and symbols) can be boiled down to a series of 0s and 1s that were ultimately symbols that could be swapped out
+I’ve been captivated by the question of what numbers are. We did other interesting and exercises (mutation, building an
+interpreter, a register machine VM, and generic types), but something about the above left me considering the nature of
+logic and programming. It’s easy to get lost in the day to day problem solving, but when we get the chance to step back
+and look at the strangeness of what we are interacting with it can be a lot of fun. Here’s one last thought to have some
+fun with:</p>
+<p>Always returns false, except for zero, because zero says don't do the function so we get back true</p>
+<p>
+<pre><code class="language-racket">(define (zero? n) ((n (lambda (x) #f)) #t))
+</code></pre>
+</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

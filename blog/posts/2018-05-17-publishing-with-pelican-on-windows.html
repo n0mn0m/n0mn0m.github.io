@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publishing with Pelican on Windows - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>Publishing with Pelican on Windows</h1>
+        
+        <time datetime="2018-05-17">
+            May 17, 2018
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/blogging/">blogging</a>
+            
+            <a href="/tags/python/">python</a>
+            
+            <a href="/tags/pelican/">pelican</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/writing/">writing</a>
+            
+            <a href="/categories/python/">python</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>To get things started I thought it might be a good idea to document using Pelican on Windows with Github and Gandi for
+blog publishing. I’ll start by configuring Pelican and Github. Once that’s working I’ll then talk about configuring
+Gandi so you can use a custom domain. If you’re using a different domain provider you may need to use different
+settings, but Github has plenty of documentation around this that I’ll provide links for. Using Pelican on Windows isn’t
+that much different than macOS or Linux, but you won’t find as many tutorials or be able to use the quickstart makefile.</p>
+<h3 id="github-pages-setup">Github Pages Setup</h3>
+<p>The first thing you should do is login to Github and then setup a Github pages repo. You can read more detailed
+istructions here: <a href="https://pages.github.com/">https://pages.github.com/</a> or create a repo that follows the pattern:</p>
+<p>I followed a pattern for User Github pages. This will be important when publishing with Pelican.</p>
+<p><a href="https://help.github.com/articles/user-organization-and-project-pages/">https://help.github.com/articles/user-organization-and-project-pages/</a></p>
+<h3 id="pelican-local">Pelican Local</h3>
+<p>With that out of the way we want to move on to setting up our project on Windows. I’m using Anaconda and I will be
+creating a new conda environment for this project.</p>
+<p>The main thing to pay attention to when you go through the quickstart prompts is that you won’t need or be able to use
+the makefile with Windows. Once you have completed the quikstart there are a couple things to pay attention to.</p>
+<ol>
+<li>Your articles should be markdown documents in the content folder.</li>
+<li>pelicanconf.py contains various settings related to you blog.</li>
+<li>publishconf.py can be left alone because we are using ghp-import</li>
+</ol>
+<h3 id="publishing">Publishing</h3>
+<p>Go ahead and create a file under content. Something like gettingstarted.md and add some text. Once you’ve done that
+switch back to the terminal prompt.</p>
+<h3 id="custom-domain-url">Custom Domain URL</h3>
+<p>Ok, now that we have Github setup and we can see our blog pages I want to look at the steps required to use my custom
+domain hosted by Gandi with the Github pages. With Gandi we want to modify our A Records to allow routing to Github.
+Logging into your Gandi dashboard, select domains from the menu and then DNS records. On this page you should be able to
+edit your DNS record and add the following:</p>
+<p><a href="https://wiki.gandi.net/en/dns/zone/a-record">https://wiki.gandi.net/en/dns/zone/a-record</a></p>
+<p>Ok finally navigate back to your Github repo and go to the settings page. Under settings scroll down until you see
+Github pages. You should see a textbox allowing you to enter a custom domain. Add that, and if possible I recommend
+checking the enforce https box below this.</p>
+<h3 id="wrapping-up">Wrapping Up</h3>
+<p>With that done you should be good to go. Whenever you want to write a new article create a markdown document in the
+content folder and follow the same steps above for publishing. One last note if this doesn’t work immediately you might
+want to wait before beginning to change settings since your A record changes can take some time to replicate.</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

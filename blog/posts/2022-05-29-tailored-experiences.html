@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tailored Experiences - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>Tailored Experiences</h1>
+        
+        <time datetime="2022-05-29">
+            May 29, 2022
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/ux/">ux</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/experience/">experience</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>A couple of months ago I got to spend a few days hacking on an idea involving client side Tensorflow.js. Having spent
+much of my career in what I call ML adjacent roles I was really surprised at the opportunities TF.js seem to open up.</p>
+<p>One of the things that stood out to me is that the full training and deployment cycle can happen in real time client
+side. As I was using the tool I was able to load my models starting point and start feeding it data seeing the behavior
+and predictions from the model change immediately. I could even hop into dev tools to patch and tweak different settings
+of the model just to see what happened. I didn’t have to wait long cycles, I didn’t have to insert a new notebook cell
+and disrupt the flow. I was able to launch my web app, load in a checkpoint and go. Based on what I did the model was
+able to learn in real time (and make some admittedly hilarious mistakes along the way).</p>
+<p>This makes me wonder what kind of experiences this is waiting to unlock. I don’t need to send data back to a centralized
+service for all of my data to be mixed in with the data of other individuals waiting for a new training cycle or model
+deployment my data was on my device, the model was on my device the update was immediate. Obviously there are risk
+here (filter bubble, convergence etc) to address, but the opportunity for useful new experiences appears strong.</p>
+<p>While I haven’t had much time to explore TF.js since this initial interaction I hope to return to it sometime in the
+near future. I think that projects like <a href="https://github.com/automerge">automerge</a>
+and <a href="https://www.tensorflow.org/js">tensorflow.js</a> represent potential futures where our data is local to us. We can
+collaborate, share and build all without phoning home or opening the app store if we continue to push what is possible
+in our browser and devices.</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

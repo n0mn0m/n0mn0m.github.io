@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connected Roomba Remote - LoRa - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>Connected Roomba Remote - LoRa</h1>
+        
+        <time datetime="2019-08-02">
+            August 02, 2019
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/python/">python</a>
+            
+            <a href="/tags/hackaday/">hackaday</a>
+            
+            <a href="/tags/hardware/">hardware</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>With a basic setup working the next thing I wanted to do was make communication wireless. Thinking about my options I
+ruled out using WiFi pretty quick since I didn’t want to worry about discovery and router issues. I thought about
+Bluetooth since I could send commands from my phone to the board on the Roomba, but decided against it due to my lack of
+mobile programming experience and not wanting to add yet another new thing to learn. (Side note I’ve since learned about
+the <a href="https://learn.adafruit.com/bluefruit-le-connect/features">Bluefruit app</a>) Looking at the
+other <a href="https://www.adafruit.com/feather">Feather</a> options I decided to make use
+of <a href="https://learn.adafruit.com/adafruit-feather/lora-radio-feathers">LoRa</a> for my communication layer since it would be
+easy to use, my packets are tiny and I didn’t have to worry about software beyond CircuitPython.</p>
+<h3 id="the-boards">The boards</h3>
+<p>With the protocol determined and sticking with CircuitPython I found a <a href="https://www.adafruit.com/product/3179">Feather</a>
+with LoRa built in, and a <a href="https://www.adafruit.com/product/4074">Pi Zero Bonnet</a> with some buttons and a small display
+that would make testing easier. After reading through
+the<a href="https://learn.adafruit.com/adafruit-feather-m0-radio-with-lora-radio-module">docs</a>
+and <a href="https://learn.adafruit.com/lora-and-lorawan-radio-for-raspberry-pi/rfm9x-raspberry-pi-setup">tutorials</a> for both
+boards I began work on signalling the Roomba to start with the push of a button.</p>
+<p>One of the first road blocks I ran into was of my own creation. The Roomba library I wrote for prototyping was too big
+for the Feather. The good news was OpenInterface was still useful, and there was plenty of room for the base class after
+removing the debug and abstraction code, so I only compiled the commands I knew I was going to use for version 1 and
+continued moving forward.</p>
+<p>
+<pre><code class="language-python">class OpenInterface:
+ def init(self, txpin, rxpin, brcpin, baudrate=115200):
+ self.board = busio.UART(txpin, rxpin, baudrate=baudrate)
+ self.txpin = txpin
+ self.rxpin = rxpin
+ self.brcpin = brcpin
+ self.brcpin.direction = digitalio.Direction.OUTPUT
+ self.baudrate = baudrate
+ self.stopped = True def start(self):
+ if self.stopped:
+ self.wakeup() for command in (b&quot;\x80&quot;, b&quot;\x83&quot;, b&quot;\x87&quot;):
+ self.board.write(command) def stop(self):
+ for command in (b&quot;\x85&quot;, b&quot;\xAD&quot;):
+ self.board.write(command)
+ self.stopped = True def wakeup(self):
+ for i in range(3):
+ self.brcpin.value = False
+ time.sleep(0.5)
+ self.brcpin.value = True
+ time.sleep(0.5)
+ self.brcpin.value = False
+ time.sleep(0.5) self.stopped = False
+</code></pre>
+</p>
+<p>After stripping things down and getting the Feather to start and stop the Roomba from the REPL I turned my attention to
+the Pi.</p>
+<p><img alt="" src="../../img/blog/0-Bss4nUz1dBKFSCf.jpg" /></p>
+<p>With the Pi Zero providing more resources installing the OS, setting up SSH and compiling Python 3.7 took more time then
+getting the Circuit Python libraries working. <a href="https://pypi.org/project/Adafruit-Blinka/">Blinka</a> worked like a charm
+and following the docs from above I had a
+quick <a href="https://github.com/n0mn0m/bot_commander/tree/main/pi/button_listener.py">script</a> to send start and stop packets
+via LoRa working in no time.</p>
+<p>
+<pre><code class="language-python">while True:
+ try:
+ if not startbutton.value:
+ msg = &quot;Starting Roomba.&quot;
+ logger.info(msg)
+ rfm9x.send(bytes(&quot;1&quot;, &quot;ascii&quot;))
+ display.fill(0)
+ display.text(msg, 25, 15, 1)
+ elif not stopbutton.value:
+ msg = &quot;Stopping Roomba.&quot;
+ logger.info(msg)
+ rfm9x.send(bytes(&quot;0&quot;, &quot;ascii&quot;))
+ display.fill(0)
+ display.text(msg, 25, 15, 1)
+</code></pre>
+</p>
+<p>The display on the bonnet was a nice touch so that I could watch the Feather in a terminal while the Pi let me know
+immediately which button was pressed and which command I should expect the Feather to receive.</p>
+<p><img alt="" src="../../img/blog/0mRuGD7rVD6u5Oenv.jpg" /></p>
+<h3 id="next-steps">Next Steps</h3>
+<p>With the boards talking to each other and the ability to start/stop the Roomba with the press of a button the last thing
+to do was make this work when we are not at home. While LoRa has a pretty good range I wanted this to work for my wife
+and I without having to worry about where we are. In part 3 I look at making this work with SMS.</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subdomain SSL with Gitlab Pages - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>Subdomain SSL with Gitlab Pages</h1>
+        
+        <time datetime="2019-02-10">
+            February 10, 2019
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/python/">python</a>
+            
+            <a href="/tags/dns/">dns</a>
+            
+            <a href="/tags/gitlab/">gitlab</a>
+            
+            <a href="/tags/programming/">programming</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p><strong>This is out of date, I have since switched to self hosting gitea and AWS.</strong></p>
+<p>A few months ago I decided to migrate my Pelican site from Github to Gitlab. This was motivated largely by that fact
+that Gitlab has CI/CD built in by default. During this migration I also decided it was time to setup my own SSL
+certificate for <a href="https://burningdaylight.io/">burningdaylight.io</a>. Since this was new I looked around to see if there
+was any documentation readily available , and I
+found <a href="https://fedoramagazine.org/gitlab-pelican-lets-encrypt-secure-blog/">this</a> wonderful tutorial from Fedora
+Magazine.</p>
+<p>Between that and the
+Gitlab <a href="https://docs.gitlab.com/ee/user/project/pages/getting_started_part_three.html">custom domain and ssl</a> I was able
+to get up and running pretty quickly. I had accomplished my goals:</p>
+<ul>
+<li>migrate to Gitlab</li>
+<li>setup CI/CD of the Pelican site project</li>
+<li>setup ssl</li>
+</ul>
+<p>Good to go, done in an afternoon with plenty of time to work on a new post. I thought.</p>
+<p>About a week later I was on a different computer and instead of browsing
+to <a href="https://burningdaylight.io/">https://burningdaylight.io</a> I went
+to <a href="https://www.burningdaylight.io/">https://www.burningdaylight.io</a> and Firefox blocked my request citing an SSL
+certificate error. Wondering what I had done wrong I started tracing back through what I had done and realized that I
+had only setup SSL certificate for my primary domain. Luckily last year lets encrypt added support
+for <a href="https://community.letsencrypt.org/t/certbot-0-22-0-release-with-acmev2-and-wildcard-support/55061">wildcard</a>
+certificates to certbot. Unfortunately that has not been included in
+a <a href="https://community.letsencrypt.org/t/certbot-the-currently-selected-acme-ca-endpoint-does-not-support-issuing-wildcard-certificates/55667/8">release</a>
+so there’s a couple steps that differ from the original Fedora article above.</p>
+<h3 id="setup-instructions">Setup Instructions</h3>
+<p>Below are the steps to use certbot, gitlab pages and your domain management console to setup SSL for your subdomains.
+This assumes you are using a Debian based OS (I’m using Ubuntu 18.04) to install Certbot. If not swap out the certbot
+install steps for your OS and continue.</p>
+<p><strong>If you read the Fedora article linked above you do not need another key in </strong>.well-known<strong>. Instead for your subdomain
+you will validate with certbot by a DNS record setup via your Domain Management Console.</strong></p>
+<p>
+<pre><code class="language-bash">sudo aptget install certbotcertbot certonly -a manual -d *.&lt;yourdomainhere&gt;.&lt;topleveldomainhere&gt; \
+--config-dir ~/letsencrypt/config --work-dir ~/letsencrypt/work \
+--logs-dir ~/letsencrypt/logs \
+--server &lt;https://acme-v02.api.letsencrypt.org/directory&gt;Follow the instructions entering your email, reviewing ToS, etc
+</code></pre>
+</p>
+<p>You will then see this prompt:</p>
+<p>
+<pre><code class="language-bash">Please deploy a DNS TXT record under the name
+acme-challenge.burningdaylight.io with the following value:
+</code></pre>
+</p>
+<p>Login to your domain management console and setup a txt record similar to:</p>
+<p>
+<pre><code class="language-bash">NAMETYPETTLVALUEacme-challengeTXT1800your code from the terminal prompt above
+</code></pre>
+</p>
+<p>Once you have this setup it’s a good idea to wait a couple minutes since this record will populate via DNS and then
+return to your console and hit enter.</p>
+<p>Once certbot validates the TXT record is available as part of your domain it will provide you the new location of your
+fullchain.pem and privkey.pem files for use with Gitlab pages.</p>
+<p>With these files ready to go browse to your Gitlab page settings and setup your subdomains as documented here
+and <a href="https://docs.gitlab.com/ee/user/project/pages/getting_started_part_three.html">here</a>.</p>
+<p>I highly recommend reading the Gitlab documentation above, but to summarize:</p>
+<ul>
+<li>In your Gitlab pages project settings click add a new site</li>
+<li>Enter the url</li>
+<li>Add the data from your fullchain.pem and privkey.pem files generated via certbot</li>
+<li>Copy the gitlab-pages-verfication-code= section from the Gitlab validation record box</li>
+<li>Login to your domain management console</li>
+<li>Setup a new TXT record for your subdomain: NAMETYPETTLVALUEWWWTXT1800gitlab-pages-verification-code=</li>
+<li>Setup a new A record for</li>
+</ul>
+<p><a href="https://docs.gitlab.com/ee/user/project/pages/getting_started_part_three.html">Gitlab</a></p>
+<p>
+<pre><code class="language-text">NAMETYPETTLVALUEWWWA180035.185.44.232
+</code></pre>
+</p>
+<ul>
+<li>Return to your Gitlab Pages settings console and click the verify button.</li>
+</ul>
+<h3 id="wrapping-up">Wrapping Up</h3>
+<p>With that you pages should show green and verified. If you browse to the different subdomains you setup then you should
+get through without any SSL problems.</p>
+<p>One thing to note is that you will need to renew your certbot certificate every 90 days. This is done via the certbot
+renew command. I've setup an Airflow dag to take care of this since I have Airflow managing various other things for me.
+You can see that <a href="https://gitlab.com/n0mn0m/docker-airflow">here</a></p>
+<p>Hopefully you find the above helpful. If you run into issues I recommend:</p>
+<ul>
+<li>Make sure you used the * wildcard in the domain cert setup</li>
+<li>Setup your acme-challenge record correctly in your domain management console and left it there</li>
+<li>Setup the right TXT and A records for Gitlab</li>
+</ul>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>

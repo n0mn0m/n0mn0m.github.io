@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make it Count - burningdaylight</title>
+
+    <meta name="description" content="Various notes and ideas.">
+    <meta name="author" content="Alexander Hagerman">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://burningdaylight.io/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="https://burningdaylight.io/atom.xml">    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/portfolio.css">
+    <link rel="stylesheet" href="/static/css/resume.css">
+
+    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.ico">
+
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/blog/">Blog</a>
+            <a href="/programming/portfolio/">Portfolio</a>
+            <a href="/programming/resume/">Resume</a>
+            <a href="/lists/books/">Books</a>
+            <a href="/lists/podcast/">Podcast</a>
+            <a href="/lists/links/">Links</a>
+        </nav>
+    </header>
+
+    <main>
+        
+<article class="post">
+    <header>
+        <h1>Make it Count</h1>
+        
+        <time datetime="2025-09-30">
+            September 30, 2025
+        </time>
+        
+
+        
+        <div class="tags">
+            Tags:
+            
+            <a href="/tags/programming/">programming</a>
+            
+            <a href="/tags/practices/">practices</a>
+            
+            <a href="/tags/code-review/">code-review</a>
+            
+        </div>
+        
+
+        
+        <div class="categories">
+            Categories:
+            
+            <a href="/categories/programming/">programming</a>
+            
+        </div>
+        
+    </header>
+
+    <div class="content">
+        <p>Code review is part of daily life for many software engineers. It's a great way
+to learn and share what you know. Code review is the time for a team to take
+a breath, look at an implementation and navigate changes before the PR merges
+and becomes part of the teams public responsibility.</p>
+<blockquote>
+<p>Every team does code review different. If you're new to code review, or want
+https://google.github.io/eng-practices/review/reviewer/ to see a well documented
+process to the practice maybe take a second to checkout <a href="https://google.github.io/eng-practices/review/reviewer/">Google's review practices</a>.</p>
+</blockquote>
+<p>While I think code review is critical to maintaining a healthy codebase, project
+and team, I've also started to notice the trend of "nits" in the last few years.
+Nits are small comments that don't really add value to the code review. They
+are largely subjective, and for the most part, don't really help the code.</p>
+<blockquote>
+<p>For doc PRs these are typically grammar or spelling, which should be called
+out, and ideally corrected using existing tools pre review.</p>
+</blockquote>
+<p>Instead they riddle the review with noise possibly masking more important comments,
+and typically indicate a lack of understanding the architecture or context of
+the PR. Alternatively they can be a sign that a reviewer feels like they have to
+say something, or find something that needs to be changed. While any given PR
+probably has something that could be improved (depending on the level of pedantry
+we want to apply) it's important to consider the goal of code review, if the
+comment truly improves the project/team, or if it's inconsequential. These
+inconsequential comments don't move the project forward, and in some ways impede
+the project by burdening the team, and causing unnecessary review loops. Instead
+as a reviewer consider the teams goals and the PR's goals, and focus on comments
+that help achieve those goals, benefit the project and grow the team. Make it
+count.</p>
+    </div>
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <a href="/me/">Alexander Hagerman</a>. All rights reserved.</p>
+        <p>
+            <a href="/feed.xml">RSS</a> |
+            <a href="/atom.xml">Atom</a>
+        </p>
+    </footer>
+
+    
+    <script src="/static/javascripts/mathjax.js"></script>
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+</body>
+</html>
