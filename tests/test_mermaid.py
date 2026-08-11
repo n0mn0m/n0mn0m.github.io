@@ -3,6 +3,7 @@ Unit test for MermaidFencedBlockPreprocessor in isolation.
 """
 
 from markdown import Markdown
+
 from minigen.mermaid import MermaidExtension
 
 

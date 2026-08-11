@@ -1,8 +1,11 @@
 """Configuration module for the site generator."""
 
+from __future__ import annotations
+
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Union, NamedTuple
+from typing import NamedTuple
+
 import tomli
 
 
@@ -58,7 +61,7 @@ class Config:
         return ValidationResult(True, "")
 
     @classmethod
-    def from_file(cls, path: Union[str, Path]) -> "Config":
+    def from_file(cls, path: str | Path) -> Config:
         """Load configuration from a TOML file.
 
         Args:

@@ -3,6 +3,7 @@ Mermaid fenced code block support for Python-Markdown (markdown==3.4.3).
 """
 
 import re
+
 from markdown.extensions import Extension
 from markdown.extensions.fenced_code import FencedBlockPreprocessor
 

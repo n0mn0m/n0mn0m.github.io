@@ -5,8 +5,8 @@ import os
 import sys
 from pathlib import Path
 
-from minigen.config import Config
 from minigen.builder import Builder
+from minigen.config import Config
 from minigen.logger import logger
 from minigen.server import Server
 

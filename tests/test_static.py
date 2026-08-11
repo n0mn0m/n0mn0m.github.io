@@ -1,7 +1,9 @@
 """Tests for static asset handling."""
 
-import pytest
 from pathlib import Path
+
+import pytest
+
 from minigen.builder import Builder
 from minigen.config import Config
 

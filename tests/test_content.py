@@ -1,7 +1,9 @@
 """Tests for content processing."""
 
-import pytest
 from datetime import datetime, timezone
+
+import pytest
+
 from minigen.builder import Builder
 from minigen.config import Config
 
