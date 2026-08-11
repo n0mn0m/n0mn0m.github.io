@@ -1,13 +1,14 @@
 """Site builder module for generating static HTML sites."""
 
+import shutil
 from dataclasses import dataclass
 from datetime import datetime, timezone
-import shutil
-from typing import Dict, Any, List
+from typing import Any
 
 import frontmatter
 import markdown
 from feedgen.feed import FeedGenerator
+
 from minigen.config import Config
 from minigen.logger import logger
 from minigen.mermaid import MermaidExtension
@@ -18,7 +19,7 @@ class Post:
     """Represents a blog post."""
 
     content: str
-    metadata: Dict[str, Any]
+    metadata: dict[str, Any]
 
 
 class Builder:
@@ -71,7 +72,7 @@ class Builder:
                     categories = post.metadata.get("categories", [])
                     for cat in categories:
                         fe.category(term=cat)
-                except Exception as e:
+                except (TypeError, ValueError, KeyError) as e:
                     logger.error(f"Error adding entry: {e}")
                     continue
 
@@ -83,7 +84,7 @@ class Builder:
             logger.info(f"Writing Atom feed to {atom_path}")
             fg.atom_file(str(atom_path))
             logger.info("Feed generation complete!")
-        except Exception as e:
+        except (OSError, ValueError, TypeError) as e:
             logger.error(f"Error generating feeds: {e}")
 
     """Static site generator that converts markdown content to HTML."""
@@ -91,7 +92,7 @@ class Builder:
     def __init__(self, config: Config):
         """Initialize the builder with configuration."""
         self.config = config
-        self.posts: List[Post] = []
+        self.posts: list[Post] = []
         self.md = markdown.Markdown(
             extensions=["meta", "footnotes", "tables", "toc", MermaidExtension()]
         )
@@ -144,11 +145,11 @@ class Builder:
             for tag in tags:
                 if tag:
                     tag_map.setdefault(tag, []).append(post)
-        for tag in tag_map:
+        for tag, posts in tag_map.items():
             tag_dir = self.config.output_dir / "blog" / "tags" / tag
             tag_dir.mkdir(parents=True, exist_ok=True)
             content = f"<h1>Posts tagged '{tag}'</h1>\n<ul>"
-            for post in tag_map[tag]:
+            for post in posts:
                 content += f'<li><a href="{post.metadata["url"]}">{post.metadata["title"]}</a></li>'
             content += "</ul>"
             html = self._wrap_content(content=content, title=f"Tag: {tag}")
@@ -164,11 +165,11 @@ class Builder:
             for cat in cats:
                 if cat:
                     cat_map.setdefault(cat, []).append(post)
-        for cat in cat_map:
+        for cat, posts in cat_map.items():
             cat_dir = self.config.output_dir / "blog" / "categories" / cat
             cat_dir.mkdir(parents=True, exist_ok=True)
             content = f"<h1>Posts in category '{cat}'</h1>\n<ul>"
-            for post in cat_map[cat]:
+            for post in posts:
                 content += f'<li><a href="{post.metadata["url"]}">{post.metadata["title"]}</a></li>'
             content += "</ul>"
             html = self._wrap_content(content=content, title=f"Category: {cat}")
@@ -275,14 +276,16 @@ class Builder:
             )
         # Sort posts by date descending
         self.posts.sort(
-            key=lambda p: p.metadata.get("date", datetime.now()), reverse=True
+            key=lambda p: p.metadata.get("date", datetime.now(timezone.utc)),
+            reverse=True,
         )
         # Validate feed configuration
 
     def _render_template(self, template_name: str, context: dict) -> str:
         """Render a Jinja2 template with the given context."""
-        from jinja2 import Environment, FileSystemLoader
         import os
+
+        from jinja2 import Environment, FileSystemLoader
 
         templates_path = os.path.join(os.path.dirname(__file__), "templates")
         env = Environment(loader=FileSystemLoader(templates_path), autoescape=True)
@@ -300,7 +303,7 @@ class Builder:
                 "rss_path": self.config.rss_path,
                 "atom_path": self.config.atom_path,
             },
-            "now": datetime.now(),
+            "now": datetime.now(timezone.utc),
             "title": title,
             "content": content,
         }
@@ -319,7 +322,7 @@ class Builder:
                 "rss_path": self.config.rss_path,
                 "atom_path": self.config.atom_path,
             },
-            "now": datetime.now(),
+            "now": datetime.now(timezone.utc),
             "title": title,
             "content": content,
         }
@@ -358,7 +361,7 @@ class Builder:
                 "rss_path": self.config.rss_path,
                 "atom_path": self.config.atom_path,
             },
-            "now": datetime.now(),
+            "now": datetime.now(timezone.utc),
             "intro_content": intro_content,
             "posts": latest_posts,
         }
@@ -387,7 +390,7 @@ class Builder:
                     "rss_path": self.config.rss_path,
                     "atom_path": self.config.atom_path,
                 },
-                "now": datetime.now(),
+                "now": datetime.now(timezone.utc),
                 "posts": page_posts,
                 "page": page,
                 "per_page": per_page,
@@ -417,7 +420,7 @@ class Builder:
                     "rss_path": self.config.rss_path,
                     "atom_path": self.config.atom_path,
                 },
-                "now": datetime.now(),
+                "now": datetime.now(timezone.utc),
                 "post": post.metadata,
                 "post_html": post.content,
             }

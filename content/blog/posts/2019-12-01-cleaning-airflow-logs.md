@@ -19,34 +19,35 @@ you need to clean logs up on the Scheduler, Worker and Webserver.
 
 ```python
 def truncateprocessmanagerlog(logbasepath):
- """
- The scheduler records all acitivty related to dag processing in the same file.
- This file can grow large fast, and is actively in use. Intead of unlinking the
- file and pulling it out from under the scheduler truncate.
- """
- dagprocessmanagerlog = os.path.join(
- logbasepath, "dagprocessormanager", "dagprocessormanager.log"
- )
- open(dagprocessmanagerlog, "w").close()
+    """
+    The scheduler records all acitivty related to dag processing in the same file.
+    This file can grow large fast, and is actively in use. Intead of unlinking the
+    file and pulling it out from under the scheduler truncate.
+    """
+    dagprocessmanagerlog = os.path.join(
+        logbasepath, "dagprocessormanager", "dagprocessormanager.log"
+    )
+    open(dagprocessmanagerlog, "w").close()
+
 
 def traverseandunlink(fobject):
- """
- Traverse the log directory on the given airflow instance (webserver, scheduler,
- worker, etc) and remove any logs not modified in the last hour.
- """
- for entry in os.scandir(fobject):
-  newfobject = os.path.join(fobject, entry)
-  if os.path.isfile(newfobject):
-   lastmodified = os.stat(newfobject).stmtime
-   delta = datetime.utcnow().timestamp() - lastmodified
-  if delta > HOURSINMILLISECONDS:
-   print(
-    f"{newfobject} has not been used in the last hour. \
+    """
+    Traverse the log directory on the given airflow instance (webserver, scheduler,
+    worker, etc) and remove any logs not modified in the last hour.
+    """
+    for entry in os.scandir(fobject):
+        newfobject = os.path.join(fobject, entry)
+        if os.path.isfile(newfobject):
+            lastmodified = os.stat(newfobject).stmtime
+            delta = datetime.utcnow().timestamp() - lastmodified
+        if delta > HOURSINMILLISECONDS:
+            print(
+                f"{newfobject} has not been used in the last hour. \
    \nCleaning up."
-   )
-   os.unlink(newfobject)
-  elif os.path.isdir(newfobject):
-   traverseandunlink(newfobject)
+            )
+            os.unlink(newfobject)
+        elif os.path.isdir(newfobject):
+            traverseandunlink(newfobject)
 ```
 
 The full script is available [here](https://github.com/n0mn0m/snippets/tree/main/airflow-log-cleanup.py).

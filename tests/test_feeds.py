@@ -1,5 +1,7 @@
-import feedparser
 import shutil
+
+import feedparser
+
 from minigen.builder import Builder
 from minigen.config import Config
 

@@ -1,5 +1,6 @@
 import pytest
 from bs4 import BeautifulSoup
+
 from minigen.builder import Builder
 from minigen.config import Config
 

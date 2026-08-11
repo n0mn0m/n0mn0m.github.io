@@ -1,10 +1,11 @@
 """Development server for the static site."""
 
+from __future__ import annotations
+
 import http.server
 import os
 import socketserver
 from pathlib import Path
-from typing import Optional
 
 from minigen.logger import logger
 
@@ -23,7 +24,7 @@ class Server:
         self.root_dir = Path(root_dir)
         self.host = host
         self.port = port
-        self._httpd: Optional[socketserver.TCPServer] = None
+        self._httpd: socketserver.TCPServer | None = None
 
     def serve(self):
         """Start the development server."""
