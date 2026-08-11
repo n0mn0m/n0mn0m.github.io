@@ -13,12 +13,15 @@
                                                                               target="_blank" rel="noreferrer nofollow">
                         Bose</a></p>
                     <ul>
-                        <li style="color: rgb(74, 74, 74);"><span>Maintain and extend a DSP prototyping platform (PREQ) for research and development.</span>
-                        <li style="color: rgb(74, 74, 74);"><span>Demonstrate and promote software engineers practices to create a reliable platform and manage complexity.</span>
+                        <li style="color: rgb(74, 74, 74);"><span>Maintain and extend a Linux based DSP prototyping platform (PREQ) for research and development.</span>
+                        <li style="color: rgb(74, 74, 74);"><span>Demonstrate and promote software engineering practices to create a reliable platform and manage complexity.</span>
                         <li style="color: rgb(74, 74, 74);"><span>Develop and maintain tools in C and Python for DSP algorithm development and deployment.</span>
                         <li style="color: rgb(74, 74, 74);"><span>Foster a community of collaboration around the PREQ prototyping platform that engages engineers from multiple disciplines.</span>
-                        <li style="color: rgb(74, 74, 74);"><span>Through code review, pair programming and mentorship gor a team of software engineers to maintain the PREQ prototyping platform and ensure a high level of quality for the project, it's users and maintainers.</span>
+                        <li style="color: rgb(74, 74, 74);"><span>Through code review, pair programming and mentorship grow a community of software engineers to maintain the PREQ prototyping platform and ensure a high level of quality for the project, its users and maintainers.</span>
+                        <li style="color: rgb(74,74,74);"><span>Develop and share structured AI workflows to enhanceme software engineering practices and deliverables</span>
                         <li style="color: rgb(74, 74, 74);"><span>Foster a culture of writing for engineers and users. Promote the regular documentation of design decisions through ADRs, application manuals that live with the code, along with runbooks and user guides maintained by the community.</span>
+                        <li style="color: rgb(74, 74, 74);"><span>Restructure the candidate interview process to provide faster feedback to the candidate and team while consistently identifying strong candidates.</span>
+                        <li style="color: rgb(74, 74, 74);"><span>Engage in building consensus around approaches to making our DSP portable between various internal and external platforms.</span>
                     </ul>
                 </li>
                 <li class="portfolio-item">
@@ -213,7 +216,7 @@
             </ul>
         </section>
         <section><h1>Technical Skills &amp; Competencies</h1>
-            <p>Python, C#, TypeScript, Rust, C++, .NET Core, Django, React, Bash, SQL<br>Postgres, SQL Server, SQLite,
+            <p>Python, C, C#, TypeScript, Rust, C++, .NET Core, Django, React, Bash, SQL<br>Postgres, SQL Server, SQLite,
                 Elasticsearch, MongoDB, Redis, Netezza, CosmosDB<br>SQS, PubSub, Azure Queues, Kafka, RabbitMQ<br>HDFS,
                 Azure Data Lake Storage Gen 2, S3<br>AWS, Azure, GCP<br>Azure Pipelines, Azure DevOps, Circle CI, GitHub
                 Actions, Jenkins<br>Linux, Docker, Kubernetes, Fargate, Terraform<br>Software Architecture, Software
