@@ -8,10 +8,10 @@ page.meta.categories: programming
 My first commit to on-air shows March 3, 2020. I know that the weeks leading up to that commit I spent some time reading
 through the TF Lite documentation, playing with Cloudflare Workers K/V and getting my first setup of esp-idf squared
 away. After that it was off to the races. I outlined my original goal in
-the [planning](https://burningdaylight.io/posts/train-all-the-things-planning/) post. I didn't quite get to that goal.
+the [planning](https://slower.earth/posts/train-all-the-things-planning/) post. I didn't quite get to that goal.
 The project currently doesn't have a VAD to handle the scenario where I forget to activate the display before starting a
 call or hangout. Additionally I wasn't able to train a custom keyword as highlighted in
-the [custom model](https://burningdaylight.io/posts/train-all-the-things-custom-model/) post. I was however able to get
+the [custom model](https://slower.earth/posts/train-all-the-things-custom-model/) post. I was however able to get
 a functional implementation of the concept. I am able to hang the display up, and then in my lab with the ESP-EYEplugged
 in I can use the wake word visual followed by on/off to toggle the display status.
 

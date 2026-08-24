@@ -2,7 +2,7 @@
     <article style="padding: 20px;"><h1 style="text-align: center;">Alexander Hagerman</h1>
         <div style="text-align: center; padding: 0px;"><a href="mailto:alexander.hagerman@icloud.com?subject=Resume">alexander.hagerman@icloud.com</a>
         </div>
-        <div style="text-align: center; font-weight: bold;">Portfolios: <a href="/programming/portfolio">burningdaylight</a>&nbsp;|&nbsp;<a
+        <div style="text-align: center; font-weight: bold;">Portfolios: <a href="/programming/portfolio">blog</a>&nbsp;|&nbsp;<a
                 href="https://github.com/n0mn0m" target="_blank" rel="noreferrer nofollow">github</a></div>
         <section style="text-align: center;"><p>I'm a software engineer with 15 years of experience building tools that help people solve problems. I enjoy taking complex, messy problems, breaking them down into tractable issues, and shipping solutions. I've worked on projects throughout their entire lifecycle—from initial prototypes to mature systems in maintenance mode, and I have grown projects from a small group of individuals into collaborative communities.</p></section>
         <section><h1>Professional Experience</h1>

@@ -13,9 +13,9 @@ hide:
   }
 </style>
 
-<p class="app-title color-run">BurningDaylight</p>
+<p class="app-title color-run">Slower</p>
 
-Welcome to burningdaylight.io
+Welcome to slower.earth
 
 This is my little space on the web that I like to use to tinker with various tools. The site is currently on its 8th
 incarnation and a continual work in progress.

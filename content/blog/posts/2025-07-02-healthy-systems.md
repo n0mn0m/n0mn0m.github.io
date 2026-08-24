@@ -15,7 +15,7 @@ This is my first step these days. Show me your test. If they are not there, then
 
 It may be over stating it, but testing to me is one of the best skills a software engineer can develop, and the presence/scope or lack of automated test give me most of the information I need to know when considering the health of a project.
 
-I think it's hard to over state how much you can learn from a good test suite, and how fast you can go with a robust reliable test suite. Over the years I've had many engineers ask me how they can know wether or not they are using the right abstractions and designs. I struggled to answer this for a long time (often recommending various [books](https://burningdaylight.io/lists/books/)). These days I tell them to write the test. If it's hard to test, or the test sucks to write, then you're probably not on the right track with your design. Step back and reconsider your approach and what other options exist.
+I think it's hard to over state how much you can learn from a good test suite, and how fast you can go with a robust reliable test suite. Over the years I've had many engineers ask me how they can know wether or not they are using the right abstractions and designs. I struggled to answer this for a long time (often recommending various [books](https://slower.earth/lists/books/)). These days I tell them to write the test. If it's hard to test, or the test sucks to write, then you're probably not on the right track with your design. Step back and reconsider your approach and what other options exist.
 
 ## Publishing
 

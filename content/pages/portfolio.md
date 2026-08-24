@@ -142,7 +142,7 @@
     <h2 id="personal">Personal</h2>
     <h3>minigen</h3>
     <ol><p><strong>Summary</strong></p>
-        <p>A Python project that builds my site (burningdaylight.io) from Markdown files.</p>
+        <p>A Python project that builds my site (slower.earth) from Markdown files.</p>
         <p><strong>Core Technology</strong></p>
         <p>Python, Markdown</p></ol>
         <p>

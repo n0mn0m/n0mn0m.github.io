@@ -9,7 +9,7 @@ page.meta.categories: programming
 
 A few months ago I decided to migrate my Pelican site from Github to Gitlab. This was motivated largely by that fact
 that Gitlab has CI/CD built in by default. During this migration I also decided it was time to setup my own SSL
-certificate for [burningdaylight.io](https://burningdaylight.io/). Since this was new I looked around to see if there
+certificate for [slower.earth](https://slower.earth/). Since this was new I looked around to see if there
 was any documentation readily available , and I
 found [this](https://fedoramagazine.org/gitlab-pelican-lets-encrypt-secure-blog/) wonderful tutorial from Fedora
 Magazine.
@@ -25,8 +25,8 @@ to get up and running pretty quickly. I had accomplished my goals:
 Good to go, done in an afternoon with plenty of time to work on a new post. I thought.
 
 About a week later I was on a different computer and instead of browsing
-to [https://burningdaylight.io](https://burningdaylight.io/) I went
-to [https://www.burningdaylight.io](https://www.burningdaylight.io/) and Firefox blocked my request citing an SSL
+to [https://slower.earth](https://slower.earth/) I went
+to [https://www.slower.earth](https://www.slower.earth/) and Firefox blocked my request citing an SSL
 certificate error. Wondering what I had done wrong I started tracing back through what I had done and realized that I
 had only setup SSL certificate for my primary domain. Luckily last year lets encrypt added support
 for [wildcard](https://community.letsencrypt.org/t/certbot-0-22-0-release-with-acmev2-and-wildcard-support/55061)
@@ -54,7 +54,7 @@ You will then see this prompt:
 
 ```bash
 Please deploy a DNS TXT record under the name
-acme-challenge.burningdaylight.io with the following value:
+acme-challenge.slower.earth with the following value:
 ```
 
 Login to your domain management console and setup a txt record similar to:

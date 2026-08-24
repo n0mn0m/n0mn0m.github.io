@@ -5,7 +5,7 @@ page.meta.tags: odbc, database, python, programming
 page.meta.categories: programming
 ---
 
-### For more information see [part one](https://burningdaylight.io/posts/what-is-odbc/) and [part two](https://burningdaylight.io/posts/what-is-odbc-pt2/)
+### For more information see [part one](https://slower.earth/posts/what-is-odbc/) and [part two](https://slower.earth/posts/what-is-odbc-pt2/)
 
 ### Setting Up
 

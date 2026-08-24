@@ -5,7 +5,7 @@ page.meta.tags: homelab, dns, programming
 page.meta.categories: programming
 ---
 
-I recently [setup](https://burningdaylight.io/posts/edgerouter-x-vpn-setup-prt-one/) a VPN for my home network. To make
+I recently [setup](https://slower.earth/posts/edgerouter-x-vpn-setup-prt-one/) a VPN for my home network. To make
 use of it from remote networks I need to be able to resolve the public IP of my router. Instead of hard coding the IP I
 setup an domain with Gandi and created an A Record that I update from my router.
 
