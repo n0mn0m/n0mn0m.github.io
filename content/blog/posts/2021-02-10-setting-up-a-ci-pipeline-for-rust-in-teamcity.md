@@ -42,7 +42,7 @@ process was pretty easy, but I ran into a couple bumps I'll highlight.
   each [step](https://github.com/n0mn0m/artemis/tree/.teamcity/settings.kts#n88).
 - Enable the [xml-report-plugin](https://github.com/n0mn0m/artemis/tree/.teamcity/settings.kts#n186)
   And with those two things the [pipeline](https://github.com/n0mn0m/artemis/tree/.teamcity/settings.kts) is ready
-  to [go](https://teamcity.burningdaylight.io/). From there you may want to add your own environment variables, plugin,
+  to [go](https://teamcity.slower.earth/). From there you may want to add your own environment variables, plugin,
   agent deps etc.
 
 ### Next steps

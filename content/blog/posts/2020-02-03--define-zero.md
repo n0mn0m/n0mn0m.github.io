@@ -8,7 +8,7 @@ page.meta.categories: programming
 A couple weeks ago I had the opportunity to attend
 the [SICP](https://mitpress.mit.edu/sites/default/files/sicp/index.html) course taught
 by [David Beazley](https://www.dabeaz.com/sicp.html). I’ve written a short summary of my
-experience [here](https://burningdaylight.io/posts/sicp-beazley-review/) (tldr; take the course if you get the chance).
+experience [here](https://slower.earth/posts/sicp-beazley-review/) (tldr; take the course if you get the chance).
 While the course as a whole was challenging and an interesting a couple of the exercises stood out to me, and I wanted
 to take a moment to share them here.
 

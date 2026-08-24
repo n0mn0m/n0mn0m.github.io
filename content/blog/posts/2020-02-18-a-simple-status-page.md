@@ -15,7 +15,7 @@ tools. After getting that setup I read
 about [Cloudflare Workers KV](https://developers.cloudflare.com/workers/reference/storage) , thought it sounded really
 neat and started to think about what I might build.
 
-On another [project](https://burningdaylight.io/posts/train-all-the-things-planning/) I need to signal between different
+On another [project](https://slower.earth/posts/train-all-the-things-planning/) I need to signal between different
 systems a simple status. Naturally that lead to me building a status page. I setup a Cloudflare Worker that receives
 POST from N systems, stores the date of the last POST uses that to provide a status when asked.
 
@@ -95,7 +95,7 @@ addEventListener('fetch', event => {
 ```
 
 With that anything that can POST can "check in" with the endpoint. You can see it
-working [here](https://status.burningdaylight.io/). I also went ahead and wrote a simple systemd service that I can drop
+working [here](https://status.slower.earth/). I also went ahead and wrote a simple systemd service that I can drop
 on to different machines I want to have report in to the endpoint.
 
 ```ini
@@ -103,7 +103,7 @@ on to different machines I want to have report in to the endpoint.
 Description=Regular check in
 Wants=check-in.timer[Service]
 Type=oneshot
-ExecStart=/usr/bin/curl -X POST https://status.burningdaylight.io/?service=JETSON[Install]
+ExecStart=/usr/bin/curl -X POST https://status.slower.earth/?service=JETSON[Install]
 WantedBy=multi-user.targetAnd a timer for the service.
 
 [Unit]

@@ -56,7 +56,7 @@ course in a VM. Other than that the course was interesting and challenging.
 
 ### Wrapping up
 
-Overall I’m glad I took and [completed](https://burningdaylight.io/static/certifications/Embedded_601.pdf) UT601. I
+Overall I’m glad I took and [completed](https://slower.earth/static/certifications/Embedded_601.pdf) UT601. I
 learned a fair amount, and look forward to
 taking [part 2](https://courses.edx.org/courses/course-v1:UTAustinX+UT.6.20x+3T2019/course/) after the the new year. EdX
 is a platform I see myself continuing to use as it’s been super simple, has a range of interesting content, and the

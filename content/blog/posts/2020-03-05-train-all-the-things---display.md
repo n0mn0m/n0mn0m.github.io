@@ -74,7 +74,7 @@ That’s it. Now whenever the endpoint receives an update the portal will see th
 Thanks to Adafruit for publishing the [case](https://www.thingiverse.com/search?q=pyportal&dwh=915e616a3fbda6e) above.
 The logo on display is the Jolly Wrencher of [Hackaday](https://hackaday.com/about/).
 
-With the [endpoint](https://burningdaylight.io/posts/train-all-the-things-sighandler/) and display done I’m off into the
+With the [endpoint](https://slower.earth/posts/train-all-the-things-sighandler/) and display done I’m off into the
 unknown. I’ll be setting up the ESP-EYE to update the endpoint, training the voice model and finally running it all with
 FreeRTOS.
 

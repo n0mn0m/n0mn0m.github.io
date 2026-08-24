@@ -6,7 +6,7 @@ page.meta.categories: programming
 ---
 
 Recently I spent some time learning how to generate synthetic voices
-using [espeak](https://burningdaylight.io/posts/train-all-the-things-data-generation/). After working with the tools to
+using [espeak](https://slower.earth/posts/train-all-the-things-data-generation/). After working with the tools to
 aligning with the Tensorflow keyword models expectations I was ready for training, and to see how well the synthetic
 data performed. TLDR: not well :)
 

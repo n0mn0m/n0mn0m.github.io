@@ -5,7 +5,7 @@ page.meta.tags: git, shell, programming
 page.meta.categories: programming
 ---
 
-As part of setting up [tools](https://burningdaylight.io/posts/resharper-global-tools/) to run in our CI pipeline I also
+As part of setting up [tools](https://slower.earth/posts/resharper-global-tools/) to run in our CI pipeline I also
 setup a git pre-push[hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) to run the same tools automatically
 in the local context. Git provides a variety of hooks as documented in the scm book, and they can be used to reliably
 automate different parts of your workflow.

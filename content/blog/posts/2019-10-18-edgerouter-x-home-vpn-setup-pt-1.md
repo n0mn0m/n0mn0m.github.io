@@ -48,4 +48,4 @@ dhclient -r; dhclient to refresh your device (on \*nix) ip and lease in the new 
 ### Next Steps
 
 With the network configured we are now ready to install and setup wireguard Since this has already ran a bit long in the
-tooth part 2 can be found [here](https://burningdaylight.io/posts/edgerouter-x-vpn-setup-prt-two/).
+tooth part 2 can be found [here](https://slower.earth/posts/edgerouter-x-vpn-setup-prt-two/).

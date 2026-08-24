@@ -1,6 +1,6 @@
 # Site and generator
 
-This repo contains my personal site (burningdaylight.io) and the
+This repo contains my personal site (slower.earth) and the
 static site generator (`minigen`) I built for it.
 
 ## Features

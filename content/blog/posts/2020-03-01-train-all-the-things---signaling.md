@@ -5,9 +5,9 @@ page.meta.tags: javascript, hackaday
 page.meta.categories: programming
 ---
 
-After [figuring out](https://burningdaylight.io/posts/train-all-the-things-planning/) what I was going to use for my
+After [figuring out](https://slower.earth/posts/train-all-the-things-planning/) what I was going to use for my
 project I started work with things I know. I already had some experience with Cloudflare workers building
-a [home system status](https://burningdaylight.io/posts/system-status-observer/) page, and Workers K/V makes storing and
+a [home system status](https://slower.earth/posts/system-status-observer/) page, and Workers K/V makes storing and
 fetching data quick and easy. I ended up with a simple endpoint that I POST to set a bit after keyword detection, and
 the PyPortal retrieves that status to determine what to display:
 
@@ -54,7 +54,7 @@ addEventListener('fetch', event => {
 
 Nothing tricky happening above, just checking the request, and calling the appropriate function to store or fetch the
 status bit. With the function deployed to my Cloudflare Worker and verified with some GET and POST calls I was ready to
-move on to the [display](https://burningdaylight.io/posts/train-all-the-things-display/).
+move on to the [display](https://slower.earth/posts/train-all-the-things-display/).
 
 The code, docs, images etc for the project can be found [here](https://github.com/n0mn0m/on-air) and I’ll be posting
 updates as I continue along to [HackadayIO](https://hackaday.io/project/170228-on-air) and this blog. If you have any
