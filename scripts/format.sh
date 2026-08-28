@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Format markdown files with mdformat
+# Format markdown files with uvx and mdformat
 
 set -eou pipefail
 
@@ -22,40 +22,29 @@ print_error() {
     echo -e "${RED}[ERROR]${NC} $1"
 }
 
-# Check if we're in a virtual environment for Python tools
-check_venv() {
-    if [[ -z "${VIRTUAL_ENV:-}" && -d ".venv" ]]; then
-        print_warning "Virtual environment not activated. Trying to activate .venv..."
-        # shellcheck disable=SC1091
-        source .venv/bin/activate || {
-            print_error "Failed to activate .venv. Please activate it manually."
-            exit 1
-        }
+require_uvx() {
+    if ! command -v uvx &> /dev/null; then
+        print_error "uvx not found. Install uv to run the formatter."
+        exit 1
     fi
 }
 
-# Install mdformat if not available
-install_mdformat() {
-    if ! command -v mdformat &> /dev/null; then
-        print_status "Installing mdformat..."
-        pip install mdformat mdformat-gfm mdformat-frontmatter
-    fi
+run_mdformat() {
+    uvx \
+        --from mdformat==0.7.22 \
+        --with mdformat-gfm \
+        --with mdformat-frontmatter \
+        mdformat "$@"
 }
 
 # Format Markdown files
 format_markdown() {
-    print_status "Formatting all Markdown files with mdformat..."
-    if command -v mdformat &> /dev/null; then
-        # Find and format all markdown files in the repository
-        find . -name "*.md" -not -path "./.venv/*" -not -path "./node_modules/*" -not -path "./.pytest_cache/*" | while read -r file; do
-            print_status "Formatting $file"
-            mdformat "$file" || print_warning "Could not format $file"
-        done
-    else
-        print_warning "mdformat not found. Installing..."
-        install_mdformat
-        format_markdown
-    fi
+    print_status "Formatting all Markdown files with uvx and mdformat..."
+    # Find and format all markdown files in the repository
+    find . -name "*.md" -not -path "./.venv/*" -not -path "./node_modules/*" -not -path "./.pytest_cache/*" | while read -r file; do
+        print_status "Formatting $file"
+        run_mdformat "$file" || print_warning "Could not format $file"
+    done
 }
 
 # Main function
@@ -66,25 +55,21 @@ main() {
 
     case "$action" in
         "format"|"")
-            check_venv
-            install_mdformat
+            require_uvx
             format_markdown
             ;;
         "check")
             print_status "Checking markdown formatting (dry run)..."
-            check_venv
-            install_mdformat
-            if command -v mdformat &> /dev/null; then
-                find . -name "*.md" -not -path "./.venv/*" -not -path "./node_modules/*" -not -path "./.pytest_cache/*" | while read -r file; do
-                    print_status "Checking $file"
-                    mdformat --check "$file" || print_warning "$file needs formatting"
-                done
-            fi
+            require_uvx
+            find . -name "*.md" -not -path "./.venv/*" -not -path "./node_modules/*" -not -path "./.pytest_cache/*" | while read -r file; do
+                print_status "Checking $file"
+                run_mdformat --check "$file" || print_warning "$file needs formatting"
+            done
             ;;
         "help"|"-h"|"--help")
             echo "Usage: $0 [option]"
             echo ""
-            echo "Markdown formatting script using mdformat"
+            echo "Markdown formatting script using uvx and mdformat"
             echo ""
             echo "Options:"
             echo "  format     Format markdown files (default)"
@@ -95,7 +80,7 @@ main() {
             echo "  - All *.md files in the repository"
             echo "  - Excludes .venv/ and node_modules/ directories"
             echo ""
-            echo "Note: All markdown files get the same formatting treatment"
+            echo "Note: mdformat and its plugins are managed by uvx"
             exit 0
             ;;
         *)
