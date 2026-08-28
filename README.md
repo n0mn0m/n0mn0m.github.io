@@ -14,7 +14,7 @@ Install [uv](https://docs.astral.sh/uv/getting-started/installation/) if it is
 not already available. Then sync the development and test dependencies:
 
 ```sh
-uv sync --extra dev --extra test
+uv sync --all-extras
 ```
 
 Build the site:
@@ -40,8 +40,7 @@ uv run minigen serve
 
 The site and profile pages each render one static photo from the Apple Photos
 album named `site`. The homepage and `/me/` page are currently the only pages
-that use these exported photos; the repository contains no Apple Music playlist
-iframes. On macOS, grant Terminal access to Photos when prompted, then run:
+that use these exported photos. On macOS, grant Terminal access to Photos when prompted, then run:
 
 The script itself is a macOS shell script and should normally be run directly:
 

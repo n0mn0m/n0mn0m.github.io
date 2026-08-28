@@ -87,3 +87,39 @@ body {
     # Check updated content
     with open(config.output_dir / "static" / "css" / "styles.css") as f:
         assert "font-family: serif;" in f.read()
+
+
+def test_site_photos_are_copied_and_rendered_responsively(test_static, test_config):
+    """Test content photos and per-page responsive image markup."""
+    config = Config.from_file(test_config)
+    config.content_dir = test_static / "content"
+    config.static_dir = test_static / "static"
+    config.output_dir = test_static / "dist"
+    config.templates_dir = test_static / "templates"
+    config.site_images = {"homepage": "site-0001", "me": "site-0002"}
+
+    site_dir = config.content_dir / "img" / "site"
+    site_dir.mkdir(parents=True)
+    for stem in ("site-0001", "site-0002"):
+        for width in (640, 1280, 2400):
+            (site_dir / f"{stem}-{width}.jpg").write_bytes(b"photo")
+
+    (config.content_dir / "index.md").write_text("[site-photo:homepage]")
+    pages_dir = config.content_dir / "pages"
+    pages_dir.mkdir()
+    (pages_dir / "me.md").write_text("[site-photo:me]")
+
+    Builder(config).build()
+
+    homepage = (config.output_dir / "index.html").read_text()
+    profile = (config.output_dir / "me" / "index.html").read_text()
+
+    assert (config.output_dir / "img" / "site" / "site-0001-640.jpg").exists()
+    assert '<figure class="site-photo">' in homepage
+    assert 'src="/img/site/site-0001-2400.jpg"' in homepage
+    assert (
+        'srcset="/img/site/site-0001-640.jpg 640w, /img/site/site-0001-1280.jpg 1280w, /img/site/site-0001-2400.jpg 2400w"'
+        in homepage
+    )
+    assert 'src="/img/site/site-0002-2400.jpg"' in profile
+    assert "site-0001-2400.jpg" not in profile
