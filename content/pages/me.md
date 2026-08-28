@@ -22,8 +22,8 @@ Day to day I work on projects at the intersection of humans and computers. I
 enjoy the challenge of making applications understandable while observing that
 the technology and devices we use influence how we interpret the world around us.
 
-In my spare time I enjoy tinkering with hardware, biking, swimming, cooking,
-playing music with Maris, while making stories with family and friends.
+In my spare time I enjoy camping, biking, swimming, cooking,
+playing music with Maris, all while creating new stories with family and friends.
 
 If you want to chat you can send me an [email](%22mailto:alexander.hagerman@icloud.com%22),
 or [patch](%22https://github.com/n0mn0m/%22).

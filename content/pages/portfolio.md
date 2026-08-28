@@ -7,11 +7,16 @@
     <h2 id="professional">Professional</h2>
     <h3>Bose</h3>
     <ol>
-        <li>PREQ</li>
+        <li>PCPREQ</li>
         <p><strong>Summary</strong></p>
         <p>DSP Prototyping Platform</p>
         <p><strong>Core Technology</strong></p>
-        <p>C, Python, Bash, Ubuntu, JACK Audio Connection Kit</p>
+        <p>C, Python, Bash, Ubuntu, Debian Packaging, CMake, JACK Audio Connection Kit</p>
+        <li>Abstracted DSP IO</li>
+        <p><strong>Summary</strong></p>
+        <p>A common API for operating DSP Algorithms in multiple frameworks against various target platforms</p>
+        <p><strong>Core Technology</strong></p>
+        <p>C</p>
         <li>MATLAB Packaging and Deployment</li>
         <p><strong>Summary</strong></p>
         <p>A reliable mechanism to package, deploy and install MATLAB toolboxes</p>

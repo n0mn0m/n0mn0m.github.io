@@ -8,20 +8,20 @@
         <section><h1>Professional Experience</h1>
             <ol style="list-style-type: none;">
                 <li class="portfolio-item">
-                    <div style="font-weight: bold;">Lead Software Engineer</div>
+                    <div style="font-weight: bold;">Software Engineering and Program Lead</div>
                     <p style="color: rgb(74, 74, 74);">03/2024 - Current | <a href="https://www.bose.com/"
                                                                               target="_blank" rel="noreferrer nofollow">
                         Bose</a></p>
                     <ul>
-                        <li style="color: rgb(74, 74, 74);"><span>Maintain and extend a Linux based DSP prototyping platform (PREQ) for research and development.</span>
-                        <li style="color: rgb(74, 74, 74);"><span>Demonstrate and promote software engineering practices to create a reliable platform and manage complexity.</span>
-                        <li style="color: rgb(74, 74, 74);"><span>Develop and maintain tools in C and Python for DSP algorithm development and deployment.</span>
-                        <li style="color: rgb(74, 74, 74);"><span>Foster a community of collaboration around the PREQ prototyping platform that engages engineers from multiple disciplines.</span>
+                        <li style="color: rgb(74, 74, 74);"><span>Transform an ad hoc DSP prototyping environment to a reliable production DSP prototyping and demo platform.</span>
+                        <li style="color: rgb(74, 74, 74);"><span>Apply modern software engineering and SDLC practices to the PCPREQ project, and use it as a way to teach these practices to the enterprise.</span>
+                        <li style="color: rgb(74,74,74);"><span>Develop and share structured AI workflows to enhance software engineering practices and deliverables.</span>
+                        <li style="color: rgb(74, 74, 74);"><span>Foster a community of collaboration around the PREQ prototyping platform that engages engineers from multiple disciplines to build tools that are useful for the entire company.</span>
                         <li style="color: rgb(74, 74, 74);"><span>Through code review, pair programming and mentorship grow a community of software engineers to maintain the PREQ prototyping platform and ensure a high level of quality for the project, its users and maintainers.</span>
-                        <li style="color: rgb(74,74,74);"><span>Develop and share structured AI workflows to enhanceme software engineering practices and deliverables</span>
+                        <li style="color: rgb(74, 74, 74);"><span>Engage in consensus building around tools and APIs to make DSP portable between platforms.</span>
                         <li style="color: rgb(74, 74, 74);"><span>Foster a culture of writing for engineers and users. Promote the regular documentation of design decisions through ADRs, application manuals that live with the code, along with runbooks and user guides maintained by the community.</span>
                         <li style="color: rgb(74, 74, 74);"><span>Restructure the candidate interview process to provide faster feedback to the candidate and team while consistently identifying strong candidates.</span>
-                        <li style="color: rgb(74, 74, 74);"><span>Engage in building consensus around approaches to making our DSP portable between various internal and external platforms.</span>
+                        <li style="color: rgb(74, 74, 74);"><span>Develop and maintain tools in C and Python for DSP algorithm development, evaluation, and deployment.</span>
                     </ul>
                 </li>
                 <li class="portfolio-item">
@@ -32,7 +32,7 @@
                     <ul>
                         <li style="color: rgb(74, 74, 74);"><span>Understand MATLABs packaging capabilities and offerings to define a path forward to reliably sharing MATLAB code at Bose.</span>
                         <li style="color: rgb(74, 74, 74);"><span>Maintain a Jenkins CICD environment focused on testing, packaging and deploying MATLAB toolboxes.</span>
-                        <li style="color: rgb(74, 74, 74);"><span>Promote and extend the use of automated testing for MATLAB projects.</span>
+                        <li style="color: rgb(74, 74, 74);"><span>Promote and extend the use of automated testing for all Bose MATLAB and Simulink projects.</span>
                     </ul>
                 </li>
                 <li class="portfolio-item">
