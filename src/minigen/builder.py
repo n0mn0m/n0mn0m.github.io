@@ -3,6 +3,7 @@
 import shutil
 from dataclasses import dataclass
 from datetime import datetime, timezone
+from html import escape
 from typing import Any
 
 import frontmatter
@@ -109,6 +110,70 @@ class Builder:
             dest = self.config.output_dir / "static"
             shutil.copytree(self.config.static_dir, dest, dirs_exist_ok=True)
 
+    def copy_content_assets(self) -> None:
+        """Copy publishable assets stored alongside content."""
+        content_img = self.config.content_dir / "img"
+        if content_img.exists():
+            shutil.copytree(
+                content_img, self.config.output_dir / "img", dirs_exist_ok=True
+            )
+
+    def _site_photo_html(self, page: str) -> str:
+        """Create one responsive image for a page."""
+        gallery_dir = self.config.content_dir / "img" / "site"
+        if not gallery_dir.exists():
+            return ""
+
+        stem = self.config.site_images.get(page)
+        if not stem:
+            return ""
+
+        candidates = sorted(gallery_dir.glob(f"{stem}.*")) + sorted(
+            gallery_dir.glob(f"{stem}-2400.*")
+        )
+        source = next(
+            (
+                path
+                for path in candidates
+                if path.suffix.lower() in {".jpg", ".jpeg", ".png", ".webp"}
+            ),
+            None,
+        )
+        if source is None:
+            logger.warning("Configured site photo not found: %s", stem)
+            return ""
+
+        variants = [
+            (gallery_dir / f"{stem}-640{source.suffix}", 640),
+            (gallery_dir / f"{stem}-1280{source.suffix}", 1280),
+            (gallery_dir / f"{stem}-2400{source.suffix}", 2400),
+        ]
+        srcset = ", ".join(
+            f"/img/site/{path.name} {width}w"
+            for path, width in variants
+            if path.exists()
+        )
+        src = next((path for path, _ in reversed(variants) if path.exists()), source)
+        label = escape(stem.replace("-", " ").replace("_", " "))
+        return (
+            '<figure class="site-photo">'
+            f'<img src="/img/site/{src.name}"'
+            f"{' srcset=' + chr(34) + srcset + chr(34) if srcset else ''}"
+            f' sizes="(min-width: 60rem) 50vw, 100vw"'
+            f' alt="{label}" loading="lazy" decoding="async">'
+            "</figure>"
+        )
+
+    def _convert_content(self, content: str) -> str:
+        """Convert Markdown after expanding supported content placeholders."""
+        if "[site-photo:" not in content:
+            return self.md.convert(content)
+        return self.md.convert(
+            content.replace(
+                "[site-photo:homepage]", self._site_photo_html("homepage")
+            ).replace("[site-photo:me]", self._site_photo_html("me"))
+        )
+
     def build(self) -> None:
         """Build the complete site."""
         logger.info("Cleaning output directory...")
@@ -116,6 +181,8 @@ class Builder:
 
         logger.info("Copying static files...")
         self.copy_static()
+        logger.info("Copying content assets...")
+        self.copy_content_assets()
 
         logger.info("Loading and processing posts...")
         self.load_posts()
@@ -199,7 +266,7 @@ class Builder:
             # Special handling for me.md to use the me.html template
             if page_file.name == "me.md":
                 page_html = self._wrap_me_content(
-                    content=self.md.convert(page.content),
+                    content=self._convert_content(page.content),
                     title=page.metadata.get("title", page_file.stem.title()),
                     description=page.metadata.get(
                         "description", self.config.site_description
@@ -207,7 +274,7 @@ class Builder:
                 )
             else:
                 page_html = self._wrap_content(
-                    content=self.md.convert(page.content),
+                    content=self._convert_content(page.content),
                     title=page.metadata.get("title", page_file.stem.title()),
                     description=page.metadata.get(
                         "description", self.config.site_description
@@ -333,7 +400,7 @@ class Builder:
         index_md_path = self.config.content_dir / "index.md"
         if index_md_path.exists():
             post = frontmatter.load(index_md_path)
-            intro_content = self.md.convert(post.content)
+            intro_content = self._convert_content(post.content)
         else:
             intro_content = f"<h1>{self.config.site_title}</h1>"
             if self.config.site_description:
