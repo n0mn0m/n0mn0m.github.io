@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import NamedTuple
 
@@ -28,6 +28,7 @@ class Config:
     site_description: str = ""
     site_author: str = ""
     site_url: str = ""
+    site_images: dict[str, str] = field(default_factory=dict)
     rss_path: str = "feed.xml"
     atom_path: str = "atom.xml"
 
@@ -87,6 +88,7 @@ class Config:
 
         # Get feed data from [feed] section
         feed_data = data.get("feed", {})
+        image_data = data.get("images", {})
 
         return cls(
             root_dir=root_dir,
@@ -97,6 +99,10 @@ class Config:
             site_description=site_data.get("description", ""),
             site_author=site_data.get("author", ""),
             site_url=site_data.get("url", ""),
+            site_images={
+                "homepage": image_data.get("homepage", "site-0001"),
+                "me": image_data.get("me", "site-0002"),
+            },
             rss_path=feed_data.get("rss_path", "feed.xml"),
             atom_path=feed_data.get("atom_path", "atom.xml"),
         )

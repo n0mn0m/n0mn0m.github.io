@@ -9,20 +9,11 @@ footer {
     margin-top: 1.5rem;
 }
 
-/* Ensure music embed is fully visible only on homepage */
+/* Homepage and profile intro */
 .homepage-intro {
     text-align: center;
     margin: 1.5rem auto 0 auto;
     padding: 0;
-}
-.homepage-intro iframe {
-    display: block;
-    margin: 1rem auto;
-    max-width: 100%;
-    width: 100%;
-    min-height: 450px;
-    height: 450px;
-    border: none;
 }
 .homepage-intro embed, .homepage-intro audio {
     display: block;
@@ -31,6 +22,19 @@ footer {
     min-height: 120px;
     height: auto;
     border: none;
+}
+
+.site-photo {
+    margin: 2rem auto;
+    max-width: 1100px;
+    text-align: center;
+}
+
+.site-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0.25rem;
 }
 
 /* Blog index styles */

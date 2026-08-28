@@ -31,6 +31,4 @@ or [patch](%22https://github.com/n0mn0m/%22).
 My resume is available for [review](/programming/resume), and I maintain a project list
 [here](/programming/portfolio/).
 
-<section>
-<iframe title="Apple Music Favorites Mix Viewer" allow="autoplay *; encrypted-media *; fullscreen *" frameborder="0" height="450" style="width: 100%; max-width: 660px; overflow: hidden; background: none;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/playlist/favorites-mix/pl.pm-d5779e520ff52d7ff48ccfc6a4eff32d"></iframe>
-</section>
+[site-photo:me]
