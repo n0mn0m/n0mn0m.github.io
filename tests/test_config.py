@@ -37,6 +37,25 @@ atom_path = "atom.xml"
     assert config.atom_path == "atom.xml"
 
 
+def test_image_config_loading(tmp_path):
+    """Test per-page site image configuration."""
+    config_file = tmp_path / "test_config.toml"
+    config_file.write_text(
+        """
+[images]
+homepage = "homepage-photo"
+me = "profile-photo"
+"""
+    )
+
+    config = Config.from_file(config_file)
+
+    assert config.site_images == {
+        "homepage": "homepage-photo",
+        "me": "profile-photo",
+    }
+
+
 def test_feed_config_validation(tmp_path):
     """Test feed configuration validation."""
     config = Config(
