@@ -123,3 +123,17 @@ def test_site_photos_are_copied_and_rendered_responsively(test_static, test_conf
     )
     assert 'src="/img/site/site-0002-2400.jpg"' in profile
     assert "site-0001-2400.jpg" not in profile
+
+
+def test_resume_css_keeps_timeline_without_list_overrides():
+    """The resume timeline should not change the site's default list styling."""
+    css = (
+        Path(__file__).parents[1] / "static" / "css" / "resume.css"
+    ).read_text()
+
+    assert "line-height: 1.4;" in css
+    assert "article.resume-page .work-history::before" in css
+    assert "article.resume-page .job::before" not in css
+    assert "article.resume-page li" not in css
+    assert "article.resume-page ul" not in css
+    assert "article.resume-page ol" not in css

@@ -1,5 +1,5 @@
 ---
-title: Train All the Things — Display
+title: Train All the Things - Display
 date: 2020-03-05
 page.meta.tags: python, circuit-python, hackaday
 page.meta.categories: programming

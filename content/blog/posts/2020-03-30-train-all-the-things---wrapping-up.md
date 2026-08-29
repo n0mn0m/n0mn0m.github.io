@@ -1,5 +1,5 @@
 ---
-title: Train All the Things — Wrapping Up
+title: Train All the Things - Wrapping Up
 date: 2020-03-30
 page.meta.tags: python, programming, hackaday
 page.meta.categories: programming

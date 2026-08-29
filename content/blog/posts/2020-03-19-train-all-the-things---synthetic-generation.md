@@ -1,5 +1,5 @@
 ---
-title: Train All the Things — Synthetic Generation
+title: Train All the Things - Synthetic Generation
 date: 2020-03-19
 page.meta.tags: python, bash, programming, hackaday
 page.meta.categories: programming

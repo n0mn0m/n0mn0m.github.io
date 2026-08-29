@@ -1,5 +1,5 @@
 ---
-title: Train All the Things — Signaling
+title: Train All the Things - Signaling
 date: 2020-03-01
 page.meta.tags: javascript, hackaday
 page.meta.categories: programming

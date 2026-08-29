@@ -262,24 +262,16 @@ class Builder:
         }
         for page_file in pages_dir.glob("*.md"):
             page = frontmatter.load(page_file)
+            template_name = page.metadata.get("template", "page")
 
-            # Special handling for me.md to use the me.html template
-            if page_file.name == "me.md":
-                page_html = self._wrap_me_content(
-                    content=self._convert_content(page.content),
-                    title=page.metadata.get("title", page_file.stem.title()),
-                    description=page.metadata.get(
-                        "description", self.config.site_description
-                    ),
-                )
-            else:
-                page_html = self._wrap_content(
-                    content=self._convert_content(page.content),
-                    title=page.metadata.get("title", page_file.stem.title()),
-                    description=page.metadata.get(
-                        "description", self.config.site_description
-                    ),
-                )
+            page_html = self._wrap_content(
+                content=self._convert_content(page.content),
+                title=page.metadata.get("title", page_file.stem.title()),
+                description=page.metadata.get(
+                    "description", self.config.site_description
+                ),
+                template_name=template_name,
+            )
 
             # Determine output path
             rel_parts = page_url_map.get(page_file.name, [page_file.stem])
@@ -359,27 +351,15 @@ class Builder:
         template = env.get_template(template_name)
         return str(template.render(**context))
 
-    def _wrap_content(self, content: str, *, title: str, description: str = "") -> str:
-        """Render a generic page using the page.html template."""
-        context = {
-            "site": {
-                "title": self.config.site_title,
-                "description": description or self.config.site_description,
-                "author": self.config.site_author,
-                "url": self.config.site_url,
-                "rss_path": self.config.rss_path,
-                "atom_path": self.config.atom_path,
-            },
-            "now": datetime.now(timezone.utc),
-            "title": title,
-            "content": content,
-        }
-        return self._render_template("page.html", context)
-
-    def _wrap_me_content(
-        self, content: str, *, title: str, description: str = ""
+    def _wrap_content(
+        self,
+        content: str,
+        *,
+        title: str,
+        description: str = "",
+        template_name: str = "page",
     ) -> str:
-        """Render the me page using the me.html template."""
+        """Render a page using the selected template."""
         context = {
             "site": {
                 "title": self.config.site_title,
@@ -393,7 +373,7 @@ class Builder:
             "title": title,
             "content": content,
         }
-        return self._render_template("me.html", context)
+        return self._render_template(f"{template_name}.html", context)
 
     def _create_index(self) -> None:
         """Create the main index page."""

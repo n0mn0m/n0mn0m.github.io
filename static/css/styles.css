@@ -1,3 +1,96 @@
+:root {
+    --site-page-width: 980px;
+    --site-text: #1f2937;
+    --site-muted: #475569;
+    --site-soft: #4b5563;
+    --site-heading: #111827;
+    --site-border: #e5e7eb;
+    --site-link: #005a8b;
+}
+
+main {
+    max-width: var(--site-page-width);
+    margin: 0 auto;
+    padding: 0 1rem 2rem;
+}
+
+main > article,
+main > section,
+main > div {
+    max-width: var(--site-page-width);
+}
+
+main article,
+main section,
+main .content {
+    color: var(--site-text);
+    line-height: 1.7;
+    font-size: 1.02rem;
+}
+
+main h1,
+main h2,
+main h3,
+main h4,
+main h5,
+main h6 {
+    color: var(--site-heading);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 1.6rem 0 0.7rem;
+}
+
+main h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+}
+
+main h2 {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    margin-top: 2rem;
+}
+
+main h3 {
+    font-size: 1.1rem;
+}
+
+main p,
+main li {
+    color: var(--site-text);
+}
+
+main p {
+    margin: 0 0 0.85rem;
+}
+
+main ul,
+main ol {
+    margin: 0 0 1rem;
+    padding-left: 1.5rem;
+}
+
+main li {
+    margin: 0 0 0.5rem;
+}
+
+main a {
+    color: var(--site-link);
+    text-decoration: none;
+}
+
+main a:hover,
+main a:focus {
+    text-decoration: underline;
+}
+
+main strong {
+    color: var(--site-heading);
+}
+
+main em {
+    color: var(--site-soft);
+    font-style: normal;
+}
+
 /* Center footer */
 footer {
     text-align: center;
