@@ -1,276 +1,182 @@
-<div id="root">
-    <article style="padding: 20px;"><h1 style="text-align: center;">Alexander Hagerman</h1>
-        <div style="text-align: center; padding: 0px;"><a href="mailto:alexander.hagerman@icloud.com?subject=Resume">alexander.hagerman@icloud.com</a>
-        </div>
-        <div style="text-align: center; font-weight: bold;">Portfolios: <a href="/programming/portfolio">blog</a>&nbsp;|&nbsp;<a
-                href="https://github.com/n0mn0m" target="_blank" rel="noreferrer nofollow">github</a></div>
-        <section style="text-align: center;"><p>I'm a software engineer with 15 years of experience building tools that help people solve problems. I enjoy taking complex, messy problems, breaking them down into tractable issues, and shipping solutions. I've worked on projects throughout their entire lifecycle—from initial prototypes to mature systems in maintenance mode, and I have grown projects from a small group of individuals into collaborative communities.</p></section>
-        <section><h1>Professional Experience</h1>
-            <ol style="list-style-type: none;">
-                <li class="portfolio-item">
-                    <div style="font-weight: bold;">Software Engineering and Program Lead</div>
-                    <p style="color: rgb(74, 74, 74);">03/2024 - Current | <a href="https://www.bose.com/"
-                                                                              target="_blank" rel="noreferrer nofollow">
-                        Bose</a></p>
-                    <ul>
-                        <li style="color: rgb(74, 74, 74);"><span>Transform an ad hoc DSP prototyping environment to a reliable production DSP prototyping and demo platform.</span>
-                        <li style="color: rgb(74, 74, 74);"><span>Apply modern software engineering and SDLC practices to the PCPREQ project, and use it as a way to teach these practices to the enterprise.</span>
-                        <li style="color: rgb(74,74,74);"><span>Develop and share structured AI workflows to enhance software engineering practices and deliverables.</span>
-                        <li style="color: rgb(74, 74, 74);"><span>Foster a community of collaboration around the PREQ prototyping platform that engages engineers from multiple disciplines to build tools that are useful for the entire company.</span>
-                        <li style="color: rgb(74, 74, 74);"><span>Through code review, pair programming and mentorship grow a community of software engineers to maintain the PREQ prototyping platform and ensure a high level of quality for the project, its users and maintainers.</span>
-                        <li style="color: rgb(74, 74, 74);"><span>Engage in consensus building around tools and APIs to make DSP portable between platforms.</span>
-                        <li style="color: rgb(74, 74, 74);"><span>Foster a culture of writing for engineers and users. Promote the regular documentation of design decisions through ADRs, application manuals that live with the code, along with runbooks and user guides maintained by the community.</span>
-                        <li style="color: rgb(74, 74, 74);"><span>Restructure the candidate interview process to provide faster feedback to the candidate and team while consistently identifying strong candidates.</span>
-                        <li style="color: rgb(74, 74, 74);"><span>Develop and maintain tools in C and Python for DSP algorithm development, evaluation, and deployment.</span>
-                    </ul>
-                </li>
-                <li class="portfolio-item">
-                    <div style="font-weight: bold;">Senior Software Engineer</div>
-                    <p style="color: rgb(74, 74, 74);">01/2023 - 03/2024 | <a href="https://www.bose.com/"
-                                                                              target="_blank" rel="noreferrer nofollow">
-                        Bose</a></p>
-                    <ul>
-                        <li style="color: rgb(74, 74, 74);"><span>Understand MATLABs packaging capabilities and offerings to define a path forward to reliably sharing MATLAB code at Bose.</span>
-                        <li style="color: rgb(74, 74, 74);"><span>Maintain a Jenkins CICD environment focused on testing, packaging and deploying MATLAB toolboxes.</span>
-                        <li style="color: rgb(74, 74, 74);"><span>Promote and extend the use of automated testing for all Bose MATLAB and Simulink projects.</span>
-                    </ul>
-                </li>
-                <li class="portfolio-item">
-                    <div style="font-weight: bold;">Lead ML Tooling Engineer</div>
-                    <p style="color: rgb(74, 74, 74);">06/2021 - 01/2023 | <a href="https://www.flocksafety.com/"
-                                                                              target="_blank" rel="noreferrer nofollow">Flock
-                        Safety</a></p>
-                    <ul>
-                        <li style="color: rgb(74, 74, 74);"><span>Design and implement audio, object tracking and device health annotation tools.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Responsible for identifying candidates to grow the team, onboarding and training new engineers, and managing the team's technical roadmap.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Lead the designed and implementation of image annotation tools.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);">
-                            <span>Set up and maintain frontend build and testing tools.</span></li>
-                        <li style="color: rgb(74, 74, 74);"><span>Designed and implemented a data versioning tool to support annotation lineage and management.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Lead the design and implementation of an annotation campaign process to streamline the collection and validation of data across tools.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Responsible for supporting and securing data interfaces allowing service to service, frontend and other ad hoc integrations.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Mentor other engineers and collaborate across teams for new product features.</span>
-                        </li>
-                    </ul>
-                </li>
-                <li class="portfolio-item">
-                    <div style="font-weight: bold;">Senior Software Engineer</div>
-                    <p style="color: rgb(74, 74, 74);">02/2021 - 05/2021 | <a href="https://renci.org/" target="_blank"
-                                                                              rel="noreferrer nofollow">RENCI</a></p>
-                    <ul>
-                        <li style="color: rgb(74, 74, 74);"><span>Worked to develop the <a
-                                href="https://github.com/helxplatform" target="_blank" rel="noreferrer nofollow">HeLx Platform</a> to support NIH HEAL research.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Refactor HeLx platform Django application to surface data via REST endpoints.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Collaborated on a new react based frontend for the HeLx Appstore.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Instrument Kubernetes pod utilization and surface data through service endpoints.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Refactor application packaging and update continuous integration practices.</span>
-                        </li>
-                    </ul>
-                </li>
-                <li class="portfolio-item">
-                    <div style="font-weight: bold;">Lead Software Engineer</div>
-                    <p style="color: rgb(74, 74, 74);">06/2020 - 02/2021 | <a href="https://www.samtec.com/"
-                                                                              target="_blank" rel="noreferrer nofollow">Samtec</a>
-                    </p>
-                    <ul>
-                        <li style="color: rgb(74, 74, 74);"><span>Lead/manage the development of new asset management system to synchronize asset data and streamline existing assets.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Created an improved asset maintenance system to support global operations.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Collaborate with engineers and internal stakeholders to execute feature implementations and process improvement.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Provide key insights for organizational planning on data management and optimization.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Mentor, coach, and train engineers in new practices/tools/technology.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Develop and oversee continuous integration and deployment infrastructure to increase overall productivity.</span>
-                        </li>
-                    </ul>
-                </li>
-                <li class="portfolio-item">
-                    <div style="font-weight: bold;">Senior Software Engineer</div>
-                    <p style="color: rgb(74, 74, 74);">08/2019 - 06/2020; 07-2015 - 03/2019 | <a
-                            href="https://www.humana.com/" target="_blank" rel="noreferrer nofollow">Humana</a></p>
-                    <ul>
-                        <li style="color: rgb(74, 74, 74);"><span>Spearheaded the creation of a provider fax routing system by building out OCR as a service for patient record documents.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Facilitated the implementation of middleware layer/rule management for company Sytrue initiatives.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Setup, deployed, and managed first real time NLP services on Azure to strengthen job progression and computer capabilities.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Collaborated on breast cancer research project by utilizing NLP to research stage information based on diagnosis markers.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Increased Doctor Patient Note OCR post processing data throughput by migrating localized python services to pyspark.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Monitored potential fraud rule detection by processing provider documentation a set of NLP rules.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Built/managed a library of queries and reports to assist fraud investigators.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Assisted NLP development team in the transition to Agile methodologies through change management and team leadership skills.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Foster continuous process improvement by implementing Azure identity service (MSAL/AAD) into C# and Python services.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Develop prem to Azure Databricks deployment service, ADLS Generation 2 C# library, and CLI.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Served as architect and senior developer of the Retail Data Science Research and Development platform.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Introduced and streamlined multiple software development practices like version control, continuous integration/deployment, code review, and dependency management.</span>
-                        </li>
-                    </ul>
-                </li>
-                <li class="portfolio-item">
-                    <div style="font-weight: bold;">Senior Software Engineer</div>
-                    <p style="color: rgb(74, 74, 74);">04/2019 - 08/2019 | <a href="https://www.elastic.co/"
-                                                                              target="_blank" rel="noreferrer nofollow">Elastic</a>
-                    </p>
-                    <ul>
-                        <li style="color: rgb(74, 74, 74);"><span>Worked across teams to develop an end-to-end testing framework for the customer journey through GCP marketplace to Elastic.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Migration of backend services from Python 2 to Python 3.7.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Expanded automated testing practices for Python 2 and 3 code bases.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Built a tool that enabled data migration from Elasticsearch to Postgres.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Delivered troubleshooting and production incident response for billing services and clusters.</span>
-                        </li>
-                    </ul>
-                </li>
-                <li class="portfolio-item">
-                    <div style="font-weight: bold;">Senior Analytic Consultant | Analytic Consultant | Developer</div>
-                    <p style="color: rgb(74, 74, 74);">01/2012 - 07/2015 | <a href="https://www.alvaria.com/"
-                                                                              target="_blank" rel="noreferrer nofollow">Aspect</a>
-                    </p>
-                    <ul>
-                        <li style="color: rgb(74, 74, 74);"><span>Built out Microsoft SSIS/SSAS analytics infrastructure to support customer service call center operations for PetSafe, Delta, and Jet Blue.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Created enhanced web-based data visualizations to facilitate cross-functional application development teams on healthcare projects.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Delivered on-site consulting and guidance to clients by evaluating call center analytic needs.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Developed new productivity KPIs for call center clients via Microsoft BI stack to transform overall day-to-day operations and facilitate process improvement.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Headed client training programs on business intelligence tools/concepts to assist in future BI projects and process improvement identification.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Served as developer on SharePoint 2013 C# Applications, C# MVP Applications, and custom C# CLI applications to handle token management.</span>
-                        </li>
-                    </ul>
-                </li>
-                <li class="portfolio-item">
-                    <div style="font-weight: bold;">Junior Developer</div>
-                    <p style="color: rgb(74, 74, 74);">03/2012 - 11/2012 | <a href="https://www.allsafeindustries.com/"
-                                                                              target="_blank" rel="noreferrer nofollow">All
-                        Safe Industries</a></p>
-                    <ul>
-                        <li style="color: rgb(74, 74, 74);"><span>Built a product catalog ETL to consolidate product data into a single CMS.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Analyzed historical sales trends to improve decision making for web store strategies.</span>
-                        </li>
-                    </ul>
-                </li>
-                <li class="portfolio-item">
-                    <div style="font-weight: bold;">Intern</div>
-                    <p style="color: rgb(74, 74, 74);">01/2011 - 05/2011 | <a
-                            href="https://owensborocatholic.org/schools/ochs/" target="_blank"
-                            rel="noreferrer nofollow">Owensboro Catholic High School</a></p>
-                    <ul>
-                        <li style="color: rgb(74, 74, 74);"><span>Developed VB6 scripts for printer fleet management by scripting out the install/management for printers across all computer labs.</span>
-                        </li>
-                        <li style="color: rgb(74, 74, 74);"><span>Administered active directory group policy/deployment by developing policies and implementing across all school groups.</span>
-                        </li>
-                    </ul>
-                </li>
-            </ol>
-        </section>
-        <section><h1>Education</h1>
-            <p>08/2011 | Bachelor of Science in Computer Information Technologies | Western Kentucky University</p>
-            <h1>Certificates</h1>
-            <ul>
-                <li>The Technology of Music Production (Coursera, January 2021)</li>
-                <li>Developing your Musicianship (Coursera, December 2020)</li>
-                <li>CSS for JavaScript Developers (Workshop, October 2020)</li>
-                <li>UT.6.10x: Embedded Systems - Shape the World: Microcontroller Input/Output (edX, November 2019)</li>
-                <li>Triplebyte Certified Generalist Software Engineer (Triplebyte August 2019)</li>
-                <li>Data Visualization (Dataquest.io April 2016)</li>
-                <li>Data Analysis with Pandas: Intermediate Course (Dataquest.io September 2015)</li>
-                <li>MCSD: Web Applications (Microsoft, June 2014)</li>
-                <li>Developing Microsoft Azure and Web Services (Microsoft, June 2014)</li>
-                <li>Developing ASP.NET MVC 4 Web Applications (Microsoft, February 2013)</li>
-                <li>Programming in HTML5, CSS#, JavaScript 70-480 (Microsoft, January 2013)</li>
-            </ul>
-        </section>
-        <section><h1>Awards</h1>
-            <ul>
-                <li>Hackaday Connected World Contest Award - Connected Roomba</li>
-                <li>2018 Humana Star Award - Data Engineering</li>
-            </ul>
-        </section>
-        <section><h1>Technical Skills &amp; Competencies</h1>
-            <p>Python, C, C#, TypeScript, Rust, C++, .NET Core, Django, React, Bash, SQL<br>Postgres, SQL Server, SQLite,
-                Elasticsearch, MongoDB, Redis, Netezza, CosmosDB<br>SQS, PubSub, Azure Queues, Kafka, RabbitMQ<br>HDFS,
-                Azure Data Lake Storage Gen 2, S3<br>AWS, Azure, GCP<br>Azure Pipelines, Azure DevOps, Circle CI, GitHub
-                Actions, Jenkins<br>Linux, Docker, Kubernetes, Fargate, Terraform<br>Software Architecture, Software
-                Testing, Pair Programming, CI/CD<br>Mentoring, Leadership, Team Building</p></section>
-        <section><h1>Talks</h1>
-            <ul>
-                <li><a href="https://github.com/DerbyPy/python_for_embedded_systems">Python for Embedded Hardware</a>
-                    (DerbyPy, Louisville, KY) - June 2019
-                </li>
-                <li><a href="https://github.com/DerbyPy/what-is-odbc">What is ODBC</a> (DerbyPy, Louisville, KY) - March
-                    2019
-                </li>
-                <li><a href="https://github.com/DerbyPy/intro-to-pyspark">Intro to PySpark</a> (DerbyPy, Louisville, KY)
-                    - October 2018
-                </li>
-                <li><a href="https://github.com/DerbyPy/modules-and-packages-intro">Python Modules and Packages</a>
-                    (DerbyPy, Louisville, KY) - September 2018
-                </li>
-                <li>Column Oriented Data (DerbyPy, Louisville, KY) - June 2018</li>
-            </ul>
-        </section>
-        <section><h1>Volunteer &amp; Open-Source Experience</h1>
-            <ul>
-                <li><a href="https://aioodbc.readthedocs.io/en/latest/" target="_blank" rel="noreferrer nofollow">aioodbc</a>
-                    - configuration tuning documentation
-                </li>
-                <li><a href="https://recogito.github.io/annotorious/" target="_blank" rel="noreferrer nofollow">Annotorious</a>
-                    - docs and gitter chat help
-                </li>
-                <li><a href="https://arrow.apache.org/" target="_blank" rel="noreferrer nofollow">Apache Arrow</a> -
-                    setup.py and API documentation updates, Subpool implementation, and add has capabilities for scalar
-                    values in Python
-                </li>
-                <li><a href="https://www.codelouisville.org/" target="_blank" rel="noreferrer nofollow">Code
-                    Louisville</a> - taught a range of topics including Python, debugging, databases, and Django
-                </li>
-                <li><a href="https://www.mozilla.org/en-US/firefox/browsers/mobile/" target="_blank"
-                       rel="noreferrer nofollow">Firefox Mobile</a> - bug fix for incorrect axis locking
-                </li>
-                <li><a href="https://www.pymssql.org/" target="_blank" rel="noreferrer nofollow">PyMSSQL</a> - mentor
-                    contributors, updated CI and platform builds, release manager for 2.1.4
-                </li>
-                <li><a href="https://wavesurfer-js.org/" target="_blank" rel="noreferrer nofollow">wavesurfer.js</a> -
-                    region plugin update for event broadcasting
-                </li>
-            </ul>
-        </section>
-        <section><h1>Memberships</h1>
-            <ul>
-                <li><a href="https://www.acm.org" target="_blank" rel="noreferrer nofollow">ACM</a></li>
-                <li><a href="https://h3lou.org" target="_blank" rel="noreferrer nofollow">Hardware Happy Hour
-                    Louisville</a></li>
-                <li><a href="https://github.com/derbypy" target="_blank" rel="noreferrer nofollow">DerbyPy</a></li>
-            </ul>
-        </section>
-    </article>
+---
+template: resume
+---
+
+# Alexander Hagerman
+
+[alexander.hagerman@icloud.com](mailto:alexander.hagerman@icloud.com?subject=Resume)
+
+**Portfolios:** [portfolio](/programming/portfolio) | [github](https://github.com/n0mn0m)
+
+Engineering leader with 15 years of software engineering experience, the last several building and leading teams. I grow engineering communities from a handful of contributors into cross-disciplinary collaborations, translate ambiguous technical and organizational problems into shipped programs, and develop the engineers around me through mentorship, hiring, and process. I pair hands-on technical depth with program ownership - from prototype to production, from individual contributor to people manager.
+
+## Professional Experience
+
+<div class="work-history">
+  <div class="job">
+    <p><strong>Software Engineering and Program Lead</strong><br>
+    <em><a href="https://www.bose.com/">Bose</a> | 03/2024 - Current</em></p>
+    <ul>
+      <li>Foster a community of collaboration around the PREQ prototyping platform, engaging engineers from multiple disciplines to transform an ad hoc DSP environment into a reliable production prototyping and demo platform used company-wide.</li>
+      <li>Grow and sustain that community of engineers through code review, pair programming, and mentorship, maintaining a high bar for quality across the platform, its users, and its maintainers.</li>
+      <li>Restructured the candidate interview process, cutting time-to-feedback for candidates and the team by 50% while consistently identifying strong hires.</li>
+      <li>Apply modern software engineering and SDLC practices to the PCPREQ project and use it as a teaching vehicle for these practices across the enterprise.</li>
+      <li>Foster a culture of engineering writing, promoting regular documentation of design decisions through ADRs, application manuals that live with the code, runbooks, and user guides maintained by the community.</li>
+      <li>Lead consensus building around tools and APIs to make DSP work portable between platforms.</li>
+      <li>Develop and share structured AI-assisted workflows to improve engineering practices and deliverables across the team.</li>
+      <li>Develop and maintain tools in C and Python for DSP algorithm development, evaluation, and deployment.</li>
+    </ul>
+  </div>
+
+<div class="job">
+    <p><strong>Senior Software Engineer</strong><br>
+    <em><a href="https://www.bose.com/">Bose</a> | 01/2023 - 03/2024</em></p>
+    <ul>
+      <li>Defined Bose's path forward for reliably packaging and sharing MATLAB code, evaluating MATLAB's native packaging capabilities against enterprise needs.</li>
+      <li>Built and maintained a Jenkins CI/CD environment for testing, packaging, and deploying MATLAB toolboxes.</li>
+      <li>Promoted and extended automated testing practices across Bose MATLAB and Simulink projects.</li>
+    </ul>
+  </div>
+
+<div class="job">
+    <p><strong>Lead ML Tooling Engineer</strong><br>
+    <em><a href="https://www.flocksafety.com/">Flock Safety</a> | 06/2021 - 01/2023</em></p>
+    <ul>
+      <li>Managed a team of 2 engineers: identified and hired candidates, onboarded and trained new engineers, and owned the team's technical roadmap.</li>
+      <li>Mentored engineers and collaborated across teams to define and deliver new product features.</li>
+      <li>Led design and implementation of image, audio, object-tracking, and device-health annotation tools, and a data versioning system to support annotation lineage and management.</li>
+      <li>Led design and rollout of an annotation campaign process that streamlined data collection and validation across tools.</li>
+      <li>Responsible for supporting and securing data interfaces enabling service-to-service, frontend, and other ad hoc integrations.</li>
+      <li>Set up and maintained the team's frontend build and testing infrastructure.</li>
+    </ul>
+  </div>
+
+<div class="job">
+    <p><strong>Senior Software Engineer</strong><br>
+    <em><a href="https://renci.org/">RENCI</a> | 02/2021 - 05/2021</em></p>
+    <ul>
+      <li>Contributed to the HeLx Platform supporting NIH HEAL research, refactoring the Django backend to expose data via REST endpoints and collaborating on a new React-based frontend for the HeLx Appstore.</li>
+      <li>Instrumented Kubernetes pod utilization metrics and refactored application packaging and CI practices.</li>
+    </ul>
+  </div>
+
+<div class="job">
+    <p><strong>Lead Software Engineer</strong><br>
+    <em><a href="https://www.samtec.com/">Samtec</a> | 06/2020 - 02/2021</em></p>
+    <ul>
+      <li>Led and managed development of a new asset management system to synchronize asset data and streamline existing assets.</li>
+      <li>Created an improved asset maintenance system to support global operations.</li>
+      <li>Mentored, coached, and trained engineers on new practices, tools, and technologies.</li>
+      <li>Advised internal stakeholders on data management and organizational planning, and partnered with engineers to execute feature work and process improvements.</li>
+      <li>Built and oversaw CI/CD infrastructure that increased team productivity.</li>
+    </ul>
+  </div>
+
+<div class="job">
+    <p><strong>Senior Software Engineer</strong><br>
+    <em><a href="https://www.humana.com/">Humana</a> | 08/2019 - 06/2020; 07/2015 - 03/2019</em></p>
+    <ul>
+      <li>Helped lead the NLP development team's transition to Agile methodologies through change management and hands-on team leadership.</li>
+      <li>Served as architect and senior developer for the Retail Data Science Research and Development platform.</li>
+      <li>Spearheaded an OCR-as-a-service system for patient record documents, powering a new provider fax routing system.</li>
+      <li>Set up and managed Humana's first real-time NLP services on Azure; contributed NLP-based staging research to a breast cancer research collaboration.</li>
+      <li>Introduced and standardized software development practices including version control, CI/CD, code review, and dependency management.</li>
+      <li>Increased OCR post-processing throughput by migrating localized Python services to PySpark, and built a library of queries/reports used by fraud investigators.</li>
+    </ul>
+  </div>
+
+<div class="job">
+    <p><strong>Senior Software Engineer</strong><br>
+    <em><a href="https://www.elastic.co/">Elastic</a> | 04/2019 - 08/2019</em></p>
+    <ul>
+      <li>Worked across teams to build an end-to-end testing framework for the GCP Marketplace-to-Elastic customer journey.</li>
+      <li>Migrated backend services from Python 2 to Python 3.7 and expanded automated testing practices across both codebases.</li>
+      <li>Built a tool to migrate data from Elasticsearch to Postgres and delivered production incident response for billing services and clusters.</li>
+    </ul>
+  </div>
 </div>
+
+## Early Career (2011 – 2015)
+
+<div class="work-history early-career">
+  <div class="job">
+    <p><strong>Senior Analytic Consultant | Analytic Consultant | Developer</strong><br>
+    <em>Aspect | 01/2012 – 07/2015</em></p>
+    <p>Headed client training programs on BI tools/concepts and built SSIS/SSAS analytics infrastructure and KPIs for call-center clients including PetSafe, Delta, and JetBlue.</p>
+  </div>
+
+<div class="job">
+    <p><strong>Junior Developer</strong><br>
+    <em>All Safe Industries | 03/2012 – 11/2012</em></p>
+    <p>Built a product-catalog ETL consolidating data into a single CMS and analyzed sales trends to inform web store strategy.</p>
+  </div>
+
+<div class="job">
+    <p><strong>Intern</strong><br>
+    <em>Owensboro Catholic High School | 01/2011 – 05/2011</em></p>
+    <p>Scripted printer fleet install/management and administered Active Directory group policy across all school computer labs.</p>
+  </div>
+</div>
+
+## Education
+
+08/2011 | Bachelor of Science in Computer Information Technologies | Western Kentucky University
+
+## Certificates
+
+- The Technology of Music Production (Coursera, January 2021)
+- Developing your Musicianship (Coursera, December 2020)
+- CSS for JavaScript Developers (Workshop, October 2020)
+- UT.6.10x: Embedded Systems - Shape the World: Microcontroller Input/Output (edX, November 2019)
+- Triplebyte Certified Generalist Software Engineer (Triplebyte, August 2019)
+- Data Visualization (Dataquest.io, April 2016)
+- Data Analysis with Pandas: Intermediate Course (Dataquest.io, September 2015)
+- MCSD: Web Applications (Microsoft, June 2014)
+- Developing Microsoft Azure and Web Services (Microsoft, June 2014)
+- Developing ASP.NET MVC 4 Web Applications (Microsoft, February 2013)
+- Programming in HTML5, CSS3, JavaScript 70-480 (Microsoft, January 2013)
+
+## Awards
+
+- 2026 Bose Extraordinary Impact Award
+- 2019 Hackaday Connected World Contest Award - Connected Roomba
+- 2018 Humana Star Award - Data Engineering
+
+## Technical Skills & Competencies
+
+**Leadership & Program Management:** Hiring & interviewing, onboarding, mentorship & coaching, technical roadmap ownership, cross-functional/cross-team coordination, stakeholder management, process design (ADRs, documentation culture), consensus building across disciplines, change management
+
+**Languages & Frameworks:** Python, C, C#, TypeScript, Rust, C++, .NET Core, Django, React, Bash, SQL
+
+**Data:** Postgres, SQL Server, SQLite, Elasticsearch, MongoDB, Redis, Netezza, CosmosDB
+
+**Messaging:** SQS, PubSub, Azure Queues, Kafka, RabbitMQ
+
+**Storage:** HDFS, Azure Data Lake Storage Gen 2, S3
+
+**Cloud Platforms:** AWS, Azure, GCP
+
+**CI/CD & Infrastructure:** Azure Pipelines, Azure DevOps, CircleCI, GitHub Actions, Jenkins, Linux, Docker, Kubernetes, Fargate, Terraform
+
+**Practices:** Software architecture, software testing, pair programming, CI/CD
+
+## Talks
+
+- [Python for Embedded Hardware](https://github.com/DerbyPy/python_for_embedded_systems) (DerbyPy, Louisville, KY) - June 2019
+- [What is ODBC](https://github.com/DerbyPy/what-is-odbc) (DerbyPy, Louisville, KY) - March 2019
+- [Intro to PySpark](https://github.com/DerbyPy/intro-to-pyspark) (DerbyPy, Louisville, KY) - October 2018
+- [Python Modules and Packages](https://github.com/DerbyPy/modules-and-packages-intro) (DerbyPy, Louisville, KY) - September 2018
+- Column Oriented Data (DerbyPy, Louisville, KY) - June 2018
+- Effective AI Use (Bose, Framingham, MA) - September 2026
+
+## Volunteer & Open-Source Experience
+
+- [aioodbc](https://aioodbc.readthedocs.io/en/latest/) - configuration tuning documentation
+- [Annotorious](https://recogito.github.io/annotorious/) - docs and Gitter chat help
+- [Apache Arrow](https://arrow.apache.org/) - setup.py and API documentation updates, memory subpool implementation, scalar-value hashing support in Python
+- [Code Louisville](https://www.codelouisville.org/) - taught Python, debugging, databases, and Django
+- [Firefox Mobile](https://www.mozilla.org/en-US/firefox/browsers/mobile/) - bug fix for incorrect axis locking
+- [PyMSSQL](https://www.pymssql.org/) - mentored contributors, updated CI and platform builds, release manager for 2.1.4
+- [wavesurfer.js](https://wavesurfer-js.org/) - region plugin update for event broadcasting
+
+**Memberships:** [ACM](https://www.acm.org), [Hardware Happy Hour Louisville](https://h3lou.org), [DerbyPy](https://github.com/derbypy)

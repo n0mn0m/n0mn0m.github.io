@@ -12,7 +12,7 @@ From the product [page](https://www.adafruit.com/product/4116) the PyPortal is:
 
 > \*An easy-to-use IoT device that allows you to create all the things for the “Internet of Things” in minutes. Make
 > custom touch screen interface GUIs, all open-source, and Python-powered using tinyJSON / APIs to get news, stock,
-> weather, cat photos, and more – all over Wi-Fi with the latest technologies. Create little pocket universes of joy that
+> weather, cat photos, and more - all over Wi-Fi with the latest technologies. Create little pocket universes of joy that
 > connect to something good. Rotate it 90 degrees, it’s a web-connected conference badge #badgelife.\*Like many other
 > CircuitPython powered devices the PyPortal has a great [Explore and Learn](https://learn.adafruit.com/adafruit-pyportal)
 > page available that walks you through getting the right firmware installed as well as providing hardware breakdowns,

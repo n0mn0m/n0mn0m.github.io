@@ -2,6 +2,7 @@
 hide:
   - title
   - path
+template: me
 ---
 
 <style>

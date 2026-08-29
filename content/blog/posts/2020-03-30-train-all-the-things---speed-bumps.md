@@ -1,5 +1,5 @@
 ---
-title: Train All the Things — Speed Bumps
+title: Train All the Things - Speed Bumps
 date: 2020-03-30
 page.meta.tags: python, programming, esp
 page.meta.categories: programming

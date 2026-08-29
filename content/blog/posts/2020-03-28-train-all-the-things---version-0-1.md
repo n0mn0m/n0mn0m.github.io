@@ -1,5 +1,5 @@
 ---
-title: Train All the Things — Version 0.1
+title: Train All the Things - Version 0.1
 date: 2020-03-28
 page.meta.tags: python, programming, esp, tensorflow
 page.meta.categories: programming

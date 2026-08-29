@@ -1,5 +1,5 @@
 ---
-title: Train All the Things — Model Training
+title: Train All the Things - Model Training
 date: 2020-03-24
 page.meta.tags: python, programming, hackaday
 page.meta.categories: programming

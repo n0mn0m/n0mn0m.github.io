@@ -22,7 +22,7 @@ Install additional build dependencies.
 sudo yum install cmake gcc-c++ make ncurses-devel
 ```
 
-Clone vim source, configure and build. Specifically pay attention to the — with-python\* flags and the config directory
+Clone vim source, configure and build. Specifically pay attention to the - with-python\* flags and the config directory
 they use in your conda environment.
 
 ```bash
