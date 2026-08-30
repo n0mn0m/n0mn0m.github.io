@@ -11,6 +11,8 @@ from pathlib import Path
 from urllib.error import URLError
 from urllib.request import urlopen
 
+from minigen.logger import logger
+
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DIST_DIR = PROJECT_ROOT / "dist"
 PDF_DIR = PROJECT_ROOT / "static" / "pdfs"
@@ -136,7 +138,7 @@ def export_resume_pdf(
         dist_pdf_dir = DIST_DIR / "static" / "pdfs"
         dist_pdf_dir.mkdir(parents=True, exist_ok=True)
         shutil.copy2(resolved_output, dist_pdf_dir / resolved_output.name)
-        print(f"Resume PDF exported to {resolved_output}")
+        logger.info("Resume PDF exported to %s", resolved_output)
     finally:
         server.terminate()
         try:
