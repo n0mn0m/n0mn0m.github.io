@@ -135,3 +135,7 @@ def test_resume_css_keeps_timeline_without_list_overrides():
     assert "article.resume-page li" not in css
     assert "article.resume-page ul" not in css
     assert "article.resume-page ol" not in css
+    assert "@media print" in css
+    assert "header,\n    footer" in css
+    assert "display: none !important;" in css
+    assert "font-size: 11pt;" in css
