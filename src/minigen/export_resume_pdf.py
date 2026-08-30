@@ -37,7 +37,7 @@ def _wait_for_server(url: str, timeout_seconds: float = 20.0) -> None:
     raise RuntimeError(f"Timed out waiting for local server at {url}")
 
 
-def _render_resume_pdf(url: str) -> None:
+def _render_resume_pdf(url: str, output_path: Path) -> None:
     """Use a headless browser to print the resume page to PDF."""
     try:
         from playwright.sync_api import sync_playwright
@@ -45,6 +45,8 @@ def _render_resume_pdf(url: str) -> None:
         raise RuntimeError(
             "Playwright is not installed. Run `uv sync` and then retry."
         ) from exc
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
 
     try:
         with sync_playwright() as playwright:
@@ -55,9 +57,8 @@ def _render_resume_pdf(url: str) -> None:
                     device_scale_factor=2,
                 )
                 page.goto(url, wait_until="networkidle")
-                PDF_DIR.mkdir(parents=True, exist_ok=True)
                 page.pdf(
-                    path=str(PDF_PATH),
+                    path=str(output_path),
                     format="A4",
                     print_background=True,
                     prefer_css_page_size=True,
@@ -84,9 +85,8 @@ def _render_resume_pdf(url: str) -> None:
                     device_scale_factor=2,
                 )
                 page.goto(url, wait_until="networkidle")
-                PDF_DIR.mkdir(parents=True, exist_ok=True)
                 page.pdf(
-                    path=str(PDF_PATH),
+                    path=str(output_path),
                     format="A4",
                     print_background=True,
                     prefer_css_page_size=True,
@@ -101,8 +101,21 @@ def _render_resume_pdf(url: str) -> None:
                 browser.close()
 
 
-def main() -> None:
-    """Build the site, render the resume, and save a PDF copy."""
+def export_resume_pdf(
+    *,
+    url: str | None = None,
+    output_path: str | Path | None = None,
+) -> Path:
+    """Export the resume page to PDF, defaulting to a local build server.
+
+    Pass `url` to render a deployed site or any other reachable resume URL.
+    """
+    resolved_output = Path(output_path) if output_path else PDF_PATH
+
+    if url is not None:
+        _render_resume_pdf(url, resolved_output)
+        return resolved_output
+
     subprocess.run(
         [sys.executable, "-m", "minigen.cli", "build"],
         cwd=str(PROJECT_ROOT),
@@ -110,8 +123,7 @@ def main() -> None:
     )
 
     port = _pick_free_port()
-    url = f"http://127.0.0.1:{port}/programming/resume/"
-
+    local_url = f"http://127.0.0.1:{port}/programming/resume/"
     server = subprocess.Popen(
         [sys.executable, "-m", "http.server", str(port)],
         cwd=str(DIST_DIR),
@@ -119,12 +131,12 @@ def main() -> None:
         stderr=subprocess.DEVNULL,
     )
     try:
-        _wait_for_server(url)
-        _render_resume_pdf(url)
+        _wait_for_server(local_url)
+        _render_resume_pdf(local_url, resolved_output)
         dist_pdf_dir = DIST_DIR / "static" / "pdfs"
         dist_pdf_dir.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(PDF_PATH, dist_pdf_dir / PDF_PATH.name)
-        print(f"Resume PDF exported to {PDF_PATH}")
+        shutil.copy2(resolved_output, dist_pdf_dir / resolved_output.name)
+        print(f"Resume PDF exported to {resolved_output}")
     finally:
         server.terminate()
         try:
@@ -132,6 +144,13 @@ def main() -> None:
         except subprocess.TimeoutExpired:
             server.kill()
             server.wait(timeout=10)
+
+    return resolved_output
+
+
+def main() -> None:
+    """Backward-compatible entry point for the CLI module."""
+    export_resume_pdf()
 
 
 if __name__ == "__main__":

@@ -41,10 +41,22 @@ uv run minigen serve
 The resume page is the source of truth for the printed PDF. To generate a matching PDF in `static/pdfs/resume.pdf` and keep it synced with the live site HTML/CSS, run:
 
 ```sh
-uv run minigen resume-pdf
+uv run minigen genpdf
 ```
 
 This rebuilds the site, serves the generated HTML locally, opens `/programming/resume/` in headless Chromium, and saves the PDF with the same styling as the deployed page. The output is also copied into the built site at `dist/static/pdfs/resume.pdf` so it stays available alongside the generated static site.
+
+To render a deployed or remote resume URL instead of the local build, pass `--url`:
+
+```sh
+uv run minigen genpdf --url https://slower.earth/programming/resume/
+```
+
+You can also override the output path if needed:
+
+```sh
+uv run minigen genpdf --output static/pdfs/custom-resume.pdf
+```
 
 ## Exporting site photos
 
