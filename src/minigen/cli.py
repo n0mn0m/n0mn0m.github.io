@@ -16,7 +16,7 @@ def main():
     parser = argparse.ArgumentParser(description="minigen static site generator")
     parser.add_argument(
         "command",
-        choices=["build", "serve", "clean", "feeds"],
+        choices=["build", "serve", "clean", "feeds", "resume-pdf"],
         help="Command to execute",
     )
     parser.add_argument(
@@ -72,6 +72,10 @@ def main():
 
         builder.load_posts()
         builder.generate_feeds()
+    elif command == "resume-pdf":
+        from minigen.export_resume_pdf import main as export_resume_pdf_main
+
+        export_resume_pdf_main()
     else:
         logger.error(f"Unknown command: {command}")
         sys.exit(1)
