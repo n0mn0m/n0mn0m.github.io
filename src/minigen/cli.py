@@ -16,7 +16,7 @@ def main():
     parser = argparse.ArgumentParser(description="minigen static site generator")
     parser.add_argument(
         "command",
-        choices=["build", "serve", "clean", "feeds", "resume-pdf"],
+        choices=["build", "serve", "clean", "feeds", "genpdf"],
         help="Command to execute",
     )
     parser.add_argument(
@@ -24,6 +24,18 @@ def main():
         "--config",
         default="config.toml",
         help="Path to config file (default: config.toml)",
+    )
+    parser.add_argument(
+        "--url",
+        help=(
+            "URL to render to PDF. Defaults to a local build served at a free "
+            "localhost port. Use this for a deployed site such as https://slower.earth."
+        ),
+    )
+    parser.add_argument(
+        "--output",
+        default="static/pdfs/resume.pdf",
+        help="Destination path for the resume PDF (default: static/pdfs/resume.pdf)",
     )
 
     args = parser.parse_args()
@@ -72,10 +84,10 @@ def main():
 
         builder.load_posts()
         builder.generate_feeds()
-    elif command == "resume-pdf":
-        from minigen.export_resume_pdf import main as export_resume_pdf_main
+    elif command == "genpdf":
+        from minigen.export_resume_pdf import export_resume_pdf
 
-        export_resume_pdf_main()
+        export_resume_pdf(url=args.url, output_path=Path(args.output))
     else:
         logger.error(f"Unknown command: {command}")
         sys.exit(1)

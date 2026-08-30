@@ -139,3 +139,27 @@ def test_resume_css_keeps_timeline_without_list_overrides():
     assert "header,\n    footer" in css
     assert "display: none !important;" in css
     assert "font-size: 11pt;" in css
+
+
+def test_resume_pdf_export_accepts_explicit_url(monkeypatch, tmp_path):
+    """The resume exporter should support a deployed or local URL without a local server."""
+    from minigen.export_resume_pdf import export_resume_pdf
+
+    seen = {}
+
+    def fake_render(url: str, output_path: Path) -> None:
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        seen["url"] = url
+        seen["output_path"] = output_path
+
+    monkeypatch.setattr("minigen.export_resume_pdf._render_resume_pdf", fake_render)
+
+    output_path = tmp_path / "custom" / "resume.pdf"
+    url = "https://slower.earth/programming/resume/"
+
+    result = export_resume_pdf(url=url, output_path=output_path)
+
+    assert result == output_path
+    assert seen["url"] == url
+    assert seen["output_path"] == output_path
+    assert output_path.parent.exists()
