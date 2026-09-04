@@ -14,7 +14,7 @@ Engineering leader with 15 years of software engineering experience, the last se
 
 <div class="work-history">
   <div class="job">
-    <p><strong>Software Engineering and Program Lead</strong><br>
+    <p><strong>Lead Software Engineer and Program Manager - PCPREQ</strong><br>
     <em><a href="https://www.bose.com/">Bose</a> | 03/2024 - Current</em></p>
     <ul>
       <li>Foster a community of collaboration around the PREQ prototyping platform, engaging engineers from multiple disciplines to transform an ad hoc DSP environment into a reliable production prototyping and demo platform used company-wide.</li>
