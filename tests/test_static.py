@@ -128,17 +128,19 @@ def test_site_photos_are_copied_and_rendered_responsively(test_static, test_conf
 def test_resume_css_keeps_timeline_without_list_overrides():
     """The resume timeline should not change the site's default list styling."""
     css = (Path(__file__).parents[1] / "static" / "css" / "resume.css").read_text()
+    screen_css, print_css = css.split("@media print", maxsplit=1)
 
     assert "line-height: 1.4;" in css
-    assert "article.resume-page .work-history::before" in css
-    assert "article.resume-page .job::before" not in css
-    assert "article.resume-page li" not in css
-    assert "article.resume-page ul" not in css
-    assert "article.resume-page ol" not in css
+    assert "article.resume-page .work-history {" in screen_css
+    assert "border-left: 2px solid #dfe7ef;" in screen_css
+    assert ".job::before" not in screen_css
+    assert "article.resume-page li" not in screen_css
+    assert "article.resume-page ul" not in screen_css
+    assert "article.resume-page ol" not in screen_css
     assert "@media print" in css
     assert "header,\n    footer" in css
     assert "display: none !important;" in css
-    assert "font-size: 11pt;" in css
+    assert "font-size: 10pt;" in print_css
 
 
 def test_resume_pdf_export_accepts_explicit_url(monkeypatch, tmp_path):
