@@ -58,3 +58,119 @@
 .fa-music:hover {
     background: hsl(240, 100%, 40%);
 }
+
+/* Portfolio page layout */
+article.portfolio-page {
+    margin: 2rem auto 3rem;
+    padding: 0 1rem;
+    line-height: 1.4;
+}
+
+article.portfolio-page > h1 {
+    margin: 0 0 1rem;
+    text-align: center;
+    color: #111827;
+}
+
+article.portfolio-page .section-nav {
+    text-align: center;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+}
+
+article.portfolio-page .section-nav > li {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 1.25rem 1rem;
+    text-align: left;
+}
+
+article.portfolio-page .section-nav > li > a {
+    font-weight: 700;
+}
+
+article.portfolio-page .section-nav-sub {
+    list-style: none;
+    padding: 0;
+    margin: 0.4rem 0 0;
+}
+
+article.portfolio-page .section-nav-sub li {
+    margin: 0 0 0.2rem;
+    font-size: 0.92rem;
+}
+
+article.portfolio-page h2 {
+    margin: 2.2rem 0 0.85rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+    font-weight: 700;
+}
+
+article.portfolio-page > h2:first-of-type {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 1rem;
+}
+
+article.portfolio-page h3 {
+    margin: 1.75rem 0 0.5rem;
+}
+
+article.portfolio-page .project-history {
+    margin: 0.5rem 0 0;
+    padding-left: 1rem;
+    border-left: 2px solid #dfe7ef;
+}
+
+article.portfolio-page .project {
+    margin: 0 0 1.1rem;
+}
+
+article.portfolio-page .project-title {
+    margin: 0 0 0.15rem;
+}
+
+article.portfolio-page .project-details {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    column-gap: 0.75rem;
+    row-gap: 0.25rem;
+    margin: 0.15rem 0 0;
+}
+
+article.portfolio-page .project-details dt {
+    font-weight: 600;
+    color: #475569;
+}
+
+article.portfolio-page .project-details dd {
+    margin: 0;
+}
+
+article.portfolio-page .project-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+article.portfolio-page .project-links li {
+    margin: 0 0 0.15rem;
+}
+
+@media (max-width: 720px) {
+    article.portfolio-page {
+        margin: 1rem auto 2rem;
+        padding: 0 0.85rem;
+    }
+
+    article.portfolio-page .project-details {
+        grid-template-columns: 1fr;
+        row-gap: 0.1rem;
+    }
+
+    article.portfolio-page .project-details dt {
+        margin-top: 0.2rem;
+    }
+}

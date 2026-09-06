@@ -17,7 +17,7 @@ I'm an engineering leader with 15 years of software engineering experience, the 
     <p><strong>Software Engineering and Program Lead</strong><br>
     <em><a href="https://www.bose.com/">Bose</a> | 03/2024 - Current</em></p>
     <ul>
-      <li>Built and lead a cross-disciplinary engineering community around the PREQ prototyping platform, transforming an ad hoc DSP environment into a reliable, company-wide production prototyping and demo platform - sustained through code review, pair programming, and mentorship.</li>
+      <li>Built and lead a cross-disciplinary engineering community around the PCPREQ prototyping platform, transforming an ad hoc DSP environment into a reliable, company-wide production prototyping and demo platform - sustained through code review, pair programming, and mentorship.</li>
       <li>Restructured the candidate interview process, cutting time-to-feedback for candidates and the team by 50% while consistently identifying strong hires.</li>
       <li>Champion modern SDLC and engineering-writing practices (ADRs, application manuals, runbooks, user guides) across the platform, using it as a teaching vehicle for these practices enterprise-wide.</li>
       <li>Lead consensus building on tools and APIs to make DSP work portable across platforms.</li>
