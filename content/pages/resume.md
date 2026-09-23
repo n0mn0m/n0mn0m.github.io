@@ -14,10 +14,10 @@ I'm an engineering leader with 15 years of software engineering experience, the 
 
 <div class="work-history">
   <div class="job">
-    <p><strong>Software Engineering and Program Lead</strong><br>
+    <p><strong>Lead Software Engineer</strong><br>
     <em><a href="https://www.bose.com/">Bose</a> | 03/2024 - Current</em></p>
     <ul>
-      <li>Built and lead a cross-disciplinary engineering community around the PCPREQ prototyping platform, transforming an ad hoc DSP environment into a reliable, company-wide production prototyping and demo platform - sustained through code review, pair programming, and mentorship.</li>
+      <li>Run program management for the PCPREQ prototyping platform and lead its engineers (full-time and contract direct reports) and cross-disciplinary community, transforming an ad hoc DSP environment into a reliable, company-wide production prototyping and demo platform - sustained through code review, pair programming, and mentorship.</li>
       <li>Restructured the candidate interview process, cutting time-to-feedback for candidates and the team by 50% while consistently identifying strong hires.</li>
       <li>Champion modern SDLC and engineering-writing practices (ADRs, application manuals, runbooks, user guides) across the platform, using it as a teaching vehicle for these practices enterprise-wide.</li>
       <li>Lead consensus building on tools and APIs to make DSP work portable across platforms.</li>
@@ -64,8 +64,8 @@ I'm an engineering leader with 15 years of software engineering experience, the 
   </div>
 
 <div class="job">
-    <p><strong>Senior Software Engineer</strong><br>
-    <em><a href="https://www.humana.com/">Humana</a> | 08/2019 - 06/2020; 07/2015 - 03/2019</em></p>
+    <p><strong>Senior Data/Software Engineer</strong><br>
+    <em><a href="https://www.humana.com/">Humana</a> | 08/2019 - 05/2020; 07/2015 - 03/2019</em></p>
     <p>Led the NLP teams Agile transition; architected the Retail Data Science platform; built realtime OCR and NLP services.</p>
   </div>
 
@@ -77,7 +77,7 @@ I'm an engineering leader with 15 years of software engineering experience, the 
 
 <div class="job">
     <p><strong>Senior Analytic Consultant | Analytic Consultant | Developer</strong><br>
-    <em>Aspect | 01/2012 – 07/2015</em></p>
+    <em>Aspect | 11/2012 – 07/2015</em></p>
     <p>Led client BI training and SSIS/SSAS analytics/KPI work for call-center clients (PetSafe, Delta, JetBlue).</p>
   </div>
 
@@ -138,7 +138,7 @@ I'm an engineering leader with 15 years of software engineering experience, the 
 
 - [Apache Arrow](https://arrow.apache.org/) - Build and documentation updates, memory subpool implementation, scalar-value hashing
 - [PyMSSQL](https://www.pymssql.org/) - mentored contributors, updated CI and platform builds, release manager for 2.1.4
-- [Code Louisville](https://www.codelouisville.org/) - Taught Python, debugging, databases, and Django with
+- [Code Louisville](https://www.codelouisville.org/) - Taught Python, debugging, databases, and Django
 - Also contributed to: [aioodbc](https://aioodbc.readthedocs.io/en/latest/), [Annotorious](https://recogito.github.io/annotorious/), [Firefox Mobile](https://www.mozilla.org/en-US/firefox/browsers/mobile/), and [wavesurfer.js](https://wavesurfer-js.org/)
 
 **Memberships:** [ACM](https://www.acm.org), [Hardware Happy Hour Louisville](https://h3lou.org), [DerbyPy](https://github.com/derbypy)
