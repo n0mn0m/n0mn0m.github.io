@@ -1,0 +1,219 @@
+:root {
+    --site-page-width: 980px;
+    --site-text: #1f2937;
+    --site-muted: #475569;
+    --site-soft: #4b5563;
+    --site-heading: #111827;
+    --site-border: #e5e7eb;
+    --site-link: #005a8b;
+}
+
+main {
+    max-width: var(--site-page-width);
+    margin: 0 auto;
+    padding: 0 1rem 2rem;
+}
+
+main > article,
+main > section,
+main > div {
+    max-width: var(--site-page-width);
+}
+
+main article,
+main section,
+main .content {
+    color: var(--site-text);
+    line-height: 1.7;
+    font-size: 1.02rem;
+}
+
+main h1,
+main h2,
+main h3,
+main h4,
+main h5,
+main h6 {
+    color: var(--site-heading);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 1.6rem 0 0.7rem;
+}
+
+main h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+}
+
+main h2 {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    margin-top: 2rem;
+}
+
+main h3 {
+    font-size: 1.1rem;
+}
+
+main p,
+main li {
+    color: var(--site-text);
+}
+
+main p {
+    margin: 0 0 0.85rem;
+}
+
+main ul,
+main ol {
+    margin: 0 0 1rem;
+    padding-left: 1.5rem;
+}
+
+main li {
+    margin: 0 0 0.5rem;
+}
+
+main a {
+    color: var(--site-link);
+    text-decoration: none;
+}
+
+main a:hover,
+main a:focus {
+    text-decoration: underline;
+}
+
+main strong {
+    color: var(--site-heading);
+}
+
+main em {
+    color: var(--site-soft);
+    font-style: normal;
+}
+
+/* Center footer */
+footer {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Reduce gap between nav and homepage intro */
+.intro {
+    margin-top: 1.5rem;
+}
+
+/* Homepage and profile intro */
+.homepage-intro {
+    text-align: center;
+    margin: 1.5rem auto 0 auto;
+    padding: 0;
+}
+.homepage-intro embed, .homepage-intro audio {
+    display: block;
+    margin: 1rem auto;
+    max-width: 600px;
+    min-height: 120px;
+    height: auto;
+    border: none;
+}
+
+.site-photo {
+    margin: 2rem auto;
+    max-width: 1100px;
+    text-align: center;
+}
+
+.site-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0.25rem;
+}
+
+/* Blog index styles */
+.blog-index {
+    margin: 2rem auto 0 auto;
+    max-width: 700px;
+    padding: 0 1rem;
+}
+/* Center blog index post listing and pagination */
+/* Center blog index container, left-align content */
+.blog-index {
+    margin: 2rem auto 0 auto;
+    max-width: 700px;
+    padding: 0 1rem;
+    text-align: left;
+}
+.blog-index .post-list {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+.blog-index .post-preview {
+    margin-bottom: 2rem;
+    text-align: left;
+}
+.blog-index h2 {
+    margin: 0;
+    display: block;
+}
+.blog-index .post-meta-line {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.25rem;
+    margin-left: 0.5rem;
+}
+.blog-index .pagination {
+    text-align: center;
+    margin-top: 2rem;
+}
+.blog-links {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Center top-level nav links */
+header nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 1rem 0;
+}
+
+header nav a {
+    text-align: center;
+    font-size: 1.1rem;
+}
+@font-face {
+    font-family: 'permanent-marker';
+    src: url('/static/fonts/Permanent_Marker/PermanentMarker-Regular.ttf')
+    format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.app-title {
+    font-family: 'permanent-marker', sans-serif;
+    font-size: 3rem;
+    font-weight: normal;
+    font-style: normal;
+    text-align: center;
+    color: white;
+    margin-top: 0;
+}
+
+.color-run {
+    color: #f6cb8c;
+    text-shadow: 1px -1px hsl(195, 80%, 42%), 2px -2px hsl(195, 80%, 42%),
+    3px -3px hsl(195, 80%, 42%), -1px 1px hsl(348, 34%, 35%),
+    -2px 2px hsl(195, 80%, 42%), -3px 3px hsl(195, 80%, 42%),
+    1px 1px hsl(348, 34%, 35%), 2px 2px hsl(197, 8%, 18%),
+    3px 3px hsl(197, 8%, 18%), -4px 4px hsl(197, 8%, 18%),
+    5px 5px hsl(195, 80%, 42%), 6px 6px hsl(284, 22%, 36%),
+    7px 7px hsl(197, 8%, 18%), -8px 8px hsl(186, 30%, 39%),
+    -9px 9px hsl(186, 30%, 39%), -10px 10px hsl(186, 30%, 39%),
+    11px 11px hsl(284, 22%, 36%), 12px 12px hsl(284, 22%, 36%),
+    -13px 13px hsl(185, 71%, 45%), -14px 14px hsl(185, 71%, 45%),
+    -15px 15px hsl(185, 71%, 45%);
+}
